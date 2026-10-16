@@ -67,7 +67,6 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
-        UIRequiresFullScreen: true
         ITSAppUsesNonExemptEncryption: false
         NSLocationWhenInUseUsageDescription: "Farecart uses your location only to find grocery stores, food pantries and giveaways near you. It is never stored."
         LSApplicationQueriesSchemes:
