@@ -32,6 +32,8 @@ struct FarecartApp: App {
                 .preferredColorScheme(theme.colorScheme)
                 .task { await environment.fareStore.loadIfNeeded() }
                 .task { await account.restore(environment: environment) }
+                // farecart://auth-callback opened outside the web authentication session.
+                .onOpenURL { url in Task { await account.handleOpenURL(url) } }
         }
     }
 }

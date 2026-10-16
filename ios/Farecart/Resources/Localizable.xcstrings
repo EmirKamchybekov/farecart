@@ -3149,6 +3149,58 @@
         }
       }
     },
+    "Continue with Google": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar con Google"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontynuuj przez Google"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过 Google 继续"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المتابعة باستخدام Google"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Magpatuloy gamit ang Google"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google کے ساتھ جاری رکھیں"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Продовжити через Google"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google로 계속"
+          }
+        }
+      }
+    },
     "Continue without an account": {
       "localizations": {
         "es": {
@@ -5589,6 +5641,110 @@
           "stringUnit": {
             "state": "translated",
             "value": "알아두면 좋아요"
+          }
+        }
+      }
+    },
+    "Google sign-in did not finish. Please try again.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se completó el inicio de sesión con Google. Inténtalo de nuevo."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logowanie przez Google nie zostało ukończone. Spróbuj ponownie."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过 Google 登录未完成。请重试。"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لم يكتمل تسجيل الدخول بـ Google. يُرجى المحاولة مرة أخرى."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi natapos ang pag-sign in gamit ang Google. Pakisubukan ulit."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google سے سائن ان مکمل نہیں ہوا۔ براہ کرم دوبارہ کوشش کریں۔"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вхід через Google не завершено. Спробуйте ще раз."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google로 로그인이 완료되지 않았어요. 다시 시도해 주세요."
+          }
+        }
+      }
+    },
+    "Google sign-in isn't set up yet. You can keep using Farecart without an account.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El inicio de sesión con Google aún no está configurado. Puedes seguir usando Farecart sin cuenta."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logowanie przez Google nie jest jeszcze skonfigurowane. Możesz dalej używać Farecart bez konta."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google 登录尚未设置。您可以继续在没有账户的情况下使用 Farecart。"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تسجيل الدخول بـ Google غير مُعدّ بعد. يمكنك متابعة استخدام Farecart بدون حساب."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi pa naka-set up ang pag-sign in gamit ang Google. Puwede mong patuloy na gamitin ang Farecart nang walang account."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google سے سائن ان ابھی سیٹ اپ نہیں ہوا۔ آپ اکاؤنٹ کے بغیر Farecart استعمال کرتے رہ سکتے ہیں۔"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вхід через Google ще не налаштовано. Ви можете й далі користуватися Farecart без облікового запису."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google 로그인은 아직 설정되지 않았어요. 계정 없이 Farecart를 계속 사용할 수 있습니다."
           }
         }
       }
@@ -10325,54 +10481,54 @@
         }
       }
     },
-    "Sign in with Apple to save your answers, language and theme if you change phones. This is optional.": {
+    "Sign in with Apple or Google to save your answers, language and theme if you change phones. This is optional.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inicia sesión con Apple para guardar tus respuestas, idioma y tema si cambias de teléfono. Es opcional."
+            "value": "Inicia sesión con Apple o Google para guardar tus respuestas, idioma y tema si cambias de teléfono. Es opcional."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zaloguj się przez Apple, aby zapisać odpowiedzi, język i motyw na wypadek zmiany telefonu. To nieobowiązkowe."
+            "value": "Zaloguj się przez Apple lub Google, aby zapisać odpowiedzi, język i motyw na wypadek zmiany telefonu. To nieobowiązkowe."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "通过 Apple 登录，以便换手机时保留您的回答、语言和主题。这是可选的。"
+            "value": "通过 Apple 或 Google 登录，以便换手机时保留您的回答、语言和主题。这是可选的。"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "سجّل الدخول بـ Apple لحفظ إجاباتك ولغتك ومظهرك إذا غيّرت هاتفك. هذا اختياري."
+            "value": "سجّل الدخول بـ Apple أو Google لحفظ إجاباتك ولغتك ومظهرك إذا غيّرت هاتفك. هذا اختياري."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mag-sign in gamit ang Apple para ma-save ang mga sagot, wika at tema mo kung magpalit ka ng telepono. Opsyonal ito."
+            "value": "Mag-sign in gamit ang Apple o Google para ma-save ang mga sagot, wika at tema mo kung magpalit ka ng telepono. Opsyonal ito."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "فون بدلنے پر اپنے جوابات، زبان اور تھیم محفوظ رکھنے کے لیے Apple سے سائن ان کریں۔ یہ اختیاری ہے۔"
+            "value": "فون بدلنے پر اپنے جوابات، زبان اور تھیم محفوظ رکھنے کے لیے Apple یا Google سے سائن ان کریں۔ یہ اختیاری ہے۔"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Увійдіть через Apple, щоб зберегти відповіді, мову та тему на випадок зміни телефону. Це необов'язково."
+            "value": "Увійдіть через Apple або Google, щоб зберегти відповіді, мову та тему на випадок зміни телефону. Це необов'язково."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apple로 로그인하면 휴대폰을 바꿔도 답변, 언어, 화면 모드가 저장됩니다. 선택 사항입니다."
+            "value": "Apple 또는 Google로 로그인하면 휴대폰을 바꿔도 답변, 언어, 화면 모드가 저장됩니다. 선택 사항입니다."
           }
         }
       }
@@ -10633,6 +10789,58 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple로 로그인되어 있습니다. 할인 답변, 언어, 화면 모드가 계정에 저장됩니다."
+          }
+        }
+      }
+    },
+    "Signed in with Google. Your discount answers, language and theme are saved to your account.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión iniciada con Google. Tus respuestas de descuentos, idioma y tema se guardan en tu cuenta."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zalogowano przez Google. Twoje odpowiedzi o zniżkach, język i motyw są zapisane na koncie."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已通过 Google 登录。您的优惠回答、语言和主题已保存到您的账户。"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم تسجيل الدخول بـ Google. إجابات الخصومات واللغة والمظهر محفوظة في حسابك."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naka-sign in gamit ang Google. Naka-save sa account mo ang mga sagot sa diskuwento, wika at tema."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google سے سائن ان ہے۔ آپ کے رعایت کے جوابات، زبان اور تھیم آپ کے اکاؤنٹ میں محفوظ ہیں۔"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ви ввійшли через Google. Ваші відповіді про знижки, мова й тема збережені в обліковому записі."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google로 로그인되어 있습니다. 할인 답변, 언어, 화면 모드가 계정에 저장됩니다."
           }
         }
       }

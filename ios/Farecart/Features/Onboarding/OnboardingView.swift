@@ -233,8 +233,8 @@ private struct AccountPage: View {
     let finish: () -> Void
 
     var body: some View {
-        OnboardingPage(systemImage: "person.crop.circle", title: "Keep your settings", text: "Sign in with Apple to save your answers, language and theme if you change phones. This is optional.") {
-            SignInWithAppleRow()
+        OnboardingPage(systemImage: "person.crop.circle", title: "Keep your settings", text: "Sign in with Apple or Google to save your answers, language and theme if you change phones. This is optional.") {
+            SignInButtons()
         } actions: {
             Button(action: finish) {
                 BigButtonLabel(title: "Continue without an account", systemImage: "arrow.right")

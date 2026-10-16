@@ -3,9 +3,16 @@ import CryptoKit
 import Foundation
 import Observation
 import SwiftUI
+import UIKit
 import FarecartKit
 
-/// Optional account: Sign in with Apple → Supabase session in the Keychain → `profiles` row kept in
+/// Which provider the stored session came from.
+enum AuthProvider: String, Sendable {
+    case apple, google
+}
+
+/// Optional account: Sign in with Apple (native) or Google (Supabase's hosted OAuth flow with PKCE
+/// in `ASWebAuthenticationSession`) → Supabase session in the Keychain → `profiles` row kept in
 /// step with the Discounts answers, language and theme. Everything works signed out.
 @MainActor
 @Observable
@@ -16,6 +23,8 @@ final class AccountModel {
     private(set) var errorMessage: String?
 
     var isSignedIn: Bool { session != nil }
+    /// `nil` for sessions stored before the provider was recorded (those were all Apple).
+    var provider: AuthProvider? { session?.provider.flatMap(AuthProvider.init(rawValue:)) }
     var displayName: String? {
         guard let user = session?.user else { return nil }
         if let name = user.fullName, !name.isEmpty { return name }
@@ -28,6 +37,14 @@ final class AccountModel {
     private static let keychainAccount = "supabase.session"
     /// Raw nonce for the Apple request in flight; its SHA-256 went to Apple.
     private var pendingNonce: String?
+    /// PKCE verifier for the Google flow in flight; its SHA-256 went to `/authorize`.
+    private var pendingCodeVerifier: String?
+    private var webSession: ASWebAuthenticationSession?
+    private let presentationContext = WebAuthPresentationContext()
+
+    static let callbackScheme = "farecart"
+    static let callbackHost = "auth-callback"
+    static var redirectURI: String { "\(callbackScheme)://\(callbackHost)" }
 
     // MARK: Launch
 
@@ -92,15 +109,142 @@ final class AccountModel {
                     try? await auth.updateFullName(name, session: newSession)
                 }
                 if newSession.user.email == nil, let email = credential.email { newSession.user.email = email }
-                persist(newSession)
-                session = newSession
-                errorMessage = nil
-                await pullProfile(preferLocalAnswers: true)
+                await adopt(newSession, provider: .apple)
             } catch {
-                errorMessage = String(localized: "Could not sign in right now. Check your connection and try again.", bundle: LanguageBundle.current)
+                errorMessage = Self.couldNotSignInMessage
             }
         }
         pendingNonce = nil
+    }
+
+    // MARK: Sign in with Google (hosted OAuth + PKCE, no SDK)
+
+    /// Opens Supabase's `/authorize?provider=google` in a web authentication session and finishes
+    /// through `farecart://auth-callback`. Cancelling is silent; a provider that is not set up yet
+    /// shows a friendly line instead of the browser.
+    func signInWithGoogle() async {
+        guard !isBusy else { return }
+        guard let auth else {
+            errorMessage = String(localized: "Sign in needs the app's Supabase settings, which are missing in this build.", bundle: LanguageBundle.current)
+            return
+        }
+        errorMessage = nil
+        isBusy = true
+        let verifier = PKCE.makeVerifier()
+        guard let url = try? auth.authorizeURL(provider: "google", redirectTo: Self.redirectURI, codeChallenge: PKCE.challenge(for: verifier)) else {
+            isBusy = false
+            errorMessage = Self.googleDidNotFinishMessage
+            return
+        }
+        // GoTrue answers 400 JSON (not a redirect) while the provider has no client id; don't show that page.
+        do {
+            try await auth.preflightAuthorize(url)
+        } catch is SupabaseAuthClient.ProviderNotConfigured {
+            isBusy = false
+            errorMessage = Self.googleNotSetUpMessage
+            return
+        } catch {
+            // Offline or similar: let the browser show its own error page.
+        }
+        pendingCodeVerifier = verifier
+        do {
+            let callbackURL = try await presentWebSession(url: url)
+            await finishGoogle(callbackURL: callbackURL)
+        } catch {
+            // Either the user dismissed the sheet, or `handleOpenURL` took over and cancelled it.
+            guard pendingCodeVerifier != nil else { return }
+            pendingCodeVerifier = nil
+            webSession = nil
+            isBusy = false
+            if (error as? ASWebAuthenticationSessionError)?.code != .canceledLogin {
+                errorMessage = Self.googleDidNotFinishMessage
+            }
+        }
+    }
+
+    /// Fallback for `farecart://auth-callback` arriving through the app (`onOpenURL`) rather than
+    /// the web authentication session, e.g. from Safari. Ignored when no sign-in is in flight.
+    func handleOpenURL(_ url: URL) async {
+        guard OAuthCallback.matches(url, scheme: Self.callbackScheme, host: Self.callbackHost),
+              pendingCodeVerifier != nil else { return }
+        webSession?.cancel()
+        await finishGoogle(callbackURL: url)
+    }
+
+    private func finishGoogle(callbackURL: URL) async {
+        guard let verifier = pendingCodeVerifier, let auth else {
+            isBusy = false
+            return
+        }
+        pendingCodeVerifier = nil
+        webSession = nil
+        isBusy = true
+        defer { isBusy = false }
+        switch OAuthCallback.parse(callbackURL) {
+        case .code(let code):
+            do {
+                let newSession = try await auth.exchangeCode(code: code, codeVerifier: verifier)
+                await adopt(newSession, provider: .google)
+            } catch {
+                errorMessage = Self.couldNotSignInMessage
+            }
+        case .tokens(let accessToken, let refreshToken, let expiresIn, let expiresAt):
+            do {
+                let newSession = try await auth.session(accessToken: accessToken, refreshToken: refreshToken, expiresIn: expiresIn, expiresAt: expiresAt)
+                await adopt(newSession, provider: .google)
+            } catch {
+                errorMessage = Self.couldNotSignInMessage
+            }
+        case .failure(let code, let description):
+            if code == "access_denied" { return }   // declined on Google's consent screen: same as cancel
+            let text = (description ?? code ?? "").lowercased()
+            if text.contains("unsupported provider") || text.contains("not enabled") || text.contains("client id") {
+                errorMessage = Self.googleNotSetUpMessage
+            } else {
+                errorMessage = Self.googleDidNotFinishMessage
+            }
+        case nil:
+            errorMessage = Self.googleDidNotFinishMessage
+        }
+    }
+
+    private func presentWebSession(url: URL) async throws -> URL {
+        try await withCheckedThrowingContinuation { continuation in
+            let session = ASWebAuthenticationSession(url: url, callback: .customScheme(Self.callbackScheme)) { callbackURL, error in
+                if let callbackURL {
+                    continuation.resume(returning: callbackURL)
+                } else {
+                    continuation.resume(throwing: error ?? ASWebAuthenticationSessionError(.canceledLogin))
+                }
+            }
+            // Not ephemeral: the user's existing Google session in Safari makes this a one-tap flow.
+            session.prefersEphemeralWebBrowserSession = false
+            session.presentationContextProvider = presentationContext
+            webSession = session
+            if !session.start() {
+                continuation.resume(throwing: ASWebAuthenticationSessionError(.presentationContextInvalid))
+            }
+        }
+    }
+
+    /// Stores a freshly obtained session exactly like the Apple path and syncs the profile.
+    private func adopt(_ newSession: AuthSession, provider: AuthProvider) async {
+        var stored = newSession
+        if stored.provider == nil { stored.provider = provider.rawValue }
+        persist(stored)
+        session = stored
+        errorMessage = nil
+        await pullProfile(preferLocalAnswers: true)
+    }
+
+    private static var couldNotSignInMessage: String {
+        String(localized: "Could not sign in right now. Check your connection and try again.", bundle: LanguageBundle.current)
+    }
+    private static var googleNotSetUpMessage: String {
+        String(localized: "Google sign-in isn't set up yet. You can keep using Farecart without an account.", bundle: LanguageBundle.current)
+    }
+    private static var googleDidNotFinishMessage: String {
+        String(localized: "Google sign-in did not finish. Please try again.", bundle: LanguageBundle.current)
     }
 
     func signOut() async {
@@ -197,8 +341,20 @@ final class AccountModel {
     }
 }
 
-/// The Apple button plus the friendly error line, shared by Settings and onboarding.
-struct SignInWithAppleRow: View {
+/// Hands `ASWebAuthenticationSession` the key window to present from.
+@MainActor
+private final class WebAuthPresentationContext: NSObject, ASWebAuthenticationPresentationContextProviding {
+    nonisolated func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        MainActor.assumeIsolated {
+            let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+            let windows = scenes.flatMap(\.windows)
+            return windows.first(where: \.isKeyWindow) ?? scenes.first?.keyWindow ?? windows.first ?? ASPresentationAnchor()
+        }
+    }
+}
+
+/// The Apple and Google buttons plus the friendly error line, shared by Settings and onboarding.
+struct SignInButtons: View {
     @Environment(AccountModel.self) private var account
     @Environment(\.colorScheme) private var colorScheme
 
@@ -216,11 +372,79 @@ struct SignInWithAppleRow: View {
             .overlay {
                 if account.isBusy { ProgressView().tint(colorScheme == .dark ? .black : .white) }
             }
+            SignInWithGoogleButton()
             if let message = account.errorMessage {
                 Label(message, systemImage: "exclamationmark.circle")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
+        }
+    }
+}
+
+/// "Continue with Google" in Google's standard look (white, hairline border, the colored "G") drawn
+/// with SwiftUI shapes only; no asset.
+struct SignInWithGoogleButton: View {
+    @Environment(AccountModel.self) private var account
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.displayScale) private var displayScale
+
+    private var fill: Color { colorScheme == .dark ? Color(red: 0.075, green: 0.075, blue: 0.078) : .white }
+    private var text: Color { colorScheme == .dark ? Color(red: 0.89, green: 0.89, blue: 0.89) : Color(red: 0.12, green: 0.12, blue: 0.12) }
+    private var border: Color { colorScheme == .dark ? Color(red: 0.56, green: 0.56, blue: 0.56) : Color(red: 0.45, green: 0.46, blue: 0.46) }
+
+    var body: some View {
+        Button {
+            Task { await account.signInWithGoogle() }
+        } label: {
+            HStack(spacing: 10) {
+                GoogleGMark()
+                    .frame(width: 20, height: 20)
+                    .accessibilityHidden(true)
+                Text("Continue with Google")
+                    .font(.body.weight(.semibold))
+            }
+            .foregroundStyle(text)
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .background(fill, in: RoundedRectangle(cornerRadius: Radius.inner, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: Radius.inner, style: .continuous)
+                    .strokeBorder(border, lineWidth: 1 / displayScale)
+            }
+            .contentShape(RoundedRectangle(cornerRadius: Radius.inner, style: .continuous))
+        }
+        .buttonStyle(.plain)
+        .disabled(account.isBusy)
+    }
+}
+
+/// The four-color Google "G": a ring in four arcs with a gap at the top right, plus the blue bar.
+struct GoogleGMark: View {
+    private static let blue = Color(red: 0.259, green: 0.522, blue: 0.957)
+    private static let red = Color(red: 0.918, green: 0.263, blue: 0.208)
+    private static let yellow = Color(red: 0.984, green: 0.737, blue: 0.020)
+    private static let green = Color(red: 0.204, green: 0.659, blue: 0.325)
+
+    var body: some View {
+        Canvas { context, size in
+            let side = min(size.width, size.height)
+            let origin = CGPoint(x: (size.width - side) / 2, y: (size.height - side) / 2)
+            let center = CGPoint(x: origin.x + side / 2, y: origin.y + side / 2)
+            let width = side * 0.2
+            let radius = side / 2 - width / 2
+            func arc(_ from: Double, _ to: Double, _ color: Color) {
+                var path = Path()
+                path.addArc(center: center, radius: radius, startAngle: .degrees(from), endAngle: .degrees(to), clockwise: false)
+                context.stroke(path, with: .color(color), style: StrokeStyle(lineWidth: width, lineCap: .butt))
+            }
+            // Angles run clockwise on screen: 0° is the right edge, 90° the bottom.
+            arc(0, 50, Self.blue)
+            arc(48, 138, Self.green)
+            arc(136, 212, Self.yellow)
+            arc(210, 320, Self.red)
+            let bar = CGRect(x: center.x, y: center.y - width / 2, width: side / 2, height: width)
+            context.fill(Path(bar), with: .color(Self.blue))
         }
     }
 }

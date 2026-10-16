@@ -20,12 +20,16 @@ public struct AuthSession: Sendable, Hashable, Codable {
     public var refreshToken: String
     public var expiresAt: Date
     public var user: AuthUser
+    /// Which provider signed the user in (`"apple"`, `"google"`), from `app_metadata.provider`.
+    /// Optional so sessions stored before it existed still decode.
+    public var provider: String?
 
-    public init(accessToken: String, refreshToken: String, expiresAt: Date, user: AuthUser) {
+    public init(accessToken: String, refreshToken: String, expiresAt: Date, user: AuthUser, provider: String? = nil) {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
         self.expiresAt = expiresAt
         self.user = user
+        self.provider = provider
     }
 
     /// `true` when the access token expires within `leeway` (default one minute).
@@ -42,32 +46,54 @@ public struct AuthSession: Sendable, Hashable, Codable {
         } else {
             expiresAt = now.addingTimeInterval(raw.expiresIn ?? 3600)
         }
-        let metadata = raw.user.userMetadata ?? [:]
-        let name = metadata["full_name"]?.stringValue ?? metadata["name"]?.stringValue
         self.init(
             accessToken: raw.accessToken,
             refreshToken: raw.refreshToken,
             expiresAt: expiresAt,
-            user: AuthUser(id: raw.user.id, email: raw.user.email, fullName: name)
+            user: raw.user.authUser,
+            provider: raw.user.provider
         )
     }
 
-    struct TokenResponse: Decodable {
+    /// Builds a session from tokens that arrived without a token response (the implicit-flow
+    /// fragment), once the user has been fetched from `GET auth/v1/user`.
+    public init(accessToken: String, refreshToken: String, expiresIn: TimeInterval?, expiresAt: TimeInterval?, user: TokenResponse.User, now: Date = Date()) {
+        let expiry: Date
+        if let expiresAt {
+            expiry = Date(timeIntervalSince1970: expiresAt)
+        } else {
+            expiry = now.addingTimeInterval(expiresIn ?? 3600)
+        }
+        self.init(accessToken: accessToken, refreshToken: refreshToken, expiresAt: expiry, user: user.authUser, provider: user.provider)
+    }
+
+    public struct TokenResponse: Decodable, Sendable {
         var accessToken: String
         var refreshToken: String
         var expiresIn: TimeInterval?
         var expiresAt: TimeInterval?
         var user: User
 
-        struct User: Decodable {
+        /// The `user` object GoTrue returns in token responses and from `GET auth/v1/user`.
+        public struct User: Decodable, Sendable {
             var id: UUID
             var email: String?
             var userMetadata: [String: JSONValue]?
+            var appMetadata: [String: JSONValue]?
 
             enum CodingKeys: String, CodingKey {
                 case id, email
                 case userMetadata = "user_metadata"
+                case appMetadata = "app_metadata"
             }
+
+            var authUser: AuthUser {
+                let metadata = userMetadata ?? [:]
+                let name = metadata["full_name"]?.stringValue ?? metadata["name"]?.stringValue
+                return AuthUser(id: id, email: email, fullName: name)
+            }
+
+            var provider: String? { appMetadata?["provider"]?.stringValue }
         }
 
         enum CodingKeys: String, CodingKey {

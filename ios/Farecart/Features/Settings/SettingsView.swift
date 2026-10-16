@@ -135,7 +135,7 @@ struct SettingsView: View {
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
-                        Text("Signed in with Apple. Your discount answers, language and theme are saved to your account.")
+                        Text(signedInNote)
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
@@ -158,12 +158,19 @@ struct SettingsView: View {
                     Text("Sign in to keep your discount answers, language and theme if you change phones. Everything works without an account.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
-                    SignInWithAppleRow()
+                    SignInButtons()
                 }
                 .padding(.vertical, 4)
             }
         } header: {
             Text("Account")
+        }
+    }
+
+    private var signedInNote: LocalizedStringResource {
+        switch account.provider {
+        case .google: "Signed in with Google. Your discount answers, language and theme are saved to your account."
+        case .apple, nil: "Signed in with Apple. Your discount answers, language and theme are saved to your account."
         }
     }
 

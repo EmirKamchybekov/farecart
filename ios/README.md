@@ -15,8 +15,8 @@ ios/
 ├── Farecart/                 App target (SwiftUI only, no third-party deps)
 │   ├── App/                  FarecartApp (locale / theme at the root), RootView (onboarding gate) + RootTabView,
 │   │                         AppEnvironment, AppSettings (AppLanguage, AppTheme, LanguageBundle)
-│   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore, AccountModel (Sign in with Apple
-│   │                         + profile sync), Keychain
+│   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore, AccountModel (Sign in with Apple,
+│   │                         Google via hosted OAuth + profile sync), Keychain
 │   ├── Features/
 │   │   ├── Onboarding/       Welcome (language) → location → discount questions → optional sign-in
 │   │   ├── FindFood/         Top search field + suggestions, glass filter chips, map, in-tab results panel
@@ -41,7 +41,8 @@ ios/
 - **Onboarding** (first launch, `@AppStorage("onboardingDone")`): four full-screen pages with a page indicator
   and Skip: welcome + language list, location permission ("Allow location" shows the real prompt, or "Type an
   address instead"), the two discount questions with the "You could pay $1.10 instead of $2.25 per bus ride"
-  payoff computed from the `fares` rows, and optional Sign in with Apple with "Continue without an account".
+  payoff computed from the `fares` rows, and optional Sign in with Apple / Continue with Google with "Continue without
+  an account".
   Settings → "Show welcome again" re-runs it.
 - **Find Food**: a glass search field sits on top of the map. Idle, it shows the current origin ("My location"
   or the chosen address); tapping it clears the field, shows "Use my location" + neighborhood shortcuts, and
@@ -170,7 +171,10 @@ The theme (`@AppStorage("appTheme")`, `AppTheme`) is applied with `.preferredCol
 
 ## Account (optional)
 
-Sign in with Apple through Supabase Auth, no SDK:
+Sign in with Apple or Google through Supabase Auth, no SDK. Both end in the same `AuthSession` (which records
+`provider`, so Settings says "Signed in with Apple" or "Signed in with Google"), stored and refreshed the same way.
+
+Sign in with Apple:
 
 1. `SignInWithAppleButton` (`AuthenticationServices`) with a random nonce; its SHA-256 goes to Apple.
 2. `SupabaseAuthClient.signInWithApple` posts `{provider:"apple", id_token, nonce}` to
@@ -195,6 +199,49 @@ Setup on your side (one-time):
   available on this device right now" and keeps working without an account. Sign in to iCloud in the
   simulator's Settings to test the full flow.
 - Account deletion is not in the app yet; Settings tells the user to email `REPORT_PROBLEM_EMAIL`.
+
+### Continue with Google (hosted OAuth with PKCE)
+
+No Google SDK. The app opens Supabase's hosted flow in an `ASWebAuthenticationSession` and comes back through
+the custom URL scheme `farecart://auth-callback` (`CFBundleURLTypes` in `project.yml`):
+
+1. `PKCE.makeVerifier()` stays in `AccountModel`; `PKCE.challenge(for:)` (base64url SHA-256) goes into
+   `SupabaseAuthClient.authorizeURL(provider: "google", redirectTo: "farecart://auth-callback", codeChallenge:)`
+   → `{SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=…&code_challenge=…&code_challenge_method=s256`.
+2. `preflightAuthorize` fetches that URL once first. While the provider has no client id, GoTrue answers HTTP 400
+   JSON (`Unsupported provider: missing OAuth client ID`) instead of redirecting, so the app shows "Google sign-in
+   isn't set up yet." and never opens the browser. Once configured the response is Google's page and the flow goes on.
+3. `ASWebAuthenticationSession(url:callback: .customScheme("farecart"))`, not ephemeral (an existing Google session
+   in Safari makes it one tap), presented from the key window. Cancelling the sheet is silent.
+4. `OAuthCallback.parse` reads `?code=` (or `#access_token=…&refresh_token=…` if tokens ever come in the fragment,
+   or `error=`/`error_description=` for a denied or failed sign-in). `exchangeCode(code:codeVerifier:)` posts
+   `{auth_code, code_verifier}` to `auth/v1/token?grant_type=pkce` and returns the same `AuthSession` as Apple;
+   it is stored in the Keychain and the profile is upserted exactly like the Apple path.
+5. If the callback reaches the app outside the session (Safari, a link), `FarecartApp`'s `.onOpenURL` hands it to
+   `AccountModel.handleOpenURL`, which cancels the sheet and finishes the same way.
+
+The Google button is plain SwiftUI (white / dark fill, hairline border, the "G" drawn in `GoogleGMark` with
+`Canvas`), so no trademark asset is shipped.
+
+**Setup on your side (one-time), Google Cloud Console:**
+
+1. Open [console.cloud.google.com](https://console.cloud.google.com) → *APIs & Services* → *OAuth consent screen*.
+   Pick **External**, app name "Farecart", your support email, and add the scopes `email`, `profile`, `openid`.
+   While the app is in *Testing* only the test users you list can sign in; *Publish* it when ready.
+2. *APIs & Services* → *Credentials* → **Create credentials → OAuth client ID** → application type
+   **Web application** (not iOS: the exchange happens on Supabase's server). Name it "Farecart (Supabase)".
+3. Under **Authorized redirect URIs** add exactly
+   `https://mwirkxfqbomaaoygyfgm.supabase.co/auth/v1/callback`
+   (no trailing slash). Authorized JavaScript origins can stay empty. Save and copy the **Client ID**
+   (`…apps.googleusercontent.com`) and **Client secret**.
+4. Put them into Supabase, either in the Dashboard → *Authentication* → *Providers* → *Google* (toggle on, paste
+   client ID and secret, save), or hand them to the assistant to set through the Management API:
+   `PATCH https://api.supabase.com/v1/projects/mwirkxfqbomaaoygyfgm/config/auth` with
+   `{"external_google_enabled": true, "external_google_client_id": "…", "external_google_secret": "…"}`.
+
+Already done through the Management API: `external_google_enabled: true` and `uri_allow_list` containing
+`farecart://auth-callback` (the redirect Supabase is allowed to send the browser back to). Nothing in the app
+changes when the client ID lands; the "isn't set up yet" line simply stops appearing.
 
 ## Previews
 

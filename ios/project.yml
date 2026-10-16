@@ -71,19 +71,22 @@ targets:
         NSLocationWhenInUseUsageDescription: "Farecart uses your location only to find grocery stores, food pantries and giveaways near you. It is never stored."
         LSApplicationQueriesSchemes:
           - comgooglemaps
+        # farecart://auth-callback brings the app back from the hosted OAuth flow (Google).
+        CFBundleURLTypes:
+          - CFBundleURLName: org.farecart.app
+            CFBundleURLSchemes: [farecart]
+            CFBundleTypeRole: Editor
         # Runtime configuration, filled from Config/*.xcconfig.
         SUPABASE_URL: "$(SUPABASE_URL)"
         SUPABASE_ANON_KEY: "$(SUPABASE_ANON_KEY)"
         API_BASE_URL: "$(API_BASE_URL)"
         REPORT_PROBLEM_EMAIL: "$(REPORT_PROBLEM_EMAIL)"
-    # Sign in with Apple. Enable the capability for this bundle id on your Apple Developer team
-    # before running on a device; the simulator builds without it (CODE_SIGNING_ALLOWED=NO).
-    # Personal (free) teams cannot sign the Sign in with Apple entitlement, so it is applied to
-    # Release only. Debug builds run on a device with a free team; the Apple button then shows
-    # a friendly error. With a paid team, set CODE_SIGN_ENTITLEMENTS for Debug too.
-    # CODE_SIGN_ENTITLEMENTS is set per configuration in Config/*.xcconfig (Release only).
-      properties:
-        com.apple.developer.applesignin: [Default]
+    # Sign in with Apple: Farecart/Farecart.entitlements (com.apple.developer.applesignin) is a
+    # committed file; CODE_SIGN_ENTITLEMENTS points at it per configuration in Config/*.xcconfig
+    # (Release only, because personal/free teams cannot sign that entitlement; Debug on a device
+    # then shows a friendly error on the Apple button). Enable the capability for this bundle id
+    # on your Apple Developer team before a Release build on a device. Do not add a second
+    # `properties:` key here: YAML would replace `info.properties` above and empty Info.plist.
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.farecart.app
