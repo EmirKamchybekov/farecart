@@ -49,6 +49,7 @@ All responses are JSON. CORS is open (`*`) for `GET`. Errors look like
 | `GET /fares?rider=full\|reduced_access\|student` | 10 min | prices in cents + formatted + savings vs full; `transfer_cents`, `transfer_window_min`, `max_transfers` per mode |
 | `GET /eligibility?snap=&student=` | 10 min | programs, best fare, one-line message, signup_url, phone |
 | `GET /arrivals?stop_id=` | 20s | CTA Bus Tracker; `{available:false}` without `CTA_BUS_KEY` |
+| `GET /pantry/:id/availability` | 30s | RPC `pantry_availability`: inventory rows (not expired), next 14 days of slots with `remaining`, `staff_updated_at`; plus `feedam` status (cached 10 min, attribution "Directory published by Feed America (feedam.org)") when the pantry has a `feedam_id`, else `null` |
 | `GET /route?from_lat&from_lng&to_lat&to_lng&rider&depart_at&n` | 30s | Transitous itineraries + CTA trip cost for the rider; 502 `upstream_unavailable` with `fallback` links when routing is down |
 
 ## curl examples
@@ -76,6 +77,9 @@ curl "$B/eligibility?snap=false&student=false"
 
 # Bus arrivals (stub until CTA_BUS_KEY is set)
 curl "$B/arrivals?stop_id=1234"
+
+# Pantry inventory + visit slots (id from /nearby)
+curl "$B/pantry/ab79ab95-d3c3-48ab-925b-4b4534e3ef3f/availability"
 
 # Transit route: Madison & Pulaski -> Madison & Western, priced for an Access (SNAP) rider
 curl "$B/route?from_lat=41.8807&from_lng=-87.7262&to_lat=41.8819&to_lng=-87.6868&rider=reduced_access"

@@ -54,6 +54,46 @@ export type NearbyRow = {
   notes: string | null;
   verified_on: string | null;
   distance_m: number;
+  source_kind: string;
+  logo_url: string | null;
+  /** 0007_pantry_scheduling.sql */
+  pantry_model: 'client_choice' | 'pre_packed' | 'both' | null;
+  requires_snap: boolean;
+  requires_id: boolean | null;
+  feedam_id: number | null;
+};
+
+// ---- pantry inventory + visit scheduling (0007_pantry_scheduling.sql) ----
+
+export type PantryCategory = 'produce' | 'dairy' | 'protein' | 'canned' | 'bread' | 'baby' | 'water' | 'other';
+export type PantryLevel = 'plenty' | 'low' | 'out';
+
+export type PantryInventoryRow = {
+  id: string;
+  category: PantryCategory;
+  level: PantryLevel;
+  note: string | null;
+  reported_at: string;
+  expires_at: string;
+  source: 'staff' | 'feedam' | 'demo';
+};
+
+export type PantrySlotRow = {
+  id: string;
+  starts_at: string;
+  ends_at: string;
+  capacity: number;
+  booked: number;
+  remaining: number;
+  notes: string | null;
+};
+
+/** Return shape of the `pantry_availability(p_location_id)` RPC. */
+export type PantryAvailability = {
+  location_id: string;
+  inventory: PantryInventoryRow[];
+  slots: PantrySlotRow[];
+  staff_updated_at: string | null;
 };
 
 export type FareMode = 'bus' | 'train';

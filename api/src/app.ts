@@ -8,6 +8,7 @@ import { fares } from './routes/fares.js';
 import { geocode } from './routes/geocode.js';
 import { health } from './routes/health.js';
 import { nearby } from './routes/nearby.js';
+import { pantry } from './routes/pantry.js';
 import { route } from './routes/route.js';
 
 export const ROUTES = [
@@ -18,6 +19,7 @@ export const ROUTES = [
   { method: 'GET', path: '/fares', params: 'rider=full|reduced_access|student', description: 'CTA bus/train prices and savings vs full fare' },
   { method: 'GET', path: '/eligibility', params: 'snap=true|false, student=true|false', description: 'Which discount program applies and the best fare' },
   { method: 'GET', path: '/arrivals', params: 'stop_id=<CTA bus stop>, route?', description: 'CTA Bus Tracker predictions (needs CTA_BUS_KEY)' },
+  { method: 'GET', path: '/pantry/:id/availability', description: 'Pantry inventory (not expired) and the next 14 days of visit slots with remaining capacity, plus Feed America status when the pantry is linked' },
   { method: 'GET', path: '/route', params: 'from_lat, from_lng, to_lat, to_lng, rider=full|reduced_access|student, depart_at=<ISO 8601>?, n=3', description: 'Transit itineraries (Transitous) with CTA trip cost for the rider; 502 + fallback deep links when routing is down' },
 ] as const;
 
@@ -36,6 +38,7 @@ app.route('/geocode', geocode);
 app.route('/fares', fares);
 app.route('/eligibility', eligibility);
 app.route('/arrivals', arrivals);
+app.route('/pantry', pantry);
 app.route('/route', route);
 
 app.notFound((c) => c.json(errorBody('not_found', `No route for ${c.req.method} ${c.req.path}`), 404));

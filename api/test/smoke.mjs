@@ -96,6 +96,30 @@ await check('eligibility student', '/eligibility?snap=false&student=true', { sta
 await check('eligibility both', '/eligibility?snap=true&student=true', { status: 200, body: (b) => (b.programs.length === 2 && b.best.program_key === 'student' && b.message.includes('$1.10') ? '' : 'both programs') });
 await check('eligibility none', '/eligibility?snap=false&student=false', { status: 200, body: (b) => (b.eligible === false && b.best.bus.price_cents === 225 && /SNAP/.test(b.note) ? '' : 'none case') });
 await check('eligibility bad', '/eligibility?snap=maybe', { status: 400 });
+// ---- /pantry/:id/availability: first demo pantry from /nearby (migration 0007 + data/demo_pantry.mjs)
+{
+  const near = await (await fetch(`${base}/nearby?lat=41.8807&lng=-87.7262&types=pantry&limit=5`)).json();
+  const pantry = near.locations?.find((l) => l.name === 'Legler Regional Library Food Pantry') ?? near.locations?.[0];
+  if (pantry) {
+    await check('pantry availability', `/pantry/${pantry.id}/availability`, {
+      status: 200, cors: true, cache: 'max-age=30',
+      body: (b) => {
+        if (b.location?.id !== pantry.id) return 'location id';
+        if (!Array.isArray(b.inventory) || !Array.isArray(b.slots)) return 'inventory/slots arrays';
+        for (const i of b.inventory) if (!['plenty', 'low', 'out'].includes(i.level) || !i.category || !i.reported_at) return 'inventory row shape';
+        for (const s of b.slots) if (typeof s.remaining !== 'number' || s.remaining !== s.capacity - s.booked || !s.starts_at) return 'slot row shape';
+        if (!('feedam' in b)) return 'feedam key missing';
+        if (b.feedam && b.feedam.source !== 'feedam') return 'feedam shape';
+        return '';
+      },
+    });
+  } else {
+    failures++;
+    console.log('FAIL pantry availability: no pantry returned by /nearby');
+  }
+}
+await check('pantry availability unknown id', '/pantry/00000000-0000-4000-8000-000000000000/availability', { status: 404, body: (b) => (b.error?.code === 'not_found' ? '' : 'error shape') });
+await check('pantry availability bad id', '/pantry/not-a-uuid/availability', { status: 400, body: (b) => (b.error?.code === 'bad_request' ? '' : 'error shape') });
 await check('arrivals', '/arrivals?stop_id=1234', { status: 200, body: (b) => (typeof b.available === 'boolean' && (b.available || b.reason === 'CTA_BUS_KEY not configured') ? '' : 'stub shape') });
 await check('arrivals bad', '/arrivals?stop_id=abc', { status: 400 });
 // ---- /route: live Transitous. Madison & Pulaski -> Madison & Western (CTA bus 20 corridor).

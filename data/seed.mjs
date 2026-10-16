@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Farecart data seed: reads data/locations.csv (curated, hand-researched tier),
-// data/locations_citywide.csv (bulk tier built by data/build_citywide.mjs) and
-// data/giveaway_events.csv; geocodes rows missing lat/lng (US Census Geocoder,
+// data/locations_citywide.csv (bulk tier built by data/build_citywide.mjs),
+// data/locations_feedam.csv + data/feedam_matches.csv (Feed America import built
+// by data/feedam.mjs) and data/giveaway_events.csv; geocodes rows missing lat/lng (US Census Geocoder,
 // fallback Nominatim), writes coordinates back into the CSV they came from, and
 // upserts into Supabase via PostgREST.
 // Idempotent: upserts on unique (name, address) for locations and
@@ -12,7 +13,8 @@
 // Usage:  node data/seed.mjs            (from repo root; or run from anywhere)
 //         node data/seed.mjs --dry-run  (geocode + validate, no DB writes)
 //         node data/seed.mjs --no-geocode
-//         node data/seed.mjs --curated-only   (skip locations_citywide.csv)
+//         node data/seed.mjs --curated-only   (skip locations_citywide.csv and locations_feedam.csv)
+//         node data/seed.mjs --no-feedam      (skip locations_feedam.csv / feedam_matches.csv)
 //         node data/seed.mjs --no-logo-check  (skip fetching favicons to verify logo URLs)
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
@@ -23,6 +25,8 @@ import { logoURL, faviconIsReal } from './logos.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const LOCATIONS_CSV = resolve(here, 'locations.csv');
 const CITYWIDE_CSV = resolve(here, 'locations_citywide.csv');
+const FEEDAM_CSV = resolve(here, 'locations_feedam.csv');
+const FEEDAM_MATCHES_CSV = resolve(here, 'feedam_matches.csv');
 const EVENTS_CSV = resolve(here, 'giveaway_events.csv');
 const ENV_FILE = resolve(here, '..', '.env.local');
 
@@ -31,10 +35,15 @@ const DRY_RUN = args.has('--dry-run');
 const GEOCODE = !args.has('--no-geocode');
 const CURATED_ONLY = args.has('--curated-only');
 const LOGO_CHECK = !args.has('--no-logo-check');
+const FEEDAM = !args.has('--no-feedam') && !CURATED_ONLY;
 
-const COLUMNS = ['name','type','address','neighborhood','lat','lng','hours_text','accepts_ebt','requirements','languages','phone','website','source_url','notes'];
-const CITYWIDE_COLUMNS = [...COLUMNS, 'source_kind'];
-const SOURCE_KINDS = ['curated','usda_snap','osm','gcfd','plentiful','other'];
+// pantry_model / requires_snap / requires_id (migration 0007) are optional on every CSV; blank = unknown.
+const PANTRY_COLUMNS = ['pantry_model','requires_snap','requires_id'];
+const COLUMNS = ['name','type','address','neighborhood','lat','lng','hours_text','accepts_ebt','requirements','languages','phone','website','source_url','notes', ...PANTRY_COLUMNS];
+const CITYWIDE_COLUMNS = ['name','type','address','neighborhood','lat','lng','hours_text','accepts_ebt','requirements','languages','phone','website','source_url','notes','source_kind'];
+const FEEDAM_COLUMNS = [...CITYWIDE_COLUMNS, ...PANTRY_COLUMNS, 'feedam_id'];
+const SOURCE_KINDS = ['curated','usda_snap','osm','gcfd','plentiful','feedam','other'];
+const PANTRY_MODELS = ['client_choice','pre_packed','both'];
 const EVENT_COLUMNS = ['location_name','title','starts_at','ends_at','details','source_url'];
 const CHICAGO = { latMin: 41.64, latMax: 42.03, lngMin: -87.95, lngMax: -87.52 };
 const UA = 'Farecart-seed/1.0 (food access app; contact via repo)';
@@ -169,6 +178,9 @@ function validateLocation(r) {
   if (r.verified_on) errs.push('verified_on must be blank (humans verify)');
   if (!SOURCE_KINDS.includes(r.source_kind)) errs.push(`bad source_kind "${r.source_kind}"`);
   if (r.lat && r.lng && !inChicago(+r.lat, +r.lng)) errs.push(`coords out of Chicago bbox (${r.lat},${r.lng})`);
+  if (r.pantry_model && !PANTRY_MODELS.includes(r.pantry_model)) errs.push(`bad pantry_model "${r.pantry_model}"`);
+  if (r.feedam_id && !/^\d+$/.test(r.feedam_id)) errs.push(`bad feedam_id "${r.feedam_id}"`);
+  try { parseBool(r.requires_snap); parseBool(r.requires_id); } catch (e) { errs.push(e.message); }
   return errs;
 }
 
@@ -195,8 +207,13 @@ async function main() {
   const citywide = (!CURATED_ONLY && existsSync(CITYWIDE_CSV))
     ? parseCSV(readFileSync(CITYWIDE_CSV, 'utf8')).map(r => ({ ...r, source_kind: r.source_kind || 'other', __file: 'citywide' }))
     : [];
+  // Feed America tier third (data/feedam.mjs): new rows, plus feedam_id for rows we already had.
+  const feedam = (FEEDAM && existsSync(FEEDAM_CSV))
+    ? parseCSV(readFileSync(FEEDAM_CSV, 'utf8')).map(r => ({ ...r, source_kind: 'feedam', __file: 'feedam' }))
+    : [];
+  const feedamMatches = (FEEDAM && existsSync(FEEDAM_MATCHES_CSV)) ? parseCSV(readFileSync(FEEDAM_MATCHES_CSV, 'utf8')) : [];
   const events = existsSync(EVENTS_CSV) ? parseCSV(readFileSync(EVENTS_CSV, 'utf8')) : [];
-  console.log(`Read ${curated.length} curated + ${citywide.length} citywide locations, ${events.length} giveaway events`);
+  console.log(`Read ${curated.length} curated + ${citywide.length} citywide + ${feedam.length} Feed America locations (${feedamMatches.length} Feed America matches), ${events.length} giveaway events`);
 
   // Duplicate key check: curated must be unique; citywide rows that collide with
   // a curated (name,address) are dropped so they never overwrite the curated tier.
@@ -208,16 +225,16 @@ async function main() {
   }
   const locations = [...curated];
   let shadowed = 0;
-  for (const r of citywide) {
+  for (const r of [...citywide, ...feedam]) {
     const k = `${r.name}|${r.address}`;
     if (seen.has(k)) { shadowed++; continue; }
     seen.add(k);
     locations.push(r);
   }
-  if (shadowed) console.log(`Skipped ${shadowed} citywide row(s) that duplicate a curated or earlier citywide (name,address)`);
+  if (shadowed) console.log(`Skipped ${shadowed} citywide/Feed America row(s) that duplicate an earlier (name,address)`);
 
   // Geocode missing coordinates
-  const changed = { curated: false, citywide: false };
+  const changed = { curated: false, citywide: false, feedam: false };
   for (const r of locations) {
     if (r.lat && r.lng) continue;
     if (!GEOCODE) continue;
@@ -236,6 +253,10 @@ async function main() {
   if (changed.citywide) {
     writeFileSync(CITYWIDE_CSV, toCSV(CITYWIDE_COLUMNS, citywide));
     console.log(`Wrote coordinates back to ${CITYWIDE_CSV}`);
+  }
+  if (changed.feedam) {
+    writeFileSync(FEEDAM_CSV, toCSV(FEEDAM_COLUMNS, feedam));
+    console.log(`Wrote coordinates back to ${FEEDAM_CSV}`);
   }
 
   // Validate
@@ -266,6 +287,10 @@ async function main() {
     notes: r.notes || null,
     source_kind: r.source_kind,
     logo_url: logoURL(r.name, r.website),
+    pantry_model: r.pantry_model || null,
+    requires_snap: parseBool(r.requires_snap) ?? false,
+    requires_id: parseBool(r.requires_id),
+    feedam_id: r.feedam_id ? +r.feedam_id : null,
     verified_on: null,
     is_active: true,
   }));
@@ -309,6 +334,19 @@ async function main() {
     for (const o of out) idByKey.set(`${o.name}|${o.address}`, o.id);
   }
   console.log(`Upserted ${idByKey.size} locations`);
+
+  // Feed America ids for rows that came from another tier (data/feedam_matches.csv).
+  // feedam_id is unique, so a stale id is cleared from any other row first.
+  let linked = 0;
+  for (const m of feedamMatches) {
+    const id = idByKey.get(`${m.name}|${m.address}`);
+    if (!id) { console.error(`feedam_matches line ${m.__line}: no location "${m.name}" at "${m.address}"`); continue; }
+    const feedam_id = +m.feedam_id;
+    await rest(`locations?feedam_id=eq.${feedam_id}&id=neq.${id}`, { method: 'PATCH', body: { feedam_id: null }, prefer: 'return=minimal' });
+    await rest(`locations?id=eq.${id}`, { method: 'PATCH', body: { feedam_id }, prefer: 'return=minimal' });
+    linked++;
+  }
+  if (feedamMatches.length) console.log(`Linked ${linked} existing location(s) to Feed America ids`);
 
   // Giveaway events (linked by name to curated rows)
   const nameToId = new Map();
