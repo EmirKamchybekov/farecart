@@ -1,0 +1,8 @@
+.env.local
+.env
+node_modules/
+.vercel/
+*.xcuserstate
+xcuserdata/
+DerivedData/
+.build/
