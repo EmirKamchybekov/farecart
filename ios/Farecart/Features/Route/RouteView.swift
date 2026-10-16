@@ -2,9 +2,44 @@ import MapKit
 import SwiftUI
 import FarecartKit
 
-/// In-app CTA directions: summary + cost, a map of the legs, and plain-language steps.
-/// Falls back to Apple / Google Maps when Transitous is down or finds nothing.
+/// Standalone "Directions by CTA" screen (debug launch argument and previews). The place detail
+/// embeds `RouteContent` in its Directions tab instead of pushing this.
 struct RouteView: View {
+    let request: RouteRequest
+
+    var body: some View {
+        ScrollViewReader { proxy in
+            ScrollView {
+                RouteContent(request: request)
+                    .padding(Spacing.m)
+            }
+            #if DEBUG
+            .onAppear {
+                // `-farecart-scroll-steps` with `-farecart-open-route`: screenshot the step list.
+                if ProcessInfo.processInfo.arguments.contains("-farecart-scroll-steps") {
+                    Task { @MainActor in
+                        try? await Task.sleep(for: .seconds(1.5))
+                        withAnimation { proxy.scrollTo(RouteContent.stepsAnchor, anchor: .top) }
+                    }
+                }
+            }
+            #endif
+        }
+        .navigationTitle("Directions by CTA")
+        .navigationBarTitleDisplayMode(.inline)
+        .background(Color(.systemGroupedBackground))
+        .safeAreaInset(edge: .bottom) {
+            MapsActionBar(place: request.place)
+        }
+    }
+}
+
+/// In-app CTA directions: departure options, the trip cost as the hero, a map of the legs, and
+/// plain-language steps. Falls back to Apple / Google Maps when Transitous is down or finds nothing.
+/// Loads when it first appears, so a tab that is never opened never calls the router.
+struct RouteContent: View {
+    static let stepsAnchor = "route-steps"
+
     let request: RouteRequest
     @Environment(AppEnvironment.self) private var environment
     @State private var model: RouteModel?
@@ -18,15 +53,16 @@ struct RouteView: View {
 
     var body: some View {
         Group {
-            if let model {
-                content(model)
+            if let model, !model.isLoading {
+                if let itinerary = model.selected {
+                    itineraryContent(model, itinerary)
+                } else {
+                    fallback(model)
+                }
             } else {
                 loading
             }
         }
-        .navigationTitle("Directions by CTA")
-        .navigationBarTitleDisplayMode(.inline)
-        .background(Color(.systemGroupedBackground))
         .task {
             if model == nil {
                 let m = RouteModel(request: request, router: environment.router)
@@ -40,45 +76,25 @@ struct RouteView: View {
 
     // MARK: States
 
-    @ViewBuilder
-    private func content(_ model: RouteModel) -> some View {
-        if model.isLoading {
-            loading
-        } else if let itinerary = model.selected {
-            ScrollViewReader { proxy in
-                ScrollView {
-                    VStack(spacing: 16) {
-                        tripHeader
-                        if model.itineraries.count > 1 {
-                            options(model)
-                        }
-                        summary(itinerary)
-                        routeMap(itinerary)
-                        steps(itinerary)
-                            .id("steps")
-                        otherApps(prominent: false)
-                    }
-                    .padding()
-                }
-                .onChange(of: itinerary.id, initial: true) {
-                    withAnimation(.smooth) { camera = RouteModel.cameraPosition(for: itinerary) }
-                }
-                #if DEBUG
-                .onAppear {
-                    // `-farecart-scroll-steps` with `-farecart-open-route`: screenshot the step list.
-                    if ProcessInfo.processInfo.arguments.contains("-farecart-scroll-steps") {
-                        proxy.scrollTo("steps", anchor: .top)
-                    }
-                }
-                #endif
+    private func itineraryContent(_ model: RouteModel, _ itinerary: TransitItinerary) -> some View {
+        VStack(spacing: Spacing.m) {
+            tripHeader
+            if model.itineraries.count > 1 {
+                options(model)
             }
-        } else {
-            fallback(model)
+            TripCostCard(itinerary: itinerary, answers: answers)
+            summary(itinerary)
+            routeMap(itinerary)
+            steps(itinerary)
+                .id(Self.stepsAnchor)
+        }
+        .onChange(of: itinerary.id, initial: true) {
+            withAnimation(.smooth) { camera = RouteModel.cameraPosition(for: itinerary) }
         }
     }
 
     private var loading: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: Spacing.m) {
             ProgressView()
                 .controlSize(.large)
             Text("Finding CTA routes…")
@@ -87,41 +103,37 @@ struct RouteView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, minHeight: 280)
         .accessibilityElement(children: .combine)
     }
 
     private func fallback(_ model: RouteModel) -> some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                tripHeader
-                VStack(spacing: 12) {
-                    Image(systemName: model.failure == .noRoutes ? "bus.doubledecker" : "wifi.exclamationmark")
-                        .font(.system(size: 44))
-                        .foregroundStyle(.secondary)
-                        .accessibilityHidden(true)
-                    Text(model.failure == .noRoutes ? "No CTA route found for this trip right now." : "We couldn't reach the trip planner.")
-                        .font(.title3.weight(.semibold))
-                        .multilineTextAlignment(.center)
-                    Text("No problem. Open the trip in a maps app instead; it shows the same buses and trains.")
-                        .font(.body)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                    Button {
-                        Task { await model.load() }
-                    } label: {
-                        Label("Try again", systemImage: "arrow.clockwise")
-                    }
-                    .buttonStyle(.glass)
-                    .padding(.top, 4)
+        VStack(spacing: Spacing.m) {
+            tripHeader
+            VStack(spacing: Spacing.s) {
+                Image(systemName: model.failure == .noRoutes ? "bus.doubledecker" : "wifi.exclamationmark")
+                    .font(.system(size: 44))
+                    .foregroundStyle(.secondary)
+                    .accessibilityHidden(true)
+                Text(model.failure == .noRoutes ? "No CTA route found for this trip right now." : "We couldn't reach the trip planner.")
+                    .font(.title3.weight(.semibold))
+                    .multilineTextAlignment(.center)
+                Text("No problem. Open the trip in a maps app instead; it shows the same buses and trains.")
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                Button {
+                    Task { await model.load() }
+                } label: {
+                    Label("Try again", systemImage: "arrow.clockwise")
                 }
-                .frame(maxWidth: .infinity)
-                .padding(20)
-                .background(.background, in: RoundedRectangle(cornerRadius: 20))
-                .accessibilityElement(children: .contain)
-                otherApps(prominent: true)
+                .buttonStyle(.glass)
+                .padding(.top, 4)
             }
-            .padding()
+            .frame(maxWidth: .infinity)
+            .card(padding: Spacing.l)
+            .accessibilityElement(children: .contain)
+            FareLineView()
         }
     }
 
@@ -132,19 +144,15 @@ struct RouteView: View {
     }
 
     private var tripHeader: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Label {
-                Text(originName)
-            } icon: {
-                Image(systemName: "circle.fill").foregroundStyle(.green).font(.caption)
-            }
-            Label {
-                Text(request.place.name).bold()
-            } icon: {
-                Image(systemName: "mappin.circle.fill").foregroundStyle(request.place.type.color)
-            }
+        HStack(spacing: Spacing.xs) {
+            Image(systemName: "circle.fill").foregroundStyle(.green).font(.caption2)
+            Text(originName).lineLimit(1)
+            Image(systemName: "arrow.right").foregroundStyle(.secondary).font(.caption)
+            Image(systemName: "mappin.circle.fill").foregroundStyle(request.place.type.color)
+            Text(request.place.name).bold().lineLimit(1)
+            Spacer(minLength: 0)
         }
-        .font(.body)
+        .font(.subheadline)
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("From \(originName) to \(request.place.name)")
@@ -152,7 +160,7 @@ struct RouteView: View {
 
     private func options(_ model: RouteModel) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
+            HStack(spacing: Spacing.xs) {
                 ForEach(Array(model.itineraries.enumerated()), id: \.element.id) { index, itinerary in
                     let isSelected = itinerary.id == model.selected?.id
                     Button {
@@ -178,6 +186,7 @@ struct RouteView: View {
             }
             .padding(.horizontal, 2)
         }
+        .scrollClipDisabled()
         .accessibilityLabel("Route options")
     }
 
@@ -195,18 +204,14 @@ struct RouteView: View {
     }
 
     private func summary(_ itinerary: TransitItinerary) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 4) {
             summaryLine(itinerary)
-                .font(.title2.weight(.bold))
+                .font(.title3.weight(.bold))
             Text("Arrive \(ChicagoTime.short(itinerary.endTime))")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            Divider()
-            costLine(itinerary)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 20))
+        .card()
         .accessibilityElement(children: .combine)
     }
 
@@ -221,57 +226,6 @@ struct RouteView: View {
         }
         parts.append(Text("leaves \(ChicagoTime.short(itinerary.startTime))"))
         return parts.dropFirst().reduce(parts[0]) { $0 + Text(verbatim: " · ") + $1 }
-    }
-
-    @ViewBuilder
-    private func costLine(_ itinerary: TransitItinerary) -> some View {
-        let store = environment.fareStore
-        let cost = TripFareCalculator(fares: store.fares).cost(of: itinerary, answers: answers)
-        VStack(alignment: .leading, spacing: 6) {
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-                Image(systemName: "dollarsign.circle.fill")
-                    .foregroundStyle(.green)
-                    .accessibilityHidden(true)
-                if cost.isFree && itinerary.isWalkOnly {
-                    Text("Free. It's all walking.").font(.title3.weight(.semibold))
-                } else if cost.hasDiscount {
-                    let price = Text(cost.priceText()).bold()
-                    let program = Text(programShortName(forKey: cost.rider.programKey))
-                    Text("\(price) with your \(program) discount (instead of \(cost.fullPriceText()))")
-                        .font(.title3)
-                } else {
-                    let price = Text(cost.priceText()).bold()
-                    Text("\(price) full fare").font(.title3)
-                }
-            }
-            if cost.boardings > 1 {
-                Text("Transfers are included in that price.")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
-            ForEach(cost.notes, id: \.self) { note in
-                Label(noteText(note), systemImage: "exclamationmark.triangle.fill")
-                    .font(.footnote)
-                    .foregroundStyle(.orange)
-            }
-            if !cost.hasDiscount && !answers.householdReceivesSNAP && !answers.isK12Student && cost.boardings > 0 {
-                Text("Get SNAP or go to school? Check the Discounts tab to see if you can ride for less.")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
-            if store.isUsingFallback {
-                Text("Showing last known prices (offline).")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-
-    private func noteText(_ note: TripCostNote) -> LocalizedStringResource {
-        switch note {
-        case .nonCTALegNotIncluded: "Includes a non-CTA leg; fare not included"
-        case .missingFareData: "Fare data is missing for part of this trip"
-        }
     }
 
     private func routeMap(_ itinerary: TransitItinerary) -> some View {
@@ -308,8 +262,8 @@ struct RouteView: View {
         // Inside a ScrollView the map inherits the navigation bar's safe-area inset and would
         // centre the route in the lower part of the frame; it is not at a screen edge, so ignore it.
         .ignoresSafeArea()
-        .frame(height: 300)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .frame(height: 260)
+        .clipShape(RoundedRectangle(cornerRadius: Radius.card, style: .continuous))
         .accessibilityLabel("Map of the route from \(originName) to \(request.place.name)")
     }
 
@@ -319,31 +273,119 @@ struct RouteView: View {
                 StepRow(leg: leg, isLast: index == itinerary.legs.count - 1, originName: originName, destinationName: request.place.name)
             }
         }
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 20))
+        .card()
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Steps")
     }
+}
 
-    private func otherApps(prominent: Bool) -> some View {
-        VStack(spacing: 12) {
-            Button {
-                Directions.openAppleMapsTransit(to: request.place)
-            } label: {
-                BigButtonLabel(title: "Open in Apple Maps", systemImage: "map.fill")
-            }
-            .buttonStyle(.glass)
-            .accessibilityHint("Opens Apple Maps with bus and train directions")
+/// The hero of the Directions tab: a big price, who the discount is for, and what it saves.
+struct TripCostCard: View {
+    let itinerary: TransitItinerary
+    let answers: EligibilityAnswers
+    @Environment(AppEnvironment.self) private var environment
 
-            Button {
-                Directions.openGoogleMapsTransit(to: request.place)
-            } label: {
-                BigButtonLabel(title: "Open in Google Maps", systemImage: "map")
+    var body: some View {
+        let store = environment.fareStore
+        let cost = TripFareCalculator(fares: store.fares).cost(of: itinerary, answers: answers)
+        VStack(alignment: .leading, spacing: Spacing.xs) {
+            SectionCaption("This trip costs you")
+            HStack(alignment: .firstTextBaseline, spacing: Spacing.s) {
+                if cost.isFree && itinerary.isWalkOnly {
+                    Text("Free")
+                        .font(.system(size: 44, weight: .bold, design: .rounded))
+                } else {
+                    Text(cost.priceText())
+                        .font(.system(size: 44, weight: .bold, design: .rounded))
+                        .foregroundStyle(cost.hasDiscount ? Color.green : Color.primary)
+                        .contentTransition(.numericText())
+                    if cost.hasDiscount {
+                        Text(cost.fullPriceText())
+                            .font(.title3)
+                            .strikethrough()
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                Spacer(minLength: 0)
+                if cost.hasDiscount {
+                    Pill(text: Text("Save \(Money.format(cents: cost.savingsCents))"), systemImage: "arrow.down", tint: .green)
+                }
             }
-            .buttonStyle(.glass)
-            .accessibilityHint("Opens Google Maps with transit directions")
+            if cost.isFree && itinerary.isWalkOnly {
+                Text("It's all walking.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            } else if cost.hasDiscount {
+                Text("with your \(Text(programShortName(forKey: cost.rider.programKey))) discount")
+                    .font(.subheadline.weight(.medium))
+            } else {
+                Text("full fare")
+                    .font(.subheadline.weight(.medium))
+            }
+            if cost.boardings > 1 {
+                Text("Transfers are included in that price.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+            ForEach(cost.notes, id: \.self) { note in
+                Label(noteText(note), systemImage: "exclamationmark.triangle.fill")
+                    .font(.footnote)
+                    .foregroundStyle(.orange)
+            }
+            if !cost.hasDiscount && !answers.householdReceivesSNAP && !answers.isK12Student && cost.boardings > 0 {
+                Label("Get SNAP or go to school? Check the Discounts tab to see if you can ride for less.", systemImage: "ticket")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+            if store.isUsingFallback {
+                Text("Showing last known prices (offline).")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
         }
-        .padding(.top, prominent ? 0 : 4)
+        .card()
+        .accessibilityElement(children: .combine)
+    }
+
+    private func noteText(_ note: TripCostNote) -> LocalizedStringResource {
+        switch note {
+        case .nonCTALegNotIncluded: "Includes a non-CTA leg; fare not included"
+        case .missingFareData: "Fare data is missing for part of this trip"
+        }
+    }
+}
+
+/// Sticky bottom bar on the Directions tab: Apple Maps as the primary action, Google Maps beside it.
+struct MapsActionBar: View {
+    let place: Place
+
+    var body: some View {
+        GlassEffectContainer(spacing: Spacing.s) {
+            HStack(spacing: Spacing.s) {
+                Button {
+                    Directions.openAppleMapsTransit(to: place)
+                } label: {
+                    BigButtonLabel(title: "Open in Apple Maps", systemImage: "map.fill")
+                }
+                .buttonStyle(.glassProminent)
+                .accessibilityHint("Opens Apple Maps with bus and train directions")
+
+                Button {
+                    Directions.openGoogleMapsTransit(to: place)
+                } label: {
+                    Image(systemName: "globe.americas.fill")
+                        .font(.title3.weight(.semibold))
+                        .frame(width: 28, height: 32)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 6)
+                }
+                .buttonStyle(.glass)
+                .accessibilityLabel("Open in Google Maps")
+                .accessibilityHint("Opens Google Maps with transit directions")
+            }
+        }
+        .padding(.horizontal, Spacing.m)
+        .padding(.vertical, Spacing.xs)
     }
 }
 

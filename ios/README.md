@@ -16,12 +16,12 @@ ios/
 │   ├── App/                  FarecartApp, RootTabView (iOS 26 Tab API), AppEnvironment
 │   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore
 │   ├── Features/
-│   │   ├── FindFood/         Map + glass filter chips + results sheet + search tab
-│   │   ├── PlaceDetail/      Hero card, facts, "Directions by CTA" + Apple / Google Maps buttons, fare line
-│   │   ├── Route/            In-app CTA directions: RouteModel + RouteView (summary, trip cost, map, steps)
+│   │   ├── FindFood/         Map + glass filter chips + in-tab results panel + search tab
+│   │   ├── PlaceDetail/      Compact hero, then Info (address, hours, what to bring) | Directions tabs
+│   │   ├── Route/            In-app CTA directions: RouteModel + RouteContent (cost hero, map, steps)
 │   │   ├── Discounts/        Two yes/no questions → program card
 │   │   └── About/            Credits, privacy, report a problem
-│   ├── Shared/               Badges, pins, banners, type colors
+│   ├── Shared/               Design tokens (spacing / radii / card), badges, pins, banners, type colors
 │   └── Resources/            Assets.xcassets, Localizable.xcstrings (en + es), PrivacyInfo.xcprivacy
 └── FarecartKit/              Swift package, Foundation only (builds + tests on macOS)
     ├── Sources/FarecartKit/
@@ -84,7 +84,7 @@ outside the default search path. In Xcode, ⌘U on the Farecart scheme runs the 
 
 ## In-app transit routing
 
-"Directions by CTA" on a place opens `RouteView`: `TransitRouter` asks Transitous
+The **Directions** tab of a place embeds `RouteContent` (loaded the first time the tab is shown): `TransitRouter` asks Transitous
 (`GET /api/v1/plan`, see the root README) for up to three itineraries from the Find Food origin to the
 place, and `TripFareCalculator` prices each one from the `fares` rows (`price_cents`, `transfer_cents`,
 `transfer_window_min`, `max_transfers`) for the rider's best program. Non-CTA legs (Pace, Metra) are
@@ -98,6 +98,16 @@ Debug builds accept a launch argument that opens the route screen directly
 xcrun simctl launch <udid> org.farecart.app -farecart-open-route            # full fare
 xcrun simctl launch <udid> org.farecart.app -farecart-open-route -answers.householdSNAP 1   # Access price
 xcrun simctl launch <udid> org.farecart.app -farecart-open-route -farecart-scroll-steps     # step list
+```
+
+The place screen can be opened the same way (first result after "Use my location"; `-far` picks the
+first result over a mile away so the Directions tab has a bus to show; `-farecart-tab discounts` starts
+on the Discounts tab):
+
+```sh
+xcrun simctl launch <udid> org.farecart.app -farecart-use-location -farecart-open-place
+xcrun simctl launch <udid> org.farecart.app -farecart-use-location -farecart-open-place-far -farecart-open-place-directions
+xcrun simctl launch <udid> org.farecart.app -farecart-tab discounts -answers.householdSNAP 1 -answers.hasAnswered 1
 ```
 
 `Tests/FarecartKitTests/Fixtures/transitous_plan.json` is a real `/plan` response captured on

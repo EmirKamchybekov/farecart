@@ -7,17 +7,18 @@ struct TypeBadge: View {
     var prominent = false
 
     var body: some View {
-        Label {
-            Text(type.title)
-        } icon: {
+        HStack(spacing: 4) {
             Image(systemName: type.symbolName)
+            Text(type.title)
         }
-            .font(.subheadline.weight(.semibold))
-            .padding(.horizontal, 10)
-            .padding(.vertical, 5)
-            .background(prominent ? type.color : type.color.opacity(0.18), in: Capsule())
-            .foregroundStyle(prominent ? .white : type.color)
-            .accessibilityLabel(Text(type.title))
+        .font(.subheadline.weight(.semibold))
+        .lineLimit(1)
+        .fixedSize()
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
+        .background(prominent ? type.color : type.color.opacity(0.18), in: Capsule())
+        .foregroundStyle(prominent ? .white : type.color)
+        .accessibilityLabel(Text(type.title))
     }
 }
 
@@ -41,28 +42,35 @@ struct PlacePin: View {
     }
 }
 
-/// Open / closed hint next to hours.
+/// Open / closed hint next to hours. `compact` is just "Open now" / "Closed" for list rows.
 struct OpenStatusLabel: View {
     let status: OpenStatus
+    var compact = false
 
     var body: some View {
         switch status {
         case .open(let closesAt):
-            if let closesAt {
+            if let closesAt, !compact {
                 Text("Open now · closes \(closesAt.formatted(date: .omitted, time: .shortened))")
                     .foregroundStyle(.green)
             } else {
                 Text("Open now").foregroundStyle(.green)
             }
         case .closed(let opensAt):
-            if let opensAt {
+            if let opensAt, !compact {
                 Text("Closed · opens \(opensAt.formatted(.dateTime.weekday(.abbreviated).hour().minute()))")
                     .foregroundStyle(.red)
+            } else if compact {
+                Text("Closed").foregroundStyle(.red)
             } else {
                 Text("Closed now").foregroundStyle(.red)
             }
         case .unknown:
-            EmptyView()
+            if compact {
+                Text("Hours vary").foregroundStyle(.secondary)
+            } else {
+                EmptyView()
+            }
         }
     }
 }
@@ -85,7 +93,7 @@ struct MessageBanner: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
-        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 18))
+        .glassEffect(.regular, in: RoundedRectangle(cornerRadius: Radius.card, style: .continuous))
         .accessibilityElement(children: .combine)
     }
 }

@@ -24,10 +24,11 @@ struct DiscountsView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: Spacing.m) {
                     Text("Answer two questions to see if you can ride CTA for less.")
-                        .font(.title3)
+                        .font(.title3.weight(.medium))
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, Spacing.xs)
 
                     YesNoCard(
                         question: "Does anyone in your household get SNAP?",
@@ -46,9 +47,12 @@ struct DiscountsView: View {
 
                     if hasAnswered {
                         resultSection
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
                 }
-                .padding()
+                .padding(Spacing.m)
+                .animation(.snappy, value: hasAnswered)
+                .animation(.snappy, value: answers)
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Discounts")
@@ -98,7 +102,7 @@ struct YesNoCard: View {
     @Binding var hasAnswered: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: Spacing.s) {
             Label {
                 Text(question).font(.title3.weight(.semibold))
             } icon: {
@@ -107,15 +111,14 @@ struct YesNoCard: View {
             Text(detail)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            GlassEffectContainer(spacing: 12) {
-                HStack(spacing: 12) {
+            GlassEffectContainer(spacing: Spacing.s) {
+                HStack(spacing: Spacing.s) {
                     choice(title: "Yes", value: true)
                     choice(title: "No", value: false)
                 }
             }
         }
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 20))
+        .card()
         .accessibilityElement(children: .contain)
     }
 
@@ -140,7 +143,8 @@ struct YesNoCard: View {
     }
 }
 
-/// Program name, your price vs full price, how to sign up, Sign up button, phone.
+/// Reads like a receipt: program name, then per mode a big "$1.10" next to a struck-through "$2.25",
+/// one line each for who / what / how, and a big Sign up button.
 struct ProgramCard: View {
     let program: Program
     let rider: RiderCategory
@@ -148,46 +152,29 @@ struct ProgramCard: View {
     var isPrimary = true
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Label {
-                Group {
-                    if isPrimary { Text("You qualify") } else { Text("You may also qualify") }
-                }
-                .font(.caption.weight(.bold))
-                .textCase(.uppercase)
-            } icon: {
-                Image(systemName: "checkmark.seal.fill")
-            }
-            .foregroundStyle(.green)
-
-            Text(program.name)
-                .font(.title2.weight(.bold))
-
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(TransitMode.allCases) { mode in
-                    if let discounted = calculator.fare(mode: mode, rider: rider), let full = calculator.fare(mode: mode, rider: .full) {
-                        HStack(alignment: .firstTextBaseline) {
-                            Image(systemName: mode.symbolName).frame(width: 24).foregroundStyle(.secondary)
-                            Text(mode.title)
-                            Spacer()
-                            Text(Money.format(cents: full.priceCents))
-                                .strikethrough()
-                                .foregroundStyle(.secondary)
-                            Text(Money.format(cents: discounted.priceCents))
-                                .font(.title3.weight(.bold))
-                                .foregroundStyle(.green)
-                        }
-                        .accessibilityElement(children: .combine)
-                        .accessibilityLabel(Text("\(Text(mode.title)): \(Money.format(cents: discounted.priceCents)) instead of \(Money.format(cents: full.priceCents))"))
+        VStack(alignment: .leading, spacing: Spacing.m) {
+            VStack(alignment: .leading, spacing: 4) {
+                Label {
+                    Group {
+                        if isPrimary { Text("You qualify") } else { Text("You may also qualify") }
                     }
+                    .font(.caption.weight(.bold))
+                    .textCase(.uppercase)
+                } icon: {
+                    Image(systemName: "checkmark.seal.fill")
                 }
+                .foregroundStyle(.green)
+                Text(program.name)
+                    .font(.title2.weight(.bold))
             }
-            .padding(12)
-            .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 14))
 
-            detail(title: "Who qualifies", text: program.who)
-            detail(title: "What you get", text: program.what)
-            detail(title: "How to sign up", text: program.how)
+            receipt
+
+            VStack(alignment: .leading, spacing: Spacing.xs) {
+                detail(systemImage: "person.2.fill", title: "Who", text: program.who)
+                detail(systemImage: "ticket.fill", title: "What", text: program.what)
+                detail(systemImage: "signature", title: "How", text: program.how)
+            }
 
             if let url = program.signupLink {
                 Link(destination: url) {
@@ -195,31 +182,116 @@ struct ProgramCard: View {
                 }
                 .buttonStyle(.glassProminent)
             }
-            if let phone = program.phone, let url = program.phoneURL {
-                Link(destination: url) {
-                    BigButtonLabel(title: "Call \(phone)", systemImage: "phone.fill")
+            HStack(spacing: Spacing.m) {
+                if let phone = program.phone, let url = program.phoneURL {
+                    Link(destination: url) {
+                        Label("Call \(phone)", systemImage: "phone.fill")
+                    }
                 }
-                .buttonStyle(.glass)
-            }
-            if let source = program.sourceURL, let url = URL(string: source) {
-                Link(destination: url) {
-                    Label("Official details", systemImage: "link").font(.footnote)
+                Spacer(minLength: 0)
+                if let source = program.sourceURL, let url = URL(string: source) {
+                    Link(destination: url) {
+                        Label("Official details", systemImage: "link")
+                    }
                 }
             }
+            .font(.footnote.weight(.medium))
         }
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 20))
+        .card()
     }
 
-    private func detail(title: LocalizedStringResource, text: String) -> some View {
-        VStack(alignment: .leading, spacing: 3) {
-            Text(title)
-                .font(.caption.weight(.semibold))
-                .textCase(.uppercase)
-                .foregroundStyle(.secondary)
-            Text(text)
+    private var receipt: some View {
+        VStack(spacing: 0) {
+            ForEach(Array(TransitMode.allCases.enumerated()), id: \.element) { index, mode in
+                if let discounted = calculator.fare(mode: mode, rider: rider), let full = calculator.fare(mode: mode, rider: .full) {
+                    if index > 0 {
+                        ReceiptDivider()
+                    }
+                    HStack(alignment: .firstTextBaseline, spacing: Spacing.xs) {
+                        Image(systemName: mode.symbolName)
+                            .frame(width: 24)
+                            .foregroundStyle(.secondary)
+                            .accessibilityHidden(true)
+                        Text(mode.title)
+                            .font(.body.weight(.medium))
+                        Spacer()
+                        Text(Money.format(cents: full.priceCents))
+                            .font(.body)
+                            .strikethrough()
+                            .foregroundStyle(.secondary)
+                        Text(Money.format(cents: discounted.priceCents))
+                            .font(.system(.title, design: .rounded).weight(.bold))
+                            .foregroundStyle(.green)
+                            .monospacedDigit()
+                    }
+                    .padding(.vertical, Spacing.xs)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel(Text("\(Text(mode.title)): \(Money.format(cents: discounted.priceCents)) instead of \(Money.format(cents: full.priceCents))"))
+                }
+            }
+            if let savings = perRideSavings {
+                ReceiptDivider()
+                HStack {
+                    Text("You save per ride")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Pill(text: Text(savings), systemImage: "arrow.down", tint: .green)
+                }
+                .padding(.top, Spacing.xs)
+                .accessibilityElement(children: .combine)
+            }
+        }
+        .padding(.horizontal, Spacing.s)
+        .padding(.vertical, Spacing.xs)
+        .background(Color(.tertiarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: Radius.inner, style: .continuous))
+    }
+
+    /// "$1.15" when the saving is the same on bus and train, else "$1.15–$1.25".
+    private var perRideSavings: String? {
+        let savings = TransitMode.allCases.compactMap { mode -> Int? in
+            guard let d = calculator.fare(mode: mode, rider: rider), let f = calculator.fare(mode: mode, rider: .full) else { return nil }
+            return f.priceCents - d.priceCents
+        }.filter { $0 > 0 }
+        guard let low = savings.min(), let high = savings.max() else { return nil }
+        return low == high ? Money.format(cents: low) : "\(Money.format(cents: low))–\(Money.format(cents: high))"
+    }
+
+    private func detail(systemImage: String, title: LocalizedStringResource, text: String) -> some View {
+        HStack(alignment: .top, spacing: Spacing.s) {
+            Image(systemName: systemImage)
+                .font(.body.weight(.semibold))
+                .foregroundStyle(Color.accentColor)
+                .frame(width: 24)
+                .padding(.top, 2)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 2) {
+                SectionCaption(title)
+                Text(text)
+                    .font(.subheadline)
+            }
         }
         .accessibilityElement(children: .combine)
+    }
+}
+
+/// Dashed line between receipt rows.
+private struct ReceiptDivider: View {
+    var body: some View {
+        Line()
+            .stroke(style: StrokeStyle(lineWidth: 1, dash: [4, 4]))
+            .foregroundStyle(Color(.separator))
+            .frame(height: 1)
+            .accessibilityHidden(true)
+    }
+
+    private struct Line: Shape {
+        func path(in rect: CGRect) -> Path {
+            var path = Path()
+            path.move(to: CGPoint(x: rect.minX, y: rect.midY))
+            path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
+            return path
+        }
     }
 }
 
@@ -228,28 +300,33 @@ struct FullFareCard: View {
     let calculator: FareCalculator
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: Spacing.s) {
             Text("Full fare")
                 .font(.title2.weight(.bold))
             Text("Based on your answers you pay the regular CTA fare.")
                 .foregroundStyle(.secondary)
-            ForEach(TransitMode.allCases) { mode in
-                if let full = calculator.fare(mode: mode, rider: .full) {
-                    HStack {
-                        Image(systemName: mode.symbolName).frame(width: 24).foregroundStyle(.secondary)
-                        Text(mode.title)
-                        Spacer()
-                        Text(Money.format(cents: full.priceCents)).font(.title3.weight(.semibold))
+            VStack(spacing: Spacing.xs) {
+                ForEach(TransitMode.allCases) { mode in
+                    if let full = calculator.fare(mode: mode, rider: .full) {
+                        HStack {
+                            Image(systemName: mode.symbolName).frame(width: 24).foregroundStyle(.secondary)
+                            Text(mode.title)
+                            Spacer()
+                            Text(Money.format(cents: full.priceCents))
+                                .font(.system(.title3, design: .rounded).weight(.bold))
+                                .monospacedDigit()
+                        }
+                        .accessibilityElement(children: .combine)
                     }
-                    .accessibilityElement(children: .combine)
                 }
             }
+            .padding(Spacing.s)
+            .background(Color(.tertiarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: Radius.inner, style: .continuous))
             Text("If your situation changes, come back and update your answers. Seniors and people with disabilities may qualify for other RTA reduced fares.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 20))
+        .card()
     }
 }
 

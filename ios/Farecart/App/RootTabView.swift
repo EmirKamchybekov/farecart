@@ -10,7 +10,7 @@ enum AppTab: Hashable {
 /// Three tabs on the iOS 26 tab bar: Find Food (map), Discounts, and a search-role tab for addresses.
 struct RootTabView: View {
     @Environment(AppEnvironment.self) private var environment
-    @State private var selectedTab: AppTab = .find
+    @State private var selectedTab: AppTab = DebugLaunch.initialTab
     @State private var findModel: FindFoodModel?
 
     var body: some View {
@@ -49,11 +49,31 @@ struct RootTabView: View {
     }
 }
 
-#if DEBUG
+#if !DEBUG
+enum DebugLaunch {
+    static var initialTab: AppTab { .find }
+}
+#else
 /// `xcrun simctl launch <udid> org.farecart.app -farecart-open-route` opens RouteView straight away
 /// (Madison & Pulaski → Pete's Fresh Market, Madison & Western) so the screen can be checked
 /// without tapping through the app. Add `-answers.householdSNAP 1` to see the Access price.
 enum DebugLaunch {
+    /// `-farecart-tab discounts` (or `search`) starts on that tab.
+    static var initialTab: AppTab {
+        let arguments = ProcessInfo.processInfo.arguments
+        guard let index = arguments.firstIndex(of: "-farecart-tab"), index + 1 < arguments.count else { return .find }
+        switch arguments[index + 1] {
+        case "discounts": return .discounts
+        case "search": return .search
+        default: return .find
+        }
+    }
+
+    /// `-farecart-open-place` opens the first result; `-farecart-open-place-directions` lands on its Directions tab.
+    static var placeDetailTab: PlaceDetailTab {
+        ProcessInfo.processInfo.arguments.contains("-farecart-open-place-directions") ? .directions : .info
+    }
+
     static func routeRequest() -> RouteRequest? {
         guard ProcessInfo.processInfo.arguments.contains("-farecart-open-route") else { return nil }
         let petes = Place(

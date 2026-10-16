@@ -2,7 +2,7 @@ import SwiftUI
 import MapKit
 import FarecartKit
 
-/// Tab 1: map of nearby food with floating glass controls and a draggable results sheet.
+/// Tab 1: map of nearby food with floating glass controls and a draggable results panel.
 struct FindFoodView: View {
     @Environment(\.openURL) private var openURL
     @Bindable var model: FindFoodModel
@@ -11,49 +11,47 @@ struct FindFoodView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .top) {
-                PlaceMap(model: model)
-                    .ignoresSafeArea(edges: .bottom)
+            GeometryReader { proxy in
+                ZStack(alignment: .top) {
+                    PlaceMap(model: model)
+                        .ignoresSafeArea(edges: .bottom)
 
-                VStack(spacing: 12) {
-                    originBar
-                    FilterChipRow(selection: model.filter) { filter in Task { await model.setFilter(filter) } }
-                    if let configurationError = environment.configurationError {
-                        MessageBanner(text: String(localized: "Showing sample data: the app is missing its Supabase settings. \(configurationError)"))
-                    } else if let error = model.errorMessage, model.locationDenied {
-                        MessageBanner(text: error, systemImage: "location.slash.fill", actionTitle: "Open Settings") {
-                            if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                    VStack(spacing: Spacing.s) {
+                        originBar
+                            .padding(.horizontal, Spacing.m)
+                        FilterChipRow(selection: model.filter) { filter in Task { await model.setFilter(filter) } }
+                        Group {
+                            if let configurationError = environment.configurationError {
+                                MessageBanner(text: String(localized: "Showing sample data: the app is missing its Supabase settings. \(configurationError)"))
+                            } else if let error = model.errorMessage, model.locationDenied {
+                                MessageBanner(text: error, systemImage: "location.slash.fill", actionTitle: "Open Settings") {
+                                    if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                                }
+                            } else if let error = model.errorMessage {
+                                MessageBanner(text: error) { Task { await model.reload() } }
+                            }
                         }
-                    } else if let error = model.errorMessage {
-                        MessageBanner(text: error) { Task { await model.reload() } }
+                        .padding(.horizontal, Spacing.m)
+                    }
+                    .padding(.top, Spacing.xs)
+
+                    if model.isListPresented {
+                        ResultsPanel(model: model, availableHeight: proxy.size.height - Spacing.xs)
+                            .padding(.horizontal, Spacing.xs)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
                 }
-                .padding(.horizontal)
-                .padding(.top, 8)
+                .animation(.snappy, value: model.isListPresented)
             }
             .navigationTitle("Find Food")
             .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $model.isListPresented) {
-                ResultsSheet(model: model)
-                    .presentationDetents([.height(120), .medium, .large])
-                    .presentationBackgroundInteraction(.enabled(upThrough: .medium))
-                    .presentationDragIndicator(.visible)
-                    .presentationCornerRadius(28)
-            }
-            .overlay(alignment: .bottomTrailing) {
-                if !model.isListPresented && model.hasSearchedOnce {
-                    Button {
-                        model.isListPresented = true
-                    } label: {
-                        Label("Show list (\(model.places.count))", systemImage: "list.bullet")
-                            .font(.headline)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 4)
-                    }
-                    .buttonStyle(.glassProminent)
-                    .padding()
-                    .accessibilityHint("Opens the list of nearby places")
-                }
+            .navigationDestination(item: $model.selectedPlace) { place in
+                #if DEBUG
+                PlaceDetailView(place: place, origin: model.origin, originLabel: model.originLabel, initialTab: DebugLaunch.placeDetailTab)
+                #else
+                PlaceDetailView(place: place, origin: model.origin, originLabel: model.originLabel)
+                #endif
             }
         }
         .task {
@@ -61,17 +59,26 @@ struct FindFoodView: View {
             // `xcrun simctl launch <udid> org.farecart.app -farecart-use-location` taps "Use my location" on launch.
             if ProcessInfo.processInfo.arguments.contains("-farecart-use-location") {
                 await model.useMyLocation()
-                return
-            }
-            #endif
-            await model.loadInitialIfNeeded()
-        }
-        .onChange(of: selectedTab) { _, tab in
-            if tab == .find {
-                if model.hasSearchedOnce { model.isListPresented = true }
             } else {
-                model.isListPresented = false
+                await model.loadInitialIfNeeded()
             }
+            // `-farecart-open-place` opens the first result's detail; `-farecart-open-place-directions`
+            // lands on its Directions tab; `-farecart-open-place-far` picks the first result over a mile
+            // away so the route is not walk-only.
+            let arguments = ProcessInfo.processInfo.arguments
+            if arguments.contains(where: { $0.hasPrefix("-farecart-open-place") }) {
+                let far = arguments.contains("-farecart-open-place-far")
+                let place = far ? model.places.first { ($0.distanceMeters ?? 0) > 1800 } : model.places.first
+                if let place {
+                    // Let the panel finish appearing before pushing; a push during that transition is
+                    // sometimes dropped.
+                    try? await Task.sleep(for: .seconds(1.2))
+                    model.select(place)
+                }
+            }
+            #else
+            await model.loadInitialIfNeeded()
+            #endif
         }
     }
 
@@ -156,15 +163,17 @@ struct PlaceMap: View {
     }
 }
 
-/// Floating glass chips: All / Grocery / Pantry / Giveaway.
+/// Floating glass chips: All / Grocery / Pantry / Giveaway. Full-bleed horizontal scroll with the
+/// page margin as content inset, so a chip is never cut by the padding and the row still scrolls
+/// at large text sizes.
 struct FilterChipRow: View {
     let selection: PlaceFilter
     let onSelect: (PlaceFilter) -> Void
 
     var body: some View {
         ScrollView(.horizontal) {
-            GlassEffectContainer(spacing: 8) {
-                HStack(spacing: 8) {
+            GlassEffectContainer(spacing: Spacing.xs) {
+                HStack(spacing: Spacing.xs) {
                     ForEach(PlaceFilter.allCases) { filter in
                         let isSelected = selection == filter
                         Button {
@@ -175,9 +184,10 @@ struct FilterChipRow: View {
                             } icon: {
                                 Image(systemName: filter.symbolName)
                             }
-                                .font(.subheadline.weight(.semibold))
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 4)
+                            .font(.subheadline.weight(.semibold))
+                            .lineLimit(1)
+                            .padding(.horizontal, 2)
+                            .padding(.vertical, 4)
                         }
                         .buttonStyle(.glass)
                         .tint(isSelected ? filter.color : nil)
@@ -186,10 +196,10 @@ struct FilterChipRow: View {
                     }
                 }
             }
-            .padding(.horizontal, 2)
+            .padding(.vertical, 2)
         }
+        .contentMargins(.horizontal, Spacing.m, for: .scrollContent)
         .scrollIndicators(.hidden)
-        .scrollClipDisabled()
         .accessibilityLabel("Filter by type")
     }
 }

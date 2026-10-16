@@ -2,125 +2,126 @@ import SwiftUI
 import UIKit
 import FarecartKit
 
-/// Tab 1 → row → this. Hero card, facts, the in-app CTA directions button (plus Apple / Google
-/// Maps as backups), then the fare line.
+/// Which half of the place screen is showing.
+enum PlaceDetailTab: String, CaseIterable, Identifiable {
+    case info
+    case directions
+
+    var id: String { rawValue }
+
+    var title: LocalizedStringResource {
+        switch self {
+        case .info: "Info"
+        case .directions: "Directions"
+        }
+    }
+
+    var symbolName: String {
+        switch self {
+        case .info: "info.circle"
+        case .directions: "bus.fill"
+        }
+    }
+}
+
+/// Find Food → row → this. A compact hero, then **Info** (address, hours, what to bring) and
+/// **Directions** (the in-app CTA route with its cost) behind a segmented picker. Each tab has one
+/// sticky primary action at the bottom.
 struct PlaceDetailView: View {
     let place: Place
     /// Where the Find Food tab is searching from; the in-app route starts here.
     var origin: GeoPoint? = nil
     var originLabel: String = ""
+    var initialTab: PlaceDetailTab = .info
+    @State private var tab: PlaceDetailTab = .info
     @Environment(AppEnvironment.self) private var environment
-    @Environment(\.openURL) private var openURL
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(spacing: Spacing.m) {
                 hero
-                facts
-                directions
-                FareLineView()
-                reportProblem
+                picker
+                switch tab {
+                case .info:
+                    PlaceInfoView(place: place)
+                case .directions:
+                    RouteContent(request: routeRequest)
+                }
             }
-            .padding()
+            .padding(.horizontal, Spacing.m)
+            .padding(.bottom, Spacing.m)
         }
-        .navigationTitle(place.name)
-        .navigationBarTitleDisplayMode(.inline)
+        .scrollDismissesKeyboard(.immediately)
         .background(Color(.systemGroupedBackground))
+        .navigationTitle(Text(verbatim: ""))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarVisibility(.hidden, for: .tabBar)
+        .safeAreaInset(edge: .bottom) {
+            bottomBar
+        }
+        .onAppear { tab = initialTab }
     }
 
-    // MARK: Sections
+    // MARK: Hero
 
     private var hero: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Image(systemName: place.type.symbolName)
-                    .font(.largeTitle)
-                    .foregroundStyle(.white)
-                    .padding(14)
-                    .background(place.type.color, in: RoundedRectangle(cornerRadius: 16))
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(place.name)
-                        .font(.title2.weight(.bold))
-                    TypeBadge(type: place.type, prominent: true)
-                }
-            }
-            if let meters = place.distanceMeters {
-                Label("\(Distance.milesText(meters: meters)) away · about \(Distance.walkingMinutes(meters: meters)) min walk", systemImage: "figure.walk")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 20))
-        .accessibilityElement(children: .combine)
-    }
-
-    private var facts: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            factRow(systemImage: "mappin", title: "Address") {
-                Text(place.address)
-                if let neighborhood = place.neighborhood { Text(neighborhood).foregroundStyle(.secondary) }
-            }
-            factRow(systemImage: "clock", title: "Hours") {
-                if let text = place.hoursText, !text.isEmpty {
-                    Text(text)
-                } else if let hours = place.hours {
-                    Text(hours.sorted { $0.key < $1.key }.map { "\($0.key.capitalized) \($0.value)" }.joined(separator: "\n"))
-                } else {
-                    Text("Hours not listed. Call ahead if you can.").foregroundStyle(.secondary)
-                }
-                OpenStatusLabel(status: place.openStatus()).font(.subheadline.weight(.semibold))
-            }
-            if let phone = place.phone, let url = place.phoneURL {
-                factRow(systemImage: "phone", title: "Phone") {
-                    Link(phone, destination: url)
-                        .accessibilityHint("Calls this place")
-                }
-            }
-            if place.type == .grocery {
-                factRow(systemImage: "creditcard", title: "Link/EBT") {
-                    switch place.acceptsEBT {
-                    case true?: Text("Takes Link/EBT").foregroundStyle(.green)
-                    case false?: Text("Does not take Link/EBT")
-                    default: Text("Unknown. Ask at the store.").foregroundStyle(.secondary)
+        HStack(alignment: .top, spacing: Spacing.s) {
+            Image(systemName: place.type.symbolName)
+                .font(.title2.weight(.bold))
+                .foregroundStyle(.white)
+                .frame(width: 52, height: 52)
+                .background(place.type.color, in: RoundedRectangle(cornerRadius: Radius.inner, style: .continuous))
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 6) {
+                Text(place.name)
+                    .font(.title3.weight(.bold))
+                    .fixedSize(horizontal: false, vertical: true)
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: Spacing.xs) {
+                        TypeBadge(type: place.type)
+                        statusLine.lineLimit(1)
+                    }
+                    VStack(alignment: .leading, spacing: 6) {
+                        TypeBadge(type: place.type)
+                        statusLine
                     }
                 }
             }
-            if let requirements = place.requirements, !requirements.isEmpty {
-                factRow(systemImage: "checklist", title: "What to bring") { Text(requirements) }
-            }
-            if !place.languages.isEmpty {
-                factRow(systemImage: "globe", title: "Languages") {
-                    Text(place.languages.map { Locale.current.localizedString(forLanguageCode: $0) ?? $0 }.joined(separator: ", "))
-                }
-            }
-            if let notes = place.notes, !notes.isEmpty {
-                factRow(systemImage: "note.text", title: "Notes") { Text(notes) }
-            }
-            if let url = place.websiteURL {
-                factRow(systemImage: "safari", title: "Website") { Link(url.host() ?? url.absoluteString, destination: url) }
-            }
-            verification
+            Spacer(minLength: 0)
         }
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 20))
+        .padding(.top, Spacing.xs)
+        .accessibilityElement(children: .combine)
     }
 
-    @ViewBuilder
-    private var verification: some View {
-        if let verifiedOn = place.verifiedOn {
-            Label("Verified on \(verifiedOn.formatted(date: .long, time: .omitted))", systemImage: "checkmark.seal.fill")
-                .font(.footnote)
-                .foregroundStyle(.green)
-        } else {
-            Label("Not yet verified by our team. Hours and rules may have changed. Call ahead if you can.", systemImage: "questionmark.circle")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
+    /// "1.3 mi · 25 min walk · Open now" on one line, in one `Text` so it wraps cleanly at large type.
+    private var statusLine: some View {
+        var parts: [Text] = []
+        if let meters = place.distanceMeters {
+            parts.append(Text(Distance.milesText(meters: meters)))
+            parts.append(Text("\(Distance.walkingMinutes(meters: meters)) min walk"))
         }
-        Label(LocalizedStringResource(stringLiteral: place.sourceDescription), systemImage: "doc.text.magnifyingglass")
-            .font(.footnote)
+        switch place.openStatus() {
+        case .open: parts.append(Text("Open now").foregroundStyle(.green).bold())
+        case .closed: parts.append(Text("Closed").foregroundStyle(.red).bold())
+        case .unknown: break
+        }
+        let line = parts.dropFirst().reduce(parts.first ?? Text(verbatim: "")) { $0 + Text(verbatim: " · ") + $1 }
+        return line
+            .font(.subheadline)
             .foregroundStyle(.secondary)
+    }
+
+    // MARK: Tabs
+
+    private var picker: some View {
+        Picker("Section", selection: $tab) {
+            ForEach(PlaceDetailTab.allCases) { tab in
+                Label(tab.title, systemImage: tab.symbolName).tag(tab)
+            }
+        }
+        .pickerStyle(.segmented)
+        .controlSize(.large)
+        .accessibilityLabel("Info or Directions")
     }
 
     private var routeRequest: RouteRequest {
@@ -131,75 +132,27 @@ struct PlaceDetailView: View {
         )
     }
 
-    private var directions: some View {
-        VStack(spacing: 12) {
-            NavigationLink {
-                RouteView(request: routeRequest)
+    @ViewBuilder
+    private var bottomBar: some View {
+        switch tab {
+        case .info:
+            Button {
+                withAnimation(.snappy) { tab = .directions }
             } label: {
                 BigButtonLabel(title: "Directions by CTA", systemImage: "bus.fill")
             }
             .buttonStyle(.glassProminent)
             .accessibilityHint("Shows bus and train directions with your fare")
-
-            Button {
-                Directions.openAppleMapsTransit(to: place)
-            } label: {
-                BigButtonLabel(title: "Open in Apple Maps", systemImage: "map.fill")
-            }
-            .buttonStyle(.glass)
-            .accessibilityHint("Opens Apple Maps with bus and train directions")
-
-            Button {
-                Directions.openGoogleMapsTransit(to: place)
-            } label: {
-                BigButtonLabel(title: "Open in Google Maps", systemImage: "map")
-            }
-            .buttonStyle(.glass)
-            .accessibilityHint("Opens Google Maps with transit directions")
+            .padding(.horizontal, Spacing.m)
+            .padding(.vertical, Spacing.xs)
+        case .directions:
+            MapsActionBar(place: place)
         }
-    }
-
-    private var reportProblem: some View {
-        Group {
-            if let url = DirectionsLinks.reportProblemEmail(to: environment.reportProblemEmail, placeName: place.name, placeID: place.id) {
-                Link(destination: url) {
-                    Label("Report a problem with this listing", systemImage: "flag")
-                        .font(.footnote)
-                }
-            }
-            if let source = place.sourceURL, let url = URL(string: source) {
-                Link(destination: url) {
-                    Label("Source", systemImage: "link")
-                        .font(.footnote)
-                }
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.top, 4)
-    }
-
-    private func factRow<Content: View>(systemImage: String, title: LocalizedStringResource, @ViewBuilder content: () -> Content) -> some View {
-        HStack(alignment: .top, spacing: 12) {
-            Image(systemName: systemImage)
-                .font(.body.weight(.semibold))
-                .foregroundStyle(place.type.color)
-                .frame(width: 24)
-                .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 3) {
-                Text(title)
-                    .font(.caption.weight(.semibold))
-                    .textCase(.uppercase)
-                    .foregroundStyle(.secondary)
-                content()
-                    .font(.body)
-            }
-        }
-        .accessibilityElement(children: .combine)
     }
 }
 
 /// "Bus: $1.10 with your Access discount (instead of $2.25)" for each mode, from the fares table
-/// and the saved Discounts answers.
+/// and the saved Discounts answers. Shown when a trip could not be priced.
 struct FareLineView: View {
     @Environment(AppEnvironment.self) private var environment
     @AppStorage(DiscountsKeys.householdSNAP) private var householdSNAP = false
@@ -212,9 +165,8 @@ struct FareLineView: View {
     var body: some View {
         let store = environment.fareStore
         let quotes = store.calculator.quotes(answers: answers)
-        VStack(alignment: .leading, spacing: 10) {
-            Label("Your fare", systemImage: "dollarsign.circle.fill")
-                .font(.headline)
+        VStack(alignment: .leading, spacing: Spacing.xs) {
+            SectionCaption("Your fare")
             if quotes.isEmpty {
                 Text("Fare prices are not available right now.")
                     .foregroundStyle(.secondary)
@@ -233,16 +185,14 @@ struct FareLineView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(.background, in: RoundedRectangle(cornerRadius: 20))
+        .card()
         .task { await environment.fareStore.loadIfNeeded() }
     }
 
     @ViewBuilder
     private func fareLine(_ quote: FareQuote) -> some View {
         let modeName = Text(quote.mode.title)
-        HStack(alignment: .firstTextBaseline, spacing: 8) {
+        HStack(alignment: .firstTextBaseline, spacing: Spacing.xs) {
             Image(systemName: quote.mode.symbolName)
                 .foregroundStyle(.secondary)
                 .frame(width: 24)
@@ -271,6 +221,13 @@ struct FareLineView: View {
 #Preview("Pantry, unverified") {
     NavigationStack {
         PlaceDetailView(place: MockData.samplePantry)
+    }
+    .environment(AppEnvironment.preview())
+}
+
+#Preview("Directions") {
+    NavigationStack {
+        PlaceDetailView(place: MockData.samplePlace, originLabel: "Madison & Pulaski", initialTab: .directions)
     }
     .environment(AppEnvironment.preview())
 }

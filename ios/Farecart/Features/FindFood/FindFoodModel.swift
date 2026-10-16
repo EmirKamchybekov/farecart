@@ -30,7 +30,10 @@ final class FindFoodModel {
     private(set) var hasSearchedOnce = false
 
     var selectedPlace: Place?
+    /// Whether the results panel is on screen at all (false until the first search).
     var isListPresented = false
+    /// How much of the results panel is showing.
+    var panelState: ResultsPanelState = .half
     var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(center: GeoPoint.westSideChicago.clCoordinate, latitudinalMeters: 6000, longitudinalMeters: 6000)
     )
@@ -129,6 +132,7 @@ final class FindFoodModel {
             errorMessage = nil
             hasSearchedOnce = true
             isListPresented = true
+            if panelState == .peek { panelState = .half }
             fitCamera(to: results, around: origin)
         } catch {
             guard generation == reloadGeneration else { return }
@@ -140,7 +144,6 @@ final class FindFoodModel {
 
     func select(_ place: Place) {
         selectedPlace = place
-        isListPresented = true
         withAnimation(.snappy) {
             cameraPosition = .region(
                 MKCoordinateRegion(center: place.clCoordinate, latitudinalMeters: 1500, longitudinalMeters: 1500)
@@ -175,6 +178,13 @@ final class FindFoodModel {
             cameraPosition = .region(MKCoordinateRegion(center: center, span: span))
         }
     }
+}
+
+/// Detents of the in-tab results panel.
+enum ResultsPanelState: Hashable {
+    case peek
+    case half
+    case full
 }
 
 extension GeoPoint {

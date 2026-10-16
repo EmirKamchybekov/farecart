@@ -152,6 +152,16 @@
         }
       }
     },
+    "%lld min walk": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min a pie"
+          }
+        }
+      }
+    },
     "%lld places within %lld mi": {
       "localizations": {
         "en": {
@@ -492,6 +502,16 @@
         }
       }
     },
+    "Closed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrado"
+          }
+        }
+      }
+    },
     "Closed now": {
       "localizations": {
         "es": {
@@ -508,6 +528,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cerrado · abre %@"
+          }
+        }
+      }
+    },
+    "Copied": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiado"
+          }
+        }
+      }
+    },
+    "Copy address": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar dirección"
+          }
+        }
+      }
+    },
+    "Copy the address or open it in a maps app": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia la dirección o ábrela en una app de mapas"
           }
         }
       }
@@ -548,6 +598,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fuentes de datos"
+          }
+        }
+      }
+    },
+    "Directions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cómo llegar"
           }
         }
       }
@@ -618,6 +678,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Escribe una dirección o barrio"
+          }
+        }
+      }
+    },
+    "Expand list": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ampliar lista"
           }
         }
       }
@@ -752,6 +822,16 @@
         }
       }
     },
+    "Free": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gratis"
+          }
+        }
+      }
+    },
     "Free. It's all walking.": {
       "localizations": {
         "es": {
@@ -768,6 +848,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "De %1$@ a %2$@"
+          }
+        }
+      }
+    },
+    "From OpenStreetMap (© OpenStreetMap contributors)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De OpenStreetMap (© colaboradores de OpenStreetMap)"
+          }
+        }
+      }
+    },
+    "From a public listing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De un listado público"
+          }
+        }
+      }
+    },
+    "From the Greater Chicago Food Depository's Find Food map": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Del mapa Find Food del Greater Chicago Food Depository"
+          }
+        }
+      }
+    },
+    "From the Plentiful pantry directory": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Del directorio de despensas Plentiful"
           }
         }
       }
@@ -798,6 +918,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Entrega gratis"
+          }
+        }
+      }
+    },
+    "Good to know": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bueno saber"
           }
         }
       }
@@ -862,6 +992,26 @@
         }
       }
     },
+    "Hours vary": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horario variable"
+          }
+        }
+      }
+    },
+    "How": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cómo"
+          }
+        }
+      }
+    },
     "How to sign up": {
       "localizations": {
         "es": {
@@ -892,6 +1042,36 @@
         }
       }
     },
+    "Info": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Información"
+          }
+        }
+      }
+    },
+    "Info or Directions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Información o Cómo llegar"
+          }
+        }
+      }
+    },
+    "It's all walking.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es todo a pie."
+          }
+        }
+      }
+    },
     "Languages": {
       "localizations": {
         "es": {
@@ -918,6 +1098,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Link/EBT"
+          }
+        }
+      }
+    },
+    "Link/EBT unknown": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link/EBT: sin confirmar"
+          }
+        }
+      }
+    },
+    "Link/EBT: ask at the store": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link/EBT: pregunta en la tienda"
+          }
+        }
+      }
+    },
+    "Listed by the USDA as a SNAP (Link) retailer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrado por el USDA como comercio que acepta SNAP (Link)"
           }
         }
       }
@@ -982,6 +1192,16 @@
         }
       }
     },
+    "Nearby CTA": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CTA cercano"
+          }
+        }
+      }
+    },
     "Nearby places": {
       "localizations": {
         "es": {
@@ -1022,6 +1242,16 @@
         }
       }
     },
+    "No Link/EBT": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No acepta Link/EBT"
+          }
+        }
+      }
+    },
     "No match for that address. Try adding the street number or ZIP code.": {
       "localizations": {
         "es": {
@@ -1038,6 +1268,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No pasa nada. Abre el viaje en una app de mapas; muestra los mismos autobuses y trenes."
+          }
+        }
+      }
+    },
+    "No requirements": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin requisitos"
           }
         }
       }
@@ -1102,6 +1342,16 @@
         }
       }
     },
+    "Open Settings": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Ajustes"
+          }
+        }
+      }
+    },
     "Open in Apple Maps": {
       "localizations": {
         "es": {
@@ -1138,6 +1388,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abierto ahora · cierra a las %@"
+          }
+        }
+      }
+    },
+    "OpenStreetMap": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OpenStreetMap"
           }
         }
       }
@@ -1232,6 +1492,16 @@
         }
       }
     },
+    "Researched by the Farecart team": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Investigado por el equipo de Farecart"
+          }
+        }
+      }
+    },
     "Retry": {
       "localizations": {
         "es": {
@@ -1302,6 +1572,16 @@
         }
       }
     },
+    "Save %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahorra %@"
+          }
+        }
+      }
+    },
     "Search": {
       "localizations": {
         "es": {
@@ -1342,12 +1622,32 @@
         }
       }
     },
+    "Section": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sección"
+          }
+        }
+      }
+    },
     "Show all types": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Mostrar todos los tipos"
+          }
+        }
+      }
+    },
+    "Show list": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar lista"
           }
         }
       }
@@ -1412,6 +1712,16 @@
         }
       }
     },
+    "Some listings © OpenStreetMap contributors, licensed under ODbL.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algunos listados © colaboradores de OpenStreetMap, bajo licencia ODbL."
+          }
+        }
+      }
+    },
     "Source": {
       "localizations": {
         "es": {
@@ -1462,6 +1772,16 @@
         }
       }
     },
+    "This trip costs you": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este viaje te cuesta"
+          }
+        }
+      }
+    },
     "Train": {
       "localizations": {
         "es": {
@@ -1498,6 +1818,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Intentar de nuevo"
+          }
+        }
+      }
+    },
+    "U.S. Department of Agriculture, Food and Nutrition Service.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Departamento de Agricultura de EE. UU., Servicio de Alimentos y Nutrición."
+          }
+        }
+      }
+    },
+    "USDA SNAP Retailer Locator": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Localizador de comercios SNAP del USDA"
           }
         }
       }
@@ -1582,6 +1922,16 @@
         }
       }
     },
+    "What": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué"
+          }
+        }
+      }
+    },
     "What to bring": {
       "localizations": {
         "es": {
@@ -1598,6 +1948,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Qué obtienes"
+          }
+        }
+      }
+    },
+    "Who": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quién"
           }
         }
       }
@@ -1642,6 +2002,16 @@
         }
       }
     },
+    "You save per ride": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahorras por viaje"
+          }
+        }
+      }
+    },
     "Your fare": {
       "localizations": {
         "es": {
@@ -1658,6 +2028,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tu ubicación se usa solo para buscar lugares cercanos. Se envía a nuestra base de datos para esa búsqueda y nunca se guarda. Tus respuestas de Descuentos se quedan en este teléfono."
+          }
+        }
+      }
+    },
+    "full fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tarifa completa"
           }
         }
       }
@@ -1702,112 +2082,12 @@
         }
       }
     },
-    "Open Settings": {
+    "with your %@ discount": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abrir Ajustes"
-          }
-        }
-      }
-    },
-    "Researched by the Farecart team": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Investigado por el equipo de Farecart"
-          }
-        }
-      }
-    },
-    "Listed by the USDA as a SNAP (Link) retailer": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Registrado por el USDA como comercio que acepta SNAP (Link)"
-          }
-        }
-      }
-    },
-    "From OpenStreetMap (© OpenStreetMap contributors)": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De OpenStreetMap (© colaboradores de OpenStreetMap)"
-          }
-        }
-      }
-    },
-    "From the Greater Chicago Food Depository's Find Food map": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Del mapa Find Food del Greater Chicago Food Depository"
-          }
-        }
-      }
-    },
-    "From the Plentiful pantry directory": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Del directorio de despensas Plentiful"
-          }
-        }
-      }
-    },
-    "From a public listing": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "De un listado público"
-          }
-        }
-      }
-    },
-    "OpenStreetMap": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "OpenStreetMap"
-          }
-        }
-      }
-    },
-    "Some listings © OpenStreetMap contributors, licensed under ODbL.": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Algunos listados © colaboradores de OpenStreetMap, bajo licencia ODbL."
-          }
-        }
-      }
-    },
-    "USDA SNAP Retailer Locator": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Localizador de comercios SNAP del USDA"
-          }
-        }
-      }
-    },
-    "U.S. Department of Agriculture, Food and Nutrition Service.": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Departamento de Agricultura de EE. UU., Servicio de Alimentos y Nutrición."
+            "value": "con tu descuento %@"
           }
         }
       }
