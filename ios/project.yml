@@ -31,7 +31,7 @@ settings:
     STRING_CATALOG_GENERATE_SYMBOLS: NO
     CODE_SIGN_STYLE: Automatic
     # Set your team here or in Xcode: Signing & Capabilities → Team.
-    DEVELOPMENT_TEAM: ""
+    DEVELOPMENT_TEAM: 8U3DG28W84
 
 packages:
   FarecartKit:
@@ -78,8 +78,10 @@ targets:
         REPORT_PROBLEM_EMAIL: "$(REPORT_PROBLEM_EMAIL)"
     # Sign in with Apple. Enable the capability for this bundle id on your Apple Developer team
     # before running on a device; the simulator builds without it (CODE_SIGNING_ALLOWED=NO).
-    entitlements:
-      path: Farecart/Farecart.entitlements
+    # Personal (free) teams cannot sign the Sign in with Apple entitlement, so it is applied to
+    # Release only. Debug builds run on a device with a free team; the Apple button then shows
+    # a friendly error. With a paid team, set CODE_SIGN_ENTITLEMENTS for Debug too.
+    # CODE_SIGN_ENTITLEMENTS is set per configuration in Config/*.xcconfig (Release only).
       properties:
         com.apple.developer.applesignin: [Default]
     settings:

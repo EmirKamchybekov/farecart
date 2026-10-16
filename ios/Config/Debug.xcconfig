@@ -13,3 +13,6 @@ API_BASE_URL =
 
 // Where "Report a problem with a listing" emails go.
 REPORT_PROBLEM_EMAIL = hello@farecart.org
+
+// Sign in with Apple entitlement (needs a paid Apple Developer team)
+CODE_SIGN_ENTITLEMENTS = 
