@@ -1711,6 +1711,106 @@
           }
         }
       }
+    },
+    "Researched by the Farecart team": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Investigado por el equipo de Farecart"
+          }
+        }
+      }
+    },
+    "Listed by the USDA as a SNAP (Link) retailer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrado por el USDA como comercio que acepta SNAP (Link)"
+          }
+        }
+      }
+    },
+    "From OpenStreetMap (© OpenStreetMap contributors)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De OpenStreetMap (© colaboradores de OpenStreetMap)"
+          }
+        }
+      }
+    },
+    "From the Greater Chicago Food Depository's Find Food map": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Del mapa Find Food del Greater Chicago Food Depository"
+          }
+        }
+      }
+    },
+    "From the Plentiful pantry directory": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Del directorio de despensas Plentiful"
+          }
+        }
+      }
+    },
+    "From a public listing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De un listado público"
+          }
+        }
+      }
+    },
+    "OpenStreetMap": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OpenStreetMap"
+          }
+        }
+      }
+    },
+    "Some listings © OpenStreetMap contributors, licensed under ODbL.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algunos listados © colaboradores de OpenStreetMap, bajo licencia ODbL."
+          }
+        }
+      }
+    },
+    "USDA SNAP Retailer Locator": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Localizador de comercios SNAP del USDA"
+          }
+        }
+      }
+    },
+    "U.S. Department of Agriculture, Food and Nutrition Service.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Departamento de Agricultura de EE. UU., Servicio de Alimentos y Nutrición."
+          }
+        }
+      }
     }
   }
 }

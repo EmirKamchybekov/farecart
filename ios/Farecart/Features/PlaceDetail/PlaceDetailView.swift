@@ -118,6 +118,9 @@ struct PlaceDetailView: View {
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }
+        Label(LocalizedStringResource(stringLiteral: place.sourceDescription), systemImage: "doc.text.magnifyingglass")
+            .font(.footnote)
+            .foregroundStyle(.secondary)
     }
 
     private var routeRequest: RouteRequest {

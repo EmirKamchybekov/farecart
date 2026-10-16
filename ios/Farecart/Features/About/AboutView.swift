@@ -29,7 +29,9 @@ struct AboutView: View {
                 }
 
                 Section("Data sources") {
-                    credit(title: "Food locations", detail: "Hand-researched by the Farecart team from public listings. Each place links to its source. Listings marked \"not yet verified\" have not been confirmed by phone or visit.")
+                    credit(title: "Food locations", detail: "West Side listings were hand-researched by the Farecart team. Citywide grocery stores come from the USDA SNAP Retailer Locator (public domain); pantries from OpenStreetMap, the Greater Chicago Food Depository and Plentiful. Each place links to its source. Listings marked \"not yet verified\" have not been confirmed by phone or visit.")
+                    credit(title: "OpenStreetMap", detail: "Some listings © OpenStreetMap contributors, licensed under ODbL.", url: "https://www.openstreetmap.org/copyright")
+                    credit(title: "USDA SNAP Retailer Locator", detail: "U.S. Department of Agriculture, Food and Nutrition Service.", url: "https://www.fns.usda.gov/snap/retailer-locator")
                     credit(title: "CTA fares", detail: "Chicago Transit Authority, transitchicago.com/fares", url: "https://www.transitchicago.com/fares/")
                     credit(title: "Access reduced fare", detail: "Northern Illinois Transit Authority, getaccess.org", url: "https://getaccess.org")
                     credit(title: "Student reduced fare", detail: "CTA Ventra Student Card", url: "https://www.transitchicago.com/fares/reduced-fare/")

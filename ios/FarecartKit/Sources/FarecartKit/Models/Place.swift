@@ -22,6 +22,8 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
     public var notes: String?
     /// Date-only (`yyyy-MM-dd`) in the database. `nil` until a human verifies the listing.
     public var verifiedOn: Date?
+    /// Where the listing came from: `curated` (hand-researched), `usda_snap`, `osm`, `gcfd`, `plentiful`, `other`.
+    public var sourceKind: String
     public var distanceMeters: Double?
 
     public init(
@@ -42,6 +44,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         sourceURL: String? = nil,
         notes: String? = nil,
         verifiedOn: Date? = nil,
+        sourceKind: String = "curated",
         distanceMeters: Double? = nil
     ) {
         self.id = id
@@ -61,6 +64,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         self.sourceURL = sourceURL
         self.notes = notes
         self.verifiedOn = verifiedOn
+        self.sourceKind = sourceKind
         self.distanceMeters = distanceMeters
     }
 
@@ -76,6 +80,18 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
 
     public var isVerified: Bool { verifiedOn != nil }
 
+    /// Human-readable origin of the listing, for the detail screen.
+    public var sourceDescription: String {
+        switch sourceKind {
+        case "curated": "Researched by the Farecart team"
+        case "usda_snap": "Listed by the USDA as a SNAP (Link) retailer"
+        case "osm": "From OpenStreetMap (© OpenStreetMap contributors)"
+        case "gcfd": "From the Greater Chicago Food Depository's Find Food map"
+        case "plentiful": "From the Plentiful pantry directory"
+        default: "From a public listing"
+        }
+    }
+
     // MARK: Codable (snake_case keys from PostgREST)
 
     private enum CodingKeys: String, CodingKey {
@@ -86,6 +102,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         case sourceURL = "source_url"
         case notes
         case verifiedOn = "verified_on"
+        case sourceKind = "source_kind"
         case distanceMeters = "distance_m"
     }
 
@@ -121,6 +138,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         } else {
             verifiedOn = nil
         }
+        sourceKind = try c.decodeIfPresent(String.self, forKey: .sourceKind) ?? "curated"
         distanceMeters = try c.decodeIfPresent(Double.self, forKey: .distanceMeters)
     }
 
@@ -143,6 +161,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         try c.encodeIfPresent(sourceURL, forKey: .sourceURL)
         try c.encodeIfPresent(notes, forKey: .notes)
         try c.encodeIfPresent(verifiedOn.map(PostgresDate.string(from:)), forKey: .verifiedOn)
+        try c.encode(sourceKind, forKey: .sourceKind)
         try c.encodeIfPresent(distanceMeters, forKey: .distanceMeters)
     }
 }
