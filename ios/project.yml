@@ -1,0 +1,113 @@
+# XcodeGen spec. Regenerate the project with:  cd ios && xcodegen generate
+name: Farecart
+options:
+  bundleIdPrefix: org.farecart
+  deploymentTarget:
+    iOS: "26.0"
+  xcodeVersion: "26.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+  groupSortPosition: top
+  defaultConfig: Debug
+
+configs:
+  Debug: debug
+  Release: release
+
+configFiles:
+  Debug: Config/Debug.xcconfig
+  Release: Config/Release.xcconfig
+
+attributes:
+  LastUpgradeCheck: "2600"
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+    STRING_CATALOG_GENERATE_SYMBOLS: NO
+    CODE_SIGN_STYLE: Automatic
+    # Set your team here or in Xcode: Signing & Capabilities → Team.
+    DEVELOPMENT_TEAM: ""
+
+packages:
+  FarecartKit:
+    path: FarecartKit
+
+targets:
+  Farecart:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Farecart
+        excludes:
+          - "**/.DS_Store"
+    dependencies:
+      - package: FarecartKit
+        product: FarecartKit
+    info:
+      path: Farecart/Info.plist
+      properties:
+        CFBundleDisplayName: Farecart
+        CFBundleName: Farecart
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
+        CFBundleLocalizations: [en, es]
+        UILaunchScreen:
+          UIColorName: AccentColor
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UIRequiresFullScreen: true
+        ITSAppUsesNonExemptEncryption: false
+        NSLocationWhenInUseUsageDescription: "Farecart uses your location only to find grocery stores, food pantries and giveaways near you. It is never stored."
+        LSApplicationQueriesSchemes:
+          - comgooglemaps
+        # Runtime configuration, filled from Config/*.xcconfig.
+        SUPABASE_URL: "$(SUPABASE_URL)"
+        SUPABASE_ANON_KEY: "$(SUPABASE_ANON_KEY)"
+        API_BASE_URL: "$(API_BASE_URL)"
+        REPORT_PROBLEM_EMAIL: "$(REPORT_PROBLEM_EMAIL)"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.farecart.app
+        PRODUCT_NAME: Farecart
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        SUPPORTS_MACCATALYST: NO
+        ENABLE_PREVIEWS: YES
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited)"
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: "DEBUG $(inherited)"
+
+schemes:
+  Farecart:
+    build:
+      targets:
+        Farecart: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - package: FarecartKit/FarecartKitTests
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release

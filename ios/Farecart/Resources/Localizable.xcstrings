@@ -1,0 +1,1236 @@
+{
+  "sourceLanguage": "en",
+  "version": "1.0",
+  "strings": {
+    "%@ away": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "a %@"
+          }
+        }
+      }
+    },
+    "%@ away · about %lld min walk": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "a %1$@ · unos %2$lld min a pie"
+          }
+        }
+      }
+    },
+    "%@, %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "%@: %@ full fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ tarifa completa"
+          }
+        }
+      }
+    },
+    "%@: %@ instead of %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ en lugar de %3$@"
+          }
+        }
+      }
+    },
+    "%@: %@ with your %@ discount (instead of %@)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ con tu descuento %3$@ (en lugar de %4$@)"
+          }
+        }
+      }
+    },
+    "%lld places within %lld mi": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld place within %2$lld mi"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld places within %2$lld mi"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld lugar en un radio de %2$lld mi"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%1$lld lugares en un radio de %2$lld mi"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "About": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de"
+          }
+        }
+      }
+    },
+    "About Farecart": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de Farecart"
+          }
+        }
+      }
+    },
+    "Access": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access"
+          }
+        }
+      }
+    },
+    "Access reduced fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarifa reducida Access"
+          }
+        }
+      }
+    },
+    "Address": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirección"
+          }
+        }
+      }
+    },
+    "Address, ZIP or neighborhood": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirección, código postal o barrio"
+          }
+        }
+      }
+    },
+    "All": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos"
+          }
+        }
+      }
+    },
+    "Answer two questions to see if you can ride CTA for less.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Responde dos preguntas para ver si puedes viajar en la CTA por menos."
+          }
+        }
+      }
+    },
+    "Any grade from kindergarten through 12th grade.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cualquier grado desde kínder hasta 12.º grado."
+          }
+        }
+      }
+    },
+    "Apple Maps. Directions open in Apple Maps or Google Maps.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Maps. Las indicaciones se abren en Apple Maps o Google Maps."
+          }
+        }
+      }
+    },
+    "Are you a K–12 student?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eres estudiante de K–12?"
+          }
+        }
+      }
+    },
+    "Based on your answers you pay the regular CTA fare.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Según tus respuestas, pagas la tarifa normal de la CTA."
+          }
+        }
+      }
+    },
+    "Bus": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autobús"
+          }
+        }
+      }
+    },
+    "CTA Ventra Student Card": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarjeta Ventra para estudiantes de la CTA"
+          }
+        }
+      }
+    },
+    "CTA fares": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarifas de la CTA"
+          }
+        }
+      }
+    },
+    "Call %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llamar al %@"
+          }
+        }
+      }
+    },
+    "Calls this place": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llama a este lugar"
+          }
+        }
+      }
+    },
+    "Chicago Transit Authority, transitchicago.com/fares": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chicago Transit Authority, transitchicago.com/fares"
+          }
+        }
+      }
+    },
+    "Closed now": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrado ahora"
+          }
+        }
+      }
+    },
+    "Closed · opens %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrado · abre %@"
+          }
+        }
+      }
+    },
+    "Could not find your location right now. Try typing an address.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No pudimos encontrar tu ubicación ahora. Intenta escribir una dirección."
+          }
+        }
+      }
+    },
+    "Could not load places. Check your connection and try again.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudieron cargar los lugares. Revisa tu conexión e inténtalo de nuevo."
+          }
+        }
+      }
+    },
+    "Could not look up that address. Check your connection and try again.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo buscar esa dirección. Revisa tu conexión e inténtalo de nuevo."
+          }
+        }
+      }
+    },
+    "Data sources": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuentes de datos"
+          }
+        }
+      }
+    },
+    "Directions by CTA": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cómo llegar en CTA"
+          }
+        }
+      }
+    },
+    "Discounts": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descuentos"
+          }
+        }
+      }
+    },
+    "Does anyone in your household get SNAP?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Alguien en tu hogar recibe SNAP?"
+          }
+        }
+      }
+    },
+    "Does not take Link/EBT": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No acepta Link/EBT"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
+          }
+        }
+      }
+    },
+    "Email %@ if a place has closed, moved or changed its hours.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe a %@ si un lugar cerró, se mudó o cambió su horario."
+          }
+        }
+      }
+    },
+    "Enter an address or neighborhood": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe una dirección o barrio"
+          }
+        }
+      }
+    },
+    "Fare prices are not available right now.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los precios de las tarifas no están disponibles ahora."
+          }
+        }
+      }
+    },
+    "Farecart": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farecart"
+          }
+        }
+      }
+    },
+    "Farecart helps people on Chicago's West Side find grocery stores, food pantries and giveaways nearby, and shows the cheapest CTA fare they qualify for.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farecart ayuda a la gente del West Side de Chicago a encontrar supermercados, despensas de alimentos y entregas gratuitas cercanas, y muestra la tarifa de la CTA más barata a la que tienen derecho."
+          }
+        }
+      }
+    },
+    "Filter by type": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrar por tipo"
+          }
+        }
+      }
+    },
+    "Find Food": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar comida"
+          }
+        }
+      }
+    },
+    "Find food. Get there for less.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encuentra comida. Llega por menos."
+          }
+        }
+      }
+    },
+    "Finding food near you…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando comida cerca de ti…"
+          }
+        }
+      }
+    },
+    "Finding your location is taking too long. Try again or type an address.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encontrar tu ubicación está tardando demasiado. Inténtalo de nuevo o escribe una dirección."
+          }
+        }
+      }
+    },
+    "Food locations": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lugares de comida"
+          }
+        }
+      }
+    },
+    "Full fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarifa completa"
+          }
+        }
+      }
+    },
+    "Get SNAP or go to school? Check the Discounts tab to see if you can ride for less.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Recibes SNAP o vas a la escuela? Revisa la pestaña Descuentos para ver si puedes viajar por menos."
+          }
+        }
+      }
+    },
+    "Giveaway": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrega gratis"
+          }
+        }
+      }
+    },
+    "Grocery": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supermercado"
+          }
+        }
+      }
+    },
+    "Hand-researched by the Farecart team from public listings. Each place links to its source. Listings marked \"not yet verified\" have not been confirmed by phone or visit.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Investigado a mano por el equipo de Farecart a partir de listados públicos. Cada lugar enlaza a su fuente. Los listados marcados \"aún no verificado\" no se han confirmado por teléfono ni en persona."
+          }
+        }
+      }
+    },
+    "Help": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayuda"
+          }
+        }
+      }
+    },
+    "Hide list": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar lista"
+          }
+        }
+      }
+    },
+    "Hours": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horario"
+          }
+        }
+      }
+    },
+    "Hours not listed. Call ahead if you can.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horario no disponible. Llama antes si puedes."
+          }
+        }
+      }
+    },
+    "How to sign up": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cómo inscribirse"
+          }
+        }
+      }
+    },
+    "If your situation changes, come back and update your answers. Seniors and people with disabilities may qualify for other RTA reduced fares.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si tu situación cambia, vuelve y actualiza tus respuestas. Las personas mayores y con discapacidad pueden calificar para otras tarifas reducidas de la RTA."
+          }
+        }
+      }
+    },
+    "Languages": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idiomas"
+          }
+        }
+      }
+    },
+    "Link/EBT": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link/EBT"
+          }
+        }
+      }
+    },
+    "Location access is off. Allow it in Settings, or type an address instead.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El acceso a la ubicación está desactivado. Actívalo en Configuración o escribe una dirección."
+          }
+        }
+      }
+    },
+    "Looking up address…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando la dirección…"
+          }
+        }
+      }
+    },
+    "Maps": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapas"
+          }
+        }
+      }
+    },
+    "Matches": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resultados"
+          }
+        }
+      }
+    },
+    "My location": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mi ubicación"
+          }
+        }
+      }
+    },
+    "Nearby places": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lugares cercanos"
+          }
+        }
+      }
+    },
+    "Neighborhoods": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barrios"
+          }
+        }
+      }
+    },
+    "No": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No"
+          }
+        }
+      }
+    },
+    "No match for that address. Try adding the street number or ZIP code.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay resultados para esa dirección. Prueba agregando el número de la calle o el código postal."
+          }
+        }
+      }
+    },
+    "No requirements listed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin requisitos indicados"
+          }
+        }
+      }
+    },
+    "Northern Illinois Transit Authority, getaccess.org": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Northern Illinois Transit Authority, getaccess.org"
+          }
+        }
+      }
+    },
+    "Not yet verified by our team. Hours and rules may have changed. Call ahead if you can.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no verificado por nuestro equipo. El horario y las reglas pueden haber cambiado. Llama antes si puedes."
+          }
+        }
+      }
+    },
+    "Notes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notas"
+          }
+        }
+      }
+    },
+    "Nothing within %lld miles": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada en un radio de %lld millas"
+          }
+        }
+      }
+    },
+    "Official details": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Información oficial"
+          }
+        }
+      }
+    },
+    "Open in Google Maps": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Google Maps"
+          }
+        }
+      }
+    },
+    "Open now": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abierto ahora"
+          }
+        }
+      }
+    },
+    "Open now · closes %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abierto ahora · cierra a las %@"
+          }
+        }
+      }
+    },
+    "Opens Apple Maps with bus and train directions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Apple Maps con indicaciones en autobús y tren"
+          }
+        }
+      }
+    },
+    "Opens Google Maps with transit directions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Google Maps con indicaciones en transporte público"
+          }
+        }
+      }
+    },
+    "Opens the list of nearby places": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre la lista de lugares cercanos"
+          }
+        }
+      }
+    },
+    "Pantry": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despensa"
+          }
+        }
+      }
+    },
+    "Phone": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teléfono"
+          }
+        }
+      }
+    },
+    "Privacy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacidad"
+          }
+        }
+      }
+    },
+    "Report a problem with a listing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar un problema con un lugar"
+          }
+        }
+      }
+    },
+    "Report a problem with this listing": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar un problema con este lugar"
+          }
+        }
+      }
+    },
+    "Retry": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reintentar"
+          }
+        }
+      }
+    },
+    "Running on sample data (no Supabase settings found).": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usando datos de ejemplo (no se encontró la configuración de Supabase)."
+          }
+        }
+      }
+    },
+    "SNAP is also called food stamps or the Link card.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SNAP también se conoce como estampillas de comida o la tarjeta Link."
+          }
+        }
+      }
+    },
+    "Search": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar"
+          }
+        }
+      }
+    },
+    "Search address": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar dirección"
+          }
+        }
+      }
+    },
+    "Search starting point": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Punto de partida de la búsqueda"
+          }
+        }
+      }
+    },
+    "Search within %lld miles": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar en un radio de %lld millas"
+          }
+        }
+      }
+    },
+    "Show all types": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar todos los tipos"
+          }
+        }
+      }
+    },
+    "Show list (%lld)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver lista (%lld)"
+          }
+        }
+      }
+    },
+    "Showing last known prices (offline).": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrando los últimos precios conocidos (sin conexión)."
+          }
+        }
+      }
+    },
+    "Showing last known prices and program details (offline).": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrando los últimos precios y detalles de programas conocidos (sin conexión)."
+          }
+        }
+      }
+    },
+    "Showing sample data: the app is missing its Supabase settings. %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrando datos de ejemplo: a la app le falta la configuración de Supabase. %@"
+          }
+        }
+      }
+    },
+    "Sign up": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inscribirse"
+          }
+        }
+      }
+    },
+    "Source": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuente"
+          }
+        }
+      }
+    },
+    "Student": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estudiante"
+          }
+        }
+      }
+    },
+    "Student reduced fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarifa reducida para estudiantes"
+          }
+        }
+      }
+    },
+    "Takes Link/EBT": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acepta Link/EBT"
+          }
+        }
+      }
+    },
+    "Train": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tren"
+          }
+        }
+      }
+    },
+    "Try a wider search, a different filter, or another address.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prueba una búsqueda más amplia, otro filtro u otra dirección."
+          }
+        }
+      }
+    },
+    "Unknown. Ask at the store.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desconocido. Pregunta en la tienda."
+          }
+        }
+      }
+    },
+    "Use my location": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar mi ubicación"
+          }
+        }
+      }
+    },
+    "Verified on %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificado el %@"
+          }
+        }
+      }
+    },
+    "Version": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión"
+          }
+        }
+      }
+    },
+    "Website": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sitio web"
+          }
+        }
+      }
+    },
+    "West Side, Chicago": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "West Side, Chicago"
+          }
+        }
+      }
+    },
+    "What to bring": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué traer"
+          }
+        }
+      }
+    },
+    "What you get": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué obtienes"
+          }
+        }
+      }
+    },
+    "Who qualifies": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quién califica"
+          }
+        }
+      }
+    },
+    "Yes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sí"
+          }
+        }
+      }
+    },
+    "You may also qualify": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "También podrías calificar"
+          }
+        }
+      }
+    },
+    "You qualify": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calificas"
+          }
+        }
+      }
+    },
+    "Your fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu tarifa"
+          }
+        }
+      }
+    },
+    "Your location is used only to search for nearby places. It is sent to our database for that search and never stored. Your Discounts answers stay on this phone.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu ubicación se usa solo para buscar lugares cercanos. Se envía a nuestra base de datos para esa búsqueda y nunca se guarda. Tus respuestas de Descuentos se quedan en este teléfono."
+          }
+        }
+      }
+    },
+    "reduced fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tarifa reducida"
+          }
+        }
+      }
+    }
+  }
+}

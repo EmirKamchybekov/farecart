@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04D14D352EEDBE0E1C75CF0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24397EEAD784C4C321530894 /* Assets.xcassets */; };
+		0C17E174A50637C381654099 /* FareStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14289EE1712E9812F0A98A43 /* FareStore.swift */; };
+		15389085527128D6D4EF775F /* FindFoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */; };
+		16BE21A65AD0F05E910B4DDA /* FindFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F832CA8D40606C23134E77 /* FindFoodView.swift */; };
+		21D4F87D25033E6102825753 /* FarecartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4940F40340E859D8C1817968 /* FarecartKit */; };
+		2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B745AE72B8089B823213ED3 /* RootTabView.swift */; };
+		2361BDD33E29D0FA634381A1 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B89BEA5A92C28977442165 /* AppEnvironment.swift */; };
+		2B338605CDA013885B3D9131 /* ResultsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE800EBB338954C8FB8D873 /* ResultsSheet.swift */; };
+		2B500CD8F7C8318165023472 /* FarecartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400D5DAC5B426FF05065385F /* FarecartApp.swift */; };
+		2B97D14CE1610C74A1E82172 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3D03F2166D83C56A974386E6 /* Localizable.xcstrings */; };
+		38F951DC33EC6D6733614CE9 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279638840BFD464409DB1CB0 /* LocationService.swift */; };
+		4080F873B55BD0FB03BA559C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F05129E224D73D92085FE /* AboutView.swift */; };
+		5CB715F56BEA68D5AB7462E3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */; };
+		63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7ED473792E4DA5BC6AE59 /* PlaceDetailView.swift */; };
+		7C534C3980A22B0F2B52D609 /* DiscountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9031FA7B3D27666B0D93A8D7 /* DiscountsView.swift */; };
+		7E1212D06D38B68CF98682AD /* TypeBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */; };
+		8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629BFE11133CFE7F7283205 /* Directions.swift */; };
+		BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E03C01423A0B168F68449B /* AppleGeocoder.swift */; };
+		CBCF701EC87C3D288CA7EA4E /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1EE444ACF133B612398735 /* SearchTabView.swift */; };
+		E90AEC2B6B276DF82F935A5A /* LocationTypeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0FD44EFB7842BF36AAA25D80 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		0FE800EBB338954C8FB8D873 /* ResultsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsSheet.swift; sourceTree = "<group>"; };
+		14289EE1712E9812F0A98A43 /* FareStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FareStore.swift; sourceTree = "<group>"; };
+		18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTypeStyle.swift; sourceTree = "<group>"; };
+		24397EEAD784C4C321530894 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		279638840BFD464409DB1CB0 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		32B7ED473792E4DA5BC6AE59 /* PlaceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailView.swift; sourceTree = "<group>"; };
+		3D03F2166D83C56A974386E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		400D5DAC5B426FF05065385F /* FarecartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarecartApp.swift; sourceTree = "<group>"; };
+		42B89BEA5A92C28977442165 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		545E61133912E0DE4A96119F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5E1EE444ACF133B612398735 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
+		69666F396E777CDD45EF3785 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		7B745AE72B8089B823213ED3 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		85E03C01423A0B168F68449B /* AppleGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleGeocoder.swift; sourceTree = "<group>"; };
+		8629BFE11133CFE7F7283205 /* Directions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
+		8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBadge.swift; sourceTree = "<group>"; };
+		9031FA7B3D27666B0D93A8D7 /* DiscountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsView.swift; sourceTree = "<group>"; };
+		A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodModel.swift; sourceTree = "<group>"; };
+		C6E9C6D20547A50BA97E0E43 /* FarecartKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FarecartKit; path = FarecartKit; sourceTree = SOURCE_ROOT; };
+		D3F832CA8D40606C23134E77 /* FindFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodView.swift; sourceTree = "<group>"; };
+		D48F05129E224D73D92085FE /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		D61B4E4FA502065D022E5C33 /* Farecart.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Farecart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC5ADB356090EDC9C0D7178A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21D4F87D25033E6102825753 /* FarecartKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0DD4887A5B7ECB6BBE3DDA35 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */,
+				8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		19E922D149D80E46A47EEF8F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				24397EEAD784C4C321530894 /* Assets.xcassets */,
+				3D03F2166D83C56A974386E6 /* Localizable.xcstrings */,
+				18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		30D3A038943D83B17E0CA09C /* PlaceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				32B7ED473792E4DA5BC6AE59 /* PlaceDetailView.swift */,
+			);
+			path = PlaceDetail;
+			sourceTree = "<group>";
+		};
+		4AF4BF54C3376F27D4A305EC /* About */ = {
+			isa = PBXGroup;
+			children = (
+				D48F05129E224D73D92085FE /* AboutView.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		59A264C13C7AD983B203248E /* Discounts */ = {
+			isa = PBXGroup;
+			children = (
+				9031FA7B3D27666B0D93A8D7 /* DiscountsView.swift */,
+			);
+			path = Discounts;
+			sourceTree = "<group>";
+		};
+		642A86FD90A1DCAA50675925 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D61B4E4FA502065D022E5C33 /* Farecart.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7D0E9FD20288D54EE154B193 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				69666F396E777CDD45EF3785 /* Debug.xcconfig */,
+				0FD44EFB7842BF36AAA25D80 /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		827D0C7AC483EE4BD4586981 /* Farecart */ = {
+			isa = PBXGroup;
+			children = (
+				AE8BC049D0BBB47FC76BAC8A /* App */,
+				E2514E1654C3650221FEBB4D /* Features */,
+				19E922D149D80E46A47EEF8F /* Resources */,
+				8E28EE48C3DB80D54DD77C15 /* Services */,
+				0DD4887A5B7ECB6BBE3DDA35 /* Shared */,
+				545E61133912E0DE4A96119F /* Info.plist */,
+			);
+			path = Farecart;
+			sourceTree = "<group>";
+		};
+		8E28EE48C3DB80D54DD77C15 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				85E03C01423A0B168F68449B /* AppleGeocoder.swift */,
+				8629BFE11133CFE7F7283205 /* Directions.swift */,
+				14289EE1712E9812F0A98A43 /* FareStore.swift */,
+				279638840BFD464409DB1CB0 /* LocationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		97766504B735D2A371B250EE = {
+			isa = PBXGroup;
+			children = (
+				7D0E9FD20288D54EE154B193 /* Config */,
+				827D0C7AC483EE4BD4586981 /* Farecart */,
+				F6DAC592D96EC59DF2E378EA /* Packages */,
+				642A86FD90A1DCAA50675925 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AE8BC049D0BBB47FC76BAC8A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				42B89BEA5A92C28977442165 /* AppEnvironment.swift */,
+				400D5DAC5B426FF05065385F /* FarecartApp.swift */,
+				7B745AE72B8089B823213ED3 /* RootTabView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E2514E1654C3650221FEBB4D /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				4AF4BF54C3376F27D4A305EC /* About */,
+				59A264C13C7AD983B203248E /* Discounts */,
+				FA4A91EA61EEE47248101F31 /* FindFood */,
+				30D3A038943D83B17E0CA09C /* PlaceDetail */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		F6DAC592D96EC59DF2E378EA /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				C6E9C6D20547A50BA97E0E43 /* FarecartKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		FA4A91EA61EEE47248101F31 /* FindFood */ = {
+			isa = PBXGroup;
+			children = (
+				A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */,
+				D3F832CA8D40606C23134E77 /* FindFoodView.swift */,
+				0FE800EBB338954C8FB8D873 /* ResultsSheet.swift */,
+				5E1EE444ACF133B612398735 /* SearchTabView.swift */,
+			);
+			path = FindFood;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		56A2C69545518F341978EF60 /* Farecart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A35F74FD5F1167D7E73A6F03 /* Build configuration list for PBXNativeTarget "Farecart" */;
+			buildPhases = (
+				F77758E4B3D4DDFE63CC2C70 /* Sources */,
+				396E892D288591E3983EDEC2 /* Resources */,
+				DC5ADB356090EDC9C0D7178A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Farecart;
+			packageProductDependencies = (
+				4940F40340E859D8C1817968 /* FarecartKit */,
+			);
+			productName = Farecart;
+			productReference = D61B4E4FA502065D022E5C33 /* Farecart.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		415A673E0E3834A8124A9617 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					56A2C69545518F341978EF60 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D404278B40C5AE2244CCAF3C /* Build configuration list for PBXProject "Farecart" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				es,
+			);
+			mainGroup = 97766504B735D2A371B250EE;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1A0D8062FEE94AE9B8DCC058 /* XCLocalSwiftPackageReference "FarecartKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 642A86FD90A1DCAA50675925 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				56A2C69545518F341978EF60 /* Farecart */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		396E892D288591E3983EDEC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D14D352EEDBE0E1C75CF0A /* Assets.xcassets in Resources */,
+				2B97D14CE1610C74A1E82172 /* Localizable.xcstrings in Resources */,
+				5CB715F56BEA68D5AB7462E3 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F77758E4B3D4DDFE63CC2C70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4080F873B55BD0FB03BA559C /* AboutView.swift in Sources */,
+				2361BDD33E29D0FA634381A1 /* AppEnvironment.swift in Sources */,
+				BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */,
+				8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */,
+				7C534C3980A22B0F2B52D609 /* DiscountsView.swift in Sources */,
+				0C17E174A50637C381654099 /* FareStore.swift in Sources */,
+				2B500CD8F7C8318165023472 /* FarecartApp.swift in Sources */,
+				15389085527128D6D4EF775F /* FindFoodModel.swift in Sources */,
+				16BE21A65AD0F05E910B4DDA /* FindFoodView.swift in Sources */,
+				38F951DC33EC6D6733614CE9 /* LocationService.swift in Sources */,
+				E90AEC2B6B276DF82F935A5A /* LocationTypeStyle.swift in Sources */,
+				63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */,
+				2B338605CDA013885B3D9131 /* ResultsSheet.swift in Sources */,
+				2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */,
+				CBCF701EC87C3D288CA7EA4E /* SearchTabView.swift in Sources */,
+				7E1212D06D38B68CF98682AD /* TypeBadge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		36C39B00A95B50AC83A45AC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FD44EFB7842BF36AAA25D80 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		5089B7B580C603CD17B2FBF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69666F396E777CDD45EF3785 /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		564E2C87BB86DA2BAFDFBD20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Farecart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.farecart.app;
+				PRODUCT_NAME = Farecart;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D46FEC1C735431F0874CC218 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Farecart/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.farecart.app;
+				PRODUCT_NAME = Farecart;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A35F74FD5F1167D7E73A6F03 /* Build configuration list for PBXNativeTarget "Farecart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				564E2C87BB86DA2BAFDFBD20 /* Debug */,
+				D46FEC1C735431F0874CC218 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D404278B40C5AE2244CCAF3C /* Build configuration list for PBXProject "Farecart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5089B7B580C603CD17B2FBF7 /* Debug */,
+				36C39B00A95B50AC83A45AC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		1A0D8062FEE94AE9B8DCC058 /* XCLocalSwiftPackageReference "FarecartKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = FarecartKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4940F40340E859D8C1817968 /* FarecartKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FarecartKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 415A673E0E3834A8124A9617 /* Project object */;
+}
