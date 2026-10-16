@@ -50,9 +50,8 @@ struct LocationService: Sendable {
             if let location = update.location {
                 return GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             }
-            if update.locationUnavailable {
-                throw LocationError.unavailable
-            }
+            // `locationUnavailable` is transient (first update before a fix, or a simulator with no
+            // simulated location). Keep waiting; the caller's timeout bounds the wait.
         }
         throw LocationError.unavailable
     }
