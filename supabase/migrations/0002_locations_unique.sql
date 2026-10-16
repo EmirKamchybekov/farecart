@@ -1,4 +1,4 @@
--- FreshRoute: unique key for idempotent upserts from data/seed.mjs
+-- Farecart: unique key for idempotent upserts from data/seed.mjs
 -- Idempotent: safe to re-run.
 do $$
 begin

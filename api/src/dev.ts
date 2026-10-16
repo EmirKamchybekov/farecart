@@ -14,5 +14,5 @@ for (const candidate of ['../../.env.local', '../.env.local', '../.env']) {
 
 const port = Number(process.env.PORT ?? 3000);
 serve({ fetch: app.fetch, port }, (info) => {
-  console.log(`freshroute-api listening on http://localhost:${info.port}`);
+  console.log(`farecart-api listening on http://localhost:${info.port}`);
 });

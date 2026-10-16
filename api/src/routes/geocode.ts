@@ -58,7 +58,7 @@ async function nominatim(q: string): Promise<GeocodeResult | undefined> {
   const hits = await fetchJson<NominatimHit[]>(url, 'Nominatim', {
     timeoutMs: 7000,
     headers: {
-      'User-Agent': optionalEnv('NOMINATIM_USER_AGENT') ?? 'FreshRoute-API/0.1 (Chicago West Side food access; non-commercial)',
+      'User-Agent': optionalEnv('NOMINATIM_USER_AGENT') ?? 'Farecart-API/0.1 (Chicago West Side food access; non-commercial)',
       'Accept-Language': 'en-US',
     },
   });

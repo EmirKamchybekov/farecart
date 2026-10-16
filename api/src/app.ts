@@ -27,7 +27,7 @@ app.use('*', async (c, next) => {
   c.header('X-Content-Type-Options', 'nosniff');
 });
 
-app.get('/', (c) => c.json({ service: 'freshroute-api', version: '0.1.0', routes: ROUTES }));
+app.get('/', (c) => c.json({ service: 'farecart-api', version: '0.1.0', routes: ROUTES }));
 app.route('/health', health);
 app.route('/nearby', nearby);
 app.route('/geocode', geocode);

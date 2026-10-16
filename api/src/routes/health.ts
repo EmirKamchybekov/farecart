@@ -12,7 +12,7 @@ export const health = new Hono().get('/', async (c) => {
   const { deep } = parseQuery(c, Query);
   const body: Record<string, unknown> = {
     ok: true,
-    service: 'freshroute-api',
+    service: 'farecart-api',
     time: new Date().toISOString(),
     env: {
       supabase_url: Boolean(optionalEnv('SUPABASE_URL')),

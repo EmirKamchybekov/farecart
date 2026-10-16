@@ -1,8 +1,8 @@
 {
-  "name": "freshroute-api",
+  "name": "farecart-api",
   "version": "0.1.0",
   "private": true,
-  "description": "FreshRoute API: Hono on Vercel Functions over Supabase, Census geocoder and CTA",
+  "description": "Farecart API: Hono on Vercel Functions over Supabase, Census geocoder and CTA",
   "type": "module",
   "engines": {
     "node": "24.x"

@@ -1,4 +1,4 @@
--- FreshRoute initial schema
+-- Farecart initial schema
 create extension if not exists postgis;
 
 create type location_type as enum ('grocery', 'pantry', 'giveaway');

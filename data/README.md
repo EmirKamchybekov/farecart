@@ -1,4 +1,4 @@
-# FreshRoute data: West Side food locations
+# Farecart data: West Side food locations
 
 Hand-researched (web, Oct 2026) list of places on Chicago's West Side where a
 West Garfield Park family can get food, plus the script that loads it into

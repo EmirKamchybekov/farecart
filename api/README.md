@@ -1,4 +1,4 @@
-# FreshRoute API
+# Farecart API
 
 Hono (TypeScript, ESM) on Vercel Functions. Thin, read-only JSON API over the live Supabase project,
 the US Census geocoder (with Nominatim fallback), and CTA Bus Tracker.
@@ -92,7 +92,7 @@ curl "$B/arrivals?stop_id=1234"
 
 ```bash
 cd api
-vercel link --yes --project freshroute-api
+vercel link --yes --project farecart-api
 printf '%s' "$SUPABASE_URL"      | vercel env add SUPABASE_URL production preview development
 printf '%s' "$SUPABASE_ANON_KEY" | vercel env add SUPABASE_ANON_KEY production preview development
 vercel deploy --yes          # preview

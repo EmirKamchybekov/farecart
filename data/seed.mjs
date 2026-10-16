@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// FreshRoute data seed: reads data/locations.csv + data/giveaway_events.csv,
+// Farecart data seed: reads data/locations.csv + data/giveaway_events.csv,
 // geocodes rows missing lat/lng (US Census Geocoder, fallback Nominatim),
 // writes coordinates back into locations.csv, and upserts into Supabase via PostgREST.
 // Idempotent: upserts on unique (name, address) for locations and
@@ -25,7 +25,7 @@ const GEOCODE = !args.has('--no-geocode');
 const COLUMNS = ['name','type','address','neighborhood','lat','lng','hours_text','accepts_ebt','requirements','languages','phone','website','source_url','notes'];
 const EVENT_COLUMNS = ['location_name','title','starts_at','ends_at','details','source_url'];
 const CHICAGO = { latMin: 41.64, latMax: 42.03, lngMin: -87.95, lngMax: -87.52 };
-const UA = 'FreshRoute-seed/1.0 (food access app; contact via repo)';
+const UA = 'Farecart-seed/1.0 (food access app; contact via repo)';
 
 // ---------- env ----------
 function loadEnv(file) {
