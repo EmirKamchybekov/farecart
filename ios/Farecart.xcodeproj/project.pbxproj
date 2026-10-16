@@ -24,10 +24,12 @@
 		63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7ED473792E4DA5BC6AE59 /* PlaceDetailView.swift */; };
 		7C534C3980A22B0F2B52D609 /* DiscountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9031FA7B3D27666B0D93A8D7 /* DiscountsView.swift */; };
 		7E1212D06D38B68CF98682AD /* TypeBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */; };
+		83508D884897264D6E6CB78C /* PlaceIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4271A900220AB28D7096489 /* PlaceIcon.swift */; };
 		87305FE952FB937F96B526C9 /* ResultsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA39EA968ED42FBF6ABA8 /* ResultsPanel.swift */; };
 		8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629BFE11133CFE7F7283205 /* Directions.swift */; };
 		BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E03C01423A0B168F68449B /* AppleGeocoder.swift */; };
 		C16F1F62560A6E0442C3065D /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8766650BCA8B7AE2F8F94 /* RouteModel.swift */; };
+		C515DC30B6114C92A4405BD4 /* ApplePlaceLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */; };
 		CBCF701EC87C3D288CA7EA4E /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1EE444ACF133B612398735 /* SearchTabView.swift */; };
 		CC9700D38BB1ED275DDD5026 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28722554C5FF9A0E227E54B1 /* Design.swift */; };
 		E90AEC2B6B276DF82F935A5A /* LocationTypeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */; };
@@ -59,7 +61,9 @@
 		A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodModel.swift; sourceTree = "<group>"; };
 		B10342E382FCF91BC5511A73 /* PlaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoView.swift; sourceTree = "<group>"; };
 		C6E9C6D20547A50BA97E0E43 /* FarecartKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FarecartKit; path = FarecartKit; sourceTree = SOURCE_ROOT; };
+		CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePlaceLookup.swift; sourceTree = "<group>"; };
 		D3F832CA8D40606C23134E77 /* FindFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodView.swift; sourceTree = "<group>"; };
+		D4271A900220AB28D7096489 /* PlaceIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceIcon.swift; sourceTree = "<group>"; };
 		D48F05129E224D73D92085FE /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		D61B4E4FA502065D022E5C33 /* Farecart.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Farecart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -81,6 +85,7 @@
 			children = (
 				28722554C5FF9A0E227E54B1 /* Design.swift */,
 				1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */,
+				D4271A900220AB28D7096489 /* PlaceIcon.swift */,
 				8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */,
 			);
 			path = Shared;
@@ -164,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				85E03C01423A0B168F68449B /* AppleGeocoder.swift */,
+				CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */,
 				8629BFE11133CFE7F7283205 /* Directions.swift */,
 				14289EE1712E9812F0A98A43 /* FareStore.swift */,
 				279638840BFD464409DB1CB0 /* LocationService.swift */,
@@ -304,6 +310,7 @@
 				4080F873B55BD0FB03BA559C /* AboutView.swift in Sources */,
 				2361BDD33E29D0FA634381A1 /* AppEnvironment.swift in Sources */,
 				BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */,
+				C515DC30B6114C92A4405BD4 /* ApplePlaceLookup.swift in Sources */,
 				CC9700D38BB1ED275DDD5026 /* Design.swift in Sources */,
 				8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */,
 				7C534C3980A22B0F2B52D609 /* DiscountsView.swift in Sources */,
@@ -314,6 +321,7 @@
 				38F951DC33EC6D6733614CE9 /* LocationService.swift in Sources */,
 				E90AEC2B6B276DF82F935A5A /* LocationTypeStyle.swift in Sources */,
 				63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */,
+				83508D884897264D6E6CB78C /* PlaceIcon.swift in Sources */,
 				4CEF9BF0EBB055CBB3DC2D95 /* PlaceInfoView.swift in Sources */,
 				87305FE952FB937F96B526C9 /* ResultsPanel.swift in Sources */,
 				2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */,

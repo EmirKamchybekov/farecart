@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import MapKit
 import FarecartKit
 
 /// The Info tab of a place: two cards (Visit, Good to know) and a short verification footer.
@@ -8,6 +9,10 @@ struct PlaceInfoView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(\.openURL) private var openURL
     @State private var copiedAddress = false
+    /// Apple's record for this place, when `MKLocalSearch` finds one within 150 m. Drives the
+    /// "More on Apple Maps" row and the system place card (photos, hours, reviews).
+    @State private var appleItem: MKMapItem?
+    @State private var showsAppleCard = false
 
     var body: some View {
         VStack(spacing: Spacing.m) {
@@ -17,6 +22,10 @@ struct PlaceInfoView: View {
             }
             footer
         }
+        .task(id: place.id) {
+            appleItem = await environment.applePlaces.mapItem(for: place)
+        }
+        .mapItemDetailSheet(isPresented: $showsAppleCard, item: appleItem)
     }
 
     // MARK: Visit
@@ -39,8 +48,32 @@ struct PlaceInfoView: View {
                     Link(url.host() ?? url.absoluteString, destination: url)
                 }
             }
+            if appleItem != nil {
+                Divider()
+                appleRow
+            }
         }
         .card()
+    }
+
+    /// Opens Apple's place card for this location. Hidden when Apple has no matching record.
+    private var appleRow: some View {
+        Button {
+            showsAppleCard = true
+        } label: {
+            InfoRow(systemImage: "photo.on.rectangle.angled", tint: place.type.color, title: "More on Apple Maps") {
+                Text("Photos, hours and reviews from Apple")
+                    .foregroundStyle(.primary)
+            } trailing: {
+                Image(systemName: "chevron.right")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.tertiary)
+                    .padding(.top, 4)
+                    .accessibilityHidden(true)
+            }
+        }
+        .buttonStyle(.plain)
+        .accessibilityHint("Opens Apple's place card with photos, hours and reviews")
     }
 
     private var addressRow: some View {

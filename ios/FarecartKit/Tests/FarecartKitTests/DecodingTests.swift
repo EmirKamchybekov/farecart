@@ -10,17 +10,22 @@ struct DecodingTests {
       "hours":{"mon":"7:00-22:00","notes":{"holiday":"varies"},"count":3},"hours_text":"Daily 7am-10pm",
       "accepts_ebt":true,"requirements":null,"languages":["en","es"],"phone":"773-555-0177",
       "website":"https://example.org","source_url":"https://example.org/src","notes":null,
-      "verified_on":"2026-09-28","distance_m":812.5},
+      "verified_on":"2026-09-28","distance_m":812.5,"source_kind":"curated",
+      "logo_url":"https://www.google.com/s2/favicons?domain=petesfresh.com&sz=128"},
      {"id":"6f1d0a1e-9d2f-4b1c-8f4a-1c2d3e4f5a6c","name":"Pantry","type":"pantry",
       "address":"1 Main","neighborhood":null,"lat":41.9,"lng":-87.7,"hours":null,"hours_text":null,
       "accepts_ebt":null,"requirements":"ID","languages":null,"phone":null,"website":null,
-      "source_url":null,"notes":null,"verified_on":null,"distance_m":1500}]
+      "source_url":null,"notes":null,"verified_on":null,"distance_m":1500,"logo_url":null},
+     {"id":"7f1d0a1e-9d2f-4b1c-8f4a-1c2d3e4f5a6d","name":"Odd logo","type":"grocery",
+      "address":"2 Main","lat":41.9,"lng":-87.7,"languages":[],"logo_url":"not a url"},
+     {"id":"8f1d0a1e-9d2f-4b1c-8f4a-1c2d3e4f5a6e","name":"No logo key","type":"grocery",
+      "address":"3 Main","lat":41.9,"lng":-87.7}]
     """
 
     @Test("nearby_locations rows decode, tolerating jsonb hours and nulls")
     func decodePlaces() throws {
         let places = try PostgRESTDecoder.decode([Place].self, from: Data(Self.nearbyJSON.utf8))
-        #expect(places.count == 2)
+        #expect(places.count == 4)
         let first = places[0]
         #expect(first.name == "Pete's Fresh Market")
         #expect(first.type == .grocery)
@@ -32,6 +37,7 @@ struct DecodingTests {
         #expect(first.verifiedOn.map(PostgresDate.string(from:)) == "2026-09-28")
         #expect(first.phoneURL?.absoluteString == "tel:7735550177")
         #expect(first.websiteURL?.host() == "example.org")
+        #expect(first.logoURL?.host() == "www.google.com")
 
         let second = places[1]
         #expect(second.hours == nil)
@@ -39,6 +45,23 @@ struct DecodingTests {
         #expect(second.verifiedOn == nil)
         #expect(!second.isVerified)
         #expect(second.phoneURL == nil)
+        #expect(second.logoURL == nil)
+        #expect(places[2].logoURL == nil)   // malformed logo_url is tolerated
+        #expect(places[3].logoURL == nil)   // missing key is tolerated
+    }
+
+    @Test("logo_url round-trips and malformed values encode as absent")
+    func logoRoundTrip() throws {
+        var place = MockData.places[1]
+        place.logoURL = URL(string: "https://www.google.com/s2/favicons?domain=jewelosco.com&sz=128")
+        let data = try JSONEncoder().encode(place)
+        let json = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        #expect(json["logo_url"] as? String == "https://www.google.com/s2/favicons?domain=jewelosco.com&sz=128")
+        let decoded = try PostgRESTDecoder.decode(Place.self, from: data)
+        #expect(decoded == place)
+        let noLogo = try JSONEncoder().encode(MockData.places[1])
+        let noLogoJSON = try #require(JSONSerialization.jsonObject(with: noLogo) as? [String: Any])
+        #expect(noLogoJSON["logo_url"] == nil)
     }
 
     @Test("Place round-trips through Codable")

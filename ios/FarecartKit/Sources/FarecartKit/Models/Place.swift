@@ -24,6 +24,8 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
     public var verifiedOn: Date?
     /// Where the listing came from: `curated` (hand-researched), `usda_snap`, `osm`, `gcfd`, `plentiful`, `other`.
     public var sourceKind: String
+    /// Chain or website favicon (`logo_url`), filled by the seed. `nil` when unknown or unparsable.
+    public var logoURL: URL?
     public var distanceMeters: Double?
 
     public init(
@@ -45,6 +47,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         notes: String? = nil,
         verifiedOn: Date? = nil,
         sourceKind: String = "curated",
+        logoURL: URL? = nil,
         distanceMeters: Double? = nil
     ) {
         self.id = id
@@ -65,6 +68,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         self.notes = notes
         self.verifiedOn = verifiedOn
         self.sourceKind = sourceKind
+        self.logoURL = logoURL
         self.distanceMeters = distanceMeters
     }
 
@@ -103,6 +107,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         case notes
         case verifiedOn = "verified_on"
         case sourceKind = "source_kind"
+        case logoURL = "logo_url"
         case distanceMeters = "distance_m"
     }
 
@@ -139,6 +144,14 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
             verifiedOn = nil
         }
         sourceKind = try c.decodeIfPresent(String.self, forKey: .sourceKind) ?? "curated"
+        // Tolerant: a missing, null, empty or malformed value is simply "no logo".
+        if let raw = try? c.decodeIfPresent(String.self, forKey: .logoURL),
+           let url = URL(string: raw.trimmingCharacters(in: .whitespaces)),
+           let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()), url.host() != nil {
+            logoURL = url
+        } else {
+            logoURL = nil
+        }
         distanceMeters = try c.decodeIfPresent(Double.self, forKey: .distanceMeters)
     }
 
@@ -162,6 +175,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         try c.encodeIfPresent(notes, forKey: .notes)
         try c.encodeIfPresent(verifiedOn.map(PostgresDate.string(from:)), forKey: .verifiedOn)
         try c.encode(sourceKind, forKey: .sourceKind)
+        try c.encodeIfPresent(logoURL?.absoluteString, forKey: .logoURL)
         try c.encodeIfPresent(distanceMeters, forKey: .distanceMeters)
     }
 }

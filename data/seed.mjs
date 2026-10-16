@@ -13,10 +13,12 @@
 //         node data/seed.mjs --dry-run  (geocode + validate, no DB writes)
 //         node data/seed.mjs --no-geocode
 //         node data/seed.mjs --curated-only   (skip locations_citywide.csv)
+//         node data/seed.mjs --no-logo-check  (skip fetching favicons to verify logo URLs)
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { logoURL, faviconIsReal } from './logos.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const LOCATIONS_CSV = resolve(here, 'locations.csv');
@@ -28,6 +30,7 @@ const args = new Set(process.argv.slice(2));
 const DRY_RUN = args.has('--dry-run');
 const GEOCODE = !args.has('--no-geocode');
 const CURATED_ONLY = args.has('--curated-only');
+const LOGO_CHECK = !args.has('--no-logo-check');
 
 const COLUMNS = ['name','type','address','neighborhood','lat','lng','hours_text','accepts_ebt','requirements','languages','phone','website','source_url','notes'];
 const CITYWIDE_COLUMNS = [...COLUMNS, 'source_kind'];
@@ -262,9 +265,33 @@ async function main() {
     source_url: r.source_url,
     notes: r.notes || null,
     source_kind: r.source_kind,
+    logo_url: logoURL(r.name, r.website),
     verified_on: null,
     is_active: true,
   }));
+
+  // Logos: every distinct favicon URL is fetched once; the service answers a
+  // generic globe (or a tiny icon) for domains it does not know, and those are
+  // dropped so the app shows its category tile instead.
+  if (LOGO_CHECK) {
+    const unique = [...new Set(payload.map(p => p.logo_url).filter(Boolean))];
+    const ok = new Map();
+    for (let i = 0; i < unique.length; i += 8) {
+      await Promise.all(unique.slice(i, i + 8).map(async u => ok.set(u, await faviconIsReal(u))));
+    }
+    const rejected = unique.filter(u => !ok.get(u));
+    for (const p of payload) if (p.logo_url && !ok.get(p.logo_url)) p.logo_url = null;
+    console.log(`Logos: ${unique.length} distinct favicon URL(s) checked, ${rejected.length} rejected (generic or tiny icon)`);
+    for (const u of rejected) console.log(`  dropped ${decodeURIComponent(u.match(/domain=([^&]+)/)[1])}`);
+  }
+  const logoCounts = {};
+  for (const p of payload) {
+    const k = p.source_kind;
+    logoCounts[k] ??= { rows: 0, with_logo: 0 };
+    logoCounts[k].rows++;
+    if (p.logo_url) logoCounts[k].with_logo++;
+  }
+  console.log('Rows with a logo, by source_kind:', logoCounts);
 
   if (DRY_RUN) {
     console.log(`DRY RUN: would upsert ${payload.length} locations`);

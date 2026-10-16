@@ -22,23 +22,56 @@ struct TypeBadge: View {
     }
 }
 
-/// Map pin: a colored circle with the type's symbol.
+/// Map pin: the place's logo in a white circle ringed in the type's color, or (no logo, still
+/// loading, failed) a colored circle with the type's symbol. Fixed 32 pt / 40 pt (selected) frames
+/// and the shared URL cache keep a map of ~40 annotations smooth.
 struct PlacePin: View {
     let type: LocationType
+    var logoURL: URL? = nil
     var selected = false
 
+    private var diameter: CGFloat { selected ? 40 : 32 }
+
     var body: some View {
+        Group {
+            if let logoURL {
+                AsyncImage(url: logoURL) { phase in
+                    if case .success(let image) = phase {
+                        logoPin(image)
+                    } else {
+                        symbolPin
+                    }
+                }
+            } else {
+                symbolPin
+            }
+        }
+        .frame(width: diameter, height: diameter)
+        .shadow(radius: 2, y: 1)
+        .animation(.snappy, value: selected)
+    }
+
+    private func logoPin(_ image: Image) -> some View {
+        image
+            .resizable()
+            .interpolation(.high)
+            .aspectRatio(contentMode: .fit)
+            .padding(diameter * 0.17)
+            .frame(width: diameter, height: diameter)
+            .background(.white, in: Circle())
+            .clipShape(Circle())
+            .overlay(Circle().strokeBorder(type.color, lineWidth: 2.5))
+    }
+
+    private var symbolPin: some View {
         ZStack {
-            Circle()
-                .fill(type.color)
-                .frame(width: selected ? 40 : 32, height: selected ? 40 : 32)
-                .shadow(radius: 2, y: 1)
+            Circle().fill(type.color)
             Image(systemName: type.symbolName)
                 .font(.system(size: selected ? 18 : 14, weight: .bold))
                 .foregroundStyle(.white)
         }
+        .frame(width: diameter, height: diameter)
         .overlay(Circle().stroke(.white, lineWidth: 2))
-        .animation(.snappy, value: selected)
     }
 }
 

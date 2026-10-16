@@ -13,6 +13,8 @@ final class AppEnvironment {
     let fareStore: FareStore
     /// Transit trip planner (Transitous). Previews use canned itineraries.
     let router: any TransitRouting
+    /// Resolves a place to Apple's MKMapItem (for the Apple place card); cached per place for the session.
+    let applePlaces = ApplePlaceLookup()
     /// Set when Info.plist is missing SUPABASE_* values; the UI shows a friendly message.
     let configurationError: String?
 

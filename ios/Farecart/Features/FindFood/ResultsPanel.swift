@@ -189,14 +189,14 @@ struct ResultsPanel: View {
     }
 }
 
-/// One result: pin (the type), name and "Grocery · Takes Link/EBT" on the left; distance big and
-/// open/closed small on the right.
+/// One result: logo (or the type tile), name and "Grocery · Takes Link/EBT" on the left; distance
+/// big and open/closed small on the right.
 struct PlaceRow: View {
     let place: Place
 
     var body: some View {
         HStack(alignment: .center, spacing: Spacing.s) {
-            PlacePin(type: place.type)
+            PlaceIcon(place: place, size: 44)
             VStack(alignment: .leading, spacing: 3) {
                 Text(place.name)
                     .font(.headline)

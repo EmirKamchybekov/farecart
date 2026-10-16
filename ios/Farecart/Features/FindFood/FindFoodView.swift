@@ -64,15 +64,23 @@ struct FindFoodView: View {
             }
             // `-farecart-open-place` opens the first result's detail; `-farecart-open-place-directions`
             // lands on its Directions tab; `-farecart-open-place-far` picks the first result over a mile
-            // away so the route is not walk-only.
+            // away so the route is not walk-only; `-farecart-open-place-named Jewel` picks the first
+            // result whose name contains that text.
             let arguments = ProcessInfo.processInfo.arguments
             if arguments.contains(where: { $0.hasPrefix("-farecart-open-place") }) {
                 let far = arguments.contains("-farecart-open-place-far")
-                let place = far ? model.places.first { ($0.distanceMeters ?? 0) > 1800 } : model.places.first
+                let named = arguments.firstIndex(of: "-farecart-open-place-named")
+                    .flatMap { $0 + 1 < arguments.count ? arguments[$0 + 1] : nil }
+                let place: Place?
+                if let named {
+                    place = model.places.first { $0.name.localizedCaseInsensitiveContains(named) }
+                } else {
+                    place = far ? model.places.first { ($0.distanceMeters ?? 0) > 1800 } : model.places.first
+                }
                 if let place {
                     // Let the panel finish appearing before pushing; a push during that transition is
                     // sometimes dropped.
-                    try? await Task.sleep(for: .seconds(1.2))
+                    try? await Task.sleep(for: .seconds(2))
                     model.select(place)
                 }
             }
@@ -148,7 +156,7 @@ struct PlaceMap: View {
                     Button {
                         model.select(place)
                     } label: {
-                        PlacePin(type: place.type, selected: model.selectedPlace?.id == place.id)
+                        PlacePin(type: place.type, logoURL: place.logoURL, selected: model.selectedPlace?.id == place.id)
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(Text("\(place.name), \(Text(place.type.title))"))

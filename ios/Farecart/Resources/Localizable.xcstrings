@@ -1182,6 +1182,16 @@
         }
       }
     },
+    "More on Apple Maps": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más en Apple Maps"
+          }
+        }
+      }
+    },
     "My location": {
       "localizations": {
         "es": {
@@ -1412,6 +1422,16 @@
         }
       }
     },
+    "Opens Apple's place card with photos, hours and reviews": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre la ficha del lugar de Apple con fotos, horarios y reseñas"
+          }
+        }
+      }
+    },
     "Opens Google Maps with transit directions": {
       "localizations": {
         "es": {
@@ -1458,6 +1478,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Teléfono"
+          }
+        }
+      }
+    },
+    "Photos, hours and reviews from Apple": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fotos, horarios y reseñas de Apple"
           }
         }
       }

@@ -31,7 +31,7 @@ struct SupabaseClientTests {
         let transport = StubTransport(body: DecodingTests.nearbyJSON)
         let client = SupabaseClient(baseURL: baseURL, anonKey: "anon-key", transport: transport)
         let places = try await client.nearbyLocations(around: .westSideChicago, types: [.grocery, .pantry], limit: 10, radiusMeters: 8047)
-        #expect(places.count == 2)
+        #expect(places.count == 4)
 
         let request = try #require(transport.requests.first)
         #expect(request.url?.absoluteString == "https://example.supabase.co/rest/v1/rpc/nearby_locations")

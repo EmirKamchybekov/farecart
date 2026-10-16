@@ -23,6 +23,8 @@ Live database after seeding: **820 active locations** — 626 grocery, 190 pantr
 | `seed.mjs` | Loads `locations.csv` then `locations_citywide.csv`, drops any citywide row whose `(name,address)` already appears in the curated tier, geocodes anything still missing coordinates (writing them back to the CSV it came from), validates, and upserts into Supabase via PostgREST. |
 | `0002_locations_unique.sql` | `unique (name, address)` on `locations` so the upsert is idempotent. Same file lives in `../supabase/migrations/`. Applied. |
 | `../supabase/migrations/0004_source_kind.sql` | Adds `locations.source_kind` (`curated` default, check-constrained to `curated,usda_snap,osm,gcfd,plentiful,other`) and makes `nearby_locations` return it. Applied 2026-10-15. |
+| `logos.mjs` | `logoURL(name, website)`: a Google favicon URL (`https://www.google.com/s2/favicons?domain=<host>&sz=128`) for a known Chicago chain (table in the file, checked by eye on 2026-10-15), else for the place's own website host, else null. `seed.mjs` fetches every distinct URL once and nulls out any that comes back as the generic globe or a tiny icon (`--no-logo-check` skips that). 204 of 820 rows have a logo: curated 26, `usda_snap` 176, `plentiful` 1, `other` 1. |
+| `../supabase/migrations/0005_logo_url.sql` | Adds `locations.logo_url` and makes `nearby_locations` return it. Applied 2026-10-15. |
 
 ## Coverage
 

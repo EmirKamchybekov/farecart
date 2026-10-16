@@ -36,28 +36,48 @@ struct PlaceDetailView: View {
     @State private var tab: PlaceDetailTab = .info
     @Environment(AppEnvironment.self) private var environment
 
+    private static let bottomAnchor = "place-detail-bottom"
+
     var body: some View {
-        ScrollView {
-            VStack(spacing: Spacing.m) {
-                hero
-                picker
-                switch tab {
-                case .info:
-                    PlaceInfoView(place: place)
-                case .directions:
-                    RouteContent(request: routeRequest)
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: Spacing.m) {
+                    hero
+                    picker
+                    switch tab {
+                    case .info:
+                        PlaceInfoView(place: place)
+                    case .directions:
+                        RouteContent(request: routeRequest)
+                    }
+                }
+                .padding(.horizontal, Spacing.m)
+                .padding(.bottom, Spacing.m)
+                .id(Self.bottomAnchor)
+            }
+            #if DEBUG
+            .onAppear {
+                // `-farecart-scroll-bottom` with `-farecart-open-place`: screenshot the footer above the bar.
+                if ProcessInfo.processInfo.arguments.contains("-farecart-scroll-bottom") {
+                    Task { @MainActor in
+                        try? await Task.sleep(for: .seconds(2))
+                        withAnimation { proxy.scrollTo(Self.bottomAnchor, anchor: .bottom) }
+                    }
                 }
             }
-            .padding(.horizontal, Spacing.m)
-            .padding(.bottom, Spacing.m)
+            #endif
         }
         .scrollDismissesKeyboard(.immediately)
         .background(Color(.systemGroupedBackground))
         .navigationTitle(Text(verbatim: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbarVisibility(.hidden, for: .tabBar)
-        .safeAreaInset(edge: .bottom) {
+        // The bar is a safe-area inset, so the scroll content is inset by exactly its height and the
+        // footer's last lines are reachable. Content still scrolls *under* the inset on iOS 26, so
+        // the bar carries a toolbar-style backdrop that also covers the home-indicator area.
+        .safeAreaInset(edge: .bottom, spacing: 0) {
             bottomBar
+                .background(.bar, ignoresSafeAreaEdges: .bottom)
         }
         .onAppear { tab = initialTab }
     }
@@ -66,12 +86,7 @@ struct PlaceDetailView: View {
 
     private var hero: some View {
         HStack(alignment: .top, spacing: Spacing.s) {
-            Image(systemName: place.type.symbolName)
-                .font(.title2.weight(.bold))
-                .foregroundStyle(.white)
-                .frame(width: 52, height: 52)
-                .background(place.type.color, in: RoundedRectangle(cornerRadius: Radius.inner, style: .continuous))
-                .accessibilityHidden(true)
+            PlaceIcon(place: place, size: 52)
             VStack(alignment: .leading, spacing: 6) {
                 Text(place.name)
                     .font(.title3.weight(.bold))

@@ -74,7 +74,8 @@ public enum MockData {
             phone: "(773) 555-0142",
             website: "https://example.org/fresh-market",
             sourceURL: "https://example.org/fresh-market",
-            verifiedOn: PostgresDate.parse("2026-10-01")
+            verifiedOn: PostgresDate.parse("2026-10-01"),
+            logoURL: URL(string: "https://www.google.com/s2/favicons?domain=petesfresh.com&sz=128")
         ),
         Place(
             id: UUID(uuidString: "22222222-2222-2222-2222-222222222222")!,
