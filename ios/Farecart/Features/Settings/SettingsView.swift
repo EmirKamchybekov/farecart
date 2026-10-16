@@ -84,8 +84,16 @@ struct SettingsView: View {
 
                 Section {
                     VStack(alignment: .leading, spacing: 6) {
-                        Label("Farecart", systemImage: "basket.fill")
-                            .font(.headline)
+                        HStack(spacing: 10) {
+                            Image("Logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 32, height: 32)
+                                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                                .accessibilityHidden(true)
+                            Text("Farecart")
+                                .font(.headline)
+                        }
                         Text("Find food. Get there for less.")
                             .font(.subheadline)
                         Text("Farecart helps people on Chicago's West Side find grocery stores, food pantries and giveaways nearby, and shows the cheapest CTA fare they qualify for.")

@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/logo.png" width="140" alt="Farecart logo"></p>
+
 # Farecart
 
 **Find food. Get there for less.**

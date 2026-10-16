@@ -54,6 +54,8 @@ struct OnboardingView: View {
 /// Shared layout: big icon, title, text, then the page's own content and buttons at the bottom.
 private struct OnboardingPage<Content: View, Actions: View>: View {
     let systemImage: String
+    /// Show the Farecart logo instead of the SF Symbol (welcome page).
+    var logo = false
     let title: LocalizedStringResource
     let text: LocalizedStringResource
     /// `scrollTo` is set by a page that wants to reveal something that appeared below the fold.
@@ -88,11 +90,22 @@ private struct OnboardingPage<Content: View, Actions: View>: View {
 
     private var pageBody: some View {
                 VStack(alignment: .leading, spacing: Spacing.m) {
-                    Image(systemName: systemImage)
-                        .font(.system(size: 44, weight: .bold))
-                        .foregroundStyle(Color.accentColor)
-                        .padding(.top, Spacing.l)
-                        .accessibilityHidden(true)
+                    Group {
+                        if logo {
+                            Image("Logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 88, height: 88)
+                                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                .shadow(color: .black.opacity(0.12), radius: 8, y: 4)
+                        } else {
+                            Image(systemName: systemImage)
+                                .font(.system(size: 44, weight: .bold))
+                                .foregroundStyle(Color.accentColor)
+                        }
+                    }
+                    .padding(.top, Spacing.l)
+                    .accessibilityHidden(true)
                     Text(title)
                         .font(.largeTitle.weight(.bold))
                     Text(text)
@@ -111,7 +124,7 @@ private struct WelcomePage: View {
     let next: () -> Void
 
     var body: some View {
-        OnboardingPage(systemImage: "basket.fill", title: "Welcome to Farecart", text: "Find food near you and get there for less on the CTA. First, pick your language.") {
+        OnboardingPage(systemImage: "basket.fill", logo: true, title: "Welcome to Farecart", text: "Find food near you and get there for less on the CTA. First, pick your language.") {
             VStack(spacing: 0) {
                 LanguageRows(large: true)
                     .padding(.horizontal, Spacing.m)
