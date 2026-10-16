@@ -90,7 +90,9 @@ public enum MockData {
             languages: ["en", "es"],
             phone: "(773) 555-0199",
             sourceURL: "https://example.org/pantry",
-            notes: "Bring your own bags."
+            notes: "Bring your own bags.",
+            pantryModel: .clientChoice,
+            requiresID: true
         ),
         Place(
             id: UUID(uuidString: "33333333-3333-3333-3333-333333333333")!,
@@ -131,7 +133,8 @@ public enum MockData {
             requirements: "Proof of address required.",
             languages: ["en", "es", "pl"],
             phone: "(773) 555-0111",
-            sourceURL: "https://example.org/gwt"
+            sourceURL: "https://example.org/gwt",
+            pantryModel: .prePacked
         ),
     ]
 

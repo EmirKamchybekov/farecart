@@ -46,7 +46,9 @@ struct PlaceDetailView: View {
                     picker
                     switch tab {
                     case .info:
-                        PlaceInfoView(place: place)
+                        PlaceInfoView(place: place) {
+                            withAnimation(.snappy) { tab = .directions }
+                        }
                     case .directions:
                         RouteContent(request: routeRequest)
                     }
@@ -233,6 +235,7 @@ struct FareLineView: View {
         PlaceDetailView(place: MockData.samplePantry)
     }
     .environment(AppEnvironment.preview())
+    .environment(AccountModel())
 }
 
 #Preview("Directions") {

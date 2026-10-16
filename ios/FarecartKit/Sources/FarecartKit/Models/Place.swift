@@ -27,6 +27,13 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
     /// Chain or website favicon (`logo_url`), filled by the seed. `nil` when unknown or unparsable.
     public var logoURL: URL?
     public var distanceMeters: Double?
+    /// Pantries only (migration 0007): how food is handed out, and whether SNAP / an ID is needed.
+    /// `requiresID == nil` means unknown; most pantries need neither.
+    public var pantryModel: PantryModel?
+    public var requiresSNAP: Bool
+    public var requiresID: Bool?
+    /// Feed America resource id, for the live status call.
+    public var feedamID: Int?
 
     public init(
         id: UUID = UUID(),
@@ -48,7 +55,11 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         verifiedOn: Date? = nil,
         sourceKind: String = "curated",
         logoURL: URL? = nil,
-        distanceMeters: Double? = nil
+        distanceMeters: Double? = nil,
+        pantryModel: PantryModel? = nil,
+        requiresSNAP: Bool = false,
+        requiresID: Bool? = nil,
+        feedamID: Int? = nil
     ) {
         self.id = id
         self.name = name
@@ -70,6 +81,10 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         self.sourceKind = sourceKind
         self.logoURL = logoURL
         self.distanceMeters = distanceMeters
+        self.pantryModel = pantryModel
+        self.requiresSNAP = requiresSNAP
+        self.requiresID = requiresID
+        self.feedamID = feedamID
     }
 
     public var coordinate: GeoPoint { GeoPoint(latitude: latitude, longitude: longitude) }
@@ -109,6 +124,10 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         case sourceKind = "source_kind"
         case logoURL = "logo_url"
         case distanceMeters = "distance_m"
+        case pantryModel = "pantry_model"
+        case requiresSNAP = "requires_snap"
+        case requiresID = "requires_id"
+        case feedamID = "feedam_id"
     }
 
     public init(from decoder: any Decoder) throws {
@@ -153,6 +172,19 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
             logoURL = nil
         }
         distanceMeters = try c.decodeIfPresent(Double.self, forKey: .distanceMeters)
+        // Tolerant: columns added in migration 0007 may be absent, null or unexpected.
+        pantryModel = ((try? c.decodeIfPresent(String.self, forKey: .pantryModel)) ?? nil).flatMap(PantryModel.init(rawValue:))
+        requiresSNAP = ((try? c.decodeIfPresent(Bool.self, forKey: .requiresSNAP)) ?? nil) ?? false
+        requiresID = (try? c.decodeIfPresent(Bool.self, forKey: .requiresID)) ?? nil
+        if let value = (try? c.decodeIfPresent(JSONValue.self, forKey: .feedamID)) ?? nil {
+            switch value {
+            case .number(let n) where n > 0: feedamID = Int(n)
+            case .string(let s): feedamID = Int(s)
+            default: feedamID = nil
+            }
+        } else {
+            feedamID = nil
+        }
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -177,6 +209,10 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         try c.encode(sourceKind, forKey: .sourceKind)
         try c.encodeIfPresent(logoURL?.absoluteString, forKey: .logoURL)
         try c.encodeIfPresent(distanceMeters, forKey: .distanceMeters)
+        try c.encodeIfPresent(pantryModel, forKey: .pantryModel)
+        try c.encode(requiresSNAP, forKey: .requiresSNAP)
+        try c.encodeIfPresent(requiresID, forKey: .requiresID)
+        try c.encodeIfPresent(feedamID, forKey: .feedamID)
     }
 }
 

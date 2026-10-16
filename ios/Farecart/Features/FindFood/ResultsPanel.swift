@@ -6,6 +6,7 @@ import FarecartKit
 /// tab bar stays reachable; drag the handle or the header between peek / half / full.
 struct ResultsPanel: View {
     @Bindable var model: FindFoodModel
+    @Environment(AppEnvironment.self) private var environment
     /// Height available to the panel (the map area), from the parent's GeometryReader.
     let availableHeight: CGFloat
     @State private var dragOffset: CGFloat = 0
@@ -129,6 +130,20 @@ struct ResultsPanel: View {
 
     private var list: some View {
         List {
+            if let next = environment.pantry.nextVisit {
+                Section {
+                    NavigationLink(value: next) {
+                        UpcomingVisitCard(visit: next, compact: true)
+                    }
+                    .listRowBackground(
+                        RoundedRectangle(cornerRadius: Radius.inner, style: .continuous)
+                            .fill(Color(.secondarySystemGroupedBackground))
+                            .padding(.horizontal, Spacing.xs)
+                    )
+                    .listRowInsets(EdgeInsets(top: Spacing.s, leading: Spacing.m + Spacing.xs, bottom: Spacing.s, trailing: Spacing.m + Spacing.xs))
+                    .listRowSeparator(.hidden)
+                }
+            }
             Section {
                 ForEach(model.places) { place in
                     Button {
@@ -184,6 +199,12 @@ struct ResultsPanel: View {
 /// big and open/closed small on the right.
 struct PlaceRow: View {
     let place: Place
+    @Environment(AppEnvironment.self) private var environment
+
+    /// Only once this pantry's availability was loaded (opening its detail); no extra calls for the list.
+    private var canBook: Bool {
+        place.type == .pantry && environment.pantry.cachedAvailability(for: place.id)?.hasUpcomingSlots() == true
+    }
 
     var body: some View {
         HStack(alignment: .center, spacing: Spacing.s) {
@@ -195,6 +216,11 @@ struct PlaceRow: View {
                 detailLine
                     .font(.subheadline)
                     .lineLimit(1)
+                if canBook {
+                    Pill(text: Text("Book a visit"), systemImage: "calendar.badge.plus", tint: .accentColor)
+                        .font(.caption.weight(.semibold))
+                        .padding(.top, 2)
+                }
             }
             .layoutPriority(1)
             Spacer(minLength: Spacing.xs)

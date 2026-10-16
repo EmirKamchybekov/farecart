@@ -68,6 +68,7 @@ struct RootTabView: View {
 #if !DEBUG
 enum DebugLaunch {
     static var initialTab: AppTab { .find }
+    static var settingsRoutes: [SettingsRoute] { [] }
     static var onboardingPage: Int { 0 }
     static var splashHold: Bool { false }
     static var splashSpeedFactor: Double { 1 }
@@ -84,6 +85,11 @@ enum DebugLaunch {
 /// - `-farecart-language es -farecart-theme dark` preset (and persist) the Settings values.
 /// - `-farecart-splash-hold` keeps the launch splash on screen at its final frame;
 ///   `-farecart-splash-slow` plays the splash at a quarter of its speed.
+/// - Pantry: `-farecart-open-visits` / `-farecart-open-staff` push those Settings screens;
+///   `-farecart-staff-code A7GBQZ` signs in to staff mode; `-farecart-open-booking` /
+///   `-farecart-book-first-slot` open (and confirm) the booking sheet on an opened pantry;
+///   `-farecart-cancel-first-visit`, `-farecart-staff-cycle produce`, `-farecart-staff-add-slot`,
+///   `-farecart-staff-arrive-first` drive the other steps.
 enum DebugLaunch {
     private static var arguments: [String] { ProcessInfo.processInfo.arguments }
 
@@ -94,6 +100,13 @@ enum DebugLaunch {
         case "settings": return .settings
         default: return .find
         }
+    }
+
+    /// `-farecart-open-visits` → Your visits; `-farecart-open-staff` (or `-farecart-staff-code X`) → staff mode.
+    static var settingsRoutes: [SettingsRoute] {
+        if arguments.contains("-farecart-open-visits") { return [.visits] }
+        if arguments.contains("-farecart-open-staff") || arguments.contains("-farecart-staff-code") { return [.staff] }
+        return []
     }
 
     static var onboardingPage: Int {

@@ -15,6 +15,8 @@ final class AppEnvironment {
     let router: any TransitRouting
     /// Resolves a place to Apple's MKMapItem (for the Apple place card); cached per place for the session.
     let applePlaces = ApplePlaceLookup()
+    /// Pantry stock, visit slots, this phone's bookings and the staff session.
+    let pantry: PantryStore
     /// Set when Info.plist is missing SUPABASE_* values; the UI shows a friendly message.
     let configurationError: String?
 
@@ -24,6 +26,7 @@ final class AppEnvironment {
         geocoder: any Geocoding,
         location: LocationService = LocationService(),
         router: any TransitRouting = TransitRouter(),
+        pantry: PantryStore,
         configurationError: String? = nil
     ) {
         self.config = config
@@ -32,6 +35,7 @@ final class AppEnvironment {
         self.location = location
         self.fareStore = FareStore(data: data)
         self.router = router
+        self.pantry = pantry
         self.configurationError = configurationError
     }
 
@@ -44,26 +48,29 @@ final class AppEnvironment {
             let client = SupabaseClient(config: config)
             let remote = config.apiBaseURL.map { RemoteGeocoder(baseURL: $0) }
             let geocoder = FallbackGeocoder(primary: remote, fallback: AppleGeocoder())
-            return AppEnvironment(config: config, data: client, geocoder: geocoder)
+            let pantry = PantryStore(service: client, secureStore: Keychain())
+            return AppEnvironment(config: config, data: client, geocoder: geocoder, pantry: pantry)
         } catch {
             // Keep the app usable with bundled data so a misconfigured build is obvious but not a crash.
             return AppEnvironment(
                 config: nil,
                 data: MockDataProvider(),
                 geocoder: FallbackGeocoder(primary: nil, fallback: AppleGeocoder()),
+                pantry: PantryStore(service: MockPantryService(), secureStore: Keychain(), feedAmerica: nil),
                 configurationError: "\(error)"
             )
         }
     }
 
     /// Offline, deterministic data for SwiftUI previews.
-    static func preview(places: [Place] = MockData.places, failure: (any Error & Sendable)? = nil) -> AppEnvironment {
+    static func preview(places: [Place] = MockData.places, failure: (any Error & Sendable)? = nil, pantry: (any PantryService)? = nil) -> AppEnvironment {
         AppEnvironment(
             config: nil,
             data: MockDataProvider(places: places, failure: failure),
             geocoder: PreviewGeocoder(),
             location: LocationService(previewPoint: .westSideChicago),
-            router: PreviewTransitRouter()
+            router: PreviewTransitRouter(),
+            pantry: PantryStore(service: pantry ?? MockPantryService(places: places), secureStore: InMemorySecureStore(), feedAmerica: nil)
         )
     }
 }

@@ -6,6 +6,8 @@ import FarecartKit
 /// The Info tab of a place: two cards (Visit, Good to know) and a short verification footer.
 struct PlaceInfoView: View {
     let place: Place
+    /// Switches to the Directions tab (from the visit confirmation).
+    var onDirections: () -> Void = {}
     @Environment(AppEnvironment.self) private var environment
     @Environment(\.openURL) private var openURL
     @State private var copiedAddress = false
@@ -13,17 +15,34 @@ struct PlaceInfoView: View {
     /// "More on Apple Maps" row and the system place card (photos, hours, reviews).
     @State private var appleItem: MKMapItem?
     @State private var showsAppleCard = false
+    @State private var loadingAvailability = false
+
+    private var isPantry: Bool { place.type == .pantry }
+    private var availability: PantryAvailability? { environment.pantry.cachedAvailability(for: place.id) }
 
     var body: some View {
         VStack(spacing: Spacing.m) {
             visitCard
+            if isPantry {
+                PantryInventoryCard(place: place, availability: availability, isLoading: loadingAvailability)
+            }
             if hasGoodToKnow {
                 goodToKnowCard
+            }
+            if isPantry {
+                PantryScheduleCard(place: place, availability: availability, isLoading: loadingAvailability, onDirections: onDirections)
             }
             footer
         }
         .task(id: place.id) {
             appleItem = await environment.applePlaces.mapItem(for: place)
+        }
+        .task(id: place.id) {
+            guard isPantry else { return }
+            loadingAvailability = true
+            defer { loadingAvailability = false }
+            _ = try? await environment.pantry.loadAvailability(for: place)
+            await environment.pantry.loadVisitsIfNeeded()
         }
         .mapItemDetailSheet(isPresented: $showsAppleCard, item: appleItem)
     }
@@ -138,6 +157,7 @@ struct PlaceInfoView: View {
 
     private var hasGoodToKnow: Bool {
         place.type == .grocery
+            || isPantry
             || !(place.requirements ?? "").isEmpty
             || !place.languages.isEmpty
             || notes.body != nil
@@ -160,10 +180,23 @@ struct PlaceInfoView: View {
                 }
             }
             if let requirements = place.requirements, !requirements.isEmpty {
-                InfoRow(systemImage: "checklist", tint: place.type.color, title: "What to bring") { Text(requirements) }
+                InfoRow(systemImage: "checklist", tint: place.type.color, title: "What to bring") {
+                    Text(requirements)
+                    if isPantry {
+                        Text(place.pantryRequirementsLine).font(.subheadline).foregroundStyle(.secondary)
+                    }
+                }
             } else if place.type != .grocery {
                 InfoRow(systemImage: "checkmark.circle", tint: place.type.color, title: "What to bring") {
                     Text("No requirements listed").foregroundStyle(.secondary)
+                    if isPantry {
+                        Text(place.pantryRequirementsLine).font(.subheadline).foregroundStyle(.secondary)
+                    }
+                }
+            }
+            if isPantry, let model = place.pantryModel {
+                InfoRow(systemImage: model.symbolName, tint: place.type.color, title: "How it works") {
+                    Text(model.description)
                 }
             }
             if !place.languages.isEmpty {
@@ -266,4 +299,5 @@ struct InfoRow<Content: View, Trailing: View>: View {
     }
     .background(Color(.systemGroupedBackground))
     .environment(AppEnvironment.preview())
+    .environment(AccountModel())
 }

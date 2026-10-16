@@ -72,6 +72,7 @@ targets:
           UIApplicationSupportsMultipleScenes: false
         ITSAppUsesNonExemptEncryption: false
         NSLocationWhenInUseUsageDescription: "Farecart uses your location only to find grocery stores, food pantries and giveaways near you. It is never stored."
+        NSCalendarsWriteOnlyAccessUsageDescription: "Farecart adds a pantry visit to your calendar only when you tap Add to Calendar. It never reads your calendar."
         LSApplicationQueriesSchemes:
           - comgooglemaps
         # farecart://auth-callback brings the app back from the hosted OAuth flow (Google).

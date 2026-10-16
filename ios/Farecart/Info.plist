@@ -53,6 +53,8 @@
 	<array>
 		<string>comgooglemaps</string>
 	</array>
+	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+	<string>Farecart adds a pantry visit to your calendar only when you tap Add to Calendar. It never reads your calendar.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Farecart uses your location only to find grocery stores, food pantries and giveaways near you. It is never stored.</string>
 	<key>REPORT_PROBLEM_EMAIL</key>

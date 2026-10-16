@@ -70,6 +70,7 @@ struct FindFoodView: View {
                 PlaceDetailView(place: place, origin: model.origin, originLabel: model.originLabel)
                 #endif
             }
+            .visitDestinations()
         }
         .onChange(of: searchFocused) { _, focused in
             if focused { model.beginEditingSearch() } else if model.isEditingSearch { model.endEditingSearch() }
@@ -78,6 +79,7 @@ struct FindFoodView: View {
             if !editing { searchFocused = false }
         }
         .onChange(of: locale) { model.refreshLocalizedLabels() }
+        .task { await environment.pantry.loadVisitsIfNeeded() }
         .task {
             #if DEBUG
             // `xcrun simctl launch <udid> org.farecart.app -farecart-use-location` taps "Use my location" on launch.

@@ -16,13 +16,16 @@
 		1E18E9B208A4F6E05A284D5D /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DC63DF0482329A51401D73 /* AccountModel.swift */; };
 		21D4F87D25033E6102825753 /* FarecartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4940F40340E859D8C1817968 /* FarecartKit */; };
 		2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B745AE72B8089B823213ED3 /* RootTabView.swift */; };
+		22B00C36255174A3EF6F1CAF /* PantryStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7529F663AB3B087416D55E9F /* PantryStyle.swift */; };
 		2361BDD33E29D0FA634381A1 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B89BEA5A92C28977442165 /* AppEnvironment.swift */; };
 		2B500CD8F7C8318165023472 /* FarecartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400D5DAC5B426FF05065385F /* FarecartApp.swift */; };
 		2B97D14CE1610C74A1E82172 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3D03F2166D83C56A974386E6 /* Localizable.xcstrings */; };
 		38F951DC33EC6D6733614CE9 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279638840BFD464409DB1CB0 /* LocationService.swift */; };
+		47DAB3ED529D082D234D4577 /* VisitConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F9BBEA152B382B442C753 /* VisitConfirmationView.swift */; };
 		4957CA41BC21B6F2F46C42F0 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC500D482A8A5A67FE844CAF /* AppSettings.swift */; };
 		4CEF9BF0EBB055CBB3DC2D95 /* PlaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10342E382FCF91BC5511A73 /* PlaceInfoView.swift */; };
 		4D4AE999E8300C5CFC856CB6 /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF1701E6A32C8C78B93FA3 /* RouteView.swift */; };
+		5A11CC4A0C0865CADB205D3D /* BookingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A2EE65AEF67B48514580A /* BookingSheet.swift */; };
 		5CB715F56BEA68D5AB7462E3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */; };
 		63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7ED473792E4DA5BC6AE59 /* PlaceDetailView.swift */; };
 		7C534C3980A22B0F2B52D609 /* DiscountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9031FA7B3D27666B0D93A8D7 /* DiscountsView.swift */; };
@@ -32,18 +35,27 @@
 		8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629BFE11133CFE7F7283205 /* Directions.swift */; };
 		90302075B94458FC84841814 /* ChicagoSkyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A8564534AA4F2FF2EDF88 /* ChicagoSkyline.swift */; };
 		9208DB3D9032DF816CB839AE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C548A51C97D0B077ADD538A4 /* OnboardingView.swift */; };
+		9F29C7C91EBDCC41BAB8D7C3 /* PantryInventoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DBA4E63BAF0113EB617871 /* PantryInventoryCard.swift */; };
+		A52C4197922A2B8B86707DCE /* StaffSlotEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451482A44A3EB479A387CB8 /* StaffSlotEditorView.swift */; };
+		A65DE9E1E60A43F46B825594 /* CalendarExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B728D5AC438B22F924DC898 /* CalendarExport.swift */; };
+		B213EDDA9CA2EEB291C7272A /* StaffLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B78F42528FB1A708E1D3318 /* StaffLoginView.swift */; };
 		BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E03C01423A0B168F68449B /* AppleGeocoder.swift */; };
+		C0AA3F452CE8CA8653A1BC3F /* PantryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B0C1A4F8680E4B98E603A /* PantryStore.swift */; };
 		C16F1F62560A6E0442C3065D /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8766650BCA8B7AE2F8F94 /* RouteModel.swift */; };
 		C515DC30B6114C92A4405BD4 /* ApplePlaceLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */; };
+		C6F3AEA7B11832DDC30F5F6D /* MyVisitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E66090E9B95DA22D6DA2 /* MyVisitsView.swift */; };
 		CC68AE7EAA22B6631B8D3F71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7DD65C21E5BB3AC426F85E /* SettingsView.swift */; };
 		CC9700D38BB1ED275DDD5026 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28722554C5FF9A0E227E54B1 /* Design.swift */; };
+		DB7A066A8E03B7D7F3556509 /* StaffHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1519BB144E8376346B54B086 /* StaffHomeView.swift */; };
 		E90AEC2B6B276DF82F935A5A /* LocationTypeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */; };
+		F112F7E5ADB9D0A85F765517 /* PantryScheduleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317BF20D979920D5DB7134 /* PantryScheduleCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0086E2DFA1E816AB5C971BA7 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		0FD44EFB7842BF36AAA25D80 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		14289EE1712E9812F0A98A43 /* FareStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FareStore.swift; sourceTree = "<group>"; };
+		1519BB144E8376346B54B086 /* StaffHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffHomeView.swift; sourceTree = "<group>"; };
 		152A8564534AA4F2FF2EDF88 /* ChicagoSkyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChicagoSkyline.swift; sourceTree = "<group>"; };
 		18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTypeStyle.swift; sourceTree = "<group>"; };
@@ -52,12 +64,20 @@
 		279638840BFD464409DB1CB0 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		28722554C5FF9A0E227E54B1 /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.swift; sourceTree = "<group>"; };
 		32B7ED473792E4DA5BC6AE59 /* PlaceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailView.swift; sourceTree = "<group>"; };
+		371B0C1A4F8680E4B98E603A /* PantryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryStore.swift; sourceTree = "<group>"; };
 		3D03F2166D83C56A974386E6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		400D5DAC5B426FF05065385F /* FarecartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarecartApp.swift; sourceTree = "<group>"; };
+		40317BF20D979920D5DB7134 /* PantryScheduleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryScheduleCard.swift; sourceTree = "<group>"; };
+		429A2EE65AEF67B48514580A /* BookingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSheet.swift; sourceTree = "<group>"; };
 		42B89BEA5A92C28977442165 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		4B78F42528FB1A708E1D3318 /* StaffLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffLoginView.swift; sourceTree = "<group>"; };
 		4CE8766650BCA8B7AE2F8F94 /* RouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		545E61133912E0DE4A96119F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		59DBA4E63BAF0113EB617871 /* PantryInventoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryInventoryCard.swift; sourceTree = "<group>"; };
+		612F9BBEA152B382B442C753 /* VisitConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitConfirmationView.swift; sourceTree = "<group>"; };
 		69666F396E777CDD45EF3785 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		7529F663AB3B087416D55E9F /* PantryStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryStyle.swift; sourceTree = "<group>"; };
+		7B728D5AC438B22F924DC898 /* CalendarExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExport.swift; sourceTree = "<group>"; };
 		7B745AE72B8089B823213ED3 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		7B7DD65C21E5BB3AC426F85E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		85E03C01423A0B168F68449B /* AppleGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleGeocoder.swift; sourceTree = "<group>"; };
@@ -69,9 +89,11 @@
 		A304287804855A287A8715BF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodModel.swift; sourceTree = "<group>"; };
 		B10342E382FCF91BC5511A73 /* PlaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoView.swift; sourceTree = "<group>"; };
+		C451482A44A3EB479A387CB8 /* StaffSlotEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffSlotEditorView.swift; sourceTree = "<group>"; };
 		C548A51C97D0B077ADD538A4 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C6E9C6D20547A50BA97E0E43 /* FarecartKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FarecartKit; path = FarecartKit; sourceTree = SOURCE_ROOT; };
 		CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePlaceLookup.swift; sourceTree = "<group>"; };
+		D235E66090E9B95DA22D6DA2 /* MyVisitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitsView.swift; sourceTree = "<group>"; };
 		D3F832CA8D40606C23134E77 /* FindFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodView.swift; sourceTree = "<group>"; };
 		D4271A900220AB28D7096489 /* PlaceIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceIcon.swift; sourceTree = "<group>"; };
 		D61B4E4FA502065D022E5C33 /* Farecart.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Farecart.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +118,7 @@
 			children = (
 				28722554C5FF9A0E227E54B1 /* Design.swift */,
 				1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */,
+				7529F663AB3B087416D55E9F /* PantryStyle.swift */,
 				D4271A900220AB28D7096489 /* PlaceIcon.swift */,
 				8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */,
 			);
@@ -119,6 +142,16 @@
 				18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		23EA04F784350776137E8025 /* Staff */ = {
+			isa = PBXGroup;
+			children = (
+				1519BB144E8376346B54B086 /* StaffHomeView.swift */,
+				4B78F42528FB1A708E1D3318 /* StaffLoginView.swift */,
+				C451482A44A3EB479A387CB8 /* StaffSlotEditorView.swift */,
+			);
+			path = Staff;
 			sourceTree = "<group>";
 		};
 		30D3A038943D83B17E0CA09C /* PlaceDetail */ = {
@@ -200,12 +233,27 @@
 				F2DC63DF0482329A51401D73 /* AccountModel.swift */,
 				85E03C01423A0B168F68449B /* AppleGeocoder.swift */,
 				CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */,
+				7B728D5AC438B22F924DC898 /* CalendarExport.swift */,
 				8629BFE11133CFE7F7283205 /* Directions.swift */,
 				14289EE1712E9812F0A98A43 /* FareStore.swift */,
 				0086E2DFA1E816AB5C971BA7 /* Keychain.swift */,
 				279638840BFD464409DB1CB0 /* LocationService.swift */,
+				371B0C1A4F8680E4B98E603A /* PantryStore.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		9340AAD48C322D6503F37BD6 /* Pantry */ = {
+			isa = PBXGroup;
+			children = (
+				23EA04F784350776137E8025 /* Staff */,
+				429A2EE65AEF67B48514580A /* BookingSheet.swift */,
+				D235E66090E9B95DA22D6DA2 /* MyVisitsView.swift */,
+				59DBA4E63BAF0113EB617871 /* PantryInventoryCard.swift */,
+				40317BF20D979920D5DB7134 /* PantryScheduleCard.swift */,
+				612F9BBEA152B382B442C753 /* VisitConfirmationView.swift */,
+			);
+			path = Pantry;
 			sourceTree = "<group>";
 		};
 		97766504B735D2A371B250EE = {
@@ -235,6 +283,7 @@
 				59A264C13C7AD983B203248E /* Discounts */,
 				FA4A91EA61EEE47248101F31 /* FindFood */,
 				89EE438DBE820BDEBA586001 /* Onboarding */,
+				9340AAD48C322D6503F37BD6 /* Pantry */,
 				30D3A038943D83B17E0CA09C /* PlaceDetail */,
 				16B94B350CE9E3B603A06751 /* Route */,
 				679E948DCF43CD24318822AB /* Settings */,
@@ -352,6 +401,8 @@
 				4957CA41BC21B6F2F46C42F0 /* AppSettings.swift in Sources */,
 				BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */,
 				C515DC30B6114C92A4405BD4 /* ApplePlaceLookup.swift in Sources */,
+				5A11CC4A0C0865CADB205D3D /* BookingSheet.swift in Sources */,
+				A65DE9E1E60A43F46B825594 /* CalendarExport.swift in Sources */,
 				90302075B94458FC84841814 /* ChicagoSkyline.swift in Sources */,
 				CC9700D38BB1ED275DDD5026 /* Design.swift in Sources */,
 				8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */,
@@ -363,7 +414,12 @@
 				0795D4CD11F163833608451C /* Keychain.swift in Sources */,
 				38F951DC33EC6D6733614CE9 /* LocationService.swift in Sources */,
 				E90AEC2B6B276DF82F935A5A /* LocationTypeStyle.swift in Sources */,
+				C6F3AEA7B11832DDC30F5F6D /* MyVisitsView.swift in Sources */,
 				9208DB3D9032DF816CB839AE /* OnboardingView.swift in Sources */,
+				9F29C7C91EBDCC41BAB8D7C3 /* PantryInventoryCard.swift in Sources */,
+				F112F7E5ADB9D0A85F765517 /* PantryScheduleCard.swift in Sources */,
+				C0AA3F452CE8CA8653A1BC3F /* PantryStore.swift in Sources */,
+				22B00C36255174A3EF6F1CAF /* PantryStyle.swift in Sources */,
 				63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */,
 				83508D884897264D6E6CB78C /* PlaceIcon.swift in Sources */,
 				4CEF9BF0EBB055CBB3DC2D95 /* PlaceInfoView.swift in Sources */,
@@ -373,7 +429,11 @@
 				4D4AE999E8300C5CFC856CB6 /* RouteView.swift in Sources */,
 				CC68AE7EAA22B6631B8D3F71 /* SettingsView.swift in Sources */,
 				17473C6EB5C8DB9E58B34683 /* SplashView.swift in Sources */,
+				DB7A066A8E03B7D7F3556509 /* StaffHomeView.swift in Sources */,
+				B213EDDA9CA2EEB291C7272A /* StaffLoginView.swift in Sources */,
+				A52C4197922A2B8B86707DCE /* StaffSlotEditorView.swift in Sources */,
 				7E1212D06D38B68CF98682AD /* TypeBadge.swift in Sources */,
+				47DAB3ED529D082D234D4577 /* VisitConfirmationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

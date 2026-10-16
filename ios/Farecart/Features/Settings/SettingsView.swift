@@ -13,6 +13,7 @@ struct SettingsView: View {
     @AppStorage(DiscountsKeys.isStudent) private var isStudent = false
     @AppStorage(DiscountsKeys.hasAnswered) private var hasAnswered = false
     @State private var confirmSignOut = false
+    @State private var path: [SettingsRoute] = DebugLaunch.settingsRoutes
 
     private var language: AppLanguage { AppLanguage(rawValue: languageCode) ?? .system }
 
@@ -23,9 +24,11 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
+                visitsSection
                 accountSection
+                staffSection
 
                 Section {
                     NavigationLink {
@@ -64,6 +67,7 @@ struct SettingsView: View {
                     credit(title: "Access reduced fare", detail: "Northern Illinois Transit Authority, getaccess.org", url: "https://getaccess.org")
                     credit(title: "Student reduced fare", detail: "CTA Ventra Student Card", url: "https://www.transitchicago.com/fares/reduced-fare/")
                     credit(title: "Maps", detail: "Apple Maps. Directions open in Apple Maps or Google Maps.")
+                    credit(title: "Feed America", detail: "Some pantry listings and their live status: directory published by Feed America (feedam.org), CC BY 4.0.", url: "https://feedam.org")
                 }
 
                 Section("Privacy") {
@@ -112,6 +116,14 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .navigationDestination(for: SettingsRoute.self) { route in
+                switch route {
+                case .visits: MyVisitsView()
+                case .staff: StaffEntryView()
+                }
+            }
+            .visitDestinations()
+            .task { await environment.pantry.loadVisitsIfNeeded() }
             .confirmationDialog("Sign out of Farecart?", isPresented: $confirmSignOut, titleVisibility: .visible) {
                 Button("Sign out", role: .destructive) { Task { await account.signOut() } }
             } message: {
@@ -123,6 +135,65 @@ struct SettingsView: View {
             .onChange(of: householdSNAP) { Task { await account.pushProfile() } }
             .onChange(of: isStudent) { Task { await account.pushProfile() } }
             .onChange(of: hasAnswered) { Task { await account.pushProfile() } }
+        }
+    }
+
+    /// The next booked pantry visit (code, time, directions) and the full list.
+    @ViewBuilder
+    private var visitsSection: some View {
+        Section {
+            if let next = environment.pantry.nextVisit {
+                NavigationLink(value: next) {
+                    UpcomingVisitCard(visit: next)
+                }
+                .padding(.vertical, 4)
+            }
+            NavigationLink(value: SettingsRoute.visits) {
+                LabeledContent {
+                    if !environment.pantry.upcomingVisits.isEmpty {
+                        Text("\(environment.pantry.upcomingVisits.count) upcoming")
+                    }
+                } label: {
+                    Label("Your visits", systemImage: "calendar")
+                }
+            }
+        } header: {
+            Text("Your visits")
+        } footer: {
+            if environment.pantry.nextVisit == nil {
+                Text("Book a time at a pantry from its page in Find Food. Your confirmation codes show here.")
+            }
+        }
+    }
+
+    /// Volunteers and staff: enter the pantry's code to post stock and open slots.
+    @ViewBuilder
+    private var staffSection: some View {
+        Section {
+            NavigationLink(value: SettingsRoute.staff) {
+                if let session = environment.pantry.staffSession {
+                    LabeledContent {
+                        Text("Staff mode")
+                    } label: {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(verbatim: session.name).lineLimit(1)
+                                Text("Today's stock, slots and bookings").font(.footnote).foregroundStyle(.secondary)
+                            }
+                        } icon: {
+                            Image(systemName: "person.badge.key.fill")
+                        }
+                    }
+                } else {
+                    Label("I work at a pantry", systemImage: "person.badge.key")
+                }
+            }
+        } header: {
+            Text("Pantry staff")
+        } footer: {
+            if environment.pantry.staffSession == nil {
+                Text("Post what you have today and open visit slots so people can book instead of lining up.")
+            }
         }
     }
 
@@ -192,6 +263,12 @@ struct SettingsView: View {
         }
         .padding(.vertical, 2)
     }
+}
+
+/// Screens pushed from Settings (also reachable through debug launch arguments).
+enum SettingsRoute: Hashable {
+    case visits
+    case staff
 }
 
 /// Full list of languages with the current one checked. Also embedded in onboarding.

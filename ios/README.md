@@ -16,13 +16,15 @@ ios/
 │   ├── App/                  FarecartApp (locale / theme at the root), RootView (onboarding gate) + RootTabView,
 │   │                         AppEnvironment, AppSettings (AppLanguage, AppTheme, LanguageBundle)
 │   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore, AccountModel (Sign in with Apple,
-│   │                         Google via hosted OAuth + profile sync), Keychain
+│   │                         Google via hosted OAuth + profile sync), Keychain, PantryStore, CalendarExport
 │   ├── Features/
 │   │   ├── Splash/           Animated launch splash (SplashView, ChicagoSkyline), shown once per cold launch
 │   │   ├── Onboarding/       Welcome (language) → location → discount questions → optional sign-in
 │   │   ├── FindFood/         Top search field + suggestions, glass filter chips, map, in-tab results panel
 │   │   ├── PlaceDetail/      Compact hero, then Info (address, hours, what to bring) | Directions tabs
 │   │   ├── Route/            In-app CTA directions: RouteModel + RouteContent (cost hero, map, steps)
+│   │   ├── Pantry/           What's available, Schedule a visit, booking sheet, confirmation, Your visits;
+│   │   │   └── Staff/        pantry staff mode (code entry, stock grid, slots, today's bookings)
 │   │   ├── Discounts/        Two yes/no questions → program card
 │   │   └── Settings/         Account, language, appearance, welcome again, data sources, privacy, help
 │   ├── Shared/               Design tokens (spacing / radii / card), badges, pins, banners, type colors
@@ -33,6 +35,8 @@ ios/
     │   ├── Models/           Place, Fare, Program, LocationType, GeoPoint, GeocodeResult, AuthSession, Profile
     │   ├── Logic/            Eligibility, FareCalculator, OpeningHours, Distance, DirectionsLinks, AppConfig
     │   ├── Networking/       SupabaseClient (PostgREST + profiles), SupabaseAuthClient (GoTrue), RemoteGeocoder
+    │   ├── Pantry/           PantryModels, PantryError, PantryService (+ SupabaseClient RPCs), MockPantryService,
+    │   │                     FeedAmericaClient, DeviceID / SecureStore
     │   └── Data/             FoodDataProviding, MockDataProvider, BundledFallbacks
     └── Tests/FarecartKitTests/
 ```
@@ -62,10 +66,29 @@ ios/
   the Google Maps globe) float 16 pt above the bottom safe area as Liquid Glass controls (`floatingBottomBar`
   in `Shared/Design.swift`: a `GlassEffectContainer` overlay plus a matching bottom content margin), with the
   content scrolling underneath and the footer still readable at the end.
+- **Pantry detail** (Info tab, `type == pantry`): a **What's available** card (one chip per posted stock
+  category, plenty green / low amber / out grey, the staff note, "Reported 2 hr. ago"; empty state "This pantry
+  hasn't posted today's stock. Call ahead." with the phone number; never says guaranteed), the requirements
+  line ("Most pantries don't require SNAP or ID." or the listing's `requires_snap` / `requires_id` values) and
+  the pantry model ("Client choice: you pick your own items" / "Pre-packed boxes") under *What to bring*, and a
+  **Schedule a visit** card: a horizontal day picker, slot chips ("1:00 PM · 13 spots left", disabled when
+  full), a booking sheet (party size 1–6, Confirm) and the confirmation screen (big code, when, where, Add to
+  Calendar via EventKit write-only access, Directions by CTA → the Directions tab, Cancel visit). With no
+  slots: "Walk-ins welcome during open hours" + phone. A pantry you already booked shows a "You're booked" row
+  above the picker. Results rows show a small "Book a visit" pill once that pantry's availability has been
+  loaded (opening its detail); the list itself makes no extra calls.
+- **Your visits**: the next booked visit sits at the top of Find Food's results panel and of Settings (name,
+  time, code; tap for the confirmation screen with Directions by CTA). Settings → *Your visits* lists upcoming
+  and past/cancelled visits with swipe-to-cancel.
+- **Pantry staff mode**: Settings → *I work at a pantry* → 6-character staff code → a screen titled with the
+  pantry's name: **Today's stock** grid (tap a tile to cycle plenty → low → out; saved immediately, "Saved"
+  flashes; one column at accessibility text sizes), **Visit slots · next 7 days** (delete, "Add a slot": day,
+  start, 30/60 min, capacity), **Today's bookings** (time, party size, code, *Arrived* button) and *Sign out of
+  staff mode*. The code is kept in the Keychain; every staff call re-validates it server-side.
 - **Discounts**: unchanged; the answers are shared with onboarding through `DiscountsKeys`.
-- **Settings**: Account (sign in / name, email, sign out, delete-account note), Language, Appearance
-  (System / Light / Dark), Show welcome again, then the former About content (data sources, privacy, help,
-  version).
+- **Settings**: Your visits, Account (sign in / name, email, sign out, delete-account note), Pantry staff,
+  Language, Appearance (System / Light / Dark), Show welcome again, then the former About content (data
+  sources incl. Feed America, privacy, help, version).
 
 ## Open in Xcode 26
 
@@ -106,6 +129,48 @@ Data access goes straight to Supabase PostgREST with `URLSession`:
 
 When `fares`/`programs` cannot be loaded the app shows `BundledFallbacks` (a copy of the seed) and
 labels prices "last known".
+
+### Pantry inventory and visit scheduling
+
+Contract: root `README.md`, "Pantry inventory and visit scheduling" (migration 0007). `PantryService`
+(FarecartKit, `Pantry/PantryService.swift`) wraps the ten SECURITY DEFINER functions as `POST rest/v1/rpc/…`:
+
+| Method | RPC |
+| --- | --- |
+| `availability(locationID:)` | `pantry_availability` → `PantryAvailability` (current inventory, next 14 days of slots with `remaining`, `staff_updated_at`) |
+| `bookVisit(slotID:deviceID:partySize:userID:)` | `book_visit` → `PantryVisit` (code, cancel token, times, pantry) |
+| `cancelVisit(visitID:cancelToken:)` | `cancel_visit` |
+| `myVisits(deviceID:)` | `my_visits` → `[PantryVisit]` |
+| `staffLogin(code:)` | `staff_login` → `StaffSession` (the code is kept client-side) |
+| `staffSetInventory` / `staffUpsertSlot` / `staffDeleteSlot` / `staffBookings` / `staffMarkArrived` | the matching `staff_*` functions |
+
+Every method throws `PantryError`: PostgREST's `{"code":"P0001","message":"slot_full"}` becomes
+`.slotFull`, `.slotPast`, `.alreadyBooked`, `.badCode`, `.slotNotFound`, `.visitNotFound`, `.alreadyArrived`,
+`.visitCancelled`, `.capacityBelowBooked`, `.badTimes`; other messages are `.server(message)`; transport and
+decoding failures are `.network`. `PantryError.userMessage` (app) has the localized copy. Timestamps are
+parsed by `PostgresTimestamp` (every spelling PostgREST and Postgres use, six fractional digits, `+00`) and sent
+as `yyyy-MM-ddTHH:mm:ssZ`. Decoding is tolerant: a row with an unknown category or a malformed slot is dropped,
+not the whole payload (`Lossy<T>`).
+
+- **Device id**: `DeviceID.current(store:)` generates a UUID once and keeps it in the Keychain through the
+  `SecureStore` protocol (`Keychain` conforms; `InMemorySecureStore` for tests/previews). It is sent as
+  `p_device_id`; a signed-in user's id goes along as `p_user_id`.
+- **Feed America**: `FeedAmericaClient` (actor) fetches `GET https://feedam.org/api/resources/{feedam_id}/status`
+  with `User-Agent: Farecart/0.1 (hello@farecart.org)`, caches each id for 10 minutes and never throws. Today the
+  endpoint returns `hours_status`, `confidence`, `days_since_verified`, `phone_*` (no stock); the decoder also
+  accepts inventory-like arrays or flat `{"produce":"low"}` objects and turns them into `source == "feedam"` rows.
+  `PantryAvailability.merging(feedAmerica:)` adds those rows only for categories the staff have not posted.
+- **`Place`** gained `pantryModel` (`client_choice` / `pre_packed` / `both`, unknown → `nil`), `requiresSNAP`
+  (default `false`), `requiresID` (`nil` = unknown) and `feedamID`, all tolerant of missing or null columns.
+- **App side**: `PantryStore` (`AppEnvironment.pantry`) caches availability per place for the session (so the
+  results pill costs nothing), keeps this phone's visits (`my_visits` once per launch, survives the view that
+  started it), and persists the `StaffSession` in the Keychain. `MockPantryService` (demo slots and stock for
+  the two mock pantries, staff codes `DEMO01` / `DEMO02`) backs previews and tests.
+- **Calendar**: `CalendarExport.add` asks for write-only calendar access
+  (`NSCalendarsWriteOnlyAccessUsageDescription`) and saves a one-hour-alarm event with the code in its notes.
+
+Demo data: ~12 curated West Side pantries have slots and inventory (`source = demo`); their staff codes are in
+`data/demo_staff_codes.csv` (demo only).
 
 ## FarecartKit tests (no Xcode needed)
 
@@ -151,6 +216,24 @@ xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-lan
 xcrun simctl launch <udid> org.farecart.app -farecart-splash-hold                      # splash frozen at its final frame
 xcrun simctl launch <udid> org.farecart.app -farecart-splash-slow                      # splash at quarter speed
 ```
+
+Pantry screens (set the simulator near the West Side first: `xcrun simctl location <udid> set 41.8807,-87.7262`):
+
+```sh
+xcrun simctl launch <udid> org.farecart.app -farecart-use-location -farecart-open-place-named "Legler"                           # pantry Info tab
+xcrun simctl launch <udid> org.farecart.app -farecart-use-location -farecart-open-place-named "Legler" -farecart-scroll-bottom    # Schedule a visit card
+xcrun simctl launch <udid> org.farecart.app -farecart-use-location -farecart-open-place-named "Legler" -farecart-open-booking     # booking sheet on the first open slot
+xcrun simctl launch <udid> org.farecart.app -farecart-use-location -farecart-open-place-named "Legler" -farecart-book-first-slot  # …and confirms it (books for real)
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-open-visits                                          # Your visits
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-open-visits -farecart-cancel-first-visit             # …and cancels the next one
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-staff-code A7GBQZ                                    # staff mode (code from data/demo_staff_codes.csv)
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-open-staff -farecart-staff-cycle produce             # tap the Produce tile once
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-open-staff -farecart-staff-add-slot                  # Add a slot form
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-open-staff -farecart-staff-arrive-first              # tap Arrived on the first booking
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-open-staff -farecart-staff-scroll-bottom             # slots + bookings sections
+```
+
+`-farecart-open-staff` reuses the staff session kept in the Keychain; `-farecart-staff-code` signs in first.
 
 `-farecart-language <code>` (`system`, `en`, `es`, `pl`, `zh-Hans`, `ar`, `fil`, `ur`, `uk`, `ko`) and
 `-farecart-theme <system|light|dark>` write the Settings values, so pass `system` afterwards to reset.

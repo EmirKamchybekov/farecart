@@ -1,5 +1,6 @@
 import Foundation
 import Security
+import FarecartKit
 
 /// Tiny Keychain wrapper for the auth session. One generic-password item per `account`.
 struct Keychain: Sendable {
@@ -53,5 +54,21 @@ struct Keychain: Sendable {
         ]
         let status = SecItemDelete(query as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else { throw KeychainError.unexpectedStatus(status) }
+    }
+}
+
+/// Lets FarecartKit (Foundation-only) keep its device id and the staff session in the Keychain.
+extension Keychain: SecureStore {
+    func readString(key: String) throws -> String? {
+        guard let data = try read(account: key) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+
+    func writeString(_ value: String, key: String) throws {
+        try write(Data(value.utf8), account: key)
+    }
+
+    func removeValue(key: String) throws {
+        try delete(account: key)
     }
 }
