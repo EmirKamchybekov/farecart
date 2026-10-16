@@ -8,6 +8,7 @@ import { fares } from './routes/fares.js';
 import { geocode } from './routes/geocode.js';
 import { health } from './routes/health.js';
 import { nearby } from './routes/nearby.js';
+import { route } from './routes/route.js';
 
 export const ROUTES = [
   { method: 'GET', path: '/', description: 'This route list' },
@@ -17,6 +18,7 @@ export const ROUTES = [
   { method: 'GET', path: '/fares', params: 'rider=full|reduced_access|student', description: 'CTA bus/train prices and savings vs full fare' },
   { method: 'GET', path: '/eligibility', params: 'snap=true|false, student=true|false', description: 'Which discount program applies and the best fare' },
   { method: 'GET', path: '/arrivals', params: 'stop_id=<CTA bus stop>, route?', description: 'CTA Bus Tracker predictions (needs CTA_BUS_KEY)' },
+  { method: 'GET', path: '/route', params: 'from_lat, from_lng, to_lat, to_lng, rider=full|reduced_access|student, depart_at=<ISO 8601>?, n=3', description: 'Transit itineraries (Transitous) with CTA trip cost for the rider; 502 + fallback deep links when routing is down' },
 ] as const;
 
 const app = new Hono();
@@ -34,6 +36,7 @@ app.route('/geocode', geocode);
 app.route('/fares', fares);
 app.route('/eligibility', eligibility);
 app.route('/arrivals', arrivals);
+app.route('/route', route);
 
 app.notFound((c) => c.json(errorBody('not_found', `No route for ${c.req.method} ${c.req.path}`), 404));
 

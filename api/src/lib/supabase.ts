@@ -30,7 +30,7 @@ export async function sbRpc<T>(fn: string, args: Record<string, unknown>): Promi
   });
 }
 
-// ---- row types mirroring supabase/migrations/0001_init.sql ----
+// ---- row types mirroring supabase/migrations/0001_init.sql + 0003_fare_rules.sql ----
 
 export type LocationType = 'grocery' | 'pantry' | 'giveaway';
 export const LOCATION_TYPES = ['grocery', 'pantry', 'giveaway'] as const satisfies readonly LocationType[];
@@ -66,6 +66,10 @@ export type FareRow = {
   mode: FareMode;
   rider: FareRider;
   price_cents: number;
+  /** Cost of each further boarding within `transfer_window_min` of the first (0 = free). */
+  transfer_cents: number;
+  transfer_window_min: number;
+  max_transfers: number;
   label: string;
   how_to_get: string | null;
   signup_url: string | null;

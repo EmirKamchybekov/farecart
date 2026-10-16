@@ -1,0 +1,2467 @@
+{
+ "requestParameters": {},
+ "from": {
+  "name": "START",
+  "lat": 41.8807,
+  "lon": -87.7262,
+  "level": 0,
+  "vertexType": "NORMAL"
+ },
+ "to": {
+  "name": "END",
+  "lat": 41.8819,
+  "lon": -87.6868,
+  "level": 0,
+  "vertexType": "NORMAL"
+ },
+ "direct": [],
+ "itineraries": [
+  {
+   "duration": 1080,
+   "startTime": "2026-10-16T01:23:00Z",
+   "endTime": "2026-10-16T01:41:00Z",
+   "transfers": 0,
+   "id": "CkchKcsQx7rwREApvJaQD3ruVcAyDXVzLWlsLUNUQV80MDk5fY0kQbjwREBBKR2s/3PuVcBI9PjF1gZQ5PrF1gZaBFdBTEtgAQqDAQoCMjASJjIwMjYxMDE1XzIwOjE0X3VzLWlsLUNUQV82ODIwMDA5MjE0MDIwGg11cy1pbC1DVEFfNDA5IX2NJEG48ERAKSkdrP9z7lXAMg91cy1pbC1DVEFfMTUzNjQ5aaM6HcjwREBBI5wWvOjrVcBI5PrF1gZQ+P/F1gZaA0JVU2ABCkkaD3VzLWlsLUNUQV8xNTM2NCFpozodyPBEQCkjnBa86OtVwDnUK2UZ4vBEQEEkufyH9OtVwEj4/8XWBlCsgcbWBloEV0FMS2AB",
+   "legs": [
+    {
+     "mode": "WALK",
+     "from": {
+      "name": "START",
+      "lat": 41.8807,
+      "lon": -87.7262,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:23:00Z",
+      "scheduledDeparture": "2026-10-16T01:23:00Z",
+      "vertexType": "NORMAL"
+     },
+     "to": {
+      "name": "Madison & Pulaski",
+      "stopId": "us-il-CTA_409",
+      "importance": 0.000033311571314698085,
+      "lat": 41.88062299999999,
+      "lon": -87.72582999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:27:00Z",
+      "scheduledArrival": "2026-10-16T01:27:00Z",
+      "stopCode": "409",
+      "description": "Madison & Pulaski, Eastbound, Southwest Corner",
+      "vertexType": "TRANSIT",
+      "modes": [
+       "BUS"
+      ]
+     },
+     "duration": 240,
+     "startTime": "2026-10-16T01:23:00Z",
+     "endTime": "2026-10-16T01:27:00Z",
+     "scheduledStartTime": "2026-10-16T01:23:00Z",
+     "scheduledEndTime": "2026-10-16T01:27:00Z",
+     "realTime": false,
+     "scheduled": false,
+     "distance": 54,
+     "legGeometry": {
+      "points": "wb}x}Wviyfhs@a@ouA??z|@]??cBkiD??}H`@??cIP",
+      "precision": 7,
+      "length": 10
+     },
+     "steps": [
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 13,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "toOsmNode": 5970470852,
+       "polyline": {
+        "points": "wb}x}Wviyfhs@a@ouA",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 11,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 571619883,
+       "fromOsmNode": 5970470852,
+       "toOsmNode": 10307783127,
+       "polyline": {
+        "points": "yc}x}Wfsvfhs@z|@]",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 23,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1127385508,
+       "fromOsmNode": 10307783127,
+       "toOsmNode": 13139853864,
+       "polyline": {
+        "points": "}e{x}Whrvfhs@cBkiD",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 2,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1429374372,
+       "fromOsmNode": 13139853864,
+       "toOsmNode": 13139853862,
+       "polyline": {
+        "points": "ai{x}W|gqfhs@}H`@",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 5,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "fromOsmNode": 13139853862,
+       "polyline": {
+        "points": "_s{x}W~hqfhs@cIP",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      }
+     ]
+    },
+    {
+     "mode": "BUS",
+     "from": {
+      "name": "Madison & Pulaski",
+      "stopId": "us-il-CTA_409",
+      "importance": 0.000033311571314698085,
+      "lat": 41.88062299999999,
+      "lon": -87.72582999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:27:00Z",
+      "scheduledDeparture": "2026-10-16T01:27:00Z",
+      "stopCode": "409",
+      "description": "Madison & Pulaski, Eastbound, Southwest Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "to": {
+      "name": "Madison & Western",
+      "stopId": "us-il-CTA_15364",
+      "importance": 0.000043785603338619694,
+      "lat": 41.88110699999999,
+      "lon": -87.68607999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:38:00Z",
+      "scheduledArrival": "2026-10-16T01:38:00Z",
+      "stopCode": "15364",
+      "description": "Madison & Western, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "duration": 660,
+     "startTime": "2026-10-16T01:27:00Z",
+     "endTime": "2026-10-16T01:38:00Z",
+     "scheduledStartTime": "2026-10-16T01:27:00Z",
+     "scheduledEndTime": "2026-10-16T01:38:00Z",
+     "realTime": false,
+     "scheduled": true,
+     "interlineWithPreviousLeg": false,
+     "headsign": "Michigan",
+     "tripFrom": {
+      "name": "Madison & Austin Terminal",
+      "stopId": "us-il-CTA_386",
+      "importance": 0.000011895124771399423,
+      "lat": 41.88032,
+      "lon": -87.77405,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:14:00Z",
+      "scheduledDeparture": "2026-10-16T01:14:00Z",
+      "stopCode": "386",
+      "description": "Madison & Austin Terminal, Southbound, Bus Terminal",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "tripTo": {
+      "name": "Washington & Wabash",
+      "stopId": "us-il-CTA_449",
+      "importance": 0.00003608705083024688,
+      "lat": 41.88316699999999,
+      "lon": -87.62596999999998,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T02:03:00Z",
+      "scheduledArrival": "2026-10-16T02:03:00Z",
+      "stopCode": "449",
+      "description": "Washington & Wabash, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "routeId": "us-il-CTA_20",
+     "routeUrl": "http://www.transitchicago.com/bus/20/",
+     "directionId": "1",
+     "routeColor": "414145",
+     "routeTextColor": "ffffff",
+     "routeType": 3,
+     "agencyName": "Chicago Transit Authority",
+     "agencyUrl": "http://transitchicago.com",
+     "agencyFareUrl": "https://www.transitchicago.com/fares/",
+     "agencyId": "50066",
+     "tripId": "20261015_20:14_us-il-CTA_6820009214020",
+     "routeShortName": "20",
+     "routeLongName": "Madison",
+     "tripShortName": "",
+     "displayName": "20",
+     "cancelled": false,
+     "source": "us-il_CTA.gtfs.zip/stop_times.txt:4229572:4229630",
+     "intermediateStops": [
+      {
+       "name": "Madison & Springfield",
+       "stopId": "us-il-CTA_18047",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88071,
+       "lon": -87.72286999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:28:00Z",
+       "departure": "2026-10-16T01:28:00Z",
+       "scheduledArrival": "2026-10-16T01:28:00Z",
+       "scheduledDeparture": "2026-10-16T01:28:00Z",
+       "stopCode": "18047",
+       "description": "Madison & Springfield, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Hamlin",
+       "stopId": "us-il-CTA_17841",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880753,
+       "lon": -87.72046999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:29:00Z",
+       "departure": "2026-10-16T01:29:00Z",
+       "scheduledArrival": "2026-10-16T01:29:00Z",
+       "scheduledDeparture": "2026-10-16T01:29:00Z",
+       "stopCode": "17841",
+       "description": "Madison & Hamlin, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & St. Louis",
+       "stopId": "us-il-CTA_413",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88081999999999,
+       "lon": -87.71383,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:31:00Z",
+       "departure": "2026-10-16T01:31:00Z",
+       "scheduledArrival": "2026-10-16T01:31:00Z",
+       "scheduledDeparture": "2026-10-16T01:31:00Z",
+       "stopCode": "413",
+       "description": "Madison & St. Louis, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Homan",
+       "stopId": "us-il-CTA_14764",
+       "importance": 0.00005198153667151928,
+       "lat": 41.88084799999999,
+       "lon": -87.71074,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:31:00Z",
+       "departure": "2026-10-16T01:31:00Z",
+       "scheduledArrival": "2026-10-16T01:31:00Z",
+       "scheduledDeparture": "2026-10-16T01:31:00Z",
+       "stopCode": "14764",
+       "description": "Madison & Homan, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Spaulding",
+       "stopId": "us-il-CTA_415",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88089399999999,
+       "lon": -87.708725,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:32:00Z",
+       "departure": "2026-10-16T01:32:00Z",
+       "scheduledArrival": "2026-10-16T01:32:00Z",
+       "scheduledDeparture": "2026-10-16T01:32:00Z",
+       "stopCode": "415",
+       "description": "Madison & Spaulding, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Kedzie",
+       "stopId": "us-il-CTA_416",
+       "importance": 0.000039533926610602066,
+       "lat": 41.88091,
+       "lon": -87.70634,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:32:00Z",
+       "departure": "2026-10-16T01:32:00Z",
+       "scheduledArrival": "2026-10-16T01:32:00Z",
+       "scheduledDeparture": "2026-10-16T01:32:00Z",
+       "stopCode": "416",
+       "description": "Madison & Kedzie, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Albany",
+       "stopId": "us-il-CTA_417",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880959999999995,
+       "lon": -87.703156,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:33:00Z",
+       "departure": "2026-10-16T01:33:00Z",
+       "scheduledArrival": "2026-10-16T01:33:00Z",
+       "scheduledDeparture": "2026-10-16T01:33:00Z",
+       "stopCode": "417",
+       "description": "Madison & Albany, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Sacramento",
+       "stopId": "us-il-CTA_15185",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880962,
+       "lon": -87.70089,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:34:00Z",
+       "departure": "2026-10-16T01:34:00Z",
+       "scheduledArrival": "2026-10-16T01:34:00Z",
+       "scheduledDeparture": "2026-10-16T01:34:00Z",
+       "stopCode": "15185",
+       "description": "Madison & Sacramento, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Francisco",
+       "stopId": "us-il-CTA_16110",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881009999999996,
+       "lon": -87.69856999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:34:00Z",
+       "departure": "2026-10-16T01:34:00Z",
+       "scheduledArrival": "2026-10-16T01:34:00Z",
+       "scheduledDeparture": "2026-10-16T01:34:00Z",
+       "stopCode": "16110",
+       "description": "Madison & Francisco, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & California",
+       "stopId": "us-il-CTA_420",
+       "importance": 0.00003931641185772605,
+       "lat": 41.881015999999995,
+       "lon": -87.696014,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:35:00Z",
+       "departure": "2026-10-16T01:35:00Z",
+       "scheduledArrival": "2026-10-16T01:35:00Z",
+       "scheduledDeparture": "2026-10-16T01:35:00Z",
+       "stopCode": "420",
+       "description": "Madison & California, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Washtenaw",
+       "stopId": "us-il-CTA_421",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88103999999999,
+       "lon": -87.69405,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:35:00Z",
+       "departure": "2026-10-16T01:35:00Z",
+       "scheduledArrival": "2026-10-16T01:35:00Z",
+       "scheduledDeparture": "2026-10-16T01:35:00Z",
+       "stopCode": "421",
+       "description": "Madison & Washtenaw, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Talman",
+       "stopId": "us-il-CTA_16088",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881041999999994,
+       "lon": -87.69229999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:36:00Z",
+       "departure": "2026-10-16T01:36:00Z",
+       "scheduledArrival": "2026-10-16T01:36:00Z",
+       "scheduledDeparture": "2026-10-16T01:36:00Z",
+       "stopCode": "16088",
+       "description": "Madison & Talman, Eastbound, Southside of the Street",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Campbell",
+       "stopId": "us-il-CTA_423",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881069999999994,
+       "lon": -87.68897999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:37:00Z",
+       "departure": "2026-10-16T01:37:00Z",
+       "scheduledArrival": "2026-10-16T01:37:00Z",
+       "scheduledDeparture": "2026-10-16T01:37:00Z",
+       "stopCode": "423",
+       "description": "Madison & Campbell, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      }
+     ],
+     "legGeometry": {
+      "points": "k|{x}Wvbrfhs@rSnoBwt@ohCoAw|A?gzAoA_yA?gzAoAg_B?ovAg@w|AcBw|AcBgzA?_yA{@gzAoAg_B{@ovA?w|AoAw|AwBgzAg@_yA?w|AoAwcAoAsyA{@syAoAw|A{@w|AcBovAcB{_B{@syA{@syAoAsyAoAw|AoAw|Ag@ovAcB{_BcBsyA{@syAoA{_B_DovAcBw|Ag@w|A?klBoFc_C_IoaDwB_uC?_nD?gtD_DwgDwB__D?opDgEohCnK_uC?g{C?gEgEwQ?o}@?gw@?wQ?ooB?ooB?_|B?_|B?wuBvQw|AgEw|A?_|BgEw|Af^nd@g^od@?wnC?wuB?wcA?wj@?_uC?oKoAwnCwBwnCgEg^fEwuB?oK_S_cBoFovA{EgiBoFkeCkCc_CwBohCgEw}C?wiCkCsoA?s`A_DwxC?w}CjHo~BfEciCbGskC?giBkC_jAwB_cBf@gbC~CgbCz@gbCnAgbC~CohCbBgbCf@wdCnA_fC?ooBoA_rBg@gsBcBwuB?ooBcB_rB{@gsBoAwuB?wuB?g{C?ohC?wuBnFg^?ohCoFklBcG{jDgEwuBkCgbC_DohC?wuBkCohC?w_C?o~B?wuBjCg{C~Cg{CjCwuBkCwkBjC_I?_uC?wuB?wuBkHohCkM_uC?wgD?wuB~Hg{CjCwnCkCgbC_Igm@jMw_CkCwuB_I{jD?k~C?_dD?wxC?{qC?ciC?w}C?_|B?gpA?gbC{JklBkCc_C?ohC?_uC?wnC?gqC?wxC?_uC?_uC?_uCoF_|BwG_|BoF_|B_I_|B~HgxG?ooB?gbC_Ig^?orC?gxBkC_|B?_uC?wnC?gqC?ciC?klB?_q@oFgbC{@_rBgEwxCwQg^?ohC?gpAwBw|AoAovA?gbC?gbC?_fC?wdC?w|A?_q@oAovAwBovA?wnC?gbC?gbCf|@?g|@??ooBcBsrBcBsrB?ovA{@ovA?syA?ksAoAw|A?ksA{@syA?ovA?ovA?w|A?ovA?ovA?ovA?ovAgEw|A?w|AwB_yAbj@vG",
+      "precision": 7,
+      "length": 227
+     },
+     "bikesAllowed": false,
+     "wheelchairAccessible": "ACCESSIBLE",
+     "reservation": "NONE",
+     "alternatives": []
+    },
+    {
+     "mode": "WALK",
+     "from": {
+      "name": "Madison & Western",
+      "stopId": "us-il-CTA_15364",
+      "importance": 0.000043785603338619694,
+      "lat": 41.88110699999999,
+      "lon": -87.68607999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:38:00Z",
+      "departure": "2026-10-16T01:38:00Z",
+      "scheduledArrival": "2026-10-16T01:38:00Z",
+      "scheduledDeparture": "2026-10-16T01:38:00Z",
+      "stopCode": "15364",
+      "description": "Madison & Western, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "to": {
+      "name": "END",
+      "lat": 41.8819,
+      "lon": -87.6868,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:41:00Z",
+      "scheduledArrival": "2026-10-16T01:41:00Z",
+      "vertexType": "NORMAL"
+     },
+     "duration": 180,
+     "startTime": "2026-10-16T01:38:00Z",
+     "endTime": "2026-10-16T01:41:00Z",
+     "scheduledStartTime": "2026-10-16T01:38:00Z",
+     "scheduledEndTime": "2026-10-16T01:41:00Z",
+     "realTime": false,
+     "scheduled": false,
+     "distance": 175,
+     "legGeometry": {
+      "points": "o|dy}Wpvings@|@fxB??Lt`B??XpzA??DbQ??yFH??gl@E??aw@I??}tFrF??oeFzF??j@bkB",
+      "precision": 7,
+      "length": 20
+     },
+     "steps": [
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 18,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "toOsmNode": 9915927397,
+       "polyline": {
+        "points": "o|dy}Wpvings@|@fxB",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 13,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946267,
+       "fromOsmNode": 9915927397,
+       "toOsmNode": 9915927403,
+       "polyline": {
+        "points": "qzdy}Wxomngs@Lt`B",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 12,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946267,
+       "fromOsmNode": 9915927403,
+       "toOsmNode": 13530372597,
+       "polyline": {
+        "points": "czdy}Wnqpngs@XpzA",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 2,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946382,
+       "fromOsmNode": 13530372597,
+       "toOsmNode": 13530372598,
+       "polyline": {
+        "points": "iydy}W`msngs@DbQ",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 1,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946263,
+       "fromOsmNode": 13530372598,
+       "toOsmNode": 9915927393,
+       "polyline": {
+        "points": "cydy}Wd_tngs@yFH",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 8,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413556,
+       "fromOsmNode": 9915927393,
+       "toOsmNode": 9920034972,
+       "polyline": {
+        "points": "}`ey}Wn_tngs@gl@E",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 10,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413556,
+       "fromOsmNode": 9920034972,
+       "toOsmNode": 9920034970,
+       "polyline": {
+        "points": "enfy}Wh_tngs@aw@I",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 44,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413557,
+       "fromOsmNode": 9920034970,
+       "toOsmNode": 9920034977,
+       "polyline": {
+        "points": "gfhy}W~~sngs@}tFrF",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 41,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413557,
+       "fromOsmNode": 9920034977,
+       "toOsmNode": 13530372592,
+       "polyline": {
+        "points": "e|oy}Wrftngs@oeFzF",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 26,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "fromOsmNode": 13530372592,
+       "polyline": {
+        "points": "ubwy}Wnntngs@j@bkB",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "duration": 1080,
+   "startTime": "2026-10-16T01:32:00Z",
+   "endTime": "2026-10-16T01:50:00Z",
+   "transfers": 0,
+   "id": "CkchKcsQx7rwREApvJaQD3ruVcAyDXVzLWlsLUNUQV80MDk5fY0kQbjwREBBKR2s/3PuVcBIkP3F1gZQgP/F1gZaBFdBTEtgAQqDAQoCMjASJjIwMjYxMDE1XzIwOjI0X3VzLWlsLUNUQV82ODIwMDQ0NTI5MDIwGg11cy1pbC1DVEFfNDA5IX2NJEG48ERAKSkdrP9z7lXAMg91cy1pbC1DVEFfMTUzNjQ5aaM6HcjwREBBI5wWvOjrVcBIgP/F1gZQlITG1gZaA0JVU2ABCkkaD3VzLWlsLUNUQV8xNTM2NCFpozodyPBEQCkjnBa86OtVwDnUK2UZ4vBEQEEkufyH9OtVwEiUhMbWBlDIhcbWBloEV0FMS2AB",
+   "legs": [
+    {
+     "mode": "WALK",
+     "from": {
+      "name": "START",
+      "lat": 41.8807,
+      "lon": -87.7262,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:32:00Z",
+      "scheduledDeparture": "2026-10-16T01:32:00Z",
+      "vertexType": "NORMAL"
+     },
+     "to": {
+      "name": "Madison & Pulaski",
+      "stopId": "us-il-CTA_409",
+      "importance": 0.000033311571314698085,
+      "lat": 41.88062299999999,
+      "lon": -87.72582999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:36:00Z",
+      "scheduledArrival": "2026-10-16T01:36:00Z",
+      "stopCode": "409",
+      "description": "Madison & Pulaski, Eastbound, Southwest Corner",
+      "vertexType": "TRANSIT",
+      "modes": [
+       "BUS"
+      ]
+     },
+     "duration": 240,
+     "startTime": "2026-10-16T01:32:00Z",
+     "endTime": "2026-10-16T01:36:00Z",
+     "scheduledStartTime": "2026-10-16T01:32:00Z",
+     "scheduledEndTime": "2026-10-16T01:36:00Z",
+     "realTime": false,
+     "scheduled": false,
+     "distance": 54,
+     "legGeometry": {
+      "points": "wb}x}Wviyfhs@a@ouA??z|@]??cBkiD??}H`@??cIP",
+      "precision": 7,
+      "length": 10
+     },
+     "steps": [
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 13,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "toOsmNode": 5970470852,
+       "polyline": {
+        "points": "wb}x}Wviyfhs@a@ouA",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 11,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 571619883,
+       "fromOsmNode": 5970470852,
+       "toOsmNode": 10307783127,
+       "polyline": {
+        "points": "yc}x}Wfsvfhs@z|@]",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 23,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1127385508,
+       "fromOsmNode": 10307783127,
+       "toOsmNode": 13139853864,
+       "polyline": {
+        "points": "}e{x}Whrvfhs@cBkiD",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 2,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1429374372,
+       "fromOsmNode": 13139853864,
+       "toOsmNode": 13139853862,
+       "polyline": {
+        "points": "ai{x}W|gqfhs@}H`@",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 5,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "fromOsmNode": 13139853862,
+       "polyline": {
+        "points": "_s{x}W~hqfhs@cIP",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      }
+     ]
+    },
+    {
+     "mode": "BUS",
+     "from": {
+      "name": "Madison & Pulaski",
+      "stopId": "us-il-CTA_409",
+      "importance": 0.000033311571314698085,
+      "lat": 41.88062299999999,
+      "lon": -87.72582999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:36:00Z",
+      "scheduledDeparture": "2026-10-16T01:36:00Z",
+      "stopCode": "409",
+      "description": "Madison & Pulaski, Eastbound, Southwest Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "to": {
+      "name": "Madison & Western",
+      "stopId": "us-il-CTA_15364",
+      "importance": 0.000043785603338619694,
+      "lat": 41.88110699999999,
+      "lon": -87.68607999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:47:00Z",
+      "scheduledArrival": "2026-10-16T01:47:00Z",
+      "stopCode": "15364",
+      "description": "Madison & Western, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "duration": 660,
+     "startTime": "2026-10-16T01:36:00Z",
+     "endTime": "2026-10-16T01:47:00Z",
+     "scheduledStartTime": "2026-10-16T01:36:00Z",
+     "scheduledEndTime": "2026-10-16T01:47:00Z",
+     "realTime": false,
+     "scheduled": true,
+     "interlineWithPreviousLeg": false,
+     "headsign": "Michigan",
+     "tripFrom": {
+      "name": "Madison & Austin Terminal",
+      "stopId": "us-il-CTA_386",
+      "importance": 0.000011895124771399423,
+      "lat": 41.88032,
+      "lon": -87.77405,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:24:00Z",
+      "scheduledDeparture": "2026-10-16T01:24:00Z",
+      "stopCode": "386",
+      "description": "Madison & Austin Terminal, Southbound, Bus Terminal",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "tripTo": {
+      "name": "Washington & Wabash",
+      "stopId": "us-il-CTA_449",
+      "importance": 0.00003608705083024688,
+      "lat": 41.88316699999999,
+      "lon": -87.62596999999998,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T02:12:00Z",
+      "scheduledArrival": "2026-10-16T02:12:00Z",
+      "stopCode": "449",
+      "description": "Washington & Wabash, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "routeId": "us-il-CTA_20",
+     "routeUrl": "http://www.transitchicago.com/bus/20/",
+     "directionId": "1",
+     "routeColor": "414145",
+     "routeTextColor": "ffffff",
+     "routeType": 3,
+     "agencyName": "Chicago Transit Authority",
+     "agencyUrl": "http://transitchicago.com",
+     "agencyFareUrl": "https://www.transitchicago.com/fares/",
+     "agencyId": "50066",
+     "tripId": "20261015_20:24_us-il-CTA_6820044529020",
+     "routeShortName": "20",
+     "routeLongName": "Madison",
+     "tripShortName": "",
+     "displayName": "20",
+     "cancelled": false,
+     "source": "us-il_CTA.gtfs.zip/stop_times.txt:4244584:4244647",
+     "intermediateStops": [
+      {
+       "name": "Madison & Springfield",
+       "stopId": "us-il-CTA_18047",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88071,
+       "lon": -87.72286999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:37:00Z",
+       "departure": "2026-10-16T01:37:00Z",
+       "scheduledArrival": "2026-10-16T01:37:00Z",
+       "scheduledDeparture": "2026-10-16T01:37:00Z",
+       "stopCode": "18047",
+       "description": "Madison & Springfield, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Hamlin",
+       "stopId": "us-il-CTA_17841",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880753,
+       "lon": -87.72046999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:38:00Z",
+       "departure": "2026-10-16T01:38:00Z",
+       "scheduledArrival": "2026-10-16T01:38:00Z",
+       "scheduledDeparture": "2026-10-16T01:38:00Z",
+       "stopCode": "17841",
+       "description": "Madison & Hamlin, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & St. Louis",
+       "stopId": "us-il-CTA_413",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88081999999999,
+       "lon": -87.71383,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:40:00Z",
+       "departure": "2026-10-16T01:40:00Z",
+       "scheduledArrival": "2026-10-16T01:40:00Z",
+       "scheduledDeparture": "2026-10-16T01:40:00Z",
+       "stopCode": "413",
+       "description": "Madison & St. Louis, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Homan",
+       "stopId": "us-il-CTA_14764",
+       "importance": 0.00005198153667151928,
+       "lat": 41.88084799999999,
+       "lon": -87.71074,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:40:00Z",
+       "departure": "2026-10-16T01:40:00Z",
+       "scheduledArrival": "2026-10-16T01:40:00Z",
+       "scheduledDeparture": "2026-10-16T01:40:00Z",
+       "stopCode": "14764",
+       "description": "Madison & Homan, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Spaulding",
+       "stopId": "us-il-CTA_415",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88089399999999,
+       "lon": -87.708725,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:41:00Z",
+       "departure": "2026-10-16T01:41:00Z",
+       "scheduledArrival": "2026-10-16T01:41:00Z",
+       "scheduledDeparture": "2026-10-16T01:41:00Z",
+       "stopCode": "415",
+       "description": "Madison & Spaulding, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Kedzie",
+       "stopId": "us-il-CTA_416",
+       "importance": 0.000039533926610602066,
+       "lat": 41.88091,
+       "lon": -87.70634,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:41:00Z",
+       "departure": "2026-10-16T01:41:00Z",
+       "scheduledArrival": "2026-10-16T01:41:00Z",
+       "scheduledDeparture": "2026-10-16T01:41:00Z",
+       "stopCode": "416",
+       "description": "Madison & Kedzie, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Albany",
+       "stopId": "us-il-CTA_417",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880959999999995,
+       "lon": -87.703156,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:42:00Z",
+       "departure": "2026-10-16T01:42:00Z",
+       "scheduledArrival": "2026-10-16T01:42:00Z",
+       "scheduledDeparture": "2026-10-16T01:42:00Z",
+       "stopCode": "417",
+       "description": "Madison & Albany, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Sacramento",
+       "stopId": "us-il-CTA_15185",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880962,
+       "lon": -87.70089,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:43:00Z",
+       "departure": "2026-10-16T01:43:00Z",
+       "scheduledArrival": "2026-10-16T01:43:00Z",
+       "scheduledDeparture": "2026-10-16T01:43:00Z",
+       "stopCode": "15185",
+       "description": "Madison & Sacramento, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Francisco",
+       "stopId": "us-il-CTA_16110",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881009999999996,
+       "lon": -87.69856999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:43:00Z",
+       "departure": "2026-10-16T01:43:00Z",
+       "scheduledArrival": "2026-10-16T01:43:00Z",
+       "scheduledDeparture": "2026-10-16T01:43:00Z",
+       "stopCode": "16110",
+       "description": "Madison & Francisco, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & California",
+       "stopId": "us-il-CTA_420",
+       "importance": 0.00003931641185772605,
+       "lat": 41.881015999999995,
+       "lon": -87.696014,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:44:00Z",
+       "departure": "2026-10-16T01:44:00Z",
+       "scheduledArrival": "2026-10-16T01:44:00Z",
+       "scheduledDeparture": "2026-10-16T01:44:00Z",
+       "stopCode": "420",
+       "description": "Madison & California, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Washtenaw",
+       "stopId": "us-il-CTA_421",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88103999999999,
+       "lon": -87.69405,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:44:00Z",
+       "departure": "2026-10-16T01:44:00Z",
+       "scheduledArrival": "2026-10-16T01:44:00Z",
+       "scheduledDeparture": "2026-10-16T01:44:00Z",
+       "stopCode": "421",
+       "description": "Madison & Washtenaw, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Talman",
+       "stopId": "us-il-CTA_16088",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881041999999994,
+       "lon": -87.69229999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:45:00Z",
+       "departure": "2026-10-16T01:45:00Z",
+       "scheduledArrival": "2026-10-16T01:45:00Z",
+       "scheduledDeparture": "2026-10-16T01:45:00Z",
+       "stopCode": "16088",
+       "description": "Madison & Talman, Eastbound, Southside of the Street",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Campbell",
+       "stopId": "us-il-CTA_423",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881069999999994,
+       "lon": -87.68897999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:46:00Z",
+       "departure": "2026-10-16T01:46:00Z",
+       "scheduledArrival": "2026-10-16T01:46:00Z",
+       "scheduledDeparture": "2026-10-16T01:46:00Z",
+       "stopCode": "423",
+       "description": "Madison & Campbell, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      }
+     ],
+     "legGeometry": {
+      "points": "k|{x}Wvbrfhs@rSnoBwt@ohCoAw|A?gzAoA_yA?gzAoAg_B?ovAg@w|AcBw|AcBgzA?_yA{@gzAoAg_B{@ovA?w|AoAw|AwBgzAg@_yA?w|AoAwcAoAsyA{@syAoAw|A{@w|AcBovAcB{_B{@syA{@syAoAsyAoAw|AoAw|Ag@ovAcB{_BcBsyA{@syAoA{_B_DovAcBw|Ag@w|A?klBoFc_C_IoaDwB_uC?_nD?gtD_DwgDwB__D?opDgEohCnK_uC?g{C?gEgEwQ?o}@?gw@?wQ?ooB?ooB?_|B?_|B?wuBvQw|AgEw|A?_|BgEw|Af^nd@g^od@?wnC?wuB?wcA?wj@?_uC?oKoAwnCwBwnCgEg^fEwuB?oK_S_cBoFovA{EgiBoFkeCkCc_CwBohCgEw}C?wiCkCsoA?s`A_DwxC?w}CjHo~BfEciCbGskC?giBkC_jAwB_cBf@gbC~CgbCz@gbCnAgbC~CohCbBgbCf@wdCnA_fC?ooBoA_rBg@gsBcBwuB?ooBcB_rB{@gsBoAwuB?wuB?g{C?ohC?wuBnFg^?ohCoFklBcG{jDgEwuBkCgbC_DohC?wuBkCohC?w_C?o~B?wuBjCg{C~Cg{CjCwuBkCwkBjC_I?_uC?wuB?wuBkHohCkM_uC?wgD?wuB~Hg{CjCwnCkCgbC_Igm@jMw_CkCwuB_I{jD?k~C?_dD?wxC?{qC?ciC?w}C?_|B?gpA?gbC{JklBkCc_C?ohC?_uC?wnC?gqC?wxC?_uC?_uC?_uCoF_|BwG_|BoF_|B_I_|B~HgxG?ooB?gbC_Ig^?orC?gxBkC_|B?_uC?wnC?gqC?ciC?klB?_q@oFgbC{@_rBgEwxCwQg^?ohC?gpAwBw|AoAovA?gbC?gbC?_fC?wdC?w|A?_q@oAovAwBovA?wnC?gbC?gbCf|@?g|@??ooBcBsrBcBsrB?ovA{@ovA?syA?ksAoAw|A?ksA{@syA?ovA?ovA?w|A?ovA?ovA?ovA?ovAgEw|A?w|AwB_yAbj@vG",
+      "precision": 7,
+      "length": 227
+     },
+     "bikesAllowed": false,
+     "wheelchairAccessible": "ACCESSIBLE",
+     "reservation": "NONE",
+     "alternatives": []
+    },
+    {
+     "mode": "WALK",
+     "from": {
+      "name": "Madison & Western",
+      "stopId": "us-il-CTA_15364",
+      "importance": 0.000043785603338619694,
+      "lat": 41.88110699999999,
+      "lon": -87.68607999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:47:00Z",
+      "departure": "2026-10-16T01:47:00Z",
+      "scheduledArrival": "2026-10-16T01:47:00Z",
+      "scheduledDeparture": "2026-10-16T01:47:00Z",
+      "stopCode": "15364",
+      "description": "Madison & Western, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "to": {
+      "name": "END",
+      "lat": 41.8819,
+      "lon": -87.6868,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:50:00Z",
+      "scheduledArrival": "2026-10-16T01:50:00Z",
+      "vertexType": "NORMAL"
+     },
+     "duration": 180,
+     "startTime": "2026-10-16T01:47:00Z",
+     "endTime": "2026-10-16T01:50:00Z",
+     "scheduledStartTime": "2026-10-16T01:47:00Z",
+     "scheduledEndTime": "2026-10-16T01:50:00Z",
+     "realTime": false,
+     "scheduled": false,
+     "distance": 175,
+     "legGeometry": {
+      "points": "o|dy}Wpvings@|@fxB??Lt`B??XpzA??DbQ??yFH??gl@E??aw@I??}tFrF??oeFzF??j@bkB",
+      "precision": 7,
+      "length": 20
+     },
+     "steps": [
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 18,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "toOsmNode": 9915927397,
+       "polyline": {
+        "points": "o|dy}Wpvings@|@fxB",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 13,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946267,
+       "fromOsmNode": 9915927397,
+       "toOsmNode": 9915927403,
+       "polyline": {
+        "points": "qzdy}Wxomngs@Lt`B",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 12,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946267,
+       "fromOsmNode": 9915927403,
+       "toOsmNode": 13530372597,
+       "polyline": {
+        "points": "czdy}Wnqpngs@XpzA",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 2,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946382,
+       "fromOsmNode": 13530372597,
+       "toOsmNode": 13530372598,
+       "polyline": {
+        "points": "iydy}W`msngs@DbQ",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 1,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946263,
+       "fromOsmNode": 13530372598,
+       "toOsmNode": 9915927393,
+       "polyline": {
+        "points": "cydy}Wd_tngs@yFH",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 8,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413556,
+       "fromOsmNode": 9915927393,
+       "toOsmNode": 9920034972,
+       "polyline": {
+        "points": "}`ey}Wn_tngs@gl@E",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 10,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413556,
+       "fromOsmNode": 9920034972,
+       "toOsmNode": 9920034970,
+       "polyline": {
+        "points": "enfy}Wh_tngs@aw@I",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 44,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413557,
+       "fromOsmNode": 9920034970,
+       "toOsmNode": 9920034977,
+       "polyline": {
+        "points": "gfhy}W~~sngs@}tFrF",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 41,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413557,
+       "fromOsmNode": 9920034977,
+       "toOsmNode": 13530372592,
+       "polyline": {
+        "points": "e|oy}Wrftngs@oeFzF",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 26,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "fromOsmNode": 13530372592,
+       "polyline": {
+        "points": "ubwy}Wnntngs@j@bkB",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "duration": 1080,
+   "startTime": "2026-10-16T01:41:00Z",
+   "endTime": "2026-10-16T01:59:00Z",
+   "transfers": 0,
+   "id": "CkchKcsQx7rwREApvJaQD3ruVcAyDXVzLWlsLUNUQV80MDk5fY0kQbjwREBBKR2s/3PuVcBIrIHG1gZQnIPG1gZaBFdBTEtgAQqDAQoCMjASJjIwMjYxMDE1XzIwOjM0X3VzLWlsLUNUQV82ODIwMDAxNTc0MDIwGg11cy1pbC1DVEFfNDA5IX2NJEG48ERAKSkdrP9z7lXAMg91cy1pbC1DVEFfMTUzNjQ5aaM6HcjwREBBI5wWvOjrVcBInIPG1gZQsIjG1gZaA0JVU2ABCkkaD3VzLWlsLUNUQV8xNTM2NCFpozodyPBEQCkjnBa86OtVwDnUK2UZ4vBEQEEkufyH9OtVwEiwiMbWBlDkicbWBloEV0FMS2AB",
+   "legs": [
+    {
+     "mode": "WALK",
+     "from": {
+      "name": "START",
+      "lat": 41.8807,
+      "lon": -87.7262,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:41:00Z",
+      "scheduledDeparture": "2026-10-16T01:41:00Z",
+      "vertexType": "NORMAL"
+     },
+     "to": {
+      "name": "Madison & Pulaski",
+      "stopId": "us-il-CTA_409",
+      "importance": 0.000033311571314698085,
+      "lat": 41.88062299999999,
+      "lon": -87.72582999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:45:00Z",
+      "scheduledArrival": "2026-10-16T01:45:00Z",
+      "stopCode": "409",
+      "description": "Madison & Pulaski, Eastbound, Southwest Corner",
+      "vertexType": "TRANSIT",
+      "modes": [
+       "BUS"
+      ]
+     },
+     "duration": 240,
+     "startTime": "2026-10-16T01:41:00Z",
+     "endTime": "2026-10-16T01:45:00Z",
+     "scheduledStartTime": "2026-10-16T01:41:00Z",
+     "scheduledEndTime": "2026-10-16T01:45:00Z",
+     "realTime": false,
+     "scheduled": false,
+     "distance": 54,
+     "legGeometry": {
+      "points": "wb}x}Wviyfhs@a@ouA??z|@]??cBkiD??}H`@??cIP",
+      "precision": 7,
+      "length": 10
+     },
+     "steps": [
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 13,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "toOsmNode": 5970470852,
+       "polyline": {
+        "points": "wb}x}Wviyfhs@a@ouA",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 11,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 571619883,
+       "fromOsmNode": 5970470852,
+       "toOsmNode": 10307783127,
+       "polyline": {
+        "points": "yc}x}Wfsvfhs@z|@]",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 23,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1127385508,
+       "fromOsmNode": 10307783127,
+       "toOsmNode": 13139853864,
+       "polyline": {
+        "points": "}e{x}Whrvfhs@cBkiD",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 2,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1429374372,
+       "fromOsmNode": 13139853864,
+       "toOsmNode": 13139853862,
+       "polyline": {
+        "points": "ai{x}W|gqfhs@}H`@",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 5,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "fromOsmNode": 13139853862,
+       "polyline": {
+        "points": "_s{x}W~hqfhs@cIP",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      }
+     ]
+    },
+    {
+     "mode": "BUS",
+     "from": {
+      "name": "Madison & Pulaski",
+      "stopId": "us-il-CTA_409",
+      "importance": 0.000033311571314698085,
+      "lat": 41.88062299999999,
+      "lon": -87.72582999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:45:00Z",
+      "scheduledDeparture": "2026-10-16T01:45:00Z",
+      "stopCode": "409",
+      "description": "Madison & Pulaski, Eastbound, Southwest Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "to": {
+      "name": "Madison & Western",
+      "stopId": "us-il-CTA_15364",
+      "importance": 0.000043785603338619694,
+      "lat": 41.88110699999999,
+      "lon": -87.68607999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:56:00Z",
+      "scheduledArrival": "2026-10-16T01:56:00Z",
+      "stopCode": "15364",
+      "description": "Madison & Western, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "duration": 660,
+     "startTime": "2026-10-16T01:45:00Z",
+     "endTime": "2026-10-16T01:56:00Z",
+     "scheduledStartTime": "2026-10-16T01:45:00Z",
+     "scheduledEndTime": "2026-10-16T01:56:00Z",
+     "realTime": false,
+     "scheduled": true,
+     "interlineWithPreviousLeg": false,
+     "headsign": "Michigan",
+     "tripFrom": {
+      "name": "Madison & Austin Terminal",
+      "stopId": "us-il-CTA_386",
+      "importance": 0.000011895124771399423,
+      "lat": 41.88032,
+      "lon": -87.77405,
+      "level": 0,
+      "tz": "America/Chicago",
+      "departure": "2026-10-16T01:34:00Z",
+      "scheduledDeparture": "2026-10-16T01:34:00Z",
+      "stopCode": "386",
+      "description": "Madison & Austin Terminal, Southbound, Bus Terminal",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "tripTo": {
+      "name": "Washington & Wabash",
+      "stopId": "us-il-CTA_449",
+      "importance": 0.00003608705083024688,
+      "lat": 41.88316699999999,
+      "lon": -87.62596999999998,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T02:21:00Z",
+      "scheduledArrival": "2026-10-16T02:21:00Z",
+      "stopCode": "449",
+      "description": "Washington & Wabash, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "pickupType": "NORMAL",
+      "dropoffType": "NORMAL",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "routeId": "us-il-CTA_20",
+     "routeUrl": "http://www.transitchicago.com/bus/20/",
+     "directionId": "1",
+     "routeColor": "414145",
+     "routeTextColor": "ffffff",
+     "routeType": 3,
+     "agencyName": "Chicago Transit Authority",
+     "agencyUrl": "http://transitchicago.com",
+     "agencyFareUrl": "https://www.transitchicago.com/fares/",
+     "agencyId": "50066",
+     "tripId": "20261015_20:34_us-il-CTA_6820001574020",
+     "routeShortName": "20",
+     "routeLongName": "Madison",
+     "tripShortName": "",
+     "displayName": "20",
+     "cancelled": false,
+     "source": "us-il_CTA.gtfs.zip/stop_times.txt:4225315:4225378",
+     "intermediateStops": [
+      {
+       "name": "Madison & Springfield",
+       "stopId": "us-il-CTA_18047",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88071,
+       "lon": -87.72286999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:46:00Z",
+       "departure": "2026-10-16T01:46:00Z",
+       "scheduledArrival": "2026-10-16T01:46:00Z",
+       "scheduledDeparture": "2026-10-16T01:46:00Z",
+       "stopCode": "18047",
+       "description": "Madison & Springfield, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Hamlin",
+       "stopId": "us-il-CTA_17841",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880753,
+       "lon": -87.72046999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:47:00Z",
+       "departure": "2026-10-16T01:47:00Z",
+       "scheduledArrival": "2026-10-16T01:47:00Z",
+       "scheduledDeparture": "2026-10-16T01:47:00Z",
+       "stopCode": "17841",
+       "description": "Madison & Hamlin, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & St. Louis",
+       "stopId": "us-il-CTA_413",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88081999999999,
+       "lon": -87.71383,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:49:00Z",
+       "departure": "2026-10-16T01:49:00Z",
+       "scheduledArrival": "2026-10-16T01:49:00Z",
+       "scheduledDeparture": "2026-10-16T01:49:00Z",
+       "stopCode": "413",
+       "description": "Madison & St. Louis, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Homan",
+       "stopId": "us-il-CTA_14764",
+       "importance": 0.00005198153667151928,
+       "lat": 41.88084799999999,
+       "lon": -87.71074,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:49:00Z",
+       "departure": "2026-10-16T01:49:00Z",
+       "scheduledArrival": "2026-10-16T01:49:00Z",
+       "scheduledDeparture": "2026-10-16T01:49:00Z",
+       "stopCode": "14764",
+       "description": "Madison & Homan, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Spaulding",
+       "stopId": "us-il-CTA_415",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88089399999999,
+       "lon": -87.708725,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:50:00Z",
+       "departure": "2026-10-16T01:50:00Z",
+       "scheduledArrival": "2026-10-16T01:50:00Z",
+       "scheduledDeparture": "2026-10-16T01:50:00Z",
+       "stopCode": "415",
+       "description": "Madison & Spaulding, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Kedzie",
+       "stopId": "us-il-CTA_416",
+       "importance": 0.000039533926610602066,
+       "lat": 41.88091,
+       "lon": -87.70634,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:50:00Z",
+       "departure": "2026-10-16T01:50:00Z",
+       "scheduledArrival": "2026-10-16T01:50:00Z",
+       "scheduledDeparture": "2026-10-16T01:50:00Z",
+       "stopCode": "416",
+       "description": "Madison & Kedzie, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Albany",
+       "stopId": "us-il-CTA_417",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880959999999995,
+       "lon": -87.703156,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:51:00Z",
+       "departure": "2026-10-16T01:51:00Z",
+       "scheduledArrival": "2026-10-16T01:51:00Z",
+       "scheduledDeparture": "2026-10-16T01:51:00Z",
+       "stopCode": "417",
+       "description": "Madison & Albany, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Sacramento",
+       "stopId": "us-il-CTA_15185",
+       "importance": 0.000022274900402408093,
+       "lat": 41.880962,
+       "lon": -87.70089,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:52:00Z",
+       "departure": "2026-10-16T01:52:00Z",
+       "scheduledArrival": "2026-10-16T01:52:00Z",
+       "scheduledDeparture": "2026-10-16T01:52:00Z",
+       "stopCode": "15185",
+       "description": "Madison & Sacramento, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Francisco",
+       "stopId": "us-il-CTA_16110",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881009999999996,
+       "lon": -87.69856999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:52:00Z",
+       "departure": "2026-10-16T01:52:00Z",
+       "scheduledArrival": "2026-10-16T01:52:00Z",
+       "scheduledDeparture": "2026-10-16T01:52:00Z",
+       "stopCode": "16110",
+       "description": "Madison & Francisco, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & California",
+       "stopId": "us-il-CTA_420",
+       "importance": 0.00003931641185772605,
+       "lat": 41.881015999999995,
+       "lon": -87.696014,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:53:00Z",
+       "departure": "2026-10-16T01:53:00Z",
+       "scheduledArrival": "2026-10-16T01:53:00Z",
+       "scheduledDeparture": "2026-10-16T01:53:00Z",
+       "stopCode": "420",
+       "description": "Madison & California, Eastbound, Southeast Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Washtenaw",
+       "stopId": "us-il-CTA_421",
+       "importance": 0.000022274900402408093,
+       "lat": 41.88103999999999,
+       "lon": -87.69405,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:53:00Z",
+       "departure": "2026-10-16T01:53:00Z",
+       "scheduledArrival": "2026-10-16T01:53:00Z",
+       "scheduledDeparture": "2026-10-16T01:53:00Z",
+       "stopCode": "421",
+       "description": "Madison & Washtenaw, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Talman",
+       "stopId": "us-il-CTA_16088",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881041999999994,
+       "lon": -87.69229999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:54:00Z",
+       "departure": "2026-10-16T01:54:00Z",
+       "scheduledArrival": "2026-10-16T01:54:00Z",
+       "scheduledDeparture": "2026-10-16T01:54:00Z",
+       "stopCode": "16088",
+       "description": "Madison & Talman, Eastbound, Southside of the Street",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      },
+      {
+       "name": "Madison & Campbell",
+       "stopId": "us-il-CTA_423",
+       "importance": 0.000022274900402408093,
+       "lat": 41.881069999999994,
+       "lon": -87.68897999999999,
+       "level": 0,
+       "tz": "America/Chicago",
+       "arrival": "2026-10-16T01:55:00Z",
+       "departure": "2026-10-16T01:55:00Z",
+       "scheduledArrival": "2026-10-16T01:55:00Z",
+       "scheduledDeparture": "2026-10-16T01:55:00Z",
+       "stopCode": "423",
+       "description": "Madison & Campbell, Eastbound, Southwest Corner",
+       "vertexType": "TRANSIT",
+       "pickupType": "NORMAL",
+       "dropoffType": "NORMAL",
+       "cancelled": false,
+       "modes": [
+        "BUS"
+       ]
+      }
+     ],
+     "legGeometry": {
+      "points": "k|{x}Wvbrfhs@rSnoBwt@ohCoAw|A?gzAoA_yA?gzAoAg_B?ovAg@w|AcBw|AcBgzA?_yA{@gzAoAg_B{@ovA?w|AoAw|AwBgzAg@_yA?w|AoAwcAoAsyA{@syAoAw|A{@w|AcBovAcB{_B{@syA{@syAoAsyAoAw|AoAw|Ag@ovAcB{_BcBsyA{@syAoA{_B_DovAcBw|Ag@w|A?klBoFc_C_IoaDwB_uC?_nD?gtD_DwgDwB__D?opDgEohCnK_uC?g{C?gEgEwQ?o}@?gw@?wQ?ooB?ooB?_|B?_|B?wuBvQw|AgEw|A?_|BgEw|Af^nd@g^od@?wnC?wuB?wcA?wj@?_uC?oKoAwnCwBwnCgEg^fEwuB?oK_S_cBoFovA{EgiBoFkeCkCc_CwBohCgEw}C?wiCkCsoA?s`A_DwxC?w}CjHo~BfEciCbGskC?giBkC_jAwB_cBf@gbC~CgbCz@gbCnAgbC~CohCbBgbCf@wdCnA_fC?ooBoA_rBg@gsBcBwuB?ooBcB_rB{@gsBoAwuB?wuB?g{C?ohC?wuBnFg^?ohCoFklBcG{jDgEwuBkCgbC_DohC?wuBkCohC?w_C?o~B?wuBjCg{C~Cg{CjCwuBkCwkBjC_I?_uC?wuB?wuBkHohCkM_uC?wgD?wuB~Hg{CjCwnCkCgbC_Igm@jMw_CkCwuB_I{jD?k~C?_dD?wxC?{qC?ciC?w}C?_|B?gpA?gbC{JklBkCc_C?ohC?_uC?wnC?gqC?wxC?_uC?_uC?_uCoF_|BwG_|BoF_|B_I_|B~HgxG?ooB?gbC_Ig^?orC?gxBkC_|B?_uC?wnC?gqC?ciC?klB?_q@oFgbC{@_rBgEwxCwQg^?ohC?gpAwBw|AoAovA?gbC?gbC?_fC?wdC?w|A?_q@oAovAwBovA?wnC?gbC?gbCf|@?g|@??ooBcBsrBcBsrB?ovA{@ovA?syA?ksAoAw|A?ksA{@syA?ovA?ovA?w|A?ovA?ovA?ovA?ovAgEw|A?w|AwB_yAbj@vG",
+      "precision": 7,
+      "length": 227
+     },
+     "bikesAllowed": false,
+     "wheelchairAccessible": "ACCESSIBLE",
+     "reservation": "NONE",
+     "alternatives": []
+    },
+    {
+     "mode": "WALK",
+     "from": {
+      "name": "Madison & Western",
+      "stopId": "us-il-CTA_15364",
+      "importance": 0.000043785603338619694,
+      "lat": 41.88110699999999,
+      "lon": -87.68607999999999,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:56:00Z",
+      "departure": "2026-10-16T01:56:00Z",
+      "scheduledArrival": "2026-10-16T01:56:00Z",
+      "scheduledDeparture": "2026-10-16T01:56:00Z",
+      "stopCode": "15364",
+      "description": "Madison & Western, Eastbound, Southeast Corner",
+      "vertexType": "TRANSIT",
+      "cancelled": false,
+      "modes": [
+       "BUS"
+      ]
+     },
+     "to": {
+      "name": "END",
+      "lat": 41.8819,
+      "lon": -87.6868,
+      "level": 0,
+      "tz": "America/Chicago",
+      "arrival": "2026-10-16T01:59:00Z",
+      "scheduledArrival": "2026-10-16T01:59:00Z",
+      "vertexType": "NORMAL"
+     },
+     "duration": 180,
+     "startTime": "2026-10-16T01:56:00Z",
+     "endTime": "2026-10-16T01:59:00Z",
+     "scheduledStartTime": "2026-10-16T01:56:00Z",
+     "scheduledEndTime": "2026-10-16T01:59:00Z",
+     "realTime": false,
+     "scheduled": false,
+     "distance": 175,
+     "legGeometry": {
+      "points": "o|dy}Wpvings@|@fxB??Lt`B??XpzA??DbQ??yFH??gl@E??aw@I??}tFrF??oeFzF??j@bkB",
+      "precision": 7,
+      "length": 20
+     },
+     "steps": [
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 18,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "toOsmNode": 9915927397,
+       "polyline": {
+        "points": "o|dy}Wpvings@|@fxB",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 13,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946267,
+       "fromOsmNode": 9915927397,
+       "toOsmNode": 9915927403,
+       "polyline": {
+        "points": "qzdy}Wxomngs@Lt`B",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 12,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946267,
+       "fromOsmNode": 9915927403,
+       "toOsmNode": 13530372597,
+       "polyline": {
+        "points": "czdy}Wnqpngs@XpzA",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 2,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946382,
+       "fromOsmNode": 13530372597,
+       "toOsmNode": 13530372598,
+       "polyline": {
+        "points": "iydy}W`msngs@DbQ",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 1,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1081946263,
+       "fromOsmNode": 13530372598,
+       "toOsmNode": 9915927393,
+       "polyline": {
+        "points": "cydy}Wd_tngs@yFH",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 8,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413556,
+       "fromOsmNode": 9915927393,
+       "toOsmNode": 9920034972,
+       "polyline": {
+        "points": "}`ey}Wn_tngs@gl@E",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 10,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413556,
+       "fromOsmNode": 9920034972,
+       "toOsmNode": 9920034970,
+       "polyline": {
+        "points": "enfy}Wh_tngs@aw@I",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 44,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413557,
+       "fromOsmNode": 9920034970,
+       "toOsmNode": 9920034977,
+       "polyline": {
+        "points": "gfhy}W~~sngs@}tFrF",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 41,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "osmWay": 1082413557,
+       "fromOsmNode": 9920034977,
+       "toOsmNode": 13530372592,
+       "polyline": {
+        "points": "e|oy}Wrftngs@oeFzF",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      },
+      {
+       "relativeDirection": "CONTINUE",
+       "distance": 26,
+       "fromLevel": 0,
+       "toLevel": 0,
+       "fromOsmNode": 13530372592,
+       "polyline": {
+        "points": "ubwy}Wnntngs@j@bkB",
+        "precision": 7,
+        "length": 2
+       },
+       "streetName": "",
+       "exit": "",
+       "stayOn": false,
+       "area": false,
+       "toll": false,
+       "elevationUp": 0,
+       "elevationDown": 0
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "previousPageCursor": "EARLIER|1792113600",
+ "nextPageCursor": "LATER|1792114920"
+}
