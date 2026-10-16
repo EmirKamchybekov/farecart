@@ -11,6 +11,8 @@ final class AppEnvironment {
     let geocoder: any Geocoding
     let location: LocationService
     let fareStore: FareStore
+    /// Transit trip planner (Transitous). Previews use canned itineraries.
+    let router: any TransitRouting
     /// Set when Info.plist is missing SUPABASE_* values; the UI shows a friendly message.
     let configurationError: String?
 
@@ -19,6 +21,7 @@ final class AppEnvironment {
         data: any FoodDataProviding,
         geocoder: any Geocoding,
         location: LocationService = LocationService(),
+        router: any TransitRouting = TransitRouter(),
         configurationError: String? = nil
     ) {
         self.config = config
@@ -26,6 +29,7 @@ final class AppEnvironment {
         self.geocoder = geocoder
         self.location = location
         self.fareStore = FareStore(data: data)
+        self.router = router
         self.configurationError = configurationError
     }
 
@@ -56,8 +60,36 @@ final class AppEnvironment {
             config: nil,
             data: MockDataProvider(places: places, failure: failure),
             geocoder: PreviewGeocoder(),
-            location: LocationService(previewPoint: .westSideChicago)
+            location: LocationService(previewPoint: .westSideChicago),
+            router: PreviewTransitRouter()
         )
+    }
+}
+
+/// One canned bus trip (Madison & Pulaski → Madison & Western) so previews never touch Transitous.
+struct PreviewTransitRouter: TransitRouting {
+    func plan(from origin: GeoPoint, to destination: GeoPoint, departAt: Date?, maxItineraries: Int) async throws -> [TransitItinerary] {
+        let start = Date()
+        func at(_ minutes: Int) -> Date { start.addingTimeInterval(TimeInterval(minutes * 60)) }
+        let board = GeoPoint(latitude: 41.88062, longitude: -87.72583)
+        let alight = GeoPoint(latitude: 41.88093, longitude: -87.68650)
+        let legs = [
+            TransitLeg(id: "p-0", mode: .walk, from: TransitStop(name: "START", coordinate: origin, time: at(0)),
+                       to: TransitStop(name: "Madison & Pulaski", coordinate: board, time: at(4)), duration: 240,
+                       polyline: [origin, board]),
+            TransitLeg(id: "p-1", mode: .bus, routeShortName: "20", routeLongName: "Madison", headsign: "Michigan",
+                       agencyName: "Chicago Transit Authority",
+                       from: TransitStop(name: "Madison & Pulaski", coordinate: board, time: at(4)),
+                       to: TransitStop(name: "Madison & Western", coordinate: alight, time: at(15)), duration: 660,
+                       routeColorHex: "414145", polyline: [board, alight], intermediateStopCount: 13),
+            TransitLeg(id: "p-2", mode: .walk, from: TransitStop(name: "Madison & Western", coordinate: alight, time: at(15)),
+                       to: TransitStop(name: "END", coordinate: destination, time: at(18)), duration: 180,
+                       polyline: [alight, destination]),
+        ]
+        return [
+            TransitItinerary(id: "preview-0", duration: 1080, startTime: at(0), endTime: at(18), transfers: 0, legs: legs),
+            TransitItinerary(id: "preview-1", duration: 1080, startTime: at(9), endTime: at(27), transfers: 0, legs: legs),
+        ]
     }
 }
 

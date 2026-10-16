@@ -17,6 +17,7 @@ let package = Package(
         .testTarget(
             name: "FarecartKitTests",
             dependencies: ["FarecartKit"],
+            resources: [.copy("Fixtures")],
             swiftSettings: [.swiftLanguageMode(.v6)]
         ),
     ]

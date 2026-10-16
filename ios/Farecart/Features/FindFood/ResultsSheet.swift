@@ -22,7 +22,7 @@ struct ResultsSheet: View {
             .navigationTitle(headerTitle)
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(item: $model.selectedPlace) { place in
-                PlaceDetailView(place: place)
+                PlaceDetailView(place: place, origin: model.origin, originLabel: model.originLabel)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

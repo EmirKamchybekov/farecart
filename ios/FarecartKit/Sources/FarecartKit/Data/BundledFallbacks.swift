@@ -3,6 +3,9 @@ import Foundation
 /// Last-known copies of the `fares` and `programs` rows, used only when the network is
 /// unavailable. They mirror `supabase/migrations/0001_init.sql` and the UI labels them as
 /// "last known" so nobody mistakes them for live prices. The live tables are the source of truth.
+///
+/// Transfer rules (migration `0003_fare_rules.sql`): a fare covers up to 2 further boardings
+/// within 120 minutes at `transferCents` (0) each. Every row below uses those defaults.
 public enum BundledFallbacks {
     public static let effectiveOn = PostgresDate.parse("2026-10-01")
 

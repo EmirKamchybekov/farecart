@@ -17,7 +17,8 @@ ios/
 │   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore
 │   ├── Features/
 │   │   ├── FindFood/         Map + glass filter chips + results sheet + search tab
-│   │   ├── PlaceDetail/      Hero card, facts, CTA / Google Maps buttons, fare line
+│   │   ├── PlaceDetail/      Hero card, facts, "Directions by CTA" + Apple / Google Maps buttons, fare line
+│   │   ├── Route/            In-app CTA directions: RouteModel + RouteView (summary, trip cost, map, steps)
 │   │   ├── Discounts/        Two yes/no questions → program card
 │   │   └── About/            Credits, privacy, report a problem
 │   ├── Shared/               Badges, pins, banners, type colors
@@ -80,6 +81,27 @@ cd ios/FarecartKit
 
 `test.sh` adds `-plugin-path` for the Swift Testing macros, which the Command Line Tools install
 outside the default search path. In Xcode, ⌘U on the Farecart scheme runs the same tests.
+
+## In-app transit routing
+
+"Directions by CTA" on a place opens `RouteView`: `TransitRouter` asks Transitous
+(`GET /api/v1/plan`, see the root README) for up to three itineraries from the Find Food origin to the
+place, and `TripFareCalculator` prices each one from the `fares` rows (`price_cents`, `transfer_cents`,
+`transfer_window_min`, `max_transfers`) for the rider's best program. Non-CTA legs (Pace, Metra) are
+flagged "fare not included". If Transitous fails or finds nothing the screen falls back to the
+"Open in Apple Maps" / "Open in Google Maps" buttons.
+
+Debug builds accept a launch argument that opens the route screen directly
+(Madison & Pulaski → Pete's Fresh Market, Madison & Western), handy for screenshots:
+
+```sh
+xcrun simctl launch <udid> org.farecart.app -farecart-open-route            # full fare
+xcrun simctl launch <udid> org.farecart.app -farecart-open-route -answers.householdSNAP 1   # Access price
+xcrun simctl launch <udid> org.farecart.app -farecart-open-route -farecart-scroll-steps     # step list
+```
+
+`Tests/FarecartKitTests/Fixtures/transitous_plan.json` is a real `/plan` response captured on
+2026-10-15 and drives the decoding tests.
 
 ## Localization
 

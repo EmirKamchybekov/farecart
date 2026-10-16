@@ -2,9 +2,13 @@ import SwiftUI
 import UIKit
 import FarecartKit
 
-/// Tab 1 → row → this. Hero card, facts, two big direction buttons, then the fare line.
+/// Tab 1 → row → this. Hero card, facts, the in-app CTA directions button (plus Apple / Google
+/// Maps as backups), then the fare line.
 struct PlaceDetailView: View {
     let place: Place
+    /// Where the Find Food tab is searching from; the in-app route starts here.
+    var origin: GeoPoint? = nil
+    var originLabel: String = ""
     @Environment(AppEnvironment.self) private var environment
     @Environment(\.openURL) private var openURL
 
@@ -116,20 +120,36 @@ struct PlaceDetailView: View {
         }
     }
 
+    private var routeRequest: RouteRequest {
+        RouteRequest(
+            origin: origin ?? .westSideChicago,
+            originLabel: originLabel.isEmpty ? String(localized: "West Side, Chicago") : originLabel,
+            place: place
+        )
+    }
+
     private var directions: some View {
         VStack(spacing: 12) {
-            Button {
-                Directions.openAppleMapsTransit(to: place)
+            NavigationLink {
+                RouteView(request: routeRequest)
             } label: {
                 BigButtonLabel(title: "Directions by CTA", systemImage: "bus.fill")
             }
             .buttonStyle(.glassProminent)
+            .accessibilityHint("Shows bus and train directions with your fare")
+
+            Button {
+                Directions.openAppleMapsTransit(to: place)
+            } label: {
+                BigButtonLabel(title: "Open in Apple Maps", systemImage: "map.fill")
+            }
+            .buttonStyle(.glass)
             .accessibilityHint("Opens Apple Maps with bus and train directions")
 
             Button {
                 Directions.openGoogleMapsTransit(to: place)
             } label: {
-                BigButtonLabel(title: "Open in Google Maps", systemImage: "map.fill")
+                BigButtonLabel(title: "Open in Google Maps", systemImage: "map")
             }
             .buttonStyle(.glass)
             .accessibilityHint("Opens Google Maps with transit directions")

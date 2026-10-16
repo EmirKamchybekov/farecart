@@ -22,6 +22,46 @@
         }
       }
     },
+    "%@ full fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ tarifa completa"
+          }
+        }
+      }
+    },
+    "%@ train": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tren %@"
+          }
+        }
+      }
+    },
+    "%@ train toward %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tren %1$@ hacia %2$@"
+          }
+        }
+      }
+    },
+    "%@ with your %@ discount (instead of %@)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ con tu descuento %2$@ (en vez de %3$@)"
+          }
+        }
+      }
+    },
     "%@, %@": {
       "localizations": {
         "es": {
@@ -62,6 +102,56 @@
         }
       }
     },
+    "%lld buses": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld bus"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld buses"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld autobús"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld autobuses"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
+          }
+        }
+      }
+    },
     "%lld places within %lld mi": {
       "localizations": {
         "en": {
@@ -95,6 +185,86 @@
                 "stringUnit": {
                   "state": "translated",
                   "value": "%1$lld lugares en un radio de %2$lld mi"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld stops": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld stop"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld stops"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld parada"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld paradas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld trains": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld train"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld trains"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld tren"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld trenes"
                 }
               }
             }
@@ -212,6 +382,16 @@
         }
       }
     },
+    "Arrive %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llegada %@"
+          }
+        }
+      }
+    },
     "Based on your answers you pay the regular CTA fare.": {
       "localizations": {
         "es": {
@@ -222,12 +402,42 @@
         }
       }
     },
+    "Board at %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sube en %@"
+          }
+        }
+      }
+    },
     "Bus": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Autobús"
+          }
+        }
+      }
+    },
+    "Bus %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autobús %@"
+          }
+        }
+      }
+    },
+    "Bus %@ toward %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autobús %1$@ hacia %2$@"
           }
         }
       }
@@ -412,6 +622,16 @@
         }
       }
     },
+    "Fare data is missing for part of this trip": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltan datos de tarifa para parte de este viaje"
+          }
+        }
+      }
+    },
     "Fare prices are not available right now.": {
       "localizations": {
         "es": {
@@ -438,6 +658,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Farecart ayuda a la gente del West Side de Chicago a encontrar supermercados, despensas de alimentos y entregas gratuitas cercanas, y muestra la tarifa de la CTA más barata a la que tienen derecho."
+          }
+        }
+      }
+    },
+    "Fastest · %lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más rápida · %lld min"
+          }
+        }
+      }
+    },
+    "Fewest transfers · %lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menos transbordos · %lld min"
           }
         }
       }
@@ -472,6 +712,16 @@
         }
       }
     },
+    "Finding CTA routes…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando rutas de la CTA…"
+          }
+        }
+      }
+    },
     "Finding food near you…": {
       "localizations": {
         "es": {
@@ -498,6 +748,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lugares de comida"
+          }
+        }
+      }
+    },
+    "Free. It's all walking.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gratis. Todo es a pie."
+          }
+        }
+      }
+    },
+    "From %@ to %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De %1$@ a %2$@"
           }
         }
       }
@@ -612,12 +882,32 @@
         }
       }
     },
+    "Includes a non-CTA leg; fare not included": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incluye un tramo que no es de la CTA; tarifa no incluida"
+          }
+        }
+      }
+    },
     "Languages": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Idiomas"
+          }
+        }
+      }
+    },
+    "Leaving now from %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saliendo ahora desde %@"
           }
         }
       }
@@ -648,6 +938,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Buscando la dirección…"
+          }
+        }
+      }
+    },
+    "Map of the route from %@ to %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mapa de la ruta de %1$@ a %2$@"
           }
         }
       }
@@ -712,12 +1012,32 @@
         }
       }
     },
+    "No CTA route found for this trip right now.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró una ruta de la CTA para este viaje ahora mismo."
+          }
+        }
+      }
+    },
     "No match for that address. Try adding the street number or ZIP code.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "No hay resultados para esa dirección. Prueba agregando el número de la calle o el código postal."
+          }
+        }
+      }
+    },
+    "No problem. Open the trip in a maps app instead; it shows the same buses and trains.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No pasa nada. Abre el viaje en una app de mapas; muestra los mismos autobuses y trenes."
           }
         }
       }
@@ -782,6 +1102,16 @@
         }
       }
     },
+    "Open in Apple Maps": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir en Apple Maps"
+          }
+        }
+      }
+    },
     "Open in Google Maps": {
       "localizations": {
         "es": {
@@ -842,6 +1172,16 @@
         }
       }
     },
+    "Option %lld: leaves %@, %lld minutes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opción %1$lld: sale a las %2$@, %3$lld minutos"
+          }
+        }
+      }
+    },
     "Pantry": {
       "localizations": {
         "es": {
@@ -898,6 +1238,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reintentar"
+          }
+        }
+      }
+    },
+    "Ride": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viaje"
+          }
+        }
+      }
+    },
+    "Ride %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toma %@"
+          }
+        }
+      }
+    },
+    "Route options": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opciones de ruta"
+          }
+        }
+      }
+    },
+    "Run by %@; fare not included": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Operado por %@; tarifa no incluida"
           }
         }
       }
@@ -1012,6 +1392,16 @@
         }
       }
     },
+    "Shows bus and train directions with your fare": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muestra indicaciones de autobús y tren con tu tarifa"
+          }
+        }
+      }
+    },
     "Sign up": {
       "localizations": {
         "es": {
@@ -1028,6 +1418,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Fuente"
+          }
+        }
+      }
+    },
+    "Steps": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasos"
           }
         }
       }
@@ -1072,12 +1472,32 @@
         }
       }
     },
+    "Transfers are included in that price.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los transbordos están incluidos en ese precio."
+          }
+        }
+      }
+    },
     "Try a wider search, a different filter, or another address.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Prueba una búsqueda más amplia, otro filtro u otra dirección."
+          }
+        }
+      }
+    },
+    "Try again": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intentar de nuevo"
           }
         }
       }
@@ -1118,6 +1538,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Versión"
+          }
+        }
+      }
+    },
+    "Walk %lld min to %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camina %1$lld min hasta %2$@"
+          }
+        }
+      }
+    },
+    "We couldn't reach the trip planner.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No pudimos conectar con el planificador de viajes."
           }
         }
       }
@@ -1222,12 +1662,42 @@
         }
       }
     },
+    "get off at %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bájate en %@"
+          }
+        }
+      }
+    },
+    "leaves %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sale %@"
+          }
+        }
+      }
+    },
     "reduced fare": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "tarifa reducida"
+          }
+        }
+      }
+    },
+    "walk only": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "solo a pie"
           }
         }
       }
