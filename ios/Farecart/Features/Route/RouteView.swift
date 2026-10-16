@@ -28,9 +28,7 @@ struct RouteView: View {
         .navigationTitle("Directions by CTA")
         .navigationBarTitleDisplayMode(.inline)
         .background(Color(.systemGroupedBackground))
-        .safeAreaInset(edge: .bottom) {
-            MapsActionBar(place: request.place)
-        }
+        .floatingBottomBar { MapsActionBar(place: request.place) }
     }
 }
 
@@ -355,37 +353,35 @@ struct TripCostCard: View {
     }
 }
 
-/// Sticky bottom bar on the Directions tab: Apple Maps as the primary action, Google Maps beside it.
+/// Floating actions on the Directions tab: Apple Maps as the primary capsule, Google Maps as a glass
+/// circle beside it. Place it inside a `GlassEffectContainer` (see `floatingBottomBar`).
 struct MapsActionBar: View {
     let place: Place
 
     var body: some View {
-        GlassEffectContainer(spacing: Spacing.s) {
-            HStack(spacing: Spacing.s) {
-                Button {
-                    Directions.openAppleMapsTransit(to: place)
-                } label: {
-                    BigButtonLabel(title: "Open in Apple Maps", systemImage: "map.fill")
-                }
-                .buttonStyle(.glassProminent)
-                .accessibilityHint("Opens Apple Maps with bus and train directions")
-
-                Button {
-                    Directions.openGoogleMapsTransit(to: place)
-                } label: {
-                    Image(systemName: "globe.americas.fill")
-                        .font(.title3.weight(.semibold))
-                        .frame(width: 28, height: 32)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 6)
-                }
-                .buttonStyle(.glass)
-                .accessibilityLabel("Open in Google Maps")
-                .accessibilityHint("Opens Google Maps with transit directions")
+        HStack(spacing: Spacing.s) {
+            Button {
+                Directions.openAppleMapsTransit(to: place)
+            } label: {
+                BigButtonLabel(title: "Open in Apple Maps", systemImage: "map.fill")
             }
+            .buttonStyle(.glassProminent)
+            .buttonBorderShape(.capsule)
+            .accessibilityHint("Opens Apple Maps with bus and train directions")
+
+            Button {
+                Directions.openGoogleMapsTransit(to: place)
+            } label: {
+                Image(systemName: "globe.americas.fill")
+                    .font(.title3.weight(.semibold))
+                    .frame(width: 32, height: 32)
+                    .padding(.vertical, 8)
+            }
+            .buttonStyle(.glass)
+            .buttonBorderShape(.circle)
+            .accessibilityLabel("Open in Google Maps")
+            .accessibilityHint("Opens Google Maps with transit directions")
         }
-        .padding(.horizontal, Spacing.m)
-        .padding(.vertical, Spacing.xs)
     }
 }
 

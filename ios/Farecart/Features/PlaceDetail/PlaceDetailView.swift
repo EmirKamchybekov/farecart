@@ -26,7 +26,7 @@ enum PlaceDetailTab: String, CaseIterable, Identifiable {
 
 /// Find Food → row → this. A compact hero, then **Info** (address, hours, what to bring) and
 /// **Directions** (the in-app CTA route with its cost) behind a segmented picker. Each tab has one
-/// sticky primary action at the bottom.
+/// primary action floating at the bottom.
 struct PlaceDetailView: View {
     let place: Place
     /// Where the Find Food tab is searching from; the in-app route starts here.
@@ -57,7 +57,7 @@ struct PlaceDetailView: View {
             }
             #if DEBUG
             .onAppear {
-                // `-farecart-scroll-bottom` with `-farecart-open-place`: screenshot the footer above the bar.
+                // `-farecart-scroll-bottom` with `-farecart-open-place`: screenshot the footer clear of the floating buttons.
                 if ProcessInfo.processInfo.arguments.contains("-farecart-scroll-bottom") {
                     Task { @MainActor in
                         try? await Task.sleep(for: .seconds(2))
@@ -72,13 +72,9 @@ struct PlaceDetailView: View {
         .navigationTitle(Text(verbatim: ""))
         .navigationBarTitleDisplayMode(.inline)
         .toolbarVisibility(.hidden, for: .tabBar)
-        // The bar is a safe-area inset, so the scroll content is inset by exactly its height and the
-        // footer's last lines are reachable. Content still scrolls *under* the inset on iOS 26, so
-        // the bar carries a toolbar-style backdrop that also covers the home-indicator area.
-        .safeAreaInset(edge: .bottom, spacing: 0) {
-            bottomBar
-                .background(.bar, ignoresSafeAreaEdges: .bottom)
-        }
+        // The actions float over the content as Liquid Glass controls; `floatingBottomBar` adds the
+        // bottom content margin that keeps the footer readable when scrolled to the end.
+        .floatingBottomBar { bottomBar }
         .onAppear { tab = initialTab }
     }
 
@@ -157,9 +153,8 @@ struct PlaceDetailView: View {
                 BigButtonLabel(title: "Directions by CTA", systemImage: "bus.fill")
             }
             .buttonStyle(.glassProminent)
+            .buttonBorderShape(.capsule)
             .accessibilityHint("Shows bus and train directions with your fare")
-            .padding(.horizontal, Spacing.m)
-            .padding(.vertical, Spacing.xs)
         case .directions:
             MapsActionBar(place: place)
         }

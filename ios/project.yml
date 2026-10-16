@@ -58,8 +58,11 @@ targets:
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
         CFBundleLocalizations: [en, es, pl, zh-Hans, ar, fil, ur, uk, ko]
+        # Static launch screen: brand green + the 120 pt logo centred, the exact first frame of
+        # SplashView (Features/Splash) so there is no flash when SwiftUI takes over.
         UILaunchScreen:
-          UIColorName: AccentColor
+          UIColorName: SplashBackground
+          UIImageName: LaunchLogo
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UISupportedInterfaceOrientations~ipad:

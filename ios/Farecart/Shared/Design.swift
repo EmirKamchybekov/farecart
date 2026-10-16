@@ -67,3 +67,32 @@ struct Pill: View {
         .foregroundStyle(tint)
     }
 }
+
+/// Liquid Glass controls that hover above the bottom safe area with nothing behind them: no bar, no
+/// divider. The scroll content underneath gets a bottom margin so its last rows (and a footer) can
+/// scroll clear of the buttons.
+struct FloatingBottomBar<Bar: View>: ViewModifier {
+    @ViewBuilder let bar: () -> Bar
+
+    /// 16 pt lift + the tallest control (a `BigButtonLabel` in a `.glassProminent` capsule) + breathing room.
+    static var contentInset: CGFloat { Spacing.m + 60 + Spacing.m }
+
+    func body(content: Content) -> some View {
+        content
+            .contentMargins(.bottom, Self.contentInset, for: .scrollContent)
+            .overlay(alignment: .bottom) {
+                GlassEffectContainer(spacing: Spacing.s) {
+                    bar()
+                }
+                .padding(.horizontal, Spacing.m)
+                .padding(.bottom, Spacing.m)
+            }
+    }
+}
+
+extension View {
+    /// Floats `bar` 16 pt above the bottom safe area, over this (scrolling) content.
+    func floatingBottomBar<Bar: View>(@ViewBuilder _ bar: @escaping () -> Bar) -> some View {
+        modifier(FloatingBottomBar(bar: bar))
+    }
+}

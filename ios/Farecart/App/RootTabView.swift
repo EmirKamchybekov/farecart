@@ -69,6 +69,8 @@ struct RootTabView: View {
 enum DebugLaunch {
     static var initialTab: AppTab { .find }
     static var onboardingPage: Int { 0 }
+    static var splashHold: Bool { false }
+    static var splashSpeedFactor: Double { 1 }
     static func applyOnboardingOverrides() {}
 }
 #else
@@ -80,6 +82,8 @@ enum DebugLaunch {
 /// - `-farecart-tab discounts|settings` starts on that tab.
 /// - `-farecart-reset-onboarding -farecart-onboarding-page 2` opens onboarding on that page (0–3).
 /// - `-farecart-language es -farecart-theme dark` preset (and persist) the Settings values.
+/// - `-farecart-splash-hold` keeps the launch splash on screen at its final frame;
+///   `-farecart-splash-slow` plays the splash at a quarter of its speed.
 enum DebugLaunch {
     private static var arguments: [String] { ProcessInfo.processInfo.arguments }
 
@@ -96,6 +100,12 @@ enum DebugLaunch {
         guard let index = arguments.firstIndex(of: "-farecart-onboarding-page"), index + 1 < arguments.count else { return 0 }
         return min(max(Int(arguments[index + 1]) ?? 0, 0), 3)
     }
+
+    /// `-farecart-splash-hold`: the splash animates in and then stays (screenshots).
+    static var splashHold: Bool { arguments.contains("-farecart-splash-hold") }
+
+    /// Multiplier for every splash duration: 4 with `-farecart-splash-slow`.
+    static var splashSpeedFactor: Double { arguments.contains("-farecart-splash-slow") ? 4 : 1 }
 
     static func applyOnboardingOverrides() {
         if let index = arguments.firstIndex(of: "-farecart-language"), index + 1 < arguments.count {

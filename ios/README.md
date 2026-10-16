@@ -18,6 +18,7 @@ ios/
 │   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore, AccountModel (Sign in with Apple,
 │   │                         Google via hosted OAuth + profile sync), Keychain
 │   ├── Features/
+│   │   ├── Splash/           Animated launch splash (SplashView, ChicagoSkyline), shown once per cold launch
 │   │   ├── Onboarding/       Welcome (language) → location → discount questions → optional sign-in
 │   │   ├── FindFood/         Top search field + suggestions, glass filter chips, map, in-tab results panel
 │   │   ├── PlaceDetail/      Compact hero, then Info (address, hours, what to bring) | Directions tabs
@@ -38,6 +39,14 @@ ios/
 
 ## Screens
 
+- **Splash** (cold launch only): the static launch screen (`UILaunchScreen` in `project.yml`: the
+  `SplashBackground` brand green #32AA59 plus the 120 pt `LaunchLogo` image set, identical in dark mode) is also
+  the first frame of `SplashView`, which then animates for about 1.6 s on top of the root while the main UI
+  loads underneath: a Chicago skyline (`ChicagoSkyline`, one `Shape` in unit coordinates: Willis, Trump,
+  Aon, Two Prudential, Hancock) rises in, a transit line with its stop dot sweeps along its base, the logo
+  springs up 12 pt, the tagline fades in, then the whole thing fades and scales out. With Reduce Motion the
+  final frame is shown still for 0.8 s and cross-fades. Debug launch arguments: `-farecart-splash-hold`
+  freezes the finished frame for screenshots, `-farecart-splash-slow` plays it at quarter speed.
 - **Onboarding** (first launch, `@AppStorage("onboardingDone")`): four full-screen pages with a page indicator
   and Skip: welcome + language list, location permission ("Allow location" shows the real prompt, or "Type an
   address instead"), the two discount questions with the "You could pay $1.10 instead of $2.25 per bus ride"
@@ -49,6 +58,10 @@ ios/
   as you type, geocoder matches drop down over the map. Choosing one re-centers and reloads. Filter chips sit
   under the field; the draggable results panel is unchanged. If location was already allowed (onboarding), the
   first search starts from the phone's location, otherwise from the West Side.
+- **Place detail**: Info and Directions tabs. Each tab's actions ("Directions by CTA"; "Open in Apple Maps" plus
+  the Google Maps globe) float 16 pt above the bottom safe area as Liquid Glass controls (`floatingBottomBar`
+  in `Shared/Design.swift`: a `GlassEffectContainer` overlay plus a matching bottom content margin), with the
+  content scrolling underneath and the footer still readable at the end.
 - **Discounts**: unchanged; the answers are shared with onboarding through `DiscountsKeys`.
 - **Settings**: Account (sign in / name, email, sign out, delete-account note), Language, Appearance
   (System / Light / Dark), Show welcome again, then the former About content (data sources, privacy, help,
@@ -135,6 +148,8 @@ xcrun simctl launch <udid> org.farecart.app -farecart-search "Austin"           
 xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding                 # welcome screens again
 xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding -farecart-onboarding-page 2
 xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-language ar -farecart-theme dark
+xcrun simctl launch <udid> org.farecart.app -farecart-splash-hold                      # splash frozen at its final frame
+xcrun simctl launch <udid> org.farecart.app -farecart-splash-slow                      # splash at quarter speed
 ```
 
 `-farecart-language <code>` (`system`, `en`, `es`, `pl`, `zh-Hans`, `ar`, `fil`, `ur`, `uk`, `ko`) and

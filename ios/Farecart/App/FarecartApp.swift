@@ -21,6 +21,8 @@ struct FarecartApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                // Animated splash over the root on cold launch; the main UI loads beneath it.
+                .launchSplash()
                 .environment(environment)
                 .environment(account)
                 // Language and theme apply instantly: SwiftUI text re-resolves against this locale,

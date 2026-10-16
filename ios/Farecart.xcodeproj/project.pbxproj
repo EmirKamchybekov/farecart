@@ -12,6 +12,7 @@
 		0C17E174A50637C381654099 /* FareStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14289EE1712E9812F0A98A43 /* FareStore.swift */; };
 		15389085527128D6D4EF775F /* FindFoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */; };
 		16BE21A65AD0F05E910B4DDA /* FindFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F832CA8D40606C23134E77 /* FindFoodView.swift */; };
+		17473C6EB5C8DB9E58B34683 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304287804855A287A8715BF /* SplashView.swift */; };
 		1E18E9B208A4F6E05A284D5D /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DC63DF0482329A51401D73 /* AccountModel.swift */; };
 		21D4F87D25033E6102825753 /* FarecartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4940F40340E859D8C1817968 /* FarecartKit */; };
 		2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B745AE72B8089B823213ED3 /* RootTabView.swift */; };
@@ -29,6 +30,7 @@
 		83508D884897264D6E6CB78C /* PlaceIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4271A900220AB28D7096489 /* PlaceIcon.swift */; };
 		87305FE952FB937F96B526C9 /* ResultsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA39EA968ED42FBF6ABA8 /* ResultsPanel.swift */; };
 		8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629BFE11133CFE7F7283205 /* Directions.swift */; };
+		90302075B94458FC84841814 /* ChicagoSkyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A8564534AA4F2FF2EDF88 /* ChicagoSkyline.swift */; };
 		9208DB3D9032DF816CB839AE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C548A51C97D0B077ADD538A4 /* OnboardingView.swift */; };
 		BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E03C01423A0B168F68449B /* AppleGeocoder.swift */; };
 		C16F1F62560A6E0442C3065D /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8766650BCA8B7AE2F8F94 /* RouteModel.swift */; };
@@ -42,6 +44,7 @@
 		0086E2DFA1E816AB5C971BA7 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		0FD44EFB7842BF36AAA25D80 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		14289EE1712E9812F0A98A43 /* FareStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FareStore.swift; sourceTree = "<group>"; };
+		152A8564534AA4F2FF2EDF88 /* ChicagoSkyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChicagoSkyline.swift; sourceTree = "<group>"; };
 		18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTypeStyle.swift; sourceTree = "<group>"; };
 		1FEBA39EA968ED42FBF6ABA8 /* ResultsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPanel.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBadge.swift; sourceTree = "<group>"; };
 		9031FA7B3D27666B0D93A8D7 /* DiscountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsView.swift; sourceTree = "<group>"; };
 		95FF1701E6A32C8C78B93FA3 /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
+		A304287804855A287A8715BF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodModel.swift; sourceTree = "<group>"; };
 		B10342E382FCF91BC5511A73 /* PlaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoView.swift; sourceTree = "<group>"; };
 		C548A51C97D0B077ADD538A4 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -124,6 +128,15 @@
 				B10342E382FCF91BC5511A73 /* PlaceInfoView.swift */,
 			);
 			path = PlaceDetail;
+			sourceTree = "<group>";
+		};
+		577C5785CDDBD478D2F11BD4 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				152A8564534AA4F2FF2EDF88 /* ChicagoSkyline.swift */,
+				A304287804855A287A8715BF /* SplashView.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		59A264C13C7AD983B203248E /* Discounts */ = {
@@ -225,6 +238,7 @@
 				30D3A038943D83B17E0CA09C /* PlaceDetail */,
 				16B94B350CE9E3B603A06751 /* Route */,
 				679E948DCF43CD24318822AB /* Settings */,
+				577C5785CDDBD478D2F11BD4 /* Splash */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -338,6 +352,7 @@
 				4957CA41BC21B6F2F46C42F0 /* AppSettings.swift in Sources */,
 				BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */,
 				C515DC30B6114C92A4405BD4 /* ApplePlaceLookup.swift in Sources */,
+				90302075B94458FC84841814 /* ChicagoSkyline.swift in Sources */,
 				CC9700D38BB1ED275DDD5026 /* Design.swift in Sources */,
 				8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */,
 				7C534C3980A22B0F2B52D609 /* DiscountsView.swift in Sources */,
@@ -357,6 +372,7 @@
 				C16F1F62560A6E0442C3065D /* RouteModel.swift in Sources */,
 				4D4AE999E8300C5CFC856CB6 /* RouteView.swift in Sources */,
 				CC68AE7EAA22B6631B8D3F71 /* SettingsView.swift in Sources */,
+				17473C6EB5C8DB9E58B34683 /* SplashView.swift in Sources */,
 				7E1212D06D38B68CF98682AD /* TypeBadge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
