@@ -13,24 +13,45 @@ ios/
 │   ├── Debug.xcconfig        SUPABASE_URL, SUPABASE_ANON_KEY, API_BASE_URL, REPORT_PROBLEM_EMAIL
 │   └── Release.xcconfig
 ├── Farecart/                 App target (SwiftUI only, no third-party deps)
-│   ├── App/                  FarecartApp, RootTabView (iOS 26 Tab API), AppEnvironment
-│   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore
+│   ├── App/                  FarecartApp (locale / theme at the root), RootView (onboarding gate) + RootTabView,
+│   │                         AppEnvironment, AppSettings (AppLanguage, AppTheme, LanguageBundle)
+│   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore, AccountModel (Sign in with Apple
+│   │                         + profile sync), Keychain
 │   ├── Features/
-│   │   ├── FindFood/         Map + glass filter chips + in-tab results panel + search tab
+│   │   ├── Onboarding/       Welcome (language) → location → discount questions → optional sign-in
+│   │   ├── FindFood/         Top search field + suggestions, glass filter chips, map, in-tab results panel
 │   │   ├── PlaceDetail/      Compact hero, then Info (address, hours, what to bring) | Directions tabs
 │   │   ├── Route/            In-app CTA directions: RouteModel + RouteContent (cost hero, map, steps)
 │   │   ├── Discounts/        Two yes/no questions → program card
-│   │   └── About/            Credits, privacy, report a problem
+│   │   └── Settings/         Account, language, appearance, welcome again, data sources, privacy, help
 │   ├── Shared/               Design tokens (spacing / radii / card), badges, pins, banners, type colors
-│   └── Resources/            Assets.xcassets, Localizable.xcstrings (en + es), PrivacyInfo.xcprivacy
+│   ├── Farecart.entitlements Sign in with Apple
+│   └── Resources/            Assets.xcassets, Localizable.xcstrings (9 languages), PrivacyInfo.xcprivacy
 └── FarecartKit/              Swift package, Foundation only (builds + tests on macOS)
     ├── Sources/FarecartKit/
-    │   ├── Models/           Place, Fare, Program, LocationType, GeoPoint, GeocodeResult
+    │   ├── Models/           Place, Fare, Program, LocationType, GeoPoint, GeocodeResult, AuthSession, Profile
     │   ├── Logic/            Eligibility, FareCalculator, OpeningHours, Distance, DirectionsLinks, AppConfig
-    │   ├── Networking/       SupabaseClient (PostgREST), RemoteGeocoder, HTTPTransport
+    │   ├── Networking/       SupabaseClient (PostgREST + profiles), SupabaseAuthClient (GoTrue), RemoteGeocoder
     │   └── Data/             FoodDataProviding, MockDataProvider, BundledFallbacks
     └── Tests/FarecartKitTests/
 ```
+
+## Screens
+
+- **Onboarding** (first launch, `@AppStorage("onboardingDone")`): four full-screen pages with a page indicator
+  and Skip: welcome + language list, location permission ("Allow location" shows the real prompt, or "Type an
+  address instead"), the two discount questions with the "You could pay $1.10 instead of $2.25 per bus ride"
+  payoff computed from the `fares` rows, and optional Sign in with Apple with "Continue without an account".
+  Settings → "Show welcome again" re-runs it.
+- **Find Food**: a glass search field sits on top of the map. Idle, it shows the current origin ("My location"
+  or the chosen address); tapping it clears the field, shows "Use my location" + neighborhood shortcuts, and
+  as you type, geocoder matches drop down over the map. Choosing one re-centers and reloads. Filter chips sit
+  under the field; the draggable results panel is unchanged. If location was already allowed (onboarding), the
+  first search starts from the phone's location, otherwise from the West Side.
+- **Discounts**: unchanged; the answers are shared with onboarding through `DiscountsKeys`.
+- **Settings**: Account (sign in / name, email, sign out, delete-account note), Language, Appearance
+  (System / Light / Dark), Show welcome again, then the former About content (data sources, privacy, help,
+  version).
 
 ## Open in Xcode 26
 
@@ -45,8 +66,8 @@ ios/
    your team already uses it.
 5. Pick an iPhone simulator running iOS 26 (or a device on iOS 26) and press **Run**.
 
-On first launch the map shows the West Side. Tap the location button (asks for *when in use*
-permission) or the Search tab to type an address.
+On first launch the welcome screens run (see Screens). Afterwards the map starts from your location when
+allowed, otherwise the West Side; use the search field on top of the map to type an address.
 
 ## Configuration
 
@@ -101,14 +122,23 @@ xcrun simctl launch <udid> org.farecart.app -farecart-open-route -farecart-scrol
 ```
 
 The place screen can be opened the same way (first result after "Use my location"; `-far` picks the
-first result over a mile away so the Directions tab has a bus to show; `-farecart-tab discounts` starts
-on the Discounts tab):
+first result over a mile away so the Directions tab has a bus to show; `-farecart-tab discounts|settings`
+starts on that tab). Any `-farecart-…` argument skips onboarding unless it is `-farecart-reset-onboarding`:
 
 ```sh
 xcrun simctl launch <udid> org.farecart.app -farecart-use-location -farecart-open-place
 xcrun simctl launch <udid> org.farecart.app -farecart-use-location -farecart-open-place-far -farecart-open-place-directions
 xcrun simctl launch <udid> org.farecart.app -farecart-tab discounts -answers.householdSNAP 1 -answers.hasAnswered 1
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings
+xcrun simctl launch <udid> org.farecart.app -farecart-search "Austin"                 # search field focused, suggestions showing
+xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding                 # welcome screens again
+xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding -farecart-onboarding-page 2
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-language ar -farecart-theme dark
 ```
+
+`-farecart-language <code>` (`system`, `en`, `es`, `pl`, `zh-Hans`, `ar`, `fil`, `ur`, `uk`, `ko`) and
+`-farecart-theme <system|light|dark>` write the Settings values, so pass `system` afterwards to reset.
+`xcrun simctl privacy <udid> grant location org.farecart.app` pre-answers the location prompt.
 
 `Tests/FarecartKitTests/Fixtures/transitous_plan.json` is a real `/plan` response captured on
 2026-10-15 and drives the decoding tests.
@@ -116,8 +146,55 @@ xcrun simctl launch <udid> org.farecart.app -farecart-tab discounts -answers.hou
 ## Localization
 
 All user-facing strings live in `Farecart/Resources/Localizable.xcstrings` with English keys and
-Spanish translations. Text coming from the database (place names, hours, program descriptions) is shown
-as stored.
+translations for Spanish, Polish, Simplified Chinese (`zh-Hans`), Arabic, Tagalog (`fil`), Urdu, Ukrainian
+and Korean. English and Spanish are reviewed; the other seven were written with machine assistance and are
+marked "under review" in Settings. "Link/EBT", "SNAP", "CTA", "Ventra" and "Access" stay untranslated.
+Text coming from the database (place names, hours, program descriptions) is shown as stored.
+
+The language picked in the app (`@AppStorage("appLanguage")`, `AppLanguage`) applies instantly, without a
+relaunch and without touching the phone's settings:
+
+- `FarecartApp` injects `.environment(\.locale, …)` (and `.layoutDirection = .rightToLeft` for Arabic and
+  Urdu) at the root, so every SwiftUI `Text` / `Label` / tab title re-resolves.
+- Non-SwiftUI lookups go through `String(localized: "…", bundle: LanguageBundle.current)`;
+  `LanguageBundle.current` is the `.lproj` bundle of the chosen language, falling back to `Bundle.main`.
+  Use that form for any new `String(localized:)` call.
+- "Use phone language" (default) leaves both at the system values.
+
+Adding a string: use it in code, build once, then add the nine localizations to the catalog (Xcode's
+editor, or a script like the one used for this batch; the catalog is plain JSON). Plural keys use
+`variations.plural` with the CLDR categories of each language (Arabic: zero/one/two/few/many/other,
+Polish and Ukrainian: one/few/many/other, Chinese and Korean: other only).
+
+The theme (`@AppStorage("appTheme")`, `AppTheme`) is applied with `.preferredColorScheme` at the root.
+
+## Account (optional)
+
+Sign in with Apple through Supabase Auth, no SDK:
+
+1. `SignInWithAppleButton` (`AuthenticationServices`) with a random nonce; its SHA-256 goes to Apple.
+2. `SupabaseAuthClient.signInWithApple` posts `{provider:"apple", id_token, nonce}` to
+   `auth/v1/token?grant_type=id_token` with the `apikey` header and gets access + refresh tokens.
+3. `AccountModel` stores the `AuthSession` as JSON in the Keychain (`Keychain.swift`, generic password,
+   service `org.farecart.app`), refreshes with `grant_type=refresh_token` when the access token is within a
+   minute of expiry, and forgets the session on a 4xx refresh.
+4. Signed in, the `profiles` row (`household_snap`, `is_student`, `language`, `theme`) is upserted through
+   PostgREST with the user's JWT as `Authorization: Bearer` (`Prefer: resolution=merge-duplicates`) whenever
+   an answer, the language or the theme changes, and read back on launch to sync a new phone.
+
+Setup on your side (one-time):
+
+- Supabase: the Apple provider is already enabled with client id `org.farecart.app` (Management API
+  `PATCH /config/auth` with `external_apple_enabled` + `external_apple_client_id`). Native sign-in uses the
+  bundle id; no services id or secret is needed.
+- Apple Developer: enable the **Sign in with Apple** capability for the `org.farecart.app` App ID on your
+  team (Certificates, Identifiers & Profiles → Identifiers → the App ID → Capabilities), then pick your
+  team in Xcode. `Farecart/Farecart.entitlements` (`com.apple.developer.applesignin: [Default]`) is wired in
+  `project.yml`. Until the capability exists, a device build will fail to sign with it.
+- Simulator: without an iCloud account the Apple sheet errors out; the app shows "Sign in with Apple is not
+  available on this device right now" and keeps working without an account. Sign in to iCloud in the
+  simulator's Settings to test the full flow.
+- Account deletion is not in the app yet; Settings tells the user to email `REPORT_PROBLEM_EMAIL`.
 
 ## Previews
 

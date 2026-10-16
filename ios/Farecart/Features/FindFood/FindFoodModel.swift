@@ -4,12 +4,15 @@ import Observation
 import SwiftUI
 import FarecartKit
 
-/// State for the Find Food tab and the search tab (they share the origin and results).
+/// State for the Find Food tab: origin (typed address or current location), filter, results.
 @MainActor
 @Observable
 final class FindFoodModel {
     // Inputs
+    /// Text in the search field. Idle, it shows the origin label; while editing, what was typed.
     var searchText = ""
+    /// `true` while the search field has focus: suggestions show and the field is editable.
+    var isEditingSearch = false
     private(set) var filter: PlaceFilter = .all
     var radius: SearchRadius = .fiveMiles
 
@@ -49,21 +52,49 @@ final class FindFoodModel {
 
     // MARK: Actions
 
-    /// First launch: show the West Side so the map is never blank, then let the user refine.
+    /// First launch: start from the phone's location when it is already allowed, otherwise show
+    /// the West Side so the map is never blank, then let the user refine.
     func loadInitialIfNeeded() async {
         guard origin == nil else { return }
-        setOrigin(.westSideChicago, label: String(localized: "West Side, Chicago"), isCurrent: false)
+        if environment.location.isAuthorized {
+            await useMyLocation()
+            if origin != nil { return }
+        }
+        setOrigin(.westSideChicago, label: String(localized: "West Side, Chicago", bundle: LanguageBundle.current), isCurrent: false)
         await reload()
+    }
+
+    /// Language changed while running: the generated labels ("My location") follow it.
+    func refreshLocalizedLabels() {
+        guard originIsCurrentLocation else { return }
+        originLabel = String(localized: "My location", bundle: LanguageBundle.current)
+        if !isEditingSearch { searchText = originLabel }
+    }
+
+    /// The field gained focus: clear it so the placeholder and suggestions show.
+    func beginEditingSearch() {
+        isEditingSearch = true
+        searchText = ""
+        geocodeResults = []
+    }
+
+    /// The field lost focus without a choice: show the origin again.
+    func endEditingSearch() {
+        isEditingSearch = false
+        searchText = originLabel
+        geocodeResults = []
     }
 
     func useMyLocation() async {
         isLocating = true
+        isEditingSearch = false
+        geocodeResults = []
         errorMessage = nil
         locationDenied = false
         defer { isLocating = false }
         do {
             let point = try await environment.location.currentLocation()
-            setOrigin(point, label: String(localized: "My location"), isCurrent: true)
+            setOrigin(point, label: String(localized: "My location", bundle: LanguageBundle.current), isCurrent: true)
             await reload()
         } catch LocationError.denied {
             locationDenied = true
@@ -73,7 +104,7 @@ final class FindFoodModel {
         }
     }
 
-    /// Look up what the user typed; show the matches in the search tab.
+    /// Look up what the user typed; the matches show under the search field.
     func geocode() async {
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { geocodeResults = []; return }
@@ -81,13 +112,17 @@ final class FindFoodModel {
         errorMessage = nil
         defer { isGeocoding = false }
         do {
-            geocodeResults = try await environment.geocoder.geocode(query)
+            let results = try await environment.geocoder.geocode(query)
+            guard query == searchText.trimmingCharacters(in: .whitespacesAndNewlines) else { return }   // typed on
+            geocodeResults = results
+        } catch is CancellationError {
+            return
         } catch GeocodingError.noResults {
             geocodeResults = []
-            errorMessage = String(localized: "No match for that address. Try adding the street number or ZIP code.")
+            errorMessage = String(localized: "No match for that address. Try adding the street number or ZIP code.", bundle: LanguageBundle.current)
         } catch {
             geocodeResults = []
-            errorMessage = String(localized: "Could not look up that address. Check your connection and try again.")
+            errorMessage = String(localized: "Could not look up that address. Check your connection and try again.", bundle: LanguageBundle.current)
         }
     }
 
@@ -101,7 +136,8 @@ final class FindFoodModel {
 
     func choose(_ result: GeocodeResult) async {
         setOrigin(result.point, label: result.label, isCurrent: false)
-        searchText = result.label
+        isEditingSearch = false
+        geocodeResults = []
         await reload()
     }
 
@@ -138,7 +174,7 @@ final class FindFoodModel {
             guard generation == reloadGeneration else { return }
             places = []
             hasSearchedOnce = true
-            errorMessage = String(localized: "Could not load places. Check your connection and try again.")
+            errorMessage = String(localized: "Could not load places. Check your connection and try again.", bundle: LanguageBundle.current)
         }
     }
 
@@ -157,6 +193,7 @@ final class FindFoodModel {
         origin = point
         originLabel = label
         originIsCurrentLocation = isCurrent
+        searchText = label
         radius = .fiveMiles
     }
 

@@ -142,7 +142,7 @@ struct PlaceDetailView: View {
     private var routeRequest: RouteRequest {
         RouteRequest(
             origin: origin ?? .westSideChicago,
-            originLabel: originLabel.isEmpty ? String(localized: "West Side, Chicago") : originLabel,
+            originLabel: originLabel.isEmpty ? String(localized: "West Side, Chicago", bundle: LanguageBundle.current) : originLabel,
             place: place
         )
     }

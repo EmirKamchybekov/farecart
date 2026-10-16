@@ -8,16 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		04D14D352EEDBE0E1C75CF0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24397EEAD784C4C321530894 /* Assets.xcassets */; };
+		0795D4CD11F163833608451C /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0086E2DFA1E816AB5C971BA7 /* Keychain.swift */; };
 		0C17E174A50637C381654099 /* FareStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14289EE1712E9812F0A98A43 /* FareStore.swift */; };
 		15389085527128D6D4EF775F /* FindFoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */; };
 		16BE21A65AD0F05E910B4DDA /* FindFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F832CA8D40606C23134E77 /* FindFoodView.swift */; };
+		1E18E9B208A4F6E05A284D5D /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DC63DF0482329A51401D73 /* AccountModel.swift */; };
 		21D4F87D25033E6102825753 /* FarecartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4940F40340E859D8C1817968 /* FarecartKit */; };
 		2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B745AE72B8089B823213ED3 /* RootTabView.swift */; };
 		2361BDD33E29D0FA634381A1 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B89BEA5A92C28977442165 /* AppEnvironment.swift */; };
 		2B500CD8F7C8318165023472 /* FarecartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400D5DAC5B426FF05065385F /* FarecartApp.swift */; };
 		2B97D14CE1610C74A1E82172 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3D03F2166D83C56A974386E6 /* Localizable.xcstrings */; };
 		38F951DC33EC6D6733614CE9 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279638840BFD464409DB1CB0 /* LocationService.swift */; };
-		4080F873B55BD0FB03BA559C /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48F05129E224D73D92085FE /* AboutView.swift */; };
+		4957CA41BC21B6F2F46C42F0 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC500D482A8A5A67FE844CAF /* AppSettings.swift */; };
 		4CEF9BF0EBB055CBB3DC2D95 /* PlaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10342E382FCF91BC5511A73 /* PlaceInfoView.swift */; };
 		4D4AE999E8300C5CFC856CB6 /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF1701E6A32C8C78B93FA3 /* RouteView.swift */; };
 		5CB715F56BEA68D5AB7462E3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */; };
@@ -27,15 +29,17 @@
 		83508D884897264D6E6CB78C /* PlaceIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4271A900220AB28D7096489 /* PlaceIcon.swift */; };
 		87305FE952FB937F96B526C9 /* ResultsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA39EA968ED42FBF6ABA8 /* ResultsPanel.swift */; };
 		8F3B796B99EFBBA0659B943D /* Directions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629BFE11133CFE7F7283205 /* Directions.swift */; };
+		9208DB3D9032DF816CB839AE /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C548A51C97D0B077ADD538A4 /* OnboardingView.swift */; };
 		BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E03C01423A0B168F68449B /* AppleGeocoder.swift */; };
 		C16F1F62560A6E0442C3065D /* RouteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8766650BCA8B7AE2F8F94 /* RouteModel.swift */; };
 		C515DC30B6114C92A4405BD4 /* ApplePlaceLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */; };
-		CBCF701EC87C3D288CA7EA4E /* SearchTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1EE444ACF133B612398735 /* SearchTabView.swift */; };
+		CC68AE7EAA22B6631B8D3F71 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7DD65C21E5BB3AC426F85E /* SettingsView.swift */; };
 		CC9700D38BB1ED275DDD5026 /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28722554C5FF9A0E227E54B1 /* Design.swift */; };
 		E90AEC2B6B276DF82F935A5A /* LocationTypeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0086E2DFA1E816AB5C971BA7 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		0FD44EFB7842BF36AAA25D80 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		14289EE1712E9812F0A98A43 /* FareStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FareStore.swift; sourceTree = "<group>"; };
 		18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -50,22 +54,25 @@
 		42B89BEA5A92C28977442165 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		4CE8766650BCA8B7AE2F8F94 /* RouteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteModel.swift; sourceTree = "<group>"; };
 		545E61133912E0DE4A96119F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		5E1EE444ACF133B612398735 /* SearchTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTabView.swift; sourceTree = "<group>"; };
 		69666F396E777CDD45EF3785 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		7B745AE72B8089B823213ED3 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		7B7DD65C21E5BB3AC426F85E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		85E03C01423A0B168F68449B /* AppleGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleGeocoder.swift; sourceTree = "<group>"; };
 		8629BFE11133CFE7F7283205 /* Directions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
+		884173318026C02EA4BA645A /* Farecart.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Farecart.entitlements; sourceTree = "<group>"; };
 		8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeBadge.swift; sourceTree = "<group>"; };
 		9031FA7B3D27666B0D93A8D7 /* DiscountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountsView.swift; sourceTree = "<group>"; };
 		95FF1701E6A32C8C78B93FA3 /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
 		A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodModel.swift; sourceTree = "<group>"; };
 		B10342E382FCF91BC5511A73 /* PlaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfoView.swift; sourceTree = "<group>"; };
+		C548A51C97D0B077ADD538A4 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C6E9C6D20547A50BA97E0E43 /* FarecartKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FarecartKit; path = FarecartKit; sourceTree = SOURCE_ROOT; };
 		CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePlaceLookup.swift; sourceTree = "<group>"; };
 		D3F832CA8D40606C23134E77 /* FindFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodView.swift; sourceTree = "<group>"; };
 		D4271A900220AB28D7096489 /* PlaceIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceIcon.swift; sourceTree = "<group>"; };
-		D48F05129E224D73D92085FE /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		D61B4E4FA502065D022E5C33 /* Farecart.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Farecart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC500D482A8A5A67FE844CAF /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		F2DC63DF0482329A51401D73 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,14 +126,6 @@
 			path = PlaceDetail;
 			sourceTree = "<group>";
 		};
-		4AF4BF54C3376F27D4A305EC /* About */ = {
-			isa = PBXGroup;
-			children = (
-				D48F05129E224D73D92085FE /* AboutView.swift */,
-			);
-			path = About;
-			sourceTree = "<group>";
-		};
 		59A264C13C7AD983B203248E /* Discounts */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +140,14 @@
 				D61B4E4FA502065D022E5C33 /* Farecart.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		679E948DCF43CD24318822AB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7B7DD65C21E5BB3AC426F85E /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		7D0E9FD20288D54EE154B193 /* Config */ = {
@@ -160,18 +167,29 @@
 				19E922D149D80E46A47EEF8F /* Resources */,
 				8E28EE48C3DB80D54DD77C15 /* Services */,
 				0DD4887A5B7ECB6BBE3DDA35 /* Shared */,
+				884173318026C02EA4BA645A /* Farecart.entitlements */,
 				545E61133912E0DE4A96119F /* Info.plist */,
 			);
 			path = Farecart;
 			sourceTree = "<group>";
 		};
+		89EE438DBE820BDEBA586001 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C548A51C97D0B077ADD538A4 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		8E28EE48C3DB80D54DD77C15 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F2DC63DF0482329A51401D73 /* AccountModel.swift */,
 				85E03C01423A0B168F68449B /* AppleGeocoder.swift */,
 				CFAF4980DC3D41F60DB7C4C4 /* ApplePlaceLookup.swift */,
 				8629BFE11133CFE7F7283205 /* Directions.swift */,
 				14289EE1712E9812F0A98A43 /* FareStore.swift */,
+				0086E2DFA1E816AB5C971BA7 /* Keychain.swift */,
 				279638840BFD464409DB1CB0 /* LocationService.swift */,
 			);
 			path = Services;
@@ -191,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				42B89BEA5A92C28977442165 /* AppEnvironment.swift */,
+				EC500D482A8A5A67FE844CAF /* AppSettings.swift */,
 				400D5DAC5B426FF05065385F /* FarecartApp.swift */,
 				7B745AE72B8089B823213ED3 /* RootTabView.swift */,
 			);
@@ -200,11 +219,12 @@
 		E2514E1654C3650221FEBB4D /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				4AF4BF54C3376F27D4A305EC /* About */,
 				59A264C13C7AD983B203248E /* Discounts */,
 				FA4A91EA61EEE47248101F31 /* FindFood */,
+				89EE438DBE820BDEBA586001 /* Onboarding */,
 				30D3A038943D83B17E0CA09C /* PlaceDetail */,
 				16B94B350CE9E3B603A06751 /* Route */,
+				679E948DCF43CD24318822AB /* Settings */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -223,7 +243,6 @@
 				A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */,
 				D3F832CA8D40606C23134E77 /* FindFoodView.swift */,
 				1FEBA39EA968ED42FBF6ABA8 /* ResultsPanel.swift */,
-				5E1EE444ACF133B612398735 /* SearchTabView.swift */,
 			);
 			path = FindFood;
 			sourceTree = "<group>";
@@ -307,8 +326,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4080F873B55BD0FB03BA559C /* AboutView.swift in Sources */,
+				1E18E9B208A4F6E05A284D5D /* AccountModel.swift in Sources */,
 				2361BDD33E29D0FA634381A1 /* AppEnvironment.swift in Sources */,
+				4957CA41BC21B6F2F46C42F0 /* AppSettings.swift in Sources */,
 				BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */,
 				C515DC30B6114C92A4405BD4 /* ApplePlaceLookup.swift in Sources */,
 				CC9700D38BB1ED275DDD5026 /* Design.swift in Sources */,
@@ -318,8 +338,10 @@
 				2B500CD8F7C8318165023472 /* FarecartApp.swift in Sources */,
 				15389085527128D6D4EF775F /* FindFoodModel.swift in Sources */,
 				16BE21A65AD0F05E910B4DDA /* FindFoodView.swift in Sources */,
+				0795D4CD11F163833608451C /* Keychain.swift in Sources */,
 				38F951DC33EC6D6733614CE9 /* LocationService.swift in Sources */,
 				E90AEC2B6B276DF82F935A5A /* LocationTypeStyle.swift in Sources */,
+				9208DB3D9032DF816CB839AE /* OnboardingView.swift in Sources */,
 				63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */,
 				83508D884897264D6E6CB78C /* PlaceIcon.swift in Sources */,
 				4CEF9BF0EBB055CBB3DC2D95 /* PlaceInfoView.swift in Sources */,
@@ -327,7 +349,7 @@
 				2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */,
 				C16F1F62560A6E0442C3065D /* RouteModel.swift in Sources */,
 				4D4AE999E8300C5CFC856CB6 /* RouteView.swift in Sources */,
-				CBCF701EC87C3D288CA7EA4E /* SearchTabView.swift in Sources */,
+				CC68AE7EAA22B6631B8D3F71 /* SettingsView.swift in Sources */,
 				7E1212D06D38B68CF98682AD /* TypeBadge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Farecart/Farecart.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
@@ -500,6 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Farecart/Farecart.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;

@@ -219,6 +219,12 @@ public enum JSONValue: Sendable, Hashable, Codable {
         case .object(let o): try c.encode(o)
         }
     }
+
+    /// The string payload, or `nil` for any other kind of value.
+    public var stringValue: String? {
+        if case .string(let s) = self { return s }
+        return nil
+    }
 }
 
 /// Parses/prints Postgres `date` values (`yyyy-MM-dd`) and tolerates full timestamps.

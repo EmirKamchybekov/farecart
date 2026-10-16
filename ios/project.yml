@@ -57,7 +57,7 @@ targets:
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         CFBundleDevelopmentRegion: "$(DEVELOPMENT_LANGUAGE)"
-        CFBundleLocalizations: [en, es]
+        CFBundleLocalizations: [en, es, pl, zh-Hans, ar, fil, ur, uk, ko]
         UILaunchScreen:
           UIColorName: AccentColor
         UISupportedInterfaceOrientations:
@@ -76,6 +76,12 @@ targets:
         SUPABASE_ANON_KEY: "$(SUPABASE_ANON_KEY)"
         API_BASE_URL: "$(API_BASE_URL)"
         REPORT_PROBLEM_EMAIL: "$(REPORT_PROBLEM_EMAIL)"
+    # Sign in with Apple. Enable the capability for this bundle id on your Apple Developer team
+    # before running on a device; the simulator builds without it (CODE_SIGNING_ALLOWED=NO).
+    entitlements:
+      path: Farecart/Farecart.entitlements
+      properties:
+        com.apple.developer.applesignin: [Default]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: org.farecart.app

@@ -18,6 +18,13 @@
 	<array>
 		<string>en</string>
 		<string>es</string>
+		<string>pl</string>
+		<string>zh-Hans</string>
+		<string>ar</string>
+		<string>fil</string>
+		<string>ur</string>
+		<string>uk</string>
+		<string>ko</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>Farecart</string>

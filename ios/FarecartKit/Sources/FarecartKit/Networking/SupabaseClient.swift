@@ -59,13 +59,42 @@ public struct SupabaseClient: Sendable {
         return try await perform(request)
     }
 
+    // MARK: Profiles (signed-in users only; RLS limits each user to their own row)
+
+    /// `POST rest/v1/profiles` with `Prefer: resolution=merge-duplicates` → insert or update the
+    /// caller's row. `accessToken` is the user's JWT; the anon key alone is rejected by RLS.
+    public func upsertProfile(_ profile: Profile, accessToken: String) async throws -> Profile {
+        var body: [String: JSONValue] = ["id": .string(profile.id.uuidString.lowercased())]
+        body["household_snap"] = profile.householdSnap.map { .bool($0) } ?? .null
+        body["is_student"] = profile.isStudent.map { .bool($0) } ?? .null
+        body["language"] = profile.language.map { .string($0) } ?? .null
+        body["theme"] = profile.theme.map { .string($0) } ?? .null
+        var request = try makeRequest(path: "rest/v1/profiles", method: "POST", body: body, accessToken: accessToken)
+        request.setValue("resolution=merge-duplicates,return=representation", forHTTPHeaderField: "Prefer")
+        let rows: [Profile] = try await perform(request)
+        guard let row = rows.first else { throw APIError.invalidResponse }
+        return row
+    }
+
+    /// `GET rest/v1/profiles?id=eq.<uuid>` → the caller's row, or `nil` when none exists yet.
+    public func profile(id: UUID, accessToken: String) async throws -> Profile? {
+        let request = try makeRequest(
+            path: "rest/v1/profiles",
+            query: [URLQueryItem(name: "select", value: "*"), URLQueryItem(name: "id", value: "eq.\(id.uuidString.lowercased())")],
+            accessToken: accessToken
+        )
+        let rows: [Profile] = try await perform(request)
+        return rows.first
+    }
+
     // MARK: Plumbing
 
     func makeRequest(
         path: String,
         method: String = "GET",
         query: [URLQueryItem] = [],
-        body: [String: JSONValue]? = nil
+        body: [String: JSONValue]? = nil,
+        accessToken: String? = nil
     ) throws -> URLRequest {
         guard var components = URLComponents(url: baseURL.appending(path: path), resolvingAgainstBaseURL: false) else {
             throw APIError.invalidResponse
@@ -76,7 +105,7 @@ public struct SupabaseClient: Sendable {
         request.httpMethod = method
         request.timeoutInterval = 20
         request.setValue(anonKey, forHTTPHeaderField: "apikey")
-        request.setValue("Bearer \(anonKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken ?? anonKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         if let body {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -2,12 +2,14 @@ import SwiftUI
 import MapKit
 import FarecartKit
 
-/// Tab 1: map of nearby food with floating glass controls and a draggable results panel.
+/// Tab 1: map of nearby food with a glass search field on top (address or current location),
+/// filter chips, suggestions while typing, and a draggable results panel.
 struct FindFoodView: View {
     @Environment(\.openURL) private var openURL
     @Bindable var model: FindFoodModel
-    @Binding var selectedTab: AppTab
     @Environment(AppEnvironment.self) private var environment
+    @FocusState private var searchFocused: Bool
+    @Environment(\.locale) private var locale
 
     var body: some View {
         NavigationStack {
@@ -16,13 +18,27 @@ struct FindFoodView: View {
                     PlaceMap(model: model)
                         .ignoresSafeArea(edges: .bottom)
 
+                    if model.isEditingSearch {
+                        // Tap anywhere on the map to stop editing.
+                        Color.black.opacity(0.08)
+                            .ignoresSafeArea()
+                            .onTapGesture { searchFocused = false }
+                            .transition(.opacity)
+                    }
+
                     VStack(spacing: Spacing.s) {
-                        originBar
+                        OriginSearchField(model: model, isFocused: $searchFocused)
                             .padding(.horizontal, Spacing.m)
-                        FilterChipRow(selection: model.filter) { filter in Task { await model.setFilter(filter) } }
+                        if model.isEditingSearch {
+                            SearchSuggestions(model: model) { searchFocused = false }
+                                .padding(.horizontal, Spacing.m)
+                                .transition(.move(edge: .top).combined(with: .opacity))
+                        } else {
+                            FilterChipRow(selection: model.filter) { filter in Task { await model.setFilter(filter) } }
+                        }
                         Group {
                             if let configurationError = environment.configurationError {
-                                MessageBanner(text: String(localized: "Showing sample data: the app is missing its Supabase settings. \(configurationError)"))
+                                MessageBanner(text: String(localized: "Showing sample data: the app is missing its Supabase settings. \(configurationError)", bundle: LanguageBundle.current))
                             } else if let error = model.errorMessage, model.locationDenied {
                                 MessageBanner(text: error, systemImage: "location.slash.fill", actionTitle: "Open Settings") {
                                     if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
@@ -35,7 +51,7 @@ struct FindFoodView: View {
                     }
                     .padding(.top, Spacing.xs)
 
-                    if model.isListPresented {
+                    if model.isListPresented && !model.isEditingSearch {
                         ResultsPanel(model: model, availableHeight: proxy.size.height - Spacing.xs)
                             .padding(.horizontal, Spacing.xs)
                             .frame(maxHeight: .infinity, alignment: .bottom)
@@ -43,9 +59,10 @@ struct FindFoodView: View {
                     }
                 }
                 .animation(.snappy, value: model.isListPresented)
+                .animation(.snappy, value: model.isEditingSearch)
             }
             .navigationTitle("Find Food")
-            .navigationBarTitleDisplayMode(.inline)
+            .toolbarVisibility(.hidden, for: .navigationBar)
             .navigationDestination(item: $model.selectedPlace) { place in
                 #if DEBUG
                 PlaceDetailView(place: place, origin: model.origin, originLabel: model.originLabel, initialTab: DebugLaunch.placeDetailTab)
@@ -54,19 +71,33 @@ struct FindFoodView: View {
                 #endif
             }
         }
+        .onChange(of: searchFocused) { _, focused in
+            if focused { model.beginEditingSearch() } else if model.isEditingSearch { model.endEditingSearch() }
+        }
+        .onChange(of: model.isEditingSearch) { _, editing in
+            if !editing { searchFocused = false }
+        }
+        .onChange(of: locale) { model.refreshLocalizedLabels() }
         .task {
             #if DEBUG
             // `xcrun simctl launch <udid> org.farecart.app -farecart-use-location` taps "Use my location" on launch.
-            if ProcessInfo.processInfo.arguments.contains("-farecart-use-location") {
+            let arguments = ProcessInfo.processInfo.arguments
+            if arguments.contains("-farecart-use-location") {
                 await model.useMyLocation()
             } else {
                 await model.loadInitialIfNeeded()
+            }
+            // `-farecart-search Austin` focuses the field with that text so suggestions show.
+            if let index = arguments.firstIndex(of: "-farecart-search"), index + 1 < arguments.count {
+                try? await Task.sleep(for: .seconds(1))
+                searchFocused = true
+                try? await Task.sleep(for: .milliseconds(300))
+                model.searchText = arguments[index + 1]
             }
             // `-farecart-open-place` opens the first result's detail; `-farecart-open-place-directions`
             // lands on its Directions tab; `-farecart-open-place-far` picks the first result over a mile
             // away so the route is not walk-only; `-farecart-open-place-named Jewel` picks the first
             // result whose name contains that text.
-            let arguments = ProcessInfo.processInfo.arguments
             if arguments.contains(where: { $0.hasPrefix("-farecart-open-place") }) {
                 let far = arguments.contains("-farecart-open-place-far")
                 let named = arguments.firstIndex(of: "-farecart-open-place-named")
@@ -89,50 +120,149 @@ struct FindFoodView: View {
             #endif
         }
     }
+}
 
-    /// "Where are you?" row: current origin + Use my location, floating over the map.
-    private var originBar: some View {
-        GlassEffectContainer(spacing: 10) {
-            HStack(spacing: 10) {
+/// Glass search field: shows the current origin when idle, the typed text while editing, and a
+/// location-arrow button for "Use my location".
+struct OriginSearchField: View {
+    @Bindable var model: FindFoodModel
+    @FocusState.Binding var isFocused: Bool
+
+    var body: some View {
+        HStack(spacing: Spacing.xs) {
+            Image(systemName: !model.isEditingSearch && model.originIsCurrentLocation ? "location.fill" : "magnifyingglass")
+                .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
+            TextField(text: $model.searchText, prompt: Text("Address, neighborhood or ZIP")) {
+                Text("Search address")
+            }
+            .focused($isFocused)
+            .textInputAutocapitalization(.words)
+            .autocorrectionDisabled()
+            .submitLabel(.search)
+            .onSubmit {
+                Task { await model.searchAndUseFirstMatch() }
+            }
+            .task(id: model.searchText) {
+                // Debounced suggestions while typing.
+                guard model.isEditingSearch, !model.searchText.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+                try? await Task.sleep(for: .milliseconds(350))
+                guard !Task.isCancelled else { return }
+                await model.geocode()
+            }
+            if model.isEditingSearch && !model.searchText.isEmpty {
                 Button {
-                    selectedTab = .search
+                    model.searchText = ""
                 } label: {
-                    HStack {
-                        Image(systemName: model.originIsCurrentLocation ? "location.fill" : "magnifyingglass")
-                            .foregroundStyle(.secondary)
-                        Text(model.originLabel.isEmpty ? String(localized: "Enter an address or neighborhood") : model.originLabel)
-                            .lineLimit(1)
-                            .foregroundStyle(model.originLabel.isEmpty ? .secondary : .primary)
-                        Spacer(minLength: 0)
-                    }
-                    .font(.body)
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 12)
-                    .frame(maxWidth: .infinity)
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.secondary)
                 }
-                .buttonStyle(.glass)
-                .accessibilityLabel("Search address")
-                .accessibilityValue(model.originLabel)
+                .buttonStyle(.plain)
+                .accessibilityLabel("Clear search")
+            }
+            Divider().frame(height: 22)
+            Button {
+                isFocused = false
+                Task { await model.useMyLocation() }
+            } label: {
+                Group {
+                    if model.isLocating {
+                        ProgressView()
+                    } else {
+                        Image(systemName: "location.circle.fill")
+                            .symbolRenderingMode(.hierarchical)
+                    }
+                }
+                .font(.title2)
+                .frame(width: 28, height: 28)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(Color.accentColor)
+            .disabled(model.isLocating)
+            .accessibilityLabel("Use my location")
+        }
+        .font(.body)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .glassEffect(.regular.interactive(), in: Capsule())
+        .accessibilityElement(children: .contain)
+    }
+}
 
-                Button {
+/// Dropdown under the search field: geocoder matches for what was typed, or neighborhoods and
+/// "Use my location" when nothing has been typed yet.
+struct SearchSuggestions: View {
+    @Bindable var model: FindFoodModel
+    let dismiss: () -> Void
+
+    private let neighborhoods = [
+        "Austin, Chicago", "Garfield Park, Chicago", "North Lawndale, Chicago",
+        "Humboldt Park, Chicago", "Little Village, Chicago", "West Town, Chicago",
+    ]
+
+    private var typedSomething: Bool { !model.searchText.trimmingCharacters(in: .whitespaces).isEmpty }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            if typedSomething {
+                if model.isGeocoding && model.geocodeResults.isEmpty {
+                    HStack(spacing: Spacing.s) {
+                        ProgressView()
+                        Text("Looking up address…").foregroundStyle(.secondary)
+                    }
+                    .padding(.horizontal, Spacing.m)
+                    .padding(.vertical, Spacing.s)
+                } else if model.geocodeResults.isEmpty, model.errorMessage == nil {
+                    Text("Keep typing, then pick a match.")
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, Spacing.m)
+                        .padding(.vertical, Spacing.s)
+                }
+                ForEach(model.geocodeResults) { result in
+                    row(title: result.label, systemImage: "mappin.and.ellipse") {
+                        Task { await model.choose(result) }
+                    }
+                }
+            } else {
+                row(title: String(localized: "Use my location", bundle: LanguageBundle.current), systemImage: "location.fill", tint: Color.accentColor) {
+                    dismiss()
                     Task { await model.useMyLocation() }
-                } label: {
-                    Group {
-                        if model.isLocating {
-                            ProgressView()
-                        } else {
-                            Image(systemName: "location.fill")
-                        }
-                    }
-                    .font(.title3)
-                    .frame(width: 24, height: 24)
-                    .padding(10)
                 }
-                .buttonStyle(.glassProminent)
-                .disabled(model.isLocating)
-                .accessibilityLabel("Use my location")
+                Text("Neighborhoods")
+                    .font(.caption.weight(.semibold))
+                    .textCase(.uppercase)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, Spacing.m)
+                    .padding(.top, Spacing.s)
+                    .padding(.bottom, 4)
+                ForEach(neighborhoods, id: \.self) { name in
+                    row(title: name, systemImage: "building.2") {
+                        model.searchText = name
+                        Task { await model.searchAndUseFirstMatch() }
+                    }
+                }
             }
         }
+        .padding(.vertical, Spacing.xs)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: Radius.card, style: .continuous))
+        .shadow(color: .black.opacity(0.12), radius: 12, y: 4)
+        .accessibilityLabel("Suggestions")
+    }
+
+    private func row(title: String, systemImage: String, tint: Color = .primary, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Label {
+                Text(title).lineLimit(2)
+            } icon: {
+                Image(systemName: systemImage).foregroundStyle(tint == .primary ? Color.secondary : tint)
+            }
+            .foregroundStyle(tint)
+            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+            .padding(.horizontal, Spacing.m)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 }
 
@@ -213,15 +343,13 @@ struct FilterChipRow: View {
 }
 
 #Preview("Find Food") {
-    @Previewable @State var tab: AppTab = .find
     let environment = AppEnvironment.preview()
-    FindFoodView(model: FindFoodModel(environment: environment), selectedTab: $tab)
+    FindFoodView(model: FindFoodModel(environment: environment))
         .environment(environment)
 }
 
 #Preview("Error") {
-    @Previewable @State var tab: AppTab = .find
     let environment = AppEnvironment.preview(failure: APIError.invalidResponse)
-    FindFoodView(model: FindFoodModel(environment: environment), selectedTab: $tab)
+    FindFoodView(model: FindFoodModel(environment: environment))
         .environment(environment)
 }

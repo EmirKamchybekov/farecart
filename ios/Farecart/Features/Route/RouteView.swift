@@ -140,7 +140,7 @@ struct RouteContent: View {
     // MARK: Sections
 
     private var originName: String {
-        request.originLabel.isEmpty ? String(localized: "West Side, Chicago") : request.originLabel
+        request.originLabel.isEmpty ? String(localized: "West Side, Chicago", bundle: LanguageBundle.current) : request.originLabel
     }
 
     private var tripHeader: some View {

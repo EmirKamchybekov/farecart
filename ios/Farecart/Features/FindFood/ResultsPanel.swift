@@ -8,7 +8,6 @@ struct ResultsPanel: View {
     @Bindable var model: FindFoodModel
     /// Height available to the panel (the map area), from the parent's GeometryReader.
     let availableHeight: CGFloat
-    @State private var showsAbout = false
     @State private var dragOffset: CGFloat = 0
 
     private static let peekHeight: CGFloat = 76
@@ -39,7 +38,6 @@ struct ResultsPanel: View {
         .animation(.snappy, value: model.panelState)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Nearby places")
-        .sheet(isPresented: $showsAbout) { AboutView() }
     }
 
     // MARK: Header
@@ -52,16 +50,9 @@ struct ResultsPanel: View {
                 .padding(.top, Spacing.xs)
                 .accessibilityHidden(true)
             HStack(spacing: Spacing.s) {
-                Button {
-                    showsAbout = true
-                } label: {
-                    Image(systemName: "info.circle")
-                        .font(.title3)
-                }
-                .buttonStyle(.plain)
-                .foregroundStyle(Color.accentColor)
-                .accessibilityLabel("About Farecart")
-
+                Image(systemName: "chevron.down.circle.fill")
+                    .font(.title2)
+                    .hidden()   // balances the button on the right so the title is centered
                 Spacer(minLength: 0)
                 headerTitle
                     .font(.headline)

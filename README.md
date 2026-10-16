@@ -14,11 +14,15 @@ Monorepo:
 - `location_type` enum: `grocery | pantry | giveaway`
 - Example: `POST {SUPABASE_URL}/rest/v1/rpc/nearby_locations` header `apikey: <anon>` body `{"p_lat":41.8807,"p_lng":-87.7262}`
 
-## Product (keep it dead simple, no login)
-1. Enter an address / neighborhood, or use current location.
-2. Map + list of nearest grocery stores, pantries, giveaways with distance, hours, EBT/requirements.
-3. Each place: "Directions by CTA" button → Apple Maps transit (`maps://?daddr=lat,lng&dirflg=r`) and Google Maps transit (`https://www.google.com/maps/dir/?api=1&destination=lat,lng&travelmode=transit`). Show estimated fare: full vs the discount the user qualifies for.
+## Product (keep it dead simple; an account is optional, never a wall)
+Three tabs: **Find Food**, **Discounts**, **Settings**.
+1. First launch shows a short welcome: pick a language, allow location (or type an address), answer the two discount questions with the immediate "You could pay $1.10 instead of $2.25" payoff, then optionally sign in. Skippable; re-runnable from Settings.
+2. Find Food: a search field on top of the map (address / neighborhood / ZIP with suggestions, plus a "use my location" arrow). Filter chips, then map + list of nearest grocery stores, pantries, giveaways with distance, hours, EBT/requirements.
+3. Each place: "Directions by CTA" → in-app CTA itinerary with the rider's fare, or Apple Maps transit (`maps://?daddr=lat,lng&dirflg=r`) / Google Maps transit (`https://www.google.com/maps/dir/?api=1&destination=lat,lng&travelmode=transit`). Show estimated fare: full vs the discount the user qualifies for.
 4. Discounts: two questions — "Does anyone in your household get SNAP?" and "Are you a K–12 student?" → which program, price, and a Sign up link. Data comes from `programs` + `fares` tables.
+5. Settings: optional Sign in with Apple (Supabase Auth, profile row in `profiles` syncs the discount answers, language and theme), language picker (English, Español, Polski, 中文（简体）, العربية, Tagalog, اردو, Українська, 한국어, or the phone's language), System / Light / Dark theme, "Show welcome again", data sources, privacy, report a problem.
+
+Tables also include `profiles (id → auth.users, household_snap, is_student, language, theme, updated_at)` with RLS: a user can read/write only their own row (`supabase/migrations/0006_profiles.sql`). Supabase Auth has the Apple provider enabled with client id `org.farecart.app` (native sign-in, no secret).
 
 ## Fare facts (Oct 2026, in `fares` table — read from data, never hardcode)
 - CTA full: bus $2.25, train $2.50

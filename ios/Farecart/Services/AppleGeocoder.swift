@@ -18,10 +18,10 @@ struct AppleGeocoder: Geocoding {
         let response = try await MKLocalSearch(request: request).start()
         return response.mapItems.prefix(8).map { item in
             let coordinate = item.location.coordinate
-            let label = [item.name, item.address?.shortAddress]
-                .compactMap { $0 }
-                .filter { !$0.isEmpty }
-                .joined(separator: " · ")
+            var parts = [item.name, item.address?.shortAddress].compactMap { $0 }.filter { !$0.isEmpty }
+            // MapKit returns a neighborhood as both name and short address ("Austin · Austin").
+            if parts.count == 2, parts[0].caseInsensitiveCompare(parts[1]) == .orderedSame { parts.removeLast() }
+            let label = parts.joined(separator: " · ")
             return GeocodeResult(
                 label: label.isEmpty ? query : label,
                 point: GeoPoint(latitude: coordinate.latitude, longitude: coordinate.longitude)

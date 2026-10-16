@@ -8,9 +8,9 @@ enum LocationError: Error, LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .denied: String(localized: "Location access is off. Allow it in Settings, or type an address instead.")
-        case .unavailable: String(localized: "Could not find your location right now. Try typing an address.")
-        case .timedOut: String(localized: "Finding your location is taking too long. Try again or type an address.")
+        case .denied: String(localized: "Location access is off. Allow it in Settings, or type an address instead.", bundle: LanguageBundle.current)
+        case .unavailable: String(localized: "Could not find your location right now. Try typing an address.", bundle: LanguageBundle.current)
+        case .timedOut: String(localized: "Finding your location is taking too long. Try again or type an address.", bundle: LanguageBundle.current)
         }
     }
 }
@@ -23,6 +23,22 @@ struct LocationService: Sendable {
 
     init(previewPoint: GeoPoint? = nil) {
         self.previewPoint = previewPoint
+    }
+
+    /// `true` when the user already allowed location, so Find Food can start from where they are.
+    var isAuthorized: Bool {
+        if previewPoint != nil { return true }
+        switch CLLocationManager().authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways: return true
+        default: return false
+        }
+    }
+
+    /// Shows the when-in-use prompt (onboarding) and waits for the answer. Returns the final status.
+    @MainActor
+    func requestWhenInUsePermission() async -> CLAuthorizationStatus {
+        if previewPoint != nil { return .authorizedWhenInUse }
+        return await PermissionRequester.shared.request()
     }
 
     func currentLocation(timeout: Duration = .seconds(15)) async throws -> GeoPoint {
@@ -54,5 +70,35 @@ struct LocationService: Sendable {
             // simulated location). Keep waiting; the caller's timeout bounds the wait.
         }
         throw LocationError.unavailable
+    }
+}
+
+/// Owns a CLLocationManager for the one-time permission prompt. CoreLocation calls the delegate on
+/// the thread that created the manager, which is the main thread here.
+@MainActor
+private final class PermissionRequester: NSObject, @preconcurrency CLLocationManagerDelegate {
+    static let shared = PermissionRequester()
+    private let manager = CLLocationManager()
+    private var continuations: [CheckedContinuation<CLAuthorizationStatus, Never>] = []
+
+    private override init() {
+        super.init()
+        manager.delegate = self
+    }
+
+    func request() async -> CLAuthorizationStatus {
+        let status = manager.authorizationStatus
+        guard status == .notDetermined else { return status }
+        return await withCheckedContinuation { continuation in
+            continuations.append(continuation)
+            manager.requestWhenInUseAuthorization()
+        }
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        guard manager.authorizationStatus != .notDetermined else { return }
+        let waiting = continuations
+        continuations = []
+        for continuation in waiting { continuation.resume(returning: manager.authorizationStatus) }
     }
 }

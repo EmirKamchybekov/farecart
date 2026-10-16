@@ -10,12 +10,12 @@ enum DiscountsKeys {
 }
 
 /// Tab 2: two big yes/no questions, then which program fits and how to sign up.
+/// The same questions appear in onboarding; both read and write the same `DiscountsKeys`.
 struct DiscountsView: View {
     @Environment(AppEnvironment.self) private var environment
     @AppStorage(DiscountsKeys.householdSNAP) private var householdSNAP = false
     @AppStorage(DiscountsKeys.isStudent) private var isStudent = false
     @AppStorage(DiscountsKeys.hasAnswered) private var hasAnswered = false
-    @State private var showsAbout = false
 
     private var answers: EligibilityAnswers {
         EligibilityAnswers(householdReceivesSNAP: householdSNAP, isK12Student: isStudent)
@@ -56,17 +56,6 @@ struct DiscountsView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Discounts")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showsAbout = true
-                    } label: {
-                        Image(systemName: "info.circle")
-                    }
-                    .accessibilityLabel("About Farecart")
-                }
-            }
-            .sheet(isPresented: $showsAbout) { AboutView() }
             .task { await environment.fareStore.loadIfNeeded() }
             .refreshable { await environment.fareStore.reload() }
         }
