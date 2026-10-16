@@ -23,8 +23,9 @@ Built for Chicago's West Side first, where the last full grocery store closed in
 
 ## What it does
 
-- **Find food nearby.** 820 locations across Chicago: 626 grocery stores that take Link/EBT (from the USDA SNAP retailer list), 190 food pantries and recurring giveaways. Sorted by distance, filtered by type, with hours, phone, what to bring, and store logos.
+- **Find food nearby.** 860 locations across Chicago: 626 grocery stores that take Link/EBT (from the USDA SNAP retailer list), 190 food pantries and recurring giveaways. Sorted by distance, filtered by type, with hours, phone, what to bring, and store logos.
 - **Directions by CTA, in the app.** Real bus and train itineraries drawn on the map with step-by-step instructions, three departure options, and the cost of the trip under CTA's transfer rules.
+- **Skip the line.** Pantries post what they have today by category, plenty, low or out, and open visit slots. People book a slot, get a confirmation code, and add it to their calendar. Pantry staff manage stock, slots and arrivals from the same app with a pantry code. No account needed on either side.
 - **Know your discount.** Two yes/no questions tell you whether you qualify for the Access reduced fare (SNAP households, $1.10 bus instead of $2.25) or the student fare ($0.75), and how to sign up.
 - **For everyone.** Nine languages with instant switching and right-to-left support, light and dark themes, Dynamic Type, VoiceOver labels, and no account required.
 
@@ -49,7 +50,7 @@ Cost of a trip equals the fare of the first boarding. Up to two more rides withi
 | Path | What's there |
 |---|---|
 | `ios/` | The app. `Farecart/` is the SwiftUI target, `FarecartKit/` is a Foundation-only Swift package with models, fare math, routing client and tests. |
-| `data/` | Location dataset: a hand-researched West Side CSV, a citywide CSV built from USDA, Plentiful and OpenStreetMap, and the idempotent seed script. |
+| `data/` | Location dataset: a hand-researched West Side CSV, citywide CSVs built from USDA, Plentiful, OpenStreetMap and Feed America, demo pantry slots, and the idempotent seed script. |
 | `supabase/migrations/` | Schema: PostGIS locations, fares, programs, profiles, and the `nearby_locations` function. |
 | `api/` | Optional Hono API on Vercel mirroring the app's logic (nearby, geocode, fares, eligibility, transit route) for a future web client. Not required by the app. |
 | `docs/` | Screenshots. |
@@ -103,6 +104,7 @@ See `api/README.md` for routes and deployment.
 | USDA SNAP Retailer Locator | Citywide grocery stores that accept Link/EBT | Public domain |
 | Plentiful, foodpantries.org | Food pantry listings and hours | Per site |
 | OpenStreetMap | Pantries and store hours | ODbL, © OpenStreetMap contributors |
+| Feed America (feedam.org) | Additional pantries and live status where posted | CC BY 4.0 |
 | Chicago Transit Authority | Fares and reduced fare programs | Public |
 | Northern Illinois Transit Authority | Access reduced fare program | Public |
 | Transitous | Transit routing | Community service, no SLA |
