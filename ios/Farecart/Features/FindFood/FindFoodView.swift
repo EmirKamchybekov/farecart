@@ -56,7 +56,16 @@ struct FindFoodView: View {
                 }
             }
         }
-        .task { await model.loadInitialIfNeeded() }
+        .task {
+            #if DEBUG
+            // `xcrun simctl launch <udid> org.farecart.app -farecart-use-location` taps "Use my location" on launch.
+            if ProcessInfo.processInfo.arguments.contains("-farecart-use-location") {
+                await model.useMyLocation()
+                return
+            }
+            #endif
+            await model.loadInitialIfNeeded()
+        }
         .onChange(of: selectedTab) { _, tab in
             if tab == .find {
                 if model.hasSearchedOnce { model.isListPresented = true }
