@@ -1,0 +1,3 @@
+# Downloaded bulk sources (USDA, OSM, directory pages). Untrusted data; regenerate with ../fetch_raw.sh
+*
+!.gitignore
