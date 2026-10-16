@@ -1,4 +1,4 @@
-# Farecart — find food and get there cheaply (West Side Chicago)
+# Farecart — Find food. Get there for less. (West Side Chicago)
 
 Monorepo:
 - `supabase/migrations/` — Postgres + PostGIS schema (already applied to the live project)
