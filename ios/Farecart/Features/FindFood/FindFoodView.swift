@@ -4,6 +4,7 @@ import FarecartKit
 
 /// Tab 1: map of nearby food with floating glass controls and a draggable results sheet.
 struct FindFoodView: View {
+    @Environment(\.openURL) private var openURL
     @Bindable var model: FindFoodModel
     @Binding var selectedTab: AppTab
     @Environment(AppEnvironment.self) private var environment
@@ -19,6 +20,10 @@ struct FindFoodView: View {
                     FilterChipRow(selection: model.filter) { filter in Task { await model.setFilter(filter) } }
                     if let configurationError = environment.configurationError {
                         MessageBanner(text: String(localized: "Showing sample data: the app is missing its Supabase settings. \(configurationError)"))
+                    } else if let error = model.errorMessage, model.locationDenied {
+                        MessageBanner(text: error, systemImage: "location.slash.fill", actionTitle: "Open Settings") {
+                            if let url = URL(string: UIApplication.openSettingsURLString) { openURL(url) }
+                        }
                     } else if let error = model.errorMessage {
                         MessageBanner(text: error) { Task { await model.reload() } }
                     }

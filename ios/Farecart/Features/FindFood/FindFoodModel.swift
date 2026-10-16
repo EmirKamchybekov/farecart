@@ -23,6 +23,8 @@ final class FindFoodModel {
     private(set) var isLoading = false
     private(set) var isLocating = false
     private(set) var errorMessage: String?
+    /// True when the user has refused location access; the UI offers Settings instead of Retry.
+    private(set) var locationDenied = false
     private(set) var geocodeResults: [GeocodeResult] = []
     private(set) var isGeocoding = false
     private(set) var hasSearchedOnce = false
@@ -54,11 +56,15 @@ final class FindFoodModel {
     func useMyLocation() async {
         isLocating = true
         errorMessage = nil
+        locationDenied = false
         defer { isLocating = false }
         do {
             let point = try await environment.location.currentLocation()
             setOrigin(point, label: String(localized: "My location"), isCurrent: true)
             await reload()
+        } catch LocationError.denied {
+            locationDenied = true
+            errorMessage = LocationError.denied.localizedDescription
         } catch {
             errorMessage = error.localizedDescription
         }

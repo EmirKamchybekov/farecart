@@ -71,6 +71,7 @@ struct OpenStatusLabel: View {
 struct MessageBanner: View {
     let text: String
     var systemImage = "exclamationmark.triangle.fill"
+    var actionTitle: LocalizedStringResource = "Retry"
     var retry: (() -> Void)?
 
     var body: some View {
@@ -78,7 +79,7 @@ struct MessageBanner: View {
             Image(systemName: systemImage).foregroundStyle(.orange)
             Text(text).font(.subheadline)
             if let retry {
-                Button("Retry", action: retry)
+                Button(action: retry) { Text(actionTitle) }
                     .font(.subheadline.weight(.semibold))
             }
         }
