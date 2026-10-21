@@ -246,6 +246,9 @@ final class AccountModel {
         }
         forget()
         try? keychain.delete(account: Self.emailFlowAccount)
+        // A deleted account starts over: the full welcome flow, not just the sign-in screen.
+        UserDefaults.standard.set(false, forKey: OnboardingKeys.hasSignedIn)
+        UserDefaults.standard.set(false, forKey: OnboardingKeys.done)
         await pantry?.accountDidChange()
         return nil
     }
