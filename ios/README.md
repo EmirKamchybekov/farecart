@@ -15,11 +15,13 @@ ios/
 ├── Farecart/                 App target (SwiftUI only, no third-party deps)
 │   ├── App/                  FarecartApp (locale / theme at the root), RootView (onboarding gate) + RootTabView,
 │   │                         AppEnvironment, AppSettings (AppLanguage, AppTheme, LanguageBundle)
-│   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore, AccountModel (Sign in with Apple,
-│   │                         Google via hosted OAuth + profile sync), Keychain, PantryStore, CalendarExport
+│   ├── Services/             LocationService, AppleGeocoder, Directions, FareStore, AccountModel (email + password,
+│   │                         Google via hosted OAuth, Sign in with Apple, profile sync, visit claiming, deletion),
+│   │                         Keychain, PantryStore, CalendarExport
 │   ├── Features/
 │   │   ├── Splash/           Animated launch splash (SplashView, ChicagoSkyline), shown once per cold launch
-│   │   ├── Onboarding/       Welcome (language) → location → discount questions → optional sign-in
+│   │   ├── Onboarding/       Welcome (language) → account → role → client or staff pages → look
+│   │   ├── Account/          Sign-in buttons, email sign-up / sign-in sheets, new password, Delete account
 │   │   ├── FindFood/         Top search field + suggestions, glass filter chips, map, in-tab results panel
 │   │   ├── PlaceDetail/      Compact hero, then Info (address, hours, what to bring) | Directions tabs
 │   │   ├── Route/            In-app CTA directions: RouteModel + RouteContent (cost hero, map, steps)
@@ -51,12 +53,22 @@ ios/
   springs up 12 pt, the tagline fades in, then the whole thing fades and scales out. With Reduce Motion the
   final frame is shown still for 0.8 s and cross-fades. Debug launch arguments: `-farecart-splash-hold`
   freezes the finished frame for screenshots, `-farecart-splash-slow` plays it at quarter speed.
-- **Onboarding** (first launch, `@AppStorage("onboardingDone")`): four full-screen pages with a page indicator
-  and Skip: welcome + language list, location permission ("Allow location" shows the real prompt, or "Type an
-  address instead"), the two discount questions with the "You could pay $1.10 instead of $2.25 per bus ride"
-  payoff computed from the `fares` rows, and optional Sign in with Apple / Continue with Google with "Continue without
-  an account".
-  Settings → "Show welcome again" re-runs it.
+- **Onboarding** (first launch, `@AppStorage("onboardingDone")`): six full-screen pages on either path, with a
+  page indicator and Skip:
+  1. Welcome + language list → *Continue*.
+  2. **Create your account**: *Continue with Google*, *Sign in with Apple*, *Sign up with email* (sheet: Name,
+     Email, Password with show/hide and "At least 8 characters.", *Create account*) and *I already have an
+     account* (sheet: Email, Password, *Sign in*, *Forgot password?*); small *Continue as guest* below. Already
+     signed in: "Signed in as …" and *Continue*.
+  3. **How will you use Farecart?**: *I'm looking for food* or *I work at a pantry* (`@AppStorage("userRole")`,
+     `client` / `staff`); tapping a card moves on, *Continue* also works once chosen.
+  4. Looking for food: **Find food near you** (*Allow location* / *Type an address instead*), then **Ride for
+     less?** (the two discount questions with the "You could pay $1.10 instead of $2.25" payoff) → *Continue*.
+     Pantry staff: **Enter your pantry's staff code** (validated with `staff_login`; on success "You're set up
+     for <pantry>", *Continue*; or *Skip for now*), then **Find food near you**.
+  5. **Choose your look**: System / Light / Dark as three map-preview tiles, applied live → *Start using Farecart*.
+  A staff user with a staff session starts each launch on Settings → staff screen. Settings → "Show welcome
+  again" re-runs it.
 - **Find Food**: a glass search field sits on top of the map. Idle, it shows the current origin ("My location"
   or the chosen address); tapping it clears the field, shows "Use my location" + neighborhood shortcuts, and
   as you type, geocoder matches drop down over the map. Choosing one re-centers and reloads. Filter chips sit
@@ -86,7 +98,9 @@ ios/
   start, 30/60 min, capacity), **Today's bookings** (time, party size, code, *Arrived* button) and *Sign out of
   staff mode*. The code is kept in the Keychain; every staff call re-validates it server-side.
 - **Discounts**: unchanged; the answers are shared with onboarding through `DiscountsKeys`.
-- **Settings**: Your visits, Account (sign in / name, email, sign out, delete-account note), Pantry staff,
+- **Settings**: Your visits, Account (signed out: the same buttons as onboarding; signed in: "Signed in as …",
+  email, "Signed in with Google / Apple / email", Sign out, Delete account), Pantry staff (+ *Switch to pantry
+  staff* / *Switch to looking for food*),
   Language, Appearance (System / Light / Dark), Show welcome again, then the former About content (data
   sources incl. Feed America, privacy, help, version).
 
@@ -138,9 +152,11 @@ Contract: root `README.md`, "Pantry inventory and visit scheduling" (migration 0
 | Method | RPC |
 | --- | --- |
 | `availability(locationID:)` | `pantry_availability` → `PantryAvailability` (current inventory, next 14 days of slots with `remaining`, `staff_updated_at`) |
-| `bookVisit(slotID:deviceID:partySize:userID:)` | `book_visit` → `PantryVisit` (code, cancel token, times, pantry) |
-| `cancelVisit(visitID:cancelToken:)` | `cancel_visit` |
-| `myVisits(deviceID:)` | `my_visits` → `[PantryVisit]` |
+| `bookVisit(slotID:deviceID:partySize:userID:accessToken:)` | `book_visit` → `PantryVisit` (code, cancel token, times, pantry) |
+| `cancelVisit(visitID:cancelToken:accessToken:)` | `cancel_visit` |
+| `myVisits(deviceID:accessToken:)` | `my_visits` → `[PantryVisit]` |
+| `accountVisits(accessToken:)` | `my_account_visits` (migration 0009, signed in only) |
+| `claimDeviceVisits(deviceID:accessToken:)` | `claim_device_visits` → number claimed |
 | `staffLogin(code:)` | `staff_login` → `StaffSession` (the code is kept client-side) |
 | `staffSetInventory` / `staffUpsertSlot` / `staffDeleteSlot` / `staffBookings` / `staffMarkArrived` | the matching `staff_*` functions |
 
@@ -154,7 +170,10 @@ not the whole payload (`Lossy<T>`).
 
 - **Device id**: `DeviceID.current(store:)` generates a UUID once and keeps it in the Keychain through the
   `SecureStore` protocol (`Keychain` conforms; `InMemorySecureStore` for tests/previews). It is sent as
-  `p_device_id`; a signed-in user's id goes along as `p_user_id`.
+  `p_device_id`. Signed in, `PantryStore.accessTokenProvider` (installed by `AccountModel`) adds the user's JWT
+  as `Authorization: Bearer`, so `book_visit` stamps `user_id` from `auth.uid()`. After every sign-in
+  `accountDidChange()` claims this phone's guest visits, and the list becomes `my_visits` + `my_account_visits`
+  merged by id (`VisitMerge`); sign-out and deletion reload it as device-only.
 - **Feed America**: `FeedAmericaClient` (actor) fetches `GET https://feedam.org/api/resources/{feedam_id}/status`
   with `User-Agent: Farecart/0.1 (hello@farecart.org)`, caches each id for 10 minutes and never throws. Today the
   endpoint returns `hours_status`, `confidence`, `days_since_verified`, `phone_*` (no stock); the decoder also
@@ -211,7 +230,11 @@ xcrun simctl launch <udid> org.farecart.app -farecart-tab discounts -answers.hou
 xcrun simctl launch <udid> org.farecart.app -farecart-tab settings
 xcrun simctl launch <udid> org.farecart.app -farecart-search "Austin"                 # search field focused, suggestions showing
 xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding                 # welcome screens again
-xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding -farecart-onboarding-page 2
+xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding -farecart-onboarding-page 2   # pages 0–5
+xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding -farecart-onboarding-page 3 -farecart-role staff -farecart-staff-sign-out -farecart-onboarding-staff-code A7GBQZ
+xcrun simctl launch <udid> org.farecart.app -farecart-reset-onboarding -farecart-onboarding-page 1 -farecart-sign-out -farecart-open-signup -farecart-auth-name "Maria Lopez" -farecart-auth-email you@example.com -farecart-auth-password secret-123 -farecart-auth-submit   # real sign-up
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-open-signin -farecart-auth-email you@example.com -farecart-auth-password secret-123 -farecart-auth-submit
+xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-open-delete-account    # add -farecart-confirm-delete-account to delete for real
 xcrun simctl launch <udid> org.farecart.app -farecart-tab settings -farecart-language ar -farecart-theme dark
 xcrun simctl launch <udid> org.farecart.app -farecart-splash-hold                      # splash frozen at its final frame
 xcrun simctl launch <udid> org.farecart.app -farecart-splash-slow                      # splash at quarter speed
@@ -269,8 +292,25 @@ The theme (`@AppStorage("appTheme")`, `AppTheme`) is applied with `.preferredCol
 
 ## Account (optional)
 
-Sign in with Apple or Google through Supabase Auth, no SDK. Both end in the same `AuthSession` (which records
-`provider`, so Settings says "Signed in with Apple" or "Signed in with Google"), stored and refreshed the same way.
+Email + password, Google or Sign in with Apple through Supabase Auth, no SDK. All end in the same `AuthSession`
+(which records `provider`, so Settings says "Signed in with email / Google / Apple"), stored and refreshed the
+same way. Every sign-in claims this phone's guest pantry visits for the account (`claim_device_visits`).
+
+Email + password (`SupabaseAuthClient`):
+
+- `signUp(email:password:name:)` → `POST auth/v1/signup` with `data.full_name`. Email autoconfirm is on today, so
+  the response is a session; with confirmations on it returns `.confirmationRequired` and the emailed link comes
+  back to `farecart://auth-callback?code=…` (PKCE verifier kept in the Keychain), which signs the user in.
+- `signIn(email:password:)` → `POST auth/v1/token?grant_type=password`.
+- `sendPasswordReset(email:)` → `POST auth/v1/recover` with the same PKCE redirect; the link signs the user in and
+  `NewPasswordSheet` asks for a new password (`updatePassword`, `PUT auth/v1/user`).
+- Errors become `AuthError` (`invalidCredentials`, `userAlreadyExists`, `weakPassword`, `emailNotConfirmed`,
+  `rateLimited`, `invalidEmail`, `signupDisabled`, `other`) and `AccountModel` shows localized copy for each.
+- See `docs/DEVELOPER.md` → Accounts: autoconfirm must be turned off once a real SMTP provider is set up.
+
+Delete account (Settings → Account → Delete account): a screen listing what is removed, a destructive button and a
+confirmation dialog, then `delete_my_account()` (removes the `auth.users` row; `profiles` cascades, visits keep
+their device and lose the user id), then the Keychain session is cleared and the visit list reloads.
 
 Sign in with Apple:
 
@@ -296,7 +336,6 @@ Setup on your side (one-time):
 - Simulator: without an iCloud account the Apple sheet errors out; the app shows "Sign in with Apple is not
   available on this device right now" and keeps working without an account. Sign in to iCloud in the
   simulator's Settings to test the full flow.
-- Account deletion is not in the app yet; Settings tells the user to email `REPORT_PROBLEM_EMAIL`.
 
 ### Continue with Google (hosted OAuth with PKCE)
 

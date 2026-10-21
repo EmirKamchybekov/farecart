@@ -87,6 +87,13 @@ public struct SupabaseClient: Sendable {
         return rows.first
     }
 
+    /// `POST rest/v1/rpc/delete_my_account` with the user's JWT: deletes the caller's
+    /// `auth.users` row (profile cascades, visits keep their device but lose the user id).
+    public func deleteMyAccount(accessToken: String) async throws {
+        let request = try makeRequest(path: "rest/v1/rpc/delete_my_account", method: "POST", body: [:], accessToken: accessToken)
+        let _: JSONValue = try await perform(request)
+    }
+
     // MARK: Plumbing
 
     func makeRequest(

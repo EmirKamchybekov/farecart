@@ -8,6 +8,8 @@ public final class MockPantryService: PantryService, @unchecked Sendable {
     private var slots: [UUID: [PantrySlot]] = [:]
     private var visits: [PantryVisit] = []
     private var deviceByVisit: [UUID: String] = [:]
+    /// The mock treats the access token itself as the account key.
+    private var accountByVisit: [UUID: String] = [:]
     private var staffCodes: [String: Place] = [:]
     public var delayNanoseconds: UInt64
     public var failure: PantryError?
@@ -77,7 +79,7 @@ public final class MockPantryService: PantryService, @unchecked Sendable {
         }
     }
 
-    public func bookVisit(slotID: UUID, deviceID: String, partySize: Int, userID: UUID?) async throws -> PantryVisit {
+    public func bookVisit(slotID: UUID, deviceID: String, partySize: Int, userID: UUID?, accessToken: String?) async throws -> PantryVisit {
         try await pause()
         return try lock.withLock {
             guard let (locationID, index) = find(slotID: slotID) else { throw PantryError.slotNotFound }
@@ -104,11 +106,12 @@ public final class MockPantryService: PantryService, @unchecked Sendable {
             )
             visits.append(visit)
             deviceByVisit[visit.id] = deviceID
+            if let accessToken { accountByVisit[visit.id] = accessToken }
             return visit
         }
     }
 
-    public func cancelVisit(visitID: UUID, cancelToken: UUID) async throws {
+    public func cancelVisit(visitID: UUID, cancelToken: UUID, accessToken: String?) async throws {
         try await pause()
         try lock.withLock {
             guard let index = visits.firstIndex(where: { $0.id == visitID && $0.cancelToken == cancelToken }) else { throw PantryError.visitNotFound }
@@ -122,14 +125,29 @@ public final class MockPantryService: PantryService, @unchecked Sendable {
         }
     }
 
-    public func myVisits(deviceID: String) async throws -> [PantryVisit] {
+    public func myVisits(deviceID: String, accessToken: String?) async throws -> [PantryVisit] {
         try await pause()
         return lock.withLock {
-            visits.filter { deviceByVisit[$0.id] == deviceID }
-                .sorted { a, b in
-                    if a.isUpcoming() != b.isUpcoming() { return a.isUpcoming() }
-                    return a.isUpcoming() ? a.startsAt < b.startsAt : a.startsAt > b.startsAt
-                }
+            VisitMerge.merge(device: visits.filter { deviceByVisit[$0.id] == deviceID }, account: [])
+        }
+    }
+
+    public func accountVisits(accessToken: String) async throws -> [PantryVisit] {
+        try await pause()
+        return lock.withLock {
+            VisitMerge.merge(device: [], account: visits.filter { accountByVisit[$0.id] == accessToken })
+        }
+    }
+
+    public func claimDeviceVisits(deviceID: String, accessToken: String) async throws -> Int {
+        try await pause()
+        return lock.withLock {
+            var claimed = 0
+            for visit in visits where deviceByVisit[visit.id] == deviceID && accountByVisit[visit.id] == nil {
+                accountByVisit[visit.id] = accessToken
+                claimed += 1
+            }
+            return claimed
         }
     }
 

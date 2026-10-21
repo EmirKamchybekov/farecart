@@ -110,3 +110,14 @@ enum AppTheme: String, CaseIterable, Identifiable {
 enum OnboardingKeys {
     static let done = "onboardingDone"
 }
+
+/// "How will you use Farecart?" from onboarding (`@AppStorage("userRole")`). Staff land on their
+/// pantry's staff screen; clients get the discount questions. Changeable in Settings.
+enum UserRole: String, CaseIterable, Identifiable {
+    case client
+    case staff
+
+    static let storageKey = "userRole"
+
+    var id: String { rawValue }
+}

@@ -13,6 +13,7 @@ struct SettingsView: View {
     @AppStorage(DiscountsKeys.householdSNAP) private var householdSNAP = false
     @AppStorage(DiscountsKeys.isStudent) private var isStudent = false
     @AppStorage(DiscountsKeys.hasAnswered) private var hasAnswered = false
+    @AppStorage(UserRole.storageKey) private var roleCode: String?
     @State private var confirmSignOut = false
     @State private var path: [SettingsRoute] = DebugLaunch.settingsRoutes
 
@@ -122,10 +123,14 @@ struct SettingsView: View {
                 switch route {
                 case .visits: MyVisitsView()
                 case .staff: StaffEntryView()
+                case .deleteAccount: DeleteAccountView()
                 }
             }
             .visitDestinations()
-            .task { await environment.pantry.loadVisitsIfNeeded() }
+            .task {
+                if StaffLanding.consume(), path.isEmpty { path = [.staff] }
+                await environment.pantry.loadVisitsIfNeeded()
+            }
             .confirmationDialog("Sign out of Farecart?", isPresented: $confirmSignOut, titleVisibility: .visible) {
                 Button("Sign out", role: .destructive) { Task { await account.signOut() } }
             } message: {
@@ -195,6 +200,20 @@ struct SettingsView: View {
                     Label("I work at a pantry", systemImage: "person.badge.key")
                 }
             }
+            if roleCode == UserRole.staff.rawValue {
+                Button {
+                    withAnimation(.snappy) { roleCode = UserRole.client.rawValue }
+                } label: {
+                    Label("Switch to looking for food", systemImage: "basket")
+                }
+            } else {
+                Button {
+                    roleCode = UserRole.staff.rawValue
+                    path.append(.staff)
+                } label: {
+                    Label("Switch to pantry staff", systemImage: "arrow.left.arrow.right")
+                }
+            }
         } header: {
             Text("Pantry staff")
         } footer: {
@@ -208,55 +227,32 @@ struct SettingsView: View {
     private var accountSection: some View {
         Section {
             if account.isSignedIn {
-                HStack(spacing: Spacing.s) {
-                    Image(systemName: "person.crop.circle.fill")
-                        .font(.largeTitle)
-                        .foregroundStyle(Color.accentColor)
-                        .accessibilityHidden(true)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(account.displayName ?? String(localized: "Signed in", bundle: LanguageBundle.current))
-                            .font(.headline)
-                        if let email = account.session?.user.email, email != account.displayName {
-                            Text(email)
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }
-                        Text(signedInNote)
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .padding(.vertical, 4)
+                SignedInSummary()
+                    .padding(.vertical, 4)
                 Button(role: .destructive) {
                     confirmSignOut = true
                 } label: {
                     Label("Sign out", systemImage: "rectangle.portrait.and.arrow.right")
                 }
-                VStack(alignment: .leading, spacing: 4) {
+                NavigationLink(value: SettingsRoute.deleteAccount) {
                     Label("Delete account", systemImage: "trash")
-                    Text("To delete your account and its data, email \(environment.reportProblemEmail) from the address you signed in with. In-app deletion is coming soon.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.red)
                 }
-                .padding(.vertical, 2)
             } else {
                 VStack(alignment: .leading, spacing: Spacing.s) {
-                    Text("Sign in to keep your discount answers, language and theme if you change phones. Everything works without an account.")
+                    Text("An account keeps your pantry visits, discount answers and language on every phone you use. Everything works without one.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
-                    SignInButtons()
+                    AccountButtons()
                 }
                 .padding(.vertical, 4)
             }
         } header: {
             Text("Account")
-        }
-    }
-
-    private var signedInNote: LocalizedStringResource {
-        switch account.provider {
-        case .google: "Signed in with Google. Your discount answers, language and theme are saved to your account."
-        case .apple, nil: "Signed in with Apple. Your discount answers, language and theme are saved to your account."
+        } footer: {
+            if account.isSignedIn {
+                Text("Your visits, discount answers, language and theme are saved to your account.")
+            }
         }
     }
 
@@ -276,6 +272,7 @@ struct SettingsView: View {
 enum SettingsRoute: Hashable {
     case visits
     case staff
+    case deleteAccount
 }
 
 /// Full list of languages with the current one checked. Also embedded in onboarding.

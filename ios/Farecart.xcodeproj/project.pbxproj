@@ -30,6 +30,7 @@
 		5CB715F56BEA68D5AB7462E3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 18883C2EB9137707E349741F /* PrivacyInfo.xcprivacy */; };
 		63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B7ED473792E4DA5BC6AE59 /* PlaceDetailView.swift */; };
 		7C534C3980A22B0F2B52D609 /* DiscountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9031FA7B3D27666B0D93A8D7 /* DiscountsView.swift */; };
+		7D9264B347917864E17858AF /* AccountViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC0FE8F51A15300EACD28DF /* AccountViews.swift */; };
 		7E1212D06D38B68CF98682AD /* TypeBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */; };
 		83508D884897264D6E6CB78C /* PlaceIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4271A900220AB28D7096489 /* PlaceIcon.swift */; };
 		87305FE952FB937F96B526C9 /* ResultsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEBA39EA968ED42FBF6ABA8 /* ResultsPanel.swift */; };
@@ -77,6 +78,7 @@
 		59DBA4E63BAF0113EB617871 /* PantryInventoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryInventoryCard.swift; sourceTree = "<group>"; };
 		612F9BBEA152B382B442C753 /* VisitConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitConfirmationView.swift; sourceTree = "<group>"; };
 		69666F396E777CDD45EF3785 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		6BC0FE8F51A15300EACD28DF /* AccountViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViews.swift; sourceTree = "<group>"; };
 		7529F663AB3B087416D55E9F /* PantryStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryStyle.swift; sourceTree = "<group>"; };
 		7B728D5AC438B22F924DC898 /* CalendarExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExport.swift; sourceTree = "<group>"; };
 		7B745AE72B8089B823213ED3 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		6E39407E10388A867665C9D0 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				6BC0FE8F51A15300EACD28DF /* AccountViews.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		7D0E9FD20288D54EE154B193 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +293,7 @@
 		E2514E1654C3650221FEBB4D /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				6E39407E10388A867665C9D0 /* Account */,
 				59A264C13C7AD983B203248E /* Discounts */,
 				FA4A91EA61EEE47248101F31 /* FindFood */,
 				89EE438DBE820BDEBA586001 /* Onboarding */,
@@ -400,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E18E9B208A4F6E05A284D5D /* AccountModel.swift in Sources */,
+				7D9264B347917864E17858AF /* AccountViews.swift in Sources */,
 				2361BDD33E29D0FA634381A1 /* AppEnvironment.swift in Sources */,
 				4957CA41BC21B6F2F46C42F0 /* AppSettings.swift in Sources */,
 				BBC8995DDD53ECACE2D2A6DA /* AppleGeocoder.swift in Sources */,

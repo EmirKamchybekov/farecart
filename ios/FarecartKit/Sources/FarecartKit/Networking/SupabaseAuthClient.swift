@@ -3,8 +3,9 @@ import Foundation
 import FoundationNetworking
 #endif
 
-/// Supabase Auth (GoTrue) over plain URLSession: native Sign in with Apple token exchange, the
-/// hosted OAuth flow with PKCE (Google), refresh, sign-out and user metadata. No SDK.
+/// Supabase Auth (GoTrue) over plain URLSession: email + password accounts, native Sign in with
+/// Apple token exchange, the hosted OAuth flow with PKCE (Google), refresh, sign-out and user
+/// metadata. No SDK.
 public struct SupabaseAuthClient: Sendable {
     public let baseURL: URL
     public let anonKey: String
@@ -31,6 +32,93 @@ public struct SupabaseAuthClient: Sendable {
         )
         let data = try await perform(request)
         return try AuthSession(tokenResponse: data)
+    }
+
+    // MARK: Email + password
+
+    /// `POST auth/v1/signup` with `data.full_name`. With `mailer_autoconfirm` on (today) GoTrue
+    /// answers with a full token response and the user is signed in; with confirmations on it
+    /// answers with the bare user and a link is emailed (`.confirmationRequired`). `redirectTo` and
+    /// `codeChallenge` make that link come back to the app with a PKCE `code`.
+    /// Throws `AuthError` for GoTrue's error codes.
+    public func signUp(email: String, password: String, name: String?, redirectTo: String? = nil, codeChallenge: String? = nil) async throws -> SignUpResult {
+        var body: [String: JSONValue] = ["email": .string(Self.normalize(email: email)), "password": .string(password)]
+        if let name = name?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty {
+            body["data"] = .object(["full_name": .string(name)])
+        }
+        if let codeChallenge {
+            body["code_challenge"] = .string(codeChallenge)
+            body["code_challenge_method"] = .string("s256")
+        }
+        let request = try makeRequest(
+            path: "auth/v1/signup",
+            method: "POST",
+            query: redirectTo.map { [URLQueryItem(name: "redirect_to", value: $0)] } ?? [],
+            body: body
+        )
+        let data = try await performAuth(request)
+        if let session = try? AuthSession(tokenResponse: data) {
+            return .signedIn(session)
+        }
+        // No tokens: confirmation required. The body is the user itself.
+        let user = try? PostgRESTDecoder.decode(AuthSession.TokenResponse.User.self, from: data)
+        return .confirmationRequired(email: user?.email ?? Self.normalize(email: email))
+    }
+
+    /// `POST auth/v1/token?grant_type=password`. Throws `AuthError.invalidCredentials` for a wrong
+    /// email or password, `.emailNotConfirmed` while the address is unconfirmed.
+    public func signIn(email: String, password: String) async throws -> AuthSession {
+        let request = try makeRequest(
+            path: "auth/v1/token",
+            method: "POST",
+            query: [URLQueryItem(name: "grant_type", value: "password")],
+            body: ["email": .string(Self.normalize(email: email)), "password": .string(password)]
+        )
+        let data = try await performAuth(request)
+        return try AuthSession(tokenResponse: data)
+    }
+
+    /// `POST auth/v1/recover`: emails a reset link. GoTrue answers 200 whether or not the address
+    /// has an account. With `codeChallenge` the link returns to `redirectTo?code=…`, which
+    /// `exchangeCode` turns into a session that may set a new password (`updatePassword`).
+    public func sendPasswordReset(email: String, redirectTo: String? = nil, codeChallenge: String? = nil) async throws {
+        var body: [String: JSONValue] = ["email": .string(Self.normalize(email: email))]
+        if let codeChallenge {
+            body["code_challenge"] = .string(codeChallenge)
+            body["code_challenge_method"] = .string("s256")
+        }
+        let request = try makeRequest(
+            path: "auth/v1/recover",
+            method: "POST",
+            query: redirectTo.map { [URLQueryItem(name: "redirect_to", value: $0)] } ?? [],
+            body: body
+        )
+        _ = try await performAuth(request)
+    }
+
+    /// `PUT auth/v1/user` with the new password (after a recovery sign-in).
+    public func updatePassword(_ password: String, session: AuthSession) async throws {
+        let request = try makeRequest(
+            path: "auth/v1/user",
+            method: "PUT",
+            body: ["password": .string(password)],
+            accessToken: session.accessToken
+        )
+        _ = try await performAuth(request)
+    }
+
+    /// Trimmed and lowercased, the way GoTrue stores addresses.
+    public static func normalize(email: String) -> String {
+        email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
+
+    /// `perform`, but non-2xx answers become `AuthError`.
+    func performAuth(_ request: URLRequest) async throws -> Data {
+        let (data, response) = try await transport.send(request)
+        guard (200..<300).contains(response.statusCode) else {
+            throw AuthError(status: response.statusCode, body: data)
+        }
+        return data
     }
 
     // MARK: Hosted OAuth (PKCE)
@@ -98,20 +186,25 @@ public struct SupabaseAuthClient: Sendable {
     /// `{"error":"…","error_description":"…"}` shape.
     struct GoTrueError: Decodable {
         var message: String
+        /// `error_code` (newer GoTrue) or the older `error` field.
+        var code: String?
 
         enum CodingKeys: String, CodingKey {
-            case msg, error
+            case msg, error, message
+            case errorCode = "error_code"
             case errorDescription = "error_description"
         }
 
         init(from decoder: any Decoder) throws {
             let c = try decoder.container(keyedBy: CodingKeys.self)
             guard let text = try c.decodeIfPresent(String.self, forKey: .msg)
+                ?? c.decodeIfPresent(String.self, forKey: .message)
                 ?? c.decodeIfPresent(String.self, forKey: .errorDescription)
                 ?? c.decodeIfPresent(String.self, forKey: .error) else {
                 throw DecodingError.keyNotFound(CodingKeys.msg, .init(codingPath: c.codingPath, debugDescription: "No message"))
             }
             message = text
+            code = try c.decodeIfPresent(String.self, forKey: .errorCode) ?? c.decodeIfPresent(String.self, forKey: .error)
         }
     }
 

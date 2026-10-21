@@ -8,12 +8,25 @@ import FarecartKit
 
 /// Which provider the stored session came from.
 enum AuthProvider: String, Sendable {
-    case apple, google
+    case apple, google, email
 }
 
-/// Optional account: Sign in with Apple (native) or Google (Supabase's hosted OAuth flow with PKCE
-/// in `ASWebAuthenticationSession`) → Supabase session in the Keychain → `profiles` row kept in
-/// step with the Discounts answers, language and theme. Everything works signed out.
+/// What an email sheet should show after its button was tapped.
+enum EmailAuthOutcome: Equatable {
+    /// Signed in; the sheet closes.
+    case signedIn
+    /// Sign-up needs the emailed link (only when email autoconfirm is off on the server).
+    case confirmationSent(String)
+    /// The reset link went out (GoTrue says so whether or not the address has an account).
+    case resetSent(String)
+    /// Localized message to show in the sheet.
+    case failed(String)
+}
+
+/// Optional account: email + password, Sign in with Apple (native) or Google (Supabase's hosted
+/// OAuth flow with PKCE in `ASWebAuthenticationSession`) → Supabase session in the Keychain →
+/// `profiles` row kept in step with the Discounts answers, language and theme, and pantry visits
+/// claimed onto the account. Everything works signed out.
 @MainActor
 @Observable
 final class AccountModel {
@@ -21,6 +34,9 @@ final class AccountModel {
     private(set) var isBusy = false
     /// Friendly, already localized message for the Account section; `nil` when all is well.
     private(set) var errorMessage: String?
+    /// Set after a password-reset link brought the user back signed in: the app asks for a new
+    /// password (`NewPasswordSheet`).
+    var needsNewPassword = false
 
     var isSignedIn: Bool { session != nil }
     /// `nil` for sessions stored before the provider was recorded (those were all Apple).
@@ -40,6 +56,11 @@ final class AccountModel {
     /// PKCE verifier for the Google flow in flight; its SHA-256 went to `/authorize`.
     private var pendingCodeVerifier: String?
     private var webSession: ASWebAuthenticationSession?
+    /// Visits move to the account on sign-in and the list refreshes on every account change.
+    private weak var pantry: PantryStore?
+    /// `"signup:<verifier>"` / `"recovery:<verifier>"` for an emailed link in flight. In the Keychain
+    /// because the link is usually opened after the app was suspended or relaunched.
+    private static let emailFlowAccount = "supabase.pkce.email"
     private let presentationContext = WebAuthPresentationContext()
 
     static let callbackScheme = "farecart"
@@ -50,6 +71,8 @@ final class AccountModel {
 
     /// Loads the stored session, refreshes it when needed and pulls the profile down.
     func restore(environment: AppEnvironment) async {
+        pantry = environment.pantry
+        environment.pantry.accessTokenProvider = { [weak self] in await self?.validAccessToken() }
         guard let config = environment.config else { return }
         auth = SupabaseAuthClient(config: config)
         data = SupabaseClient(config: config)
@@ -69,6 +92,156 @@ final class AccountModel {
         }
         session = restored
         await pullProfile()
+        #if DEBUG
+        if DebugLaunch.signOutAtLaunch { await signOut(); return }
+        #endif
+        // Visits booked as a guest before an update that added claiming join the account too.
+        await claimVisits()
+    }
+
+    // MARK: Email + password
+
+    func signUpWithEmail(name: String, email: String, password: String) async -> EmailAuthOutcome {
+        guard let auth else { return .failed(Self.missingConfigMessage) }
+        if let problem = Self.validate(email: email, password: password) { return .failed(problem) }
+        isBusy = true
+        defer { isBusy = false }
+        errorMessage = nil
+        let verifier = PKCE.makeVerifier()
+        do {
+            let result = try await auth.signUp(email: email, password: password, name: name,
+                                               redirectTo: Self.redirectURI, codeChallenge: PKCE.challenge(for: verifier))
+            switch result {
+            case .signedIn(var newSession):
+                let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+                if newSession.user.fullName == nil, !trimmed.isEmpty { newSession.user.fullName = trimmed }
+                await adopt(newSession, provider: .email)
+                return .signedIn
+            case .confirmationRequired(let address):
+                try? keychain.write(Data("signup:\(verifier)".utf8), account: Self.emailFlowAccount)
+                let shown = address ?? SupabaseAuthClient.normalize(email: email)
+                return .confirmationSent(String(localized: "Check your email. We sent a link to \(shown). Open it on this phone to finish.", bundle: LanguageBundle.current))
+            }
+        } catch {
+            return .failed(Self.message(for: error))
+        }
+    }
+
+    func signInWithEmail(email: String, password: String) async -> EmailAuthOutcome {
+        guard let auth else { return .failed(Self.missingConfigMessage) }
+        guard Self.looksLikeEmail(email) else { return .failed(Self.invalidEmailMessage) }
+        guard !password.isEmpty else { return .failed(String(localized: "Enter your password.", bundle: LanguageBundle.current)) }
+        isBusy = true
+        defer { isBusy = false }
+        errorMessage = nil
+        do {
+            let newSession = try await auth.signIn(email: email, password: password)
+            await adopt(newSession, provider: .email)
+            return .signedIn
+        } catch {
+            return .failed(Self.message(for: error))
+        }
+    }
+
+    /// Emails a reset link that comes back to `farecart://auth-callback?code=…` (PKCE).
+    func sendPasswordReset(email: String) async -> EmailAuthOutcome {
+        guard let auth else { return .failed(Self.missingConfigMessage) }
+        guard Self.looksLikeEmail(email) else { return .failed(Self.invalidEmailMessage) }
+        isBusy = true
+        defer { isBusy = false }
+        let verifier = PKCE.makeVerifier()
+        do {
+            try await auth.sendPasswordReset(email: email, redirectTo: Self.redirectURI, codeChallenge: PKCE.challenge(for: verifier))
+            try? keychain.write(Data("recovery:\(verifier)".utf8), account: Self.emailFlowAccount)
+            let shown = SupabaseAuthClient.normalize(email: email)
+            return .resetSent(String(localized: "If there is an account for \(shown), we sent it a link to reset the password. Open the link on this phone.", bundle: LanguageBundle.current))
+        } catch {
+            return .failed(Self.message(for: error))
+        }
+    }
+
+    /// Sets the password after a recovery sign-in. Returns a localized error, `nil` on success.
+    func setNewPassword(_ password: String) async -> String? {
+        guard password.count >= Self.minimumPasswordLength else { return Self.weakPasswordMessage }
+        guard let auth, let current = await freshSession() else { return Self.couldNotSignInMessage }
+        isBusy = true
+        defer { isBusy = false }
+        do {
+            try await auth.updatePassword(password, session: current)
+            needsNewPassword = false
+            return nil
+        } catch {
+            return Self.message(for: error)
+        }
+    }
+
+    static let minimumPasswordLength = 8
+
+    static func looksLikeEmail(_ email: String) -> Bool {
+        let trimmed = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let at = trimmed.firstIndex(of: "@"), trimmed.count >= 5, !trimmed.contains(" ") else { return false }
+        let domain = trimmed[trimmed.index(after: at)...]
+        return at != trimmed.startIndex && domain.contains(".") && !domain.hasSuffix(".") && !domain.contains("@")
+    }
+
+    private static func validate(email: String, password: String) -> String? {
+        guard looksLikeEmail(email) else { return invalidEmailMessage }
+        guard password.count >= minimumPasswordLength else { return weakPasswordMessage }
+        return nil
+    }
+
+    /// Friendly, localized copy for GoTrue's errors; anything unexpected reads as a connection problem.
+    private static func message(for error: any Error) -> String {
+        let bundle = LanguageBundle.current
+        guard let authError = error as? AuthError else { return couldNotSignInMessage }
+        switch authError {
+        case .invalidCredentials:
+            return String(localized: "That email and password don't match. Check them and try again.", bundle: bundle)
+        case .userAlreadyExists:
+            return String(localized: "There is already an account with this email. Sign in instead.", bundle: bundle)
+        case .weakPassword:
+            return weakPasswordMessage
+        case .emailNotConfirmed:
+            return String(localized: "Confirm your email first: open the link we sent you, then sign in.", bundle: bundle)
+        case .rateLimited:
+            return String(localized: "Too many tries for now. Wait a few minutes and try again.", bundle: bundle)
+        case .invalidEmail:
+            return invalidEmailMessage
+        case .signupDisabled:
+            return String(localized: "New accounts are turned off right now. You can keep using Farecart as a guest.", bundle: bundle)
+        case .other:
+            return couldNotSignInMessage
+        }
+    }
+
+    private static var invalidEmailMessage: String {
+        String(localized: "Enter a valid email address.", bundle: LanguageBundle.current)
+    }
+    private static var weakPasswordMessage: String {
+        String(localized: "Use at least 8 characters for your password.", bundle: LanguageBundle.current)
+    }
+    private static var missingConfigMessage: String {
+        String(localized: "Sign in needs the app's Supabase settings, which are missing in this build.", bundle: LanguageBundle.current)
+    }
+
+    // MARK: Account deletion
+
+    /// `delete_my_account()`, then the same local cleanup as signing out (Keychain session gone,
+    /// visit list back to this phone's). Returns a localized error, `nil` on success.
+    func deleteAccount() async -> String? {
+        let failure = String(localized: "Could not delete your account right now. Check your connection and try again.", bundle: LanguageBundle.current)
+        guard let data, let current = await freshSession() else { return failure }
+        isBusy = true
+        defer { isBusy = false }
+        do {
+            try await data.deleteMyAccount(accessToken: current.accessToken)
+        } catch {
+            return failure
+        }
+        forget()
+        try? keychain.delete(account: Self.emailFlowAccount)
+        await pantry?.accountDidChange()
+        return nil
     }
 
     // MARK: Sign in with Apple
@@ -165,10 +338,39 @@ final class AccountModel {
     /// Fallback for `farecart://auth-callback` arriving through the app (`onOpenURL`) rather than
     /// the web authentication session, e.g. from Safari. Ignored when no sign-in is in flight.
     func handleOpenURL(_ url: URL) async {
-        guard OAuthCallback.matches(url, scheme: Self.callbackScheme, host: Self.callbackHost),
-              pendingCodeVerifier != nil else { return }
-        webSession?.cancel()
-        await finishGoogle(callbackURL: url)
+        guard OAuthCallback.matches(url, scheme: Self.callbackScheme, host: Self.callbackHost) else { return }
+        if pendingCodeVerifier != nil {
+            webSession?.cancel()
+            await finishGoogle(callbackURL: url)
+        } else {
+            await finishEmailLink(callbackURL: url)
+        }
+    }
+
+    /// A confirmation or password-reset link from the email, carrying `?code=…` for the verifier
+    /// stored when it was requested. Ignored when no emailed link is pending.
+    private func finishEmailLink(callbackURL: URL) async {
+        guard let auth,
+              let raw = (try? keychain.read(account: Self.emailFlowAccount)) ?? nil else { return }
+        let stored = String(decoding: raw, as: UTF8.self)
+        guard let colon = stored.firstIndex(of: ":") else { return }
+        let purpose = stored[..<colon]
+        let verifier = String(stored[stored.index(after: colon)...])
+        let expired = String(localized: "That link has expired or was already used. Request a new one.", bundle: LanguageBundle.current)
+        guard case .code(let code) = OAuthCallback.parse(callbackURL) else {
+            errorMessage = expired
+            return
+        }
+        isBusy = true
+        defer { isBusy = false }
+        do {
+            let newSession = try await auth.exchangeCode(code: code, codeVerifier: verifier)
+            try? keychain.delete(account: Self.emailFlowAccount)
+            await adopt(newSession, provider: .email)
+            if purpose == "recovery" { needsNewPassword = true }
+        } catch {
+            errorMessage = expired
+        }
     }
 
     private func finishGoogle(callbackURL: URL) async {
@@ -235,6 +437,17 @@ final class AccountModel {
         session = stored
         errorMessage = nil
         await pullProfile(preferLocalAnswers: true)
+        await claimVisits()
+    }
+
+    /// `claim_device_visits` for this phone's guest bookings, then reload the merged list.
+    private func claimVisits() async {
+        await pantry?.accountDidChange()
+    }
+
+    /// A non-expired JWT for pantry calls, or `nil` when signed out.
+    func validAccessToken() async -> String? {
+        await freshSession()?.accessToken
     }
 
     private static var couldNotSignInMessage: String {
@@ -252,6 +465,7 @@ final class AccountModel {
             try? await auth.signOut(session)
         }
         forget()
+        await pantry?.accountDidChange()
     }
 
     // MARK: Profile sync
@@ -349,35 +563,6 @@ private final class WebAuthPresentationContext: NSObject, ASWebAuthenticationPre
             let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
             let windows = scenes.flatMap(\.windows)
             return windows.first(where: \.isKeyWindow) ?? scenes.first?.keyWindow ?? windows.first ?? ASPresentationAnchor()
-        }
-    }
-}
-
-/// The Apple and Google buttons plus the friendly error line, shared by Settings and onboarding.
-struct SignInButtons: View {
-    @Environment(AccountModel.self) private var account
-    @Environment(\.colorScheme) private var colorScheme
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: Spacing.xs) {
-            SignInWithAppleButton(.signIn) { request in
-                account.configure(request)
-            } onCompletion: { result in
-                Task { await account.complete(result) }
-            }
-            .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-            .frame(height: 50)
-            .clipShape(RoundedRectangle(cornerRadius: Radius.inner, style: .continuous))
-            .disabled(account.isBusy)
-            .overlay {
-                if account.isBusy { ProgressView().tint(colorScheme == .dark ? .black : .white) }
-            }
-            SignInWithGoogleButton()
-            if let message = account.errorMessage {
-                Label(message, systemImage: "exclamationmark.circle")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
         }
     }
 }

@@ -23,6 +23,8 @@ final class PantryStore {
     /// Per-place availability fetched this session (merged with Feed America when known).
     private(set) var availability: [UUID: PantryAvailability] = [:]
     private(set) var staffSession: StaffSession?
+    /// The signed-in user's JWT for pantry calls (`AccountModel` installs it); `nil` = guest.
+    var accessTokenProvider: (@MainActor () async -> String?)?
 
     init(service: any PantryService, secureStore: any SecureStore, feedAmerica: FeedAmericaClient? = FeedAmericaClient()) {
         self.service = service
@@ -75,11 +77,31 @@ final class PantryStore {
         await task.value
     }
 
+    /// After sign-in, sign-out or account deletion: claim this phone's guest visits for the
+    /// account (signed in) and reload the list either way, so it never shows another account's
+    /// visits after signing out.
+    func accountDidChange() async {
+        if let visitsTask { await visitsTask.value }
+        if let token = await accessTokenProvider?() {
+            _ = try? await service.claimDeviceVisits(deviceID: deviceID, accessToken: token)
+        }
+        let task = Task { await self.performVisitsLoad() }
+        visitsTask = task
+        await task.value
+    }
+
     private func performVisitsLoad() async {
         isLoadingVisits = true
         defer { isLoadingVisits = false }
         do {
-            visits = try await service.myVisits(deviceID: deviceID)
+            let token = await accessTokenProvider?()
+            // Signed in: this phone's visits plus every visit on the account, merged by id.
+            async let device = service.myVisits(deviceID: deviceID, accessToken: token)
+            async let account: [PantryVisit] = {
+                guard let token else { return [] }
+                return (try? await service.accountVisits(accessToken: token)) ?? []
+            }()
+            visits = VisitMerge.merge(device: try await device, account: await account)
             visitsLoaded = true
             visitsError = nil
         } catch is CancellationError {
@@ -113,7 +135,8 @@ final class PantryStore {
     // MARK: Booking
 
     func book(slot: PantrySlot, at place: Place, partySize: Int, userID: UUID?) async throws -> PantryVisit {
-        var visit = try await service.bookVisit(slotID: slot.id, deviceID: deviceID, partySize: partySize, userID: userID)
+        let token = await accessTokenProvider?()
+        var visit = try await service.bookVisit(slotID: slot.id, deviceID: deviceID, partySize: partySize, userID: userID, accessToken: token)
         if visit.locationID == nil { visit.locationID = place.id }
         if visit.latitude == nil { visit.latitude = place.latitude; visit.longitude = place.longitude }
         if visit.locationName.isEmpty { visit.locationName = place.name }
@@ -126,7 +149,7 @@ final class PantryStore {
 
     func cancel(_ visit: PantryVisit) async throws {
         guard let token = visit.cancelToken else { throw PantryError.visitNotFound }
-        try await service.cancelVisit(visitID: visit.id, cancelToken: token)
+        try await service.cancelVisit(visitID: visit.id, cancelToken: token, accessToken: await accessTokenProvider?())
         if let index = visits.firstIndex(where: { $0.id == visit.id }) {
             visits[index].status = .cancelled
         }

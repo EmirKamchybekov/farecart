@@ -36,6 +36,12 @@ struct FarecartApp: App {
                 .task { await account.restore(environment: environment) }
                 // farecart://auth-callback opened outside the web authentication session.
                 .onOpenURL { url in Task { await account.handleOpenURL(url) } }
+                // A password-reset link signed the user in: ask for the new password.
+                .sheet(isPresented: $account.needsNewPassword) {
+                    NewPasswordSheet()
+                        .environment(account)
+                        .environment(\.locale, language.locale ?? .current)
+                }
         }
     }
 }

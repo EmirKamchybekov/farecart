@@ -58,10 +58,37 @@ struct RootTabView: View {
             }
             .tabBarMinimizeBehavior(.onScrollDown)
             .tint(.accentColor)
+            .task {
+                // Pantry staff land on their staff screen (Settings → Pantry staff) on launch.
+                guard StaffLanding.shouldLand(environment: environment) else { return }
+                StaffLanding.pending = true
+                selectedTab = .settings
+            }
         } else {
             ProgressView()
                 .task { findModel = FindFoodModel(environment: environment) }
         }
+    }
+}
+
+/// Once per launch, a staff user (role `staff` with a saved staff session) starts on Settings with
+/// the staff screen pushed instead of hunting for it.
+@MainActor
+enum StaffLanding {
+    private static var decided = false
+    /// Set by `RootTabView`, consumed by `SettingsView`.
+    static var pending = false
+
+    static func shouldLand(environment: AppEnvironment) -> Bool {
+        guard !decided else { return false }
+        decided = true
+        let role = UserDefaults.standard.string(forKey: UserRole.storageKey)
+        return role == UserRole.staff.rawValue && environment.pantry.staffSession != nil && !DebugLaunch.hasTabOverride
+    }
+
+    static func consume() -> Bool {
+        defer { pending = false }
+        return pending
     }
 }
 
@@ -73,6 +100,10 @@ enum DebugLaunch {
     static var splashHold: Bool { false }
     static var splashSpeedFactor: Double { 1 }
     static func applyOnboardingOverrides() {}
+    static var hasTabOverride: Bool { false }
+    static var authPrefill: (name: String, email: String, password: String) { ("", "", "") }
+    static var showPassword: Bool { false }
+    static var confirmDeleteAccount: Bool { false }
 }
 #else
 /// Launch arguments for `xcrun simctl launch <udid> org.farecart.app …` (Debug builds only):
@@ -81,7 +112,13 @@ enum DebugLaunch {
 /// - `-farecart-reset-onboarding` shows the welcome screens again; any other `-farecart-…` argument
 ///   skips them so screenshots of inner screens never land on onboarding.
 /// - `-farecart-tab discounts|settings` starts on that tab.
-/// - `-farecart-reset-onboarding -farecart-onboarding-page 2` opens onboarding on that page (0–3).
+/// - `-farecart-reset-onboarding -farecart-onboarding-page 2` opens onboarding on that page (0–5);
+///   `-farecart-role staff|client` presets the "How will you use Farecart?" answer.
+/// - Accounts: `-farecart-open-signup` / `-farecart-open-signin` open the email sheet (onboarding's
+///   account page or Settings), `-farecart-auth-name|email|password <value>` prefill it,
+///   `-farecart-auth-submit` presses its button, `-farecart-show-password` starts unmasked,
+///   `-farecart-sign-out` signs out at launch, `-farecart-open-delete-account` pushes Delete
+///   account and `-farecart-confirm-delete-account` confirms it (deletes for real).
 /// - `-farecart-language es -farecart-theme dark` preset (and persist) the Settings values.
 /// - `-farecart-splash-hold` keeps the launch splash on screen at its final frame;
 ///   `-farecart-splash-slow` plays the splash at a quarter of its speed.
@@ -105,13 +142,39 @@ enum DebugLaunch {
     /// `-farecart-open-visits` → Your visits; `-farecart-open-staff` (or `-farecart-staff-code X`) → staff mode.
     static var settingsRoutes: [SettingsRoute] {
         if arguments.contains("-farecart-open-visits") { return [.visits] }
+        if arguments.contains("-farecart-open-delete-account") { return [.deleteAccount] }
         if arguments.contains("-farecart-open-staff") || arguments.contains("-farecart-staff-code") { return [.staff] }
         return []
     }
 
     static var onboardingPage: Int {
         guard let index = arguments.firstIndex(of: "-farecart-onboarding-page"), index + 1 < arguments.count else { return 0 }
-        return min(max(Int(arguments[index + 1]) ?? 0, 0), 3)
+        return min(max(Int(arguments[index + 1]) ?? 0, 0), 5)
+    }
+
+    /// `-farecart-tab …` given: don't move a staff user to Settings on launch.
+    static var hasTabOverride: Bool { arguments.contains("-farecart-tab") }
+
+    private static func value(after flag: String) -> String? {
+        guard let index = arguments.firstIndex(of: flag), index + 1 < arguments.count else { return nil }
+        return arguments[index + 1]
+    }
+
+    static var authPrefill: (name: String, email: String, password: String) {
+        (value(after: "-farecart-auth-name") ?? "", value(after: "-farecart-auth-email") ?? "", value(after: "-farecart-auth-password") ?? "")
+    }
+    static var authSubmit: Bool { arguments.contains("-farecart-auth-submit") }
+    static var showPassword: Bool { arguments.contains("-farecart-show-password") }
+    static var signOutAtLaunch: Bool { arguments.contains("-farecart-sign-out") }
+    static var confirmDeleteAccount: Bool { arguments.contains("-farecart-confirm-delete-account") }
+
+    @MainActor private static var authSheetConsumed = false
+    /// The email sheet to open once (`-farecart-open-signup` / `-farecart-open-signin`).
+    @MainActor static func consumeAuthSheet() -> EmailSheet? {
+        guard !authSheetConsumed else { return nil }
+        let kind: EmailSheet? = arguments.contains("-farecart-open-signup") ? .signUp : arguments.contains("-farecart-open-signin") ? .signIn : nil
+        if kind != nil { authSheetConsumed = true }
+        return kind
     }
 
     /// `-farecart-splash-hold`: the splash animates in and then stays (screenshots).
@@ -129,8 +192,12 @@ enum DebugLaunch {
         }
         if arguments.contains("-farecart-reset-onboarding") {
             UserDefaults.standard.set(false, forKey: OnboardingKeys.done)
+            UserDefaults.standard.removeObject(forKey: UserRole.storageKey)
         } else if arguments.contains(where: { $0.hasPrefix("-farecart-") }) {
             UserDefaults.standard.set(true, forKey: OnboardingKeys.done)
+        }
+        if let role = value(after: "-farecart-role"), UserRole(rawValue: role) != nil {
+            UserDefaults.standard.set(role, forKey: UserRole.storageKey)
         }
     }
 
