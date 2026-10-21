@@ -26,6 +26,7 @@ extension PlaceFilter {
         case .grocery: "Grocery"
         case .pantry: "Pantry"
         case .giveaway: "Giveaway"
+        case .bookable: "Book a visit"
         }
     }
 
@@ -35,6 +36,7 @@ extension PlaceFilter {
         case .grocery: LocationType.grocery.color
         case .pantry: LocationType.pantry.color
         case .giveaway: LocationType.giveaway.color
+        case .bookable: .accentColor
         }
     }
 }

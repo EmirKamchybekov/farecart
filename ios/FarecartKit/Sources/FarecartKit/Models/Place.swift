@@ -34,6 +34,9 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
     public var requiresID: Bool?
     /// Feed America resource id, for the live status call.
     public var feedamID: Int?
+    /// Open visit slots in the next 14 days (from `nearby_locations`); 0 means walk-in only.
+    public var bookableSlots: Int = 0
+    public var isBookable: Bool { bookableSlots > 0 }
 
     public init(
         id: UUID = UUID(),
@@ -128,6 +131,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         case requiresSNAP = "requires_snap"
         case requiresID = "requires_id"
         case feedamID = "feedam_id"
+        case bookableSlots = "bookable_slots"
     }
 
     public init(from decoder: any Decoder) throws {
@@ -185,6 +189,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         } else {
             feedamID = nil
         }
+        bookableSlots = ((try? c.decodeIfPresent(Int.self, forKey: .bookableSlots)) ?? nil) ?? 0
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -213,6 +218,7 @@ public struct Place: Sendable, Hashable, Identifiable, Codable {
         try c.encode(requiresSNAP, forKey: .requiresSNAP)
         try c.encodeIfPresent(requiresID, forKey: .requiresID)
         try c.encodeIfPresent(feedamID, forKey: .feedamID)
+        try c.encode(bookableSlots, forKey: .bookableSlots)
     }
 }
 

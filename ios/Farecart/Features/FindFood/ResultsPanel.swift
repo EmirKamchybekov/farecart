@@ -203,7 +203,7 @@ struct PlaceRow: View {
 
     /// Only once this pantry's availability was loaded (opening its detail); no extra calls for the list.
     private var canBook: Bool {
-        place.type == .pantry && environment.pantry.cachedAvailability(for: place.id)?.hasUpcomingSlots() == true
+        place.type == .pantry && (place.isBookable || environment.pantry.cachedAvailability(for: place.id)?.hasUpcomingSlots() == true)
     }
 
     var body: some View {
@@ -218,6 +218,10 @@ struct PlaceRow: View {
                     .lineLimit(1)
                 if canBook {
                     Pill(text: Text("Book a visit"), systemImage: "calendar.badge.plus", tint: .accentColor)
+                        .font(.caption.weight(.semibold))
+                        .padding(.top, 2)
+                } else if place.type == .pantry {
+                    Pill(text: Text("Walk-in"), systemImage: "figure.walk", tint: .secondary)
                         .font(.caption.weight(.semibold))
                         .padding(.top, 2)
                 }

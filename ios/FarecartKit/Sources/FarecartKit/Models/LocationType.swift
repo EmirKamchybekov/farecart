@@ -24,6 +24,8 @@ public enum PlaceFilter: String, Sendable, Hashable, CaseIterable, Identifiable 
     case grocery
     case pantry
     case giveaway
+    /// Pantries that take visit bookings.
+    case bookable
 
     public var id: String { rawValue }
 
@@ -34,7 +36,13 @@ public enum PlaceFilter: String, Sendable, Hashable, CaseIterable, Identifiable 
         case .grocery: [.grocery]
         case .pantry: [.pantry]
         case .giveaway: [.giveaway]
+        case .bookable: [.pantry]
         }
+    }
+
+    /// Extra client-side condition applied after the type filter.
+    public func matches(_ place: Place) -> Bool {
+        self == .bookable ? place.isBookable : true
     }
 
     public var symbolName: String {
@@ -43,6 +51,7 @@ public enum PlaceFilter: String, Sendable, Hashable, CaseIterable, Identifiable 
         case .grocery: LocationType.grocery.symbolName
         case .pantry: LocationType.pantry.symbolName
         case .giveaway: LocationType.giveaway.symbolName
+        case .bookable: "calendar.badge.plus"
         }
     }
 }

@@ -27,7 +27,7 @@ public struct MockDataProvider: FoodDataProviding {
         try await pause()
         let allowed = filter.types.map(Set.init)
         return places
-            .filter { allowed == nil || allowed!.contains($0.type) }
+            .filter { (allowed == nil || allowed!.contains($0.type)) && filter.matches($0) }
             .map { place in
                 var copy = place
                 copy.distanceMeters = point.distanceMeters(to: place.coordinate)

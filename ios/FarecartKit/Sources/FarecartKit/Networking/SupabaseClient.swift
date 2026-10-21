@@ -127,6 +127,7 @@ public struct SupabaseClient: Sendable {
 
 extension SupabaseClient: FoodDataProviding {
     public func nearbyPlaces(around point: GeoPoint, filter: PlaceFilter, radius: SearchRadius, limit: Int) async throws -> [Place] {
-        try await nearbyLocations(around: point, types: filter.types, limit: limit, radiusMeters: radius.meters)
+        try await nearbyLocations(around: point, types: filter.types, limit: filter == .bookable ? max(limit, 100) : limit, radiusMeters: radius.meters)
+            .filter(filter.matches)
     }
 }
