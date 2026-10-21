@@ -537,7 +537,7 @@ final class AccountModel {
     private func forget() {
         try? keychain.delete(account: Self.keychainAccount)
         session = nil
-        UserDefaults.standard.set(false, forKey: OnboardingKeys.guest)
+        UserDefaults.standard.set(true, forKey: OnboardingKeys.needsSignIn)
     }
 
     private static func formatted(_ components: PersonNameComponents?) -> String? {

@@ -41,7 +41,7 @@ struct OnboardingView: View {
             HStack {
                 Spacer()
                 Button {
-                    UserDefaults.standard.set(true, forKey: OnboardingKeys.guest)
+                    UserDefaults.standard.set(false, forKey: OnboardingKeys.needsSignIn)
                     finish()
                 } label: {
                     Text("Skip")
@@ -274,7 +274,7 @@ private struct DiscountsPage: View {
 /// Last page: create an account (or sign in), or carry on as a guest.
 private struct AccountPage: View {
     @Environment(AccountModel.self) private var account
-    @AppStorage(OnboardingKeys.guest) private var isGuest = false
+    @AppStorage(OnboardingKeys.needsSignIn) private var needsSignIn = false
     let next: () -> Void
 
     var body: some View {
@@ -293,7 +293,7 @@ private struct AccountPage: View {
                 .buttonStyle(.glassProminent)
             } else {
                 Button {
-                    isGuest = true
+                    needsSignIn = false
                     next()
                 } label: {
                     Text("Continue as guest")
