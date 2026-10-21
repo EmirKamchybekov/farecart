@@ -38,11 +38,10 @@ struct OnboardingView: View {
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
 
-            HStack {
+            if page < steps.count - 1 { HStack {
                 Spacer()
                 Button {
-                    UserDefaults.standard.set(false, forKey: OnboardingKeys.needsSignIn)
-                    finish()
+                    withAnimation(.snappy) { page = steps.count - 1 }
                 } label: {
                     Text("Skip")
                         .font(.body.weight(.semibold))
@@ -51,7 +50,7 @@ struct OnboardingView: View {
                 .buttonStyle(.glass)
                 .padding(.horizontal, Spacing.m)
                 .accessibilityLabel("Skip the welcome screens")
-            }
+            } }
         }
     }
 
@@ -274,7 +273,6 @@ private struct DiscountsPage: View {
 /// Last page: create an account (or sign in), or carry on as a guest.
 private struct AccountPage: View {
     @Environment(AccountModel.self) private var account
-    @AppStorage(OnboardingKeys.needsSignIn) private var needsSignIn = false
     let next: () -> Void
 
     var body: some View {
@@ -292,18 +290,10 @@ private struct AccountPage: View {
                 }
                 .buttonStyle(.glassProminent)
             } else {
-                Button {
-                    needsSignIn = false
-                    next()
-                } label: {
-                    Text("Continue as guest")
-                        .font(.subheadline.weight(.semibold))
-                        .padding(.vertical, Spacing.xs)
-                        .frame(maxWidth: .infinity)
-                        .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .foregroundStyle(.secondary)
+                Text("Sign in or create a free account to use Farecart.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity)
             }
         }
     }
@@ -631,6 +621,9 @@ private struct MapThumbnail: View {
 /// the same account page, without the rest of the welcome flow.
 struct AccountGateView: View {
     var body: some View {
-        AccountPage(next: {})
+        ZStack {
+            Color(.systemGroupedBackground).ignoresSafeArea()
+            AccountPage(next: {})
+        }
     }
 }

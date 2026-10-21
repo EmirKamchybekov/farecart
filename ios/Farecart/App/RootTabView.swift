@@ -29,8 +29,8 @@ struct RootView: View {
 
     @ViewBuilder
     private var gate: some View {
-        if onboardingDone && !account.isSignedIn && needsSignIn {
-            // Signed out after onboarding: back to the account screen (language, role and theme stay).
+        if onboardingDone && !account.isSignedIn {
+            // An account is required: anyone signed out sees the account screen (language, role and theme stay).
             AccountGateView()
                 .transition(.opacity)
         } else if onboardingDone {

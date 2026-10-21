@@ -45,7 +45,7 @@ struct PantryScheduleCard: View {
                 if let currentDay {
                     slotGrid(currentDay.slots)
                 }
-                Text("Booking holds your spot for the time you pick. No account needed, and you can cancel any time.")
+                Text("Booking holds your spot for the time you pick. You can cancel any time.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             } else if !isLoading || availability != nil {

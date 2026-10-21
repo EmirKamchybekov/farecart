@@ -3185,28 +3185,16 @@
     },
     "An account keeps your pantry visits, discount answers and language on every phone you use.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Una cuenta guarda tus visitas a despensas, tus respuestas sobre descuentos y tu idioma en cualquier teléfono que uses."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konto zachowuje Twoje wizyty w spiżarniach, odpowiedzi o zniżkach i język na każdym telefonie, którego używasz."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "账户会在你使用的每部手机上保存你的食物银行预约、优惠问题的回答和语言。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "يحتفظ الحساب بزياراتك لبنوك الطعام وإجاباتك عن الخصومات ولغتك على كل هاتف تستخدمه."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una cuenta guarda tus visitas a despensas, tus respuestas sobre descuentos y tu idioma en cualquier teléfono que uses."
           }
         },
         "fil": {
@@ -3215,10 +3203,16 @@
             "value": "Pinapanatili ng account ang iyong mga pagbisita sa pantry, mga sagot sa diskwento at wika sa bawat teleponong ginagamit mo."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اکاؤنٹ آپ کے پینٹری وزٹس، رعایت کے جوابات اور زبان کو ہر اس فون پر محفوظ رکھتا ہے جو آپ استعمال کرتے ہیں۔"
+            "value": "계정이 있으면 푸드 팬트리 방문, 할인 답변, 언어가 사용하는 모든 휴대폰에 그대로 유지됩니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konto zachowuje Twoje wizyty w spiżarniach, odpowiedzi o zniżkach i język na każdym telefonie, którego używasz."
           }
         },
         "uk": {
@@ -3227,38 +3221,32 @@
             "value": "Обліковий запис зберігає ваші візити до продовольчих банків, відповіді щодо знижок і мову на кожному телефоні, яким ви користуєтеся."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "계정이 있으면 푸드 팬트리 방문, 할인 답변, 언어가 사용하는 모든 휴대폰에 그대로 유지됩니다."
+            "value": "اکاؤنٹ آپ کے پینٹری وزٹس، رعایت کے جوابات اور زبان کو ہر اس فون پر محفوظ رکھتا ہے جو آپ استعمال کرتے ہیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "账户会在你使用的每部手机上保存你的食物银行预约、优惠问题的回答和语言。"
           }
         }
       }
     },
     "An account keeps your pantry visits, discount answers and language on every phone you use. Everything works without one.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Una cuenta guarda tus visitas a despensas, tus respuestas sobre descuentos y tu idioma en cualquier teléfono que uses. Todo funciona sin cuenta."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konto zachowuje Twoje wizyty w spiżarniach, odpowiedzi o zniżkach i język na każdym telefonie, którego używasz. Wszystko działa też bez konta."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "账户会在你使用的每部手机上保存你的食物银行预约、优惠问题的回答和语言。没有账户也能使用所有功能。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "يحتفظ الحساب بزياراتك لبنوك الطعام وإجاباتك عن الخصومات ولغتك على كل هاتف تستخدمه. كل شيء يعمل بدون حساب."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una cuenta guarda tus visitas a despensas, tus respuestas sobre descuentos y tu idioma en cualquier teléfono que uses. Todo funciona sin cuenta."
           }
         },
         "fil": {
@@ -3267,10 +3255,16 @@
             "value": "Pinapanatili ng account ang iyong mga pagbisita sa pantry, mga sagot sa diskwento at wika sa bawat teleponong ginagamit mo. Gumagana ang lahat kahit walang account."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اکاؤنٹ آپ کے پینٹری وزٹس، رعایت کے جوابات اور زبان کو ہر اس فون پر محفوظ رکھتا ہے جو آپ استعمال کرتے ہیں۔ اکاؤنٹ کے بغیر بھی سب کچھ کام کرتا ہے۔"
+            "value": "계정이 있으면 푸드 팬트리 방문, 할인 답변, 언어가 사용하는 모든 휴대폰에 그대로 유지됩니다. 계정 없이도 모든 기능을 쓸 수 있습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konto zachowuje Twoje wizyty w spiżarniach, odpowiedzi o zniżkach i język na każdym telefonie, którego używasz. Wszystko działa też bez konta."
           }
         },
         "uk": {
@@ -3279,10 +3273,16 @@
             "value": "Обліковий запис зберігає ваші візити до продовольчих банків, відповіді щодо знижок і мову на кожному телефоні, яким ви користуєтеся. Усе працює й без нього."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "계정이 있으면 푸드 팬트리 방문, 할인 답변, 언어가 사용하는 모든 휴대폰에 그대로 유지됩니다. 계정 없이도 모든 기능을 쓸 수 있습니다."
+            "value": "اکاؤنٹ آپ کے پینٹری وزٹس، رعایت کے جوابات اور زبان کو ہر اس فون پر محفوظ رکھتا ہے جو آپ استعمال کرتے ہیں۔ اکاؤنٹ کے بغیر بھی سب کچھ کام کرتا ہے۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "账户会在你使用的每部手机上保存你的食物银行预约、优惠问题的回答和语言。没有账户也能使用所有功能。"
           }
         }
       }
@@ -3809,28 +3809,16 @@
     },
     "At least 8 characters.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Al menos 8 caracteres."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Co najmniej 8 znaków."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "至少 8 个字符。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "8 أحرف على الأقل."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al menos 8 caracteres."
           }
         },
         "fil": {
@@ -3839,10 +3827,16 @@
             "value": "Hindi bababa sa 8 character."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "کم از کم 8 حروف۔"
+            "value": "8자 이상."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Co najmniej 8 znaków."
           }
         },
         "uk": {
@@ -3851,10 +3845,16 @@
             "value": "Щонайменше 8 символів."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "8자 이상."
+            "value": "کم از کم 8 حروف۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "至少 8 个字符。"
           }
         }
       }
@@ -4167,6 +4167,58 @@
           "stringUnit": {
             "state": "translated",
             "value": "预约会为您保留所选时段的名额。无需账户，可随时取消。"
+          }
+        }
+      }
+    },
+    "Booking holds your spot for the time you pick. You can cancel any time.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحجز يحفظ مكانك في الوقت الذي تختاره. يمكنك الإلغاء في أي وقت."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La reserva guarda tu lugar a la hora que elijas. Puedes cancelar cuando quieras."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hinahawakan ng booking ang puwesto mo sa oras na pinili mo. Puwede mong kanselahin anumang oras."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "예약하면 고른 시간에 자리가 확보됩니다. 언제든 취소할 수 있어요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rezerwacja zatrzymuje Twoje miejsce na wybraną godzinę. Możesz ją anulować w każdej chwili."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бронювання тримає ваше місце на обраний час. Скасувати можна будь-коли."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بکنگ آپ کے منتخب وقت کے لیے آپ کی جگہ محفوظ رکھتی ہے۔ آپ کسی بھی وقت منسوخ کر سکتے ہیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "预约会为你保留所选时间的名额，随时可以取消。"
           }
         }
       }
@@ -5057,28 +5109,16 @@
     },
     "Check your email. We sent a link to %@. Open it on this phone to finish.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Revisa tu correo. Enviamos un enlace a %@. Ábrelo en este teléfono para terminar."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sprawdź pocztę. Wysłaliśmy link na adres %@. Otwórz go na tym telefonie, aby dokończyć."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "请查看邮箱。我们已向 %@ 发送了一个链接。请在这部手机上打开它以完成操作。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تحقق من بريدك الإلكتروني. أرسلنا رابطًا إلى %@. افتحه على هذا الهاتف لإكمال العملية."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisa tu correo. Enviamos un enlace a %@. Ábrelo en este teléfono para terminar."
           }
         },
         "fil": {
@@ -5087,10 +5127,16 @@
             "value": "Tingnan ang iyong email. Nagpadala kami ng link sa %@. Buksan ito sa teleponong ito para matapos."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اپنی ای میل دیکھیں۔ ہم نے %@ پر ایک لنک بھیجا ہے۔ مکمل کرنے کے لیے اسے اسی فون پر کھولیں۔"
+            "value": "이메일을 확인하세요. %@(으)로 링크를 보냈습니다. 이 휴대폰에서 열어 마무리하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprawdź pocztę. Wysłaliśmy link na adres %@. Otwórz go na tym telefonie, aby dokończyć."
           }
         },
         "uk": {
@@ -5099,10 +5145,16 @@
             "value": "Перевірте пошту. Ми надіслали посилання на %@. Відкрийте його на цьому телефоні, щоб завершити."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이메일을 확인하세요. %@(으)로 링크를 보냈습니다. 이 휴대폰에서 열어 마무리하세요."
+            "value": "اپنی ای میل دیکھیں۔ ہم نے %@ پر ایک لنک بھیجا ہے۔ مکمل کرنے کے لیے اسے اسی فون پر کھولیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请查看邮箱。我们已向 %@ 发送了一个链接。请在这部手机上打开它以完成操作。"
           }
         }
       }
@@ -5213,28 +5265,16 @@
     },
     "Choose a new password": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Elige una contraseña nueva"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wybierz nowe hasło"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "设置新密码"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "اختر كلمة مرور جديدة"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige una contraseña nueva"
           }
         },
         "fil": {
@@ -5243,10 +5283,16 @@
             "value": "Pumili ng bagong password"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "نیا پاس ورڈ منتخب کریں"
+            "value": "새 비밀번호 설정"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz nowe hasło"
           }
         },
         "uk": {
@@ -5255,38 +5301,32 @@
             "value": "Виберіть новий пароль"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "새 비밀번호 설정"
+            "value": "نیا پاس ورڈ منتخب کریں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置新密码"
           }
         }
       }
     },
     "Choose your look": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Elige tu estilo"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wybierz wygląd"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "选择外观"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "اختر المظهر"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige tu estilo"
           }
         },
         "fil": {
@@ -5295,10 +5335,16 @@
             "value": "Piliin ang itsura"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اپنی شکل منتخب کریں"
+            "value": "화면 스타일 선택"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz wygląd"
           }
         },
         "uk": {
@@ -5307,10 +5353,16 @@
             "value": "Виберіть вигляд"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "화면 스타일 선택"
+            "value": "اپنی شکل منتخب کریں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择外观"
           }
         }
       }
@@ -5681,28 +5733,16 @@
     },
     "Confirm your email first: open the link we sent you, then sign in.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Primero confirma tu correo: abre el enlace que te enviamos y luego inicia sesión."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Najpierw potwierdź e-mail: otwórz wysłany link, a potem się zaloguj."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "请先确认你的邮箱：打开我们发送的链接，然后再登录。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "أكّد بريدك الإلكتروني أولًا: افتح الرابط الذي أرسلناه إليك، ثم سجّل الدخول."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primero confirma tu correo: abre el enlace que te enviamos y luego inicia sesión."
           }
         },
         "fil": {
@@ -5711,10 +5751,16 @@
             "value": "Kumpirmahin muna ang iyong email: buksan ang link na ipinadala namin, saka mag-sign in."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "پہلے اپنی ای میل کی تصدیق کریں: ہمارا بھیجا ہوا لنک کھولیں، پھر سائن ان کریں۔"
+            "value": "먼저 이메일을 인증하세요. 보내 드린 링크를 연 다음 로그인하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Najpierw potwierdź e-mail: otwórz wysłany link, a potem się zaloguj."
           }
         },
         "uk": {
@@ -5723,10 +5769,16 @@
             "value": "Спершу підтвердьте пошту: відкрийте надіслане посилання, а потім увійдіть."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "먼저 이메일을 인증하세요. 보내 드린 링크를 연 다음 로그인하세요."
+            "value": "پہلے اپنی ای میل کی تصدیق کریں: ہمارا بھیجا ہوا لنک کھولیں، پھر سائن ان کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请先确认你的邮箱：打开我们发送的链接，然后再登录。"
           }
         }
       }
@@ -5941,28 +5993,16 @@
     },
     "Continue as guest": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continuar como invitado"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kontynuuj jako gość"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "以访客身份继续"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "المتابعة كضيف"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar como invitado"
           }
         },
         "fil": {
@@ -5971,10 +6011,16 @@
             "value": "Magpatuloy bilang bisita"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "مہمان کے طور پر جاری رکھیں"
+            "value": "게스트로 계속"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontynuuj jako gość"
           }
         },
         "uk": {
@@ -5983,10 +6029,16 @@
             "value": "Продовжити як гість"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "게스트로 계속"
+            "value": "مہمان کے طور پر جاری رکھیں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以访客身份继续"
           }
         }
       }
@@ -6253,28 +6305,16 @@
     },
     "Could not delete your account right now. Check your connection and try again.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No se pudo eliminar tu cuenta ahora. Revisa tu conexión e inténtalo de nuevo."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nie udało się teraz usunąć konta. Sprawdź połączenie i spróbuj ponownie."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "暂时无法删除你的账户。请检查网络连接后重试。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تعذّر حذف حسابك الآن. تحقق من اتصالك وحاول مرة أخرى."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo eliminar tu cuenta ahora. Revisa tu conexión e inténtalo de nuevo."
           }
         },
         "fil": {
@@ -6283,10 +6323,16 @@
             "value": "Hindi ma-delete ang iyong account ngayon. Tingnan ang iyong koneksyon at subukang muli."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "ابھی آپ کا اکاؤنٹ حذف نہیں ہو سکا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔"
+            "value": "지금은 계정을 삭제할 수 없습니다. 연결을 확인하고 다시 시도하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie udało się teraz usunąć konta. Sprawdź połączenie i spróbuj ponownie."
           }
         },
         "uk": {
@@ -6295,10 +6341,16 @@
             "value": "Зараз не вдалося видалити обліковий запис. Перевірте з'єднання і спробуйте ще раз."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "지금은 계정을 삭제할 수 없습니다. 연결을 확인하고 다시 시도하세요."
+            "value": "ابھی آپ کا اکاؤنٹ حذف نہیں ہو سکا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法删除你的账户。请检查网络连接后重试。"
           }
         }
       }
@@ -6617,28 +6669,16 @@
     },
     "Create account": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crear cuenta"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Utwórz konto"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "创建账户"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "إنشاء حساب"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear cuenta"
           }
         },
         "fil": {
@@ -6647,32 +6687,10 @@
             "value": "Gumawa ng account"
           }
         },
-        "ur": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "اکاؤنٹ بنائیں"
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Створити обліковий запис"
-          }
-        },
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "계정 만들기"
-          }
-        }
-      }
-    },
-    "Create your account": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Crea tu cuenta"
           }
         },
         "pl": {
@@ -6681,16 +6699,38 @@
             "value": "Utwórz konto"
           }
         },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Створити обліковий запис"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اکاؤنٹ بنائیں"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "创建你的账户"
+            "value": "创建账户"
           }
-        },
+        }
+      }
+    },
+    "Create your account": {
+      "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "أنشئ حسابك"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea tu cuenta"
           }
         },
         "fil": {
@@ -6699,10 +6739,16 @@
             "value": "Gumawa ng iyong account"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اپنا اکاؤنٹ بنائیں"
+            "value": "계정 만들기"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utwórz konto"
           }
         },
         "uk": {
@@ -6711,10 +6757,16 @@
             "value": "Створіть обліковий запис"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "계정 만들기"
+            "value": "اپنا اکاؤنٹ بنائیں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建你的账户"
           }
         }
       }
@@ -7137,28 +7189,16 @@
     },
     "Delete your Farecart account permanently?": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Eliminar tu cuenta de Farecart para siempre?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usunąć konto Farecart na zawsze?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "要永久删除你的 Farecart 账户吗？"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "هل تريد حذف حسابك في Farecart نهائيًا؟"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar tu cuenta de Farecart para siempre?"
           }
         },
         "fil": {
@@ -7167,10 +7207,16 @@
             "value": "Permanenteng i-delete ang iyong Farecart account?"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "کیا اپنا Farecart اکاؤنٹ ہمیشہ کے لیے حذف کریں؟"
+            "value": "Farecart 계정을 영구적으로 삭제할까요?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usunąć konto Farecart na zawsze?"
           }
         },
         "uk": {
@@ -7179,38 +7225,32 @@
             "value": "Видалити обліковий запис Farecart назавжди?"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Farecart 계정을 영구적으로 삭제할까요?"
+            "value": "کیا اپنا Farecart اکاؤنٹ ہمیشہ کے لیے حذف کریں؟"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要永久删除你的 Farecart 账户吗？"
           }
         }
       }
     },
     "Delete your account?": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Eliminar tu cuenta?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usunąć konto?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "要删除你的账户吗？"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "هل تريد حذف حسابك؟"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar tu cuenta?"
           }
         },
         "fil": {
@@ -7219,10 +7259,16 @@
             "value": "I-delete ang iyong account?"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "کیا اپنا اکاؤنٹ حذف کریں؟"
+            "value": "계정을 삭제할까요?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usunąć konto?"
           }
         },
         "uk": {
@@ -7231,10 +7277,16 @@
             "value": "Видалити обліковий запис?"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "계정을 삭제할까요?"
+            "value": "کیا اپنا اکاؤنٹ حذف کریں؟"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要删除你的账户吗？"
           }
         }
       }
@@ -7553,28 +7605,16 @@
     },
     "Email": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Correo electrónico"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "E-mail"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "邮箱"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "البريد الإلكتروني"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correo electrónico"
           }
         },
         "fil": {
@@ -7583,10 +7623,16 @@
             "value": "Email"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "ای میل"
+            "value": "이메일"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E-mail"
           }
         },
         "uk": {
@@ -7595,10 +7641,16 @@
             "value": "Ел. пошта"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이메일"
+            "value": "ای میل"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "邮箱"
           }
         }
       }
@@ -7657,28 +7709,16 @@
     },
     "Enter a valid email address.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escribe un correo electrónico válido."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wpisz prawidłowy adres e-mail."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "请输入有效的邮箱地址。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "أدخل عنوان بريد إلكتروني صالحًا."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe un correo electrónico válido."
           }
         },
         "fil": {
@@ -7687,10 +7727,16 @@
             "value": "Maglagay ng wastong email address."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "درست ای میل ایڈریس درج کریں۔"
+            "value": "올바른 이메일 주소를 입력하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wpisz prawidłowy adres e-mail."
           }
         },
         "uk": {
@@ -7699,10 +7745,16 @@
             "value": "Введіть дійсну адресу ел. пошти."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "올바른 이메일 주소를 입력하세요."
+            "value": "درست ای میل ایڈریس درج کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请输入有效的邮箱地址。"
           }
         }
       }
@@ -7813,28 +7865,16 @@
     },
     "Enter your password.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escribe tu contraseña."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wpisz hasło."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "请输入密码。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "أدخل كلمة المرور."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe tu contraseña."
           }
         },
         "fil": {
@@ -7843,10 +7883,16 @@
             "value": "Ilagay ang iyong password."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اپنا پاس ورڈ درج کریں۔"
+            "value": "비밀번호를 입력하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wpisz hasło."
           }
         },
         "uk": {
@@ -7855,10 +7901,16 @@
             "value": "Введіть пароль."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "비밀번호를 입력하세요."
+            "value": "اپنا پاس ورڈ درج کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请输入密码。"
           }
         }
       }
@@ -8593,28 +8645,16 @@
     },
     "Find pantries, grocery stores and giveaways nearby, and ride the CTA for less.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Encuentra despensas, supermercados y repartos de comida cerca, y viaja en la CTA por menos."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Znajdź w pobliżu spiżarnie, sklepy spożywcze i rozdawnictwa żywności i jeździj CTA taniej."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "查找附近的食物银行、杂货店和免费食物发放点，并以更低票价乘坐 CTA。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "اعثر على بنوك الطعام ومتاجر البقالة وتوزيعات الطعام القريبة، واركب CTA بتكلفة أقل."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encuentra despensas, supermercados y repartos de comida cerca, y viaja en la CTA por menos."
           }
         },
         "fil": {
@@ -8623,10 +8663,16 @@
             "value": "Maghanap ng mga pantry, grocery at libreng pamigay ng pagkain sa malapit, at sumakay sa CTA nang mas mura."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "قریبی پینٹریز، گروسری اسٹورز اور مفت کھانے کی تقسیم تلاش کریں، اور CTA پر کم کرائے میں سفر کریں۔"
+            "value": "근처 푸드 팬트리, 식료품점, 무료 식품 나눔을 찾고 CTA를 더 저렴하게 이용하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Znajdź w pobliżu spiżarnie, sklepy spożywcze i rozdawnictwa żywności i jeździj CTA taniej."
           }
         },
         "uk": {
@@ -8635,10 +8681,16 @@
             "value": "Знаходьте поруч продовольчі банки, продуктові магазини й роздачі їжі та їздьте CTA дешевше."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "근처 푸드 팬트리, 식료품점, 무료 식품 나눔을 찾고 CTA를 더 저렴하게 이용하세요."
+            "value": "قریبی پینٹریز، گروسری اسٹورز اور مفت کھانے کی تقسیم تلاش کریں، اور CTA پر کم کرائے میں سفر کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "查找附近的食物银行、杂货店和免费食物发放点，并以更低票价乘坐 CTA。"
           }
         }
       }
@@ -8853,28 +8905,16 @@
     },
     "Forgot password?": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Olvidaste tu contraseña?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nie pamiętasz hasła?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "忘记密码？"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "هل نسيت كلمة المرور؟"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Olvidaste tu contraseña?"
           }
         },
         "fil": {
@@ -8883,10 +8923,16 @@
             "value": "Nakalimutan ang password?"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "پاس ورڈ بھول گئے؟"
+            "value": "비밀번호를 잊으셨나요?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie pamiętasz hasła?"
           }
         },
         "uk": {
@@ -8895,10 +8941,16 @@
             "value": "Забули пароль?"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "비밀번호를 잊으셨나요?"
+            "value": "پاس ورڈ بھول گئے؟"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "忘记密码？"
           }
         }
       }
@@ -9579,6 +9631,58 @@
         }
       }
     },
+    "Google sign-in isn't available right now. Use email instead.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تسجيل الدخول عبر Google غير متاح الآن. استخدم البريد الإلكتروني."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El inicio de sesión con Google no está disponible ahora. Usa tu correo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi available ngayon ang Google sign-in. Gamitin ang email."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지금은 Google 로그인을 사용할 수 없어요. 이메일을 사용하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logowanie przez Google jest teraz niedostępne. Użyj e-maila."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вхід через Google зараз недоступний. Скористайтеся електронною поштою."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google سے سائن ان ابھی دستیاب نہیں۔ ای میل استعمال کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Google 登录目前不可用。请改用电子邮件。"
+          }
+        }
+      }
+    },
     "Google sign-in isn't set up yet. You can keep using Farecart without an account.": {
       "localizations": {
         "ar": {
@@ -9841,28 +9945,16 @@
     },
     "Hide password": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ocultar contraseña"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ukryj hasło"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "隐藏密码"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "إخفاء كلمة المرور"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ocultar contraseña"
           }
         },
         "fil": {
@@ -9871,10 +9963,16 @@
             "value": "Itago ang password"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "پاس ورڈ چھپائیں"
+            "value": "비밀번호 숨기기"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukryj hasło"
           }
         },
         "uk": {
@@ -9883,10 +9981,16 @@
             "value": "Сховати пароль"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "비밀번호 숨기기"
+            "value": "پاس ورڈ چھپائیں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "隐藏密码"
           }
         }
       }
@@ -10257,28 +10361,16 @@
     },
     "How will you use Farecart?": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "¿Cómo usarás Farecart?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jak będziesz korzystać z Farecart?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你会如何使用 Farecart？"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "كيف ستستخدم Farecart؟"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Cómo usarás Farecart?"
           }
         },
         "fil": {
@@ -10287,10 +10379,16 @@
             "value": "Paano mo gagamitin ang Farecart?"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "آپ Farecart کیسے استعمال کریں گے؟"
+            "value": "Farecart를 어떻게 사용하시나요?"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jak będziesz korzystać z Farecart?"
           }
         },
         "uk": {
@@ -10299,38 +10397,32 @@
             "value": "Як ви користуватиметеся Farecart?"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Farecart를 어떻게 사용하시나요?"
+            "value": "آپ Farecart کیسے استعمال کریں گے؟"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你会如何使用 Farecart？"
           }
         }
       }
     },
     "I already have an account": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ya tengo una cuenta"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mam już konto"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "我已有账户"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "لديّ حساب بالفعل"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya tengo una cuenta"
           }
         },
         "fil": {
@@ -10339,10 +10431,16 @@
             "value": "May account na ako"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "میرا پہلے سے اکاؤنٹ ہے"
+            "value": "이미 계정이 있습니다"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mam już konto"
           }
         },
         "uk": {
@@ -10351,10 +10449,16 @@
             "value": "У мене вже є обліковий запис"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이미 계정이 있습니다"
+            "value": "میرا پہلے سے اکاؤنٹ ہے"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我已有账户"
           }
         }
       }
@@ -10413,28 +10517,16 @@
     },
     "I'm looking for food": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Busco comida"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Szukam jedzenia"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "我在找食物"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "أبحث عن طعام"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Busco comida"
           }
         },
         "fil": {
@@ -10443,10 +10535,16 @@
             "value": "Naghahanap ako ng pagkain"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "مجھے کھانا چاہیے"
+            "value": "음식을 찾고 있어요"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szukam jedzenia"
           }
         },
         "uk": {
@@ -10455,38 +10553,32 @@
             "value": "Я шукаю їжу"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "음식을 찾고 있어요"
+            "value": "مجھے کھانا چاہیے"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我在找食物"
           }
         }
       }
     },
     "If there is an account for %@, we sent it a link to reset the password. Open the link on this phone.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Si hay una cuenta para %@, le enviamos un enlace para restablecer la contraseña. Abre el enlace en este teléfono."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jeśli istnieje konto dla %@, wysłaliśmy link do zresetowania hasła. Otwórz go na tym telefonie."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "如果 %@ 有账户，我们已发送重置密码的链接。请在这部手机上打开该链接。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "إذا كان هناك حساب لـ %@، فقد أرسلنا إليه رابطًا لإعادة تعيين كلمة المرور. افتح الرابط على هذا الهاتف."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si hay una cuenta para %@, le enviamos un enlace para restablecer la contraseña. Abre el enlace en este teléfono."
           }
         },
         "fil": {
@@ -10495,10 +10587,16 @@
             "value": "Kung may account para sa %@, nagpadala kami ng link para i-reset ang password. Buksan ang link sa teleponong ito."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اگر %@ کا اکاؤنٹ موجود ہے تو ہم نے پاس ورڈ ری سیٹ کرنے کا لنک بھیج دیا ہے۔ لنک اسی فون پر کھولیں۔"
+            "value": "%@ 계정이 있으면 비밀번호 재설정 링크를 보냈습니다. 이 휴대폰에서 링크를 여세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeśli istnieje konto dla %@, wysłaliśmy link do zresetowania hasła. Otwórz go na tym telefonie."
           }
         },
         "uk": {
@@ -10507,10 +10605,16 @@
             "value": "Якщо для %@ є обліковий запис, ми надіслали посилання для скидання пароля. Відкрийте його на цьому телефоні."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ 계정이 있으면 비밀번호 재설정 링크를 보냈습니다. 이 휴대폰에서 링크를 여세요."
+            "value": "اگر %@ کا اکاؤنٹ موجود ہے تو ہم نے پاس ورڈ ری سیٹ کرنے کا لنک بھیج دیا ہے۔ لنک اسی فون پر کھولیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果 %@ 有账户，我们已发送重置密码的链接。请在这部手机上打开该链接。"
           }
         }
       }
@@ -11037,28 +11141,16 @@
     },
     "Later": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Más tarde"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Później"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "稍后"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "لاحقًا"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más tarde"
           }
         },
         "fil": {
@@ -11067,10 +11159,16 @@
             "value": "Mamaya"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "بعد میں"
+            "value": "나중에"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Później"
           }
         },
         "uk": {
@@ -11079,10 +11177,16 @@
             "value": "Пізніше"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "나중에"
+            "value": "بعد میں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "稍后"
           }
         }
       }
@@ -12077,28 +12181,16 @@
     },
     "Name": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nombre"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Imię"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "姓名"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "الاسم"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
           }
         },
         "fil": {
@@ -12107,10 +12199,16 @@
             "value": "Pangalan"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "نام"
+            "value": "이름"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imię"
           }
         },
         "uk": {
@@ -12119,10 +12217,16 @@
             "value": "Ім'я"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이름"
+            "value": "نام"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "姓名"
           }
         }
       }
@@ -12285,28 +12389,16 @@
     },
     "New accounts are turned off right now. You can keep using Farecart as a guest.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ahora no se pueden crear cuentas nuevas. Puedes seguir usando Farecart como invitado."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tworzenie nowych kont jest teraz wyłączone. Możesz dalej korzystać z Farecart jako gość."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "目前暂停创建新账户。你可以继续以访客身份使用 Farecart。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "إنشاء حسابات جديدة متوقف حاليًا. يمكنك مواصلة استخدام Farecart كضيف."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora no se pueden crear cuentas nuevas. Puedes seguir usando Farecart como invitado."
           }
         },
         "fil": {
@@ -12315,10 +12407,16 @@
             "value": "Naka-off ngayon ang paggawa ng bagong account. Puwede mong ituloy ang paggamit ng Farecart bilang bisita."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "نئے اکاؤنٹس فی الحال بند ہیں۔ آپ مہمان کے طور پر Farecart استعمال کرتے رہ سکتے ہیں۔"
+            "value": "지금은 새 계정을 만들 수 없습니다. 게스트로 Farecart를 계속 사용할 수 있습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tworzenie nowych kont jest teraz wyłączone. Możesz dalej korzystać z Farecart jako gość."
           }
         },
         "uk": {
@@ -12327,38 +12425,32 @@
             "value": "Створення нових облікових записів зараз вимкнено. Ви можете далі користуватися Farecart як гість."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "지금은 새 계정을 만들 수 없습니다. 게스트로 Farecart를 계속 사용할 수 있습니다."
+            "value": "نئے اکاؤنٹس فی الحال بند ہیں۔ آپ مہمان کے طور پر Farecart استعمال کرتے رہ سکتے ہیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前暂停创建新账户。你可以继续以访客身份使用 Farecart。"
           }
         }
       }
     },
     "New password": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contraseña nueva"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nowe hasło"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "新密码"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "كلمة المرور الجديدة"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contraseña nueva"
           }
         },
         "fil": {
@@ -12367,10 +12459,16 @@
             "value": "Bagong password"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "نیا پاس ورڈ"
+            "value": "새 비밀번호"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nowe hasło"
           }
         },
         "uk": {
@@ -12379,10 +12477,16 @@
             "value": "Новий пароль"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "새 비밀번호"
+            "value": "نیا پاس ورڈ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新密码"
           }
         }
       }
@@ -14261,28 +14365,16 @@
     },
     "Password": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contraseña"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hasło"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "密码"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "كلمة المرور"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contraseña"
           }
         },
         "fil": {
@@ -14291,10 +14383,16 @@
             "value": "Password"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "پاس ورڈ"
+            "value": "비밀번호"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hasło"
           }
         },
         "uk": {
@@ -14303,10 +14401,16 @@
             "value": "Пароль"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "비밀번호"
+            "value": "پاس ورڈ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密码"
           }
         }
       }
@@ -14573,28 +14677,16 @@
     },
     "Pick how Farecart looks. You can change it any time in Settings.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Elige cómo se ve Farecart. Puedes cambiarlo cuando quieras en Ajustes."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wybierz wygląd Farecart. Możesz go zmienić w dowolnej chwili w Ustawieniach."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "选择 Farecart 的外观。你可以随时在“设置”中更改。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "اختر شكل Farecart. يمكنك تغييره في أي وقت من الإعدادات."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige cómo se ve Farecart. Puedes cambiarlo cuando quieras en Ajustes."
           }
         },
         "fil": {
@@ -14603,10 +14695,16 @@
             "value": "Piliin ang itsura ng Farecart. Puwede mo itong baguhin anumang oras sa Settings."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "منتخب کریں کہ Farecart کیسا نظر آئے۔ آپ اسے کسی بھی وقت سیٹنگز میں بدل سکتے ہیں۔"
+            "value": "Farecart의 화면 스타일을 고르세요. 설정에서 언제든지 바꿀 수 있습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybierz wygląd Farecart. Możesz go zmienić w dowolnej chwili w Ustawieniach."
           }
         },
         "uk": {
@@ -14615,10 +14713,16 @@
             "value": "Виберіть, як виглядатиме Farecart. Змінити це можна будь-коли в Налаштуваннях."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Farecart의 화면 스타일을 고르세요. 설정에서 언제든지 바꿀 수 있습니다."
+            "value": "منتخب کریں کہ Farecart کیسا نظر آئے۔ آپ اسے کسی بھی وقت سیٹنگز میں بدل سکتے ہیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择 Farecart 的外观。你可以随时在“设置”中更改。"
           }
         }
       }
@@ -14677,28 +14781,16 @@
     },
     "Post today's stock, open visit times and check people in.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Publica lo que hay hoy, abre horarios de visita y registra a quienes llegan."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Publikuj dzisiejsze zapasy, otwieraj terminy wizyt i odnotowuj przybycie osób."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "发布今日库存、开放预约时段并为来访者签到。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "انشر مخزون اليوم، وافتح مواعيد الزيارة، وسجّل وصول الأشخاص."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Publica lo que hay hoy, abre horarios de visita y registra a quienes llegan."
           }
         },
         "fil": {
@@ -14707,10 +14799,16 @@
             "value": "I-post ang stock ngayong araw, magbukas ng oras ng pagbisita at i-check in ang mga dumarating."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "آج کا اسٹاک پوسٹ کریں، وزٹ کے اوقات کھولیں اور آنے والوں کو چیک اِن کریں۔"
+            "value": "오늘의 재고를 올리고, 방문 시간을 열고, 방문자를 체크인하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Publikuj dzisiejsze zapasy, otwieraj terminy wizyt i odnotowuj przybycie osób."
           }
         },
         "uk": {
@@ -14719,10 +14817,16 @@
             "value": "Публікуйте сьогоднішні запаси, відкривайте час візитів і відмічайте прибулих."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "오늘의 재고를 올리고, 방문 시간을 열고, 방문자를 체크인하세요."
+            "value": "آج کا اسٹاک پوسٹ کریں، وزٹ کے اوقات کھولیں اور آنے والوں کو چیک اِن کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "发布今日库存、开放预约时段并为来访者签到。"
           }
         }
       }
@@ -15873,28 +15977,16 @@
     },
     "Save password": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Guardar contraseña"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zapisz hasło"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "保存密码"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "حفظ كلمة المرور"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar contraseña"
           }
         },
         "fil": {
@@ -15903,10 +15995,16 @@
             "value": "I-save ang password"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "پاس ورڈ محفوظ کریں"
+            "value": "비밀번호 저장"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zapisz hasło"
           }
         },
         "uk": {
@@ -15915,10 +16013,16 @@
             "value": "Зберегти пароль"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "비밀번호 저장"
+            "value": "پاس ورڈ محفوظ کریں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存密码"
           }
         }
       }
@@ -16497,28 +16601,16 @@
     },
     "Show password": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mostrar contraseña"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pokaż hasło"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "显示密码"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "إظهار كلمة المرور"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar contraseña"
           }
         },
         "fil": {
@@ -16527,10 +16619,16 @@
             "value": "Ipakita ang password"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "پاس ورڈ دکھائیں"
+            "value": "비밀번호 표시"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokaż hasło"
           }
         },
         "uk": {
@@ -16539,10 +16637,16 @@
             "value": "Показати пароль"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "비밀번호 표시"
+            "value": "پاس ورڈ دکھائیں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示密码"
           }
         }
       }
@@ -17017,28 +17121,16 @@
     },
     "Sign in": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Iniciar sesión"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zaloguj się"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "登录"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تسجيل الدخول"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión"
           }
         },
         "fil": {
@@ -17047,10 +17139,16 @@
             "value": "Mag-sign in"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "سائن ان کریں"
+            "value": "로그인"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaloguj się"
           }
         },
         "uk": {
@@ -17059,10 +17157,16 @@
             "value": "Увійти"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "로그인"
+            "value": "سائن ان کریں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "登录"
           }
         }
       }
@@ -17119,6 +17223,58 @@
         }
       }
     },
+    "Sign in or create a free account to use Farecart.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سجّل الدخول أو أنشئ حسابًا مجانيًا لاستخدام Farecart."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión o crea una cuenta gratis para usar Farecart."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mag-sign in o gumawa ng libreng account para magamit ang Farecart."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farecart를 사용하려면 로그인하거나 무료 계정을 만드세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaloguj się lub załóż darmowe konto, aby korzystać z Farecart."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Увійдіть або створіть безкоштовний акаунт, щоб користуватися Farecart."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farecart استعمال کرنے کے لیے سائن ان کریں یا مفت اکاؤنٹ بنائیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "登录或创建免费账户即可使用 Farecart。"
+          }
+        }
+      }
+    },
     "Sign in with Apple did not finish. Please try again.": {
       "localizations": {
         "ar": {
@@ -17167,6 +17323,58 @@
           "stringUnit": {
             "state": "translated",
             "value": "通过 Apple 登录未完成。请重试。"
+          }
+        }
+      }
+    },
+    "Sign in with Apple is not available on this device right now. Use Google or email instead.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تسجيل الدخول باستخدام Apple غير متاح على هذا الجهاز الآن. استخدم Google أو البريد الإلكتروني."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión con Apple no está disponible ahora en este dispositivo. Usa Google o tu correo."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi available ngayon ang Sign in with Apple sa device na ito. Gamitin ang Google o email."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지금 이 기기에서는 Apple로 로그인할 수 없어요. Google이나 이메일을 사용하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logowanie przez Apple jest teraz niedostępne na tym urządzeniu. Użyj Google lub e-maila."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вхід через Apple зараз недоступний на цьому пристрої. Скористайтеся Google або електронною поштою."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اس ڈیوائس پر ابھی Apple سے سائن ان دستیاب نہیں۔ Google یا ای میل استعمال کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此设备目前无法使用 Apple 登录。请改用 Google 或电子邮件。"
           }
         }
       }
@@ -17485,28 +17693,16 @@
     },
     "Sign up with email": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Registrarse con correo"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zarejestruj się e-mailem"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "使用邮箱注册"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "التسجيل بالبريد الإلكتروني"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registrarse con correo"
           }
         },
         "fil": {
@@ -17515,10 +17711,16 @@
             "value": "Mag-sign up gamit ang email"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "ای میل سے سائن اپ کریں"
+            "value": "이메일로 가입"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zarejestruj się e-mailem"
           }
         },
         "uk": {
@@ -17527,38 +17729,32 @@
             "value": "Зареєструватися через ел. пошту"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이메일로 가입"
+            "value": "ای میل سے سائن اپ کریں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用邮箱注册"
           }
         }
       }
     },
     "Signed in as %@": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sesión iniciada como %@"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zalogowano jako %@"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已登录：%@"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تم تسجيل الدخول باسم %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión iniciada como %@"
           }
         },
         "fil": {
@@ -17567,10 +17763,16 @@
             "value": "Naka-sign in bilang %@"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "بطور %@ سائن ان"
+            "value": "%@(으)로 로그인됨"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zalogowano jako %@"
           }
         },
         "uk": {
@@ -17579,38 +17781,32 @@
             "value": "Ви ввійшли як %@"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@(으)로 로그인됨"
+            "value": "بطور %@ سائن ان"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已登录：%@"
           }
         }
       }
     },
     "Signed in with Apple": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sesión iniciada con Apple"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zalogowano przez Apple"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已通过 Apple 登录"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تم تسجيل الدخول باستخدام Apple"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión iniciada con Apple"
           }
         },
         "fil": {
@@ -17619,10 +17815,16 @@
             "value": "Naka-sign in gamit ang Apple"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apple کے ذریعے سائن ان"
+            "value": "Apple로 로그인됨"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zalogowano przez Apple"
           }
         },
         "uk": {
@@ -17631,38 +17833,32 @@
             "value": "Вхід через Apple"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apple로 로그인됨"
+            "value": "Apple کے ذریعے سائن ان"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已通过 Apple 登录"
           }
         }
       }
     },
     "Signed in with Google": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sesión iniciada con Google"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zalogowano przez Google"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已通过 Google 登录"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تم تسجيل الدخول باستخدام Google"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión iniciada con Google"
           }
         },
         "fil": {
@@ -17671,10 +17867,16 @@
             "value": "Naka-sign in gamit ang Google"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Google کے ذریعے سائن ان"
+            "value": "Google로 로그인됨"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zalogowano przez Google"
           }
         },
         "uk": {
@@ -17683,38 +17885,32 @@
             "value": "Вхід через Google"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Google로 로그인됨"
+            "value": "Google کے ذریعے سائن ان"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已通过 Google 登录"
           }
         }
       }
     },
     "Signed in with email": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sesión iniciada con correo"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zalogowano e-mailem"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "已通过邮箱登录"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تم تسجيل الدخول بالبريد الإلكتروني"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión iniciada con correo"
           }
         },
         "fil": {
@@ -17723,10 +17919,16 @@
             "value": "Naka-sign in gamit ang email"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "ای میل کے ذریعے سائن ان"
+            "value": "이메일로 로그인됨"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zalogowano e-mailem"
           }
         },
         "uk": {
@@ -17735,10 +17937,16 @@
             "value": "Вхід через ел. пошту"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이메일로 로그인됨"
+            "value": "ای میل کے ذریعے سائن ان"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已通过邮箱登录"
           }
         }
       }
@@ -17849,28 +18057,16 @@
     },
     "Skip for now": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Omitir por ahora"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na razie pomiń"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "暂时跳过"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تخطٍّ الآن"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Omitir por ahora"
           }
         },
         "fil": {
@@ -17879,10 +18075,16 @@
             "value": "Laktawan muna"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "ابھی چھوڑ دیں"
+            "value": "지금은 건너뛰기"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na razie pomiń"
           }
         },
         "uk": {
@@ -17891,10 +18093,16 @@
             "value": "Поки що пропустити"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "지금은 건너뛰기"
+            "value": "ابھی چھوڑ دیں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时跳过"
           }
         }
       }
@@ -18317,28 +18525,16 @@
     },
     "Start using Farecart": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Empezar a usar Farecart"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zacznij korzystać z Farecart"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "开始使用 Farecart"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "ابدأ استخدام Farecart"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar a usar Farecart"
           }
         },
         "fil": {
@@ -18347,10 +18543,16 @@
             "value": "Simulan ang paggamit ng Farecart"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Farecart استعمال کرنا شروع کریں"
+            "value": "Farecart 시작하기"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zacznij korzystać z Farecart"
           }
         },
         "uk": {
@@ -18359,10 +18561,16 @@
             "value": "Почати користуватися Farecart"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "Farecart 시작하기"
+            "value": "Farecart استعمال کرنا شروع کریں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开始使用 Farecart"
           }
         }
       }
@@ -18577,28 +18785,16 @@
     },
     "Switch to looking for food": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cambiar a buscar comida"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przełącz na szukanie jedzenia"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "切换为找食物"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "التبديل إلى البحث عن طعام"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar a buscar comida"
           }
         },
         "fil": {
@@ -18607,10 +18803,16 @@
             "value": "Lumipat sa paghahanap ng pagkain"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "کھانا تلاش کرنے پر جائیں"
+            "value": "음식 찾기로 전환"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przełącz na szukanie jedzenia"
           }
         },
         "uk": {
@@ -18619,38 +18821,32 @@
             "value": "Перейти до пошуку їжі"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "음식 찾기로 전환"
+            "value": "کھانا تلاش کرنے پر جائیں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换为找食物"
           }
         }
       }
     },
     "Switch to pantry staff": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cambiar a personal de despensa"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Przełącz na personel spiżarni"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "切换为食物银行工作人员"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "التبديل إلى موظفي بنك الطعام"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar a personal de despensa"
           }
         },
         "fil": {
@@ -18659,10 +18855,16 @@
             "value": "Lumipat sa pantry staff"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "پینٹری اسٹاف پر جائیں"
+            "value": "팬트리 직원으로 전환"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przełącz na personel spiżarni"
           }
         },
         "uk": {
@@ -18671,10 +18873,16 @@
             "value": "Перейти до режиму персоналу"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "팬트리 직원으로 전환"
+            "value": "پینٹری اسٹاف پر جائیں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换为食物银行工作人员"
           }
         }
       }
@@ -18889,28 +19097,16 @@
     },
     "That email and password don't match. Check them and try again.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ese correo y esa contraseña no coinciden. Revísalos e inténtalo de nuevo."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ten e-mail i hasło do siebie nie pasują. Sprawdź je i spróbuj ponownie."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "邮箱和密码不匹配。请检查后重试。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "البريد الإلكتروني وكلمة المرور غير متطابقين. تحقق منهما وحاول مرة أخرى."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese correo y esa contraseña no coinciden. Revísalos e inténtalo de nuevo."
           }
         },
         "fil": {
@@ -18919,10 +19115,16 @@
             "value": "Hindi magkatugma ang email at password. Tingnan ang mga ito at subukang muli."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "یہ ای میل اور پاس ورڈ آپس میں میل نہیں کھاتے۔ انہیں چیک کریں اور دوبارہ کوشش کریں۔"
+            "value": "이메일과 비밀번호가 일치하지 않습니다. 확인 후 다시 시도하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ten e-mail i hasło do siebie nie pasują. Sprawdź je i spróbuj ponownie."
           }
         },
         "uk": {
@@ -18931,38 +19133,32 @@
             "value": "Ця адреса й пароль не збігаються. Перевірте їх і спробуйте ще раз."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이메일과 비밀번호가 일치하지 않습니다. 확인 후 다시 시도하세요."
+            "value": "یہ ای میل اور پاس ورڈ آپس میں میل نہیں کھاتے۔ انہیں چیک کریں اور دوبارہ کوشش کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "邮箱和密码不匹配。请检查后重试。"
           }
         }
       }
     },
     "That link has expired or was already used. Request a new one.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ese enlace venció o ya se usó. Pide uno nuevo."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ten link wygasł lub został już użyty. Poproś o nowy."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "该链接已过期或已被使用。请重新申请。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "انتهت صلاحية هذا الرابط أو تم استخدامه بالفعل. اطلب رابطًا جديدًا."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ese enlace venció o ya se usó. Pide uno nuevo."
           }
         },
         "fil": {
@@ -18971,10 +19167,16 @@
             "value": "Expired na o nagamit na ang link na iyon. Humiling ng bago."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "یہ لنک ختم ہو چکا ہے یا پہلے استعمال ہو چکا ہے۔ نیا لنک منگوائیں۔"
+            "value": "링크가 만료되었거나 이미 사용되었습니다. 새 링크를 요청하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ten link wygasł lub został już użyty. Poproś o nowy."
           }
         },
         "uk": {
@@ -18983,10 +19185,16 @@
             "value": "Термін дії посилання минув або його вже використано. Запросіть нове."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "링크가 만료되었거나 이미 사용되었습니다. 새 링크를 요청하세요."
+            "value": "یہ لنک ختم ہو چکا ہے یا پہلے استعمال ہو چکا ہے۔ نیا لنک منگوائیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该链接已过期或已被使用。请重新申请。"
           }
         }
       }
@@ -19253,28 +19461,16 @@
     },
     "There is already an account with this email. Sign in instead.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ya hay una cuenta con este correo. Inicia sesión."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konto z tym adresem e-mail już istnieje. Zaloguj się."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "此邮箱已有账户。请直接登录。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "يوجد حساب بهذا البريد الإلكتروني بالفعل. سجّل الدخول بدلًا من ذلك."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya hay una cuenta con este correo. Inicia sesión."
           }
         },
         "fil": {
@@ -19283,10 +19479,16 @@
             "value": "May account na gamit ang email na ito. Mag-sign in na lang."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اس ای میل کے ساتھ پہلے سے اکاؤنٹ موجود ہے۔ اس کے بجائے سائن ان کریں۔"
+            "value": "이 이메일로 된 계정이 이미 있습니다. 로그인하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Konto z tym adresem e-mail już istnieje. Zaloguj się."
           }
         },
         "uk": {
@@ -19295,38 +19497,32 @@
             "value": "Обліковий запис із цією адресою вже існує. Увійдіть."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이 이메일로 된 계정이 이미 있습니다. 로그인하세요."
+            "value": "اس ای میل کے ساتھ پہلے سے اکاؤنٹ موجود ہے۔ اس کے بجائے سائن ان کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此邮箱已有账户。请直接登录。"
           }
         }
       }
     },
     "This can't be undone.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esto no se puede deshacer."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tej operacji nie można cofnąć."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "此操作无法撤销。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "لا يمكن التراجع عن ذلك."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto no se puede deshacer."
           }
         },
         "fil": {
@@ -19335,10 +19531,16 @@
             "value": "Hindi na ito maibabalik."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اسے واپس نہیں کیا جا سکتا۔"
+            "value": "이 작업은 되돌릴 수 없습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tej operacji nie można cofnąć."
           }
         },
         "uk": {
@@ -19347,38 +19549,32 @@
             "value": "Це не можна скасувати."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이 작업은 되돌릴 수 없습니다."
+            "value": "اسے واپس نہیں کیا جا سکتا۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此操作无法撤销。"
           }
         }
       }
     },
     "This can't be undone. You can make a new account later.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esto no se puede deshacer. Puedes crear una cuenta nueva más tarde."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tej operacji nie można cofnąć. Później możesz założyć nowe konto."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "此操作无法撤销。你以后可以重新创建账户。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "لا يمكن التراجع عن ذلك. يمكنك إنشاء حساب جديد لاحقًا."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto no se puede deshacer. Puedes crear una cuenta nueva más tarde."
           }
         },
         "fil": {
@@ -19387,10 +19583,16 @@
             "value": "Hindi na ito maibabalik. Puwede kang gumawa ng bagong account mamaya."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اسے واپس نہیں کیا جا سکتا۔ آپ بعد میں نیا اکاؤنٹ بنا سکتے ہیں۔"
+            "value": "이 작업은 되돌릴 수 없습니다. 나중에 새 계정을 만들 수 있습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tej operacji nie można cofnąć. Później możesz założyć nowe konto."
           }
         },
         "uk": {
@@ -19399,10 +19601,16 @@
             "value": "Це не можна скасувати. Пізніше можна створити новий обліковий запис."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "이 작업은 되돌릴 수 없습니다. 나중에 새 계정을 만들 수 있습니다."
+            "value": "اسے واپس نہیں کیا جا سکتا۔ آپ بعد میں نیا اکاؤنٹ بنا سکتے ہیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此操作无法撤销。你以后可以重新创建账户。"
           }
         }
       }
@@ -19929,28 +20137,16 @@
     },
     "Too many tries for now. Wait a few minutes and try again.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Demasiados intentos por ahora. Espera unos minutos e inténtalo de nuevo."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Na razie za dużo prób. Odczekaj kilka minut i spróbuj ponownie."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "尝试次数过多。请等几分钟后再试。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "محاولات كثيرة جدًا حاليًا. انتظر بضع دقائق وحاول مرة أخرى."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demasiados intentos por ahora. Espera unos minutos e inténtalo de nuevo."
           }
         },
         "fil": {
@@ -19959,10 +20155,16 @@
             "value": "Masyadong maraming subok sa ngayon. Maghintay ng ilang minuto at subukang muli."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "فی الحال بہت زیادہ کوششیں ہو گئیں۔ چند منٹ انتظار کریں اور دوبارہ کوشش کریں۔"
+            "value": "시도 횟수가 너무 많습니다. 몇 분 후 다시 시도하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Na razie za dużo prób. Odczekaj kilka minut i spróbuj ponownie."
           }
         },
         "uk": {
@@ -19971,10 +20173,16 @@
             "value": "Забагато спроб. Зачекайте кілька хвилин і спробуйте ще раз."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "시도 횟수가 너무 많습니다. 몇 분 후 다시 시도하세요."
+            "value": "فی الحال بہت زیادہ کوششیں ہو گئیں۔ چند منٹ انتظار کریں اور دوبارہ کوشش کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "尝试次数过多。请等几分钟后再试。"
           }
         }
       }
@@ -20241,28 +20449,16 @@
     },
     "Two quick questions. Your answers are saved to your account.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dos preguntas rápidas. Tus respuestas se guardan en tu cuenta."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Dwa krótkie pytania. Twoje odpowiedzi zostaną zapisane na koncie."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "两个简单问题。你的回答会保存到你的账户。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "سؤالان سريعان. تُحفظ إجاباتك في حسابك."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dos preguntas rápidas. Tus respuestas se guardan en tu cuenta."
           }
         },
         "fil": {
@@ -20271,10 +20467,16 @@
             "value": "Dalawang mabilis na tanong. Naka-save sa iyong account ang mga sagot mo."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "دو مختصر سوال۔ آپ کے جوابات آپ کے اکاؤنٹ میں محفوظ ہوتے ہیں۔"
+            "value": "간단한 질문 두 가지입니다. 답변은 계정에 저장됩니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dwa krótkie pytania. Twoje odpowiedzi zostaną zapisane na koncie."
           }
         },
         "uk": {
@@ -20283,10 +20485,16 @@
             "value": "Два швидкі запитання. Ваші відповіді зберігаються в обліковому записі."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "간단한 질문 두 가지입니다. 답변은 계정에 저장됩니다."
+            "value": "دو مختصر سوال۔ آپ کے جوابات آپ کے اکاؤنٹ میں محفوظ ہوتے ہیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "两个简单问题。你的回答会保存到你的账户。"
           }
         }
       }
@@ -20397,28 +20605,16 @@
     },
     "Type your email above, then tap Forgot password.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Escribe tu correo arriba y luego toca ¿Olvidaste tu contraseña?"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wpisz e-mail powyżej, a potem stuknij Nie pamiętasz hasła?"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "请先在上方输入邮箱，然后轻点“忘记密码？”。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "اكتب بريدك الإلكتروني في الأعلى، ثم اضغط على هل نسيت كلمة المرور؟"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escribe tu correo arriba y luego toca ¿Olvidaste tu contraseña?"
           }
         },
         "fil": {
@@ -20427,10 +20623,16 @@
             "value": "I-type ang iyong email sa itaas, saka i-tap ang Nakalimutan ang password?"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "اوپر اپنی ای میل لکھیں، پھر پاس ورڈ بھول گئے؟ پر ٹیپ کریں۔"
+            "value": "위에 이메일을 입력한 다음 비밀번호를 잊으셨나요?를 탭하세요."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wpisz e-mail powyżej, a potem stuknij Nie pamiętasz hasła?"
           }
         },
         "uk": {
@@ -20439,10 +20641,16 @@
             "value": "Введіть адресу вище, а потім торкніться «Забули пароль?»."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "위에 이메일을 입력한 다음 비밀번호를 잊으셨나요?를 탭하세요."
+            "value": "اوپر اپنی ای میل لکھیں، پھر پاس ورڈ بھول گئے؟ پر ٹیپ کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请先在上方输入邮箱，然后轻点“忘记密码？”。"
           }
         }
       }
@@ -20657,28 +20865,16 @@
     },
     "Use at least 8 characters for your password.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Usa al menos 8 caracteres en tu contraseña."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Hasło musi mieć co najmniej 8 znaków."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "密码至少需要 8 个字符。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "استخدم 8 أحرف على الأقل في كلمة المرور."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa al menos 8 caracteres en tu contraseña."
           }
         },
         "fil": {
@@ -20687,10 +20883,16 @@
             "value": "Gumamit ng hindi bababa sa 8 character para sa password."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "پاس ورڈ میں کم از کم 8 حروف استعمال کریں۔"
+            "value": "비밀번호는 8자 이상이어야 합니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hasło musi mieć co najmniej 8 znaków."
           }
         },
         "uk": {
@@ -20699,10 +20901,16 @@
             "value": "Пароль має містити щонайменше 8 символів."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "비밀번호는 8자 이상이어야 합니다."
+            "value": "پاس ورڈ میں کم از کم 8 حروف استعمال کریں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密码至少需要 8 个字符。"
           }
         }
       }
@@ -21021,28 +21229,16 @@
     },
     "Visits you booked stay on this phone with their codes, but are no longer linked to an account.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Las visitas que reservaste se quedan en este teléfono con sus códigos, pero ya no están vinculadas a una cuenta."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zarezerwowane wizyty zostają na tym telefonie z kodami, ale nie są już powiązane z kontem."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你预约的到访会连同确认码保留在这部手机上，但不再与账户关联。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تبقى الزيارات التي حجزتها على هذا الهاتف مع رموزها، لكنها لن تكون مرتبطة بحساب."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las visitas que reservaste se quedan en este teléfono con sus códigos, pero ya no están vinculadas a una cuenta."
           }
         },
         "fil": {
@@ -21051,10 +21247,16 @@
             "value": "Mananatili sa teleponong ito ang mga na-book mong pagbisita kasama ang mga code, pero hindi na naka-link sa account."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "آپ کے بک کیے گئے وزٹس اپنے کوڈز کے ساتھ اس فون پر رہیں گے، لیکن کسی اکاؤنٹ سے منسلک نہیں ہوں گے۔"
+            "value": "예약한 방문은 코드와 함께 이 휴대폰에 남지만 더 이상 계정에 연결되지 않습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zarezerwowane wizyty zostają na tym telefonie z kodami, ale nie są już powiązane z kontem."
           }
         },
         "uk": {
@@ -21063,10 +21265,16 @@
             "value": "Заброньовані візити залишаться на цьому телефоні з кодами, але більше не будуть прив'язані до облікового запису."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "예약한 방문은 코드와 함께 이 휴대폰에 남지만 더 이상 계정에 연결되지 않습니다."
+            "value": "آپ کے بک کیے گئے وزٹس اپنے کوڈز کے ساتھ اس فون پر رہیں گے، لیکن کسی اکاؤنٹ سے منسلک نہیں ہوں گے۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你预约的到访会连同确认码保留在这部手机上，但不再与账户关联。"
           }
         }
       }
@@ -21645,28 +21853,16 @@
     },
     "What happens": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Qué pasa"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Co się stanie"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "会发生什么"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "ما الذي سيحدث"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué pasa"
           }
         },
         "fil": {
@@ -21675,10 +21871,16 @@
             "value": "Ano ang mangyayari"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "کیا ہو گا"
+            "value": "삭제하면"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Co się stanie"
           }
         },
         "uk": {
@@ -21687,10 +21889,16 @@
             "value": "Що станеться"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "삭제하면"
+            "value": "کیا ہو گا"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会发生什么"
           }
         }
       }
@@ -22165,28 +22373,16 @@
     },
     "You can change this later in Settings.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Puedes cambiarlo después en Ajustes."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Możesz to później zmienić w Ustawieniach."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你之后可以在“设置”中更改。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "يمكنك تغيير ذلك لاحقًا من الإعدادات."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puedes cambiarlo después en Ajustes."
           }
         },
         "fil": {
@@ -22195,10 +22391,16 @@
             "value": "Puwede mo itong baguhin mamaya sa Settings."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "آپ اسے بعد میں سیٹنگز میں بدل سکتے ہیں۔"
+            "value": "나중에 설정에서 바꿀 수 있습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Możesz to później zmienić w Ustawieniach."
           }
         },
         "uk": {
@@ -22207,10 +22409,16 @@
             "value": "Це можна змінити пізніше в Налаштуваннях."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "나중에 설정에서 바꿀 수 있습니다."
+            "value": "آپ اسے بعد میں سیٹنگز میں بدل سکتے ہیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你之后可以在“设置”中更改。"
           }
         }
       }
@@ -22477,28 +22685,16 @@
     },
     "You're set up for": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ya estás listo para"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Masz dostęp do"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你已设置为"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تم إعدادك لـ"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya estás listo para"
           }
         },
         "fil": {
@@ -22507,10 +22703,16 @@
             "value": "Naka-set up ka na para sa"
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "آپ اس کے لیے تیار ہیں"
+            "value": "설정된 팬트리"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masz dostęp do"
           }
         },
         "uk": {
@@ -22519,38 +22721,32 @@
             "value": "Вас налаштовано для"
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "설정된 팬트리"
+            "value": "آپ اس کے لیے تیار ہیں"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你已设置为"
           }
         }
       }
     },
     "Your account, name and email are removed from Farecart.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tu cuenta, tu nombre y tu correo se eliminan de Farecart."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twoje konto, imię i e-mail zostaną usunięte z Farecart."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的账户、姓名和邮箱将从 Farecart 中删除。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تتم إزالة حسابك واسمك وبريدك الإلكتروني من Farecart."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu cuenta, tu nombre y tu correo se eliminan de Farecart."
           }
         },
         "fil": {
@@ -22559,10 +22755,16 @@
             "value": "Aalisin sa Farecart ang iyong account, pangalan at email."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "آپ کا اکاؤنٹ، نام اور ای میل Farecart سے ہٹا دیے جائیں گے۔"
+            "value": "계정, 이름, 이메일이 Farecart에서 삭제됩니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twoje konto, imię i e-mail zostaną usunięte z Farecart."
           }
         },
         "uk": {
@@ -22571,10 +22773,16 @@
             "value": "Ваш обліковий запис, ім'я та адресу буде видалено з Farecart."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "계정, 이름, 이메일이 Farecart에서 삭제됩니다."
+            "value": "آپ کا اکاؤنٹ، نام اور ای میل Farecart سے ہٹا دیے جائیں گے۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的账户、姓名和邮箱将从 Farecart 中删除。"
           }
         }
       }
@@ -22789,28 +22997,16 @@
     },
     "Your saved discount answers, language and theme are removed from our servers. They stay on this phone.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tus respuestas sobre descuentos, tu idioma y tu tema guardados se eliminan de nuestros servidores. Se quedan en este teléfono."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zapisane odpowiedzi o zniżkach, język i motyw zostaną usunięte z naszych serwerów. Zostaną na tym telefonie."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你保存的优惠回答、语言和主题将从我们的服务器删除，但会保留在这部手机上。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تُحذف إجاباتك المحفوظة عن الخصومات ولغتك ومظهرك من خوادمنا. وتبقى على هذا الهاتف."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus respuestas sobre descuentos, tu idioma y tu tema guardados se eliminan de nuestros servidores. Se quedan en este teléfono."
           }
         },
         "fil": {
@@ -22819,10 +23015,16 @@
             "value": "Aalisin sa aming mga server ang naka-save mong sagot sa diskwento, wika at tema. Mananatili ang mga ito sa teleponong ito."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "آپ کے محفوظ رعایت کے جوابات، زبان اور تھیم ہمارے سرورز سے ہٹا دیے جائیں گے۔ یہ اس فون پر رہیں گے۔"
+            "value": "저장된 할인 답변, 언어, 테마가 서버에서 삭제됩니다. 이 휴대폰에는 남아 있습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zapisane odpowiedzi o zniżkach, język i motyw zostaną usunięte z naszych serwerów. Zostaną na tym telefonie."
           }
         },
         "uk": {
@@ -22831,10 +23033,16 @@
             "value": "Збережені відповіді щодо знижок, мову й тему буде видалено з наших серверів. На цьому телефоні вони залишаться."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "저장된 할인 답변, 언어, 테마가 서버에서 삭제됩니다. 이 휴대폰에는 남아 있습니다."
+            "value": "آپ کے محفوظ رعایت کے جوابات، زبان اور تھیم ہمارے سرورز سے ہٹا دیے جائیں گے۔ یہ اس فون پر رہیں گے۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你保存的优惠回答、语言和主题将从我们的服务器删除，但会保留在这部手机上。"
           }
         }
       }
@@ -22997,28 +23205,16 @@
     },
     "Your visits, discount answers, language and theme are saved to your account.": {
       "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tus visitas, respuestas sobre descuentos, idioma y tema se guardan en tu cuenta."
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Twoje wizyty, odpowiedzi o zniżkach, język i motyw są zapisywane na koncie."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "你的到访预约、优惠回答、语言和主题都会保存到你的账户。"
-          }
-        },
         "ar": {
           "stringUnit": {
             "state": "translated",
             "value": "تُحفظ زياراتك وإجاباتك عن الخصومات ولغتك ومظهرك في حسابك."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus visitas, respuestas sobre descuentos, idioma y tema se guardan en tu cuenta."
           }
         },
         "fil": {
@@ -23027,10 +23223,16 @@
             "value": "Naka-save sa iyong account ang iyong mga pagbisita, sagot sa diskwento, wika at tema."
           }
         },
-        "ur": {
+        "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "آپ کے وزٹس، رعایت کے جوابات، زبان اور تھیم آپ کے اکاؤنٹ میں محفوظ ہیں۔"
+            "value": "방문, 할인 답변, 언어, 테마가 계정에 저장됩니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Twoje wizyty, odpowiedzi o zniżkach, język i motyw są zapisywane na koncie."
           }
         },
         "uk": {
@@ -23039,10 +23241,16 @@
             "value": "Ваші візити, відповіді щодо знижок, мова й тема зберігаються в обліковому записі."
           }
         },
-        "ko": {
+        "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "방문, 할인 답변, 언어, 테마가 계정에 저장됩니다."
+            "value": "آپ کے وزٹس، رعایت کے جوابات، زبان اور تھیم آپ کے اکاؤنٹ میں محفوظ ہیں۔"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的到访预约、优惠回答、语言和主题都会保存到你的账户。"
           }
         }
       }

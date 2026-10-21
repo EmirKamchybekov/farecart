@@ -260,7 +260,7 @@ final class AccountModel {
         switch result {
         case .failure(let error):
             if let authError = error as? ASAuthorizationError, authError.code == .canceled { return }
-            errorMessage = String(localized: "Sign in with Apple is not available on this device right now. You can keep using Farecart without an account.", bundle: LanguageBundle.current)
+            errorMessage = String(localized: "Sign in with Apple is not available on this device right now. Use Google or email instead.", bundle: LanguageBundle.current)
         case .success(let authorization):
             guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
                   let tokenData = credential.identityToken,
@@ -454,7 +454,7 @@ final class AccountModel {
         String(localized: "Could not sign in right now. Check your connection and try again.", bundle: LanguageBundle.current)
     }
     private static var googleNotSetUpMessage: String {
-        String(localized: "Google sign-in isn't set up yet. You can keep using Farecart without an account.", bundle: LanguageBundle.current)
+        String(localized: "Google sign-in isn't available right now. Use email instead.", bundle: LanguageBundle.current)
     }
     private static var googleDidNotFinishMessage: String {
         String(localized: "Google sign-in did not finish. Please try again.", bundle: LanguageBundle.current)
