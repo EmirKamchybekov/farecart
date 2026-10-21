@@ -9,14 +9,14 @@ enum OnboardingStep: Hashable {
     /// Six pages on either path, so the page dots always match.
     static func steps(for role: UserRole?) -> [OnboardingStep] {
         switch role {
-        case .staff: [.welcome, .account, .role, .staffCode, .location, .look]
-        case .client, nil: [.welcome, .account, .role, .location, .discounts, .look]
+        case .staff: [.welcome, .role, .staffCode, .location, .look, .account]
+        case .client, nil: [.welcome, .role, .location, .discounts, .look, .account]
         }
     }
 }
 
-/// First launch: language → account → role → (location → discounts) or (staff code → location)
-/// → look. Skippable at any point.
+/// First launch: language → role → (location → discounts) or (staff code → location) → look →
+/// account last, once people have seen what the app does for them. Skippable at any point.
 struct OnboardingView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AccountModel.self) private var account
@@ -59,12 +59,12 @@ struct OnboardingView: View {
     private func view(for step: OnboardingStep) -> some View {
         switch step {
         case .welcome: WelcomePage(next: advance)
-        case .account: AccountPage(next: advance)
+        case .account: AccountPage(next: finish)
         case .role: RolePage(next: advance)
         case .location: LocationPage(next: advance)
         case .discounts: DiscountsPage(next: advance)
         case .staffCode: StaffCodePage(next: advance)
-        case .look: ThemePage(finish: finish)
+        case .look: ThemePage(finish: advance)
         }
     }
 
@@ -271,7 +271,7 @@ private struct DiscountsPage: View {
     }
 }
 
-/// Page 2: create an account (or sign in), or carry on as a guest.
+/// Last page: create an account (or sign in), or carry on as a guest.
 private struct AccountPage: View {
     @Environment(AccountModel.self) private var account
     @AppStorage(OnboardingKeys.guest) private var isGuest = false
@@ -288,7 +288,7 @@ private struct AccountPage: View {
         } actions: {
             if account.isSignedIn {
                 Button(action: next) {
-                    BigButtonLabel(title: "Continue", systemImage: "arrow.right")
+                    BigButtonLabel(title: "Start using Farecart", systemImage: "checkmark")
                 }
                 .buttonStyle(.glassProminent)
             } else {
@@ -309,7 +309,7 @@ private struct AccountPage: View {
     }
 }
 
-/// Page 3: client or pantry staff. The answer picks the rest of the pages.
+/// Page 2: client or pantry staff. The answer picks the rest of the pages.
 private struct RolePage: View {
     @AppStorage(UserRole.storageKey) private var roleCode: String?
     let next: () -> Void
@@ -497,7 +497,7 @@ private struct StaffCodePage: View {
     }
 }
 
-/// Last page on both paths: System / Light / Dark as map previews, applied live.
+/// Second to last on both paths: System / Light / Dark as map previews, applied live.
 private struct ThemePage: View {
     @AppStorage(AppTheme.storageKey) private var themeCode = AppTheme.system.rawValue
     let finish: () -> Void
@@ -514,7 +514,7 @@ private struct ThemePage: View {
             .padding(.top, Spacing.xs)
         } actions: {
             Button(action: finish) {
-                BigButtonLabel(title: "Start using Farecart", systemImage: "checkmark")
+                BigButtonLabel(title: "Continue", systemImage: "arrow.right")
             }
             .buttonStyle(.glassProminent)
         }
