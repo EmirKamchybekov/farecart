@@ -7,6 +7,7 @@ import FarecartKit
 struct ResultsPanel: View {
     @Bindable var model: FindFoodModel
     @Environment(AppEnvironment.self) private var environment
+    @State private var ticket: PantryVisit?
     /// Height available to the panel (the map area), from the parent's GeometryReader.
     let availableHeight: CGFloat
     @State private var dragOffset: CGFloat = 0
@@ -125,6 +126,7 @@ struct ResultsPanel: View {
             emptyState
         } else {
             list
+                .visitTicketSheet($ticket)
         }
     }
 
@@ -132,9 +134,14 @@ struct ResultsPanel: View {
         List {
             if let next = environment.pantry.nextVisit {
                 Section {
-                    NavigationLink(value: next) {
-                        UpcomingVisitCard(visit: next, compact: true)
+                    Button { ticket = next } label: {
+                        HStack {
+                            UpcomingVisitCard(visit: next, compact: true)
+                            Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
+                        }
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                     .listRowBackground(
                         RoundedRectangle(cornerRadius: Radius.inner, style: .continuous)
                             .fill(Color(.secondarySystemGroupedBackground))

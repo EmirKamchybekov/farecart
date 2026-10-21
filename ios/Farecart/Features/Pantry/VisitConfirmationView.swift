@@ -218,6 +218,23 @@ struct VisitRouteView: View {
 }
 
 extension View {
+    /// Presents a visit's ticket (QR, code, details, directions, cancel) as a sheet.
+    func visitTicketSheet(_ visit: Binding<PantryVisit?>) -> some View {
+        sheet(item: visit) { item in
+            NavigationStack {
+                VisitConfirmationView(visit: item)
+                    .navigationTitle(Text("Your visit"))
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Done") { visit.wrappedValue = nil }
+                        }
+                    }
+                    .visitDestinations()
+            }
+        }
+    }
+
     /// Registers the destinations a visit can push: its confirmation screen and its route.
     func visitDestinations() -> some View {
         self

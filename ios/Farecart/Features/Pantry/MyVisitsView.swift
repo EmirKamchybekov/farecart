@@ -6,6 +6,7 @@ import FarecartKit
 struct MyVisitsView: View {
     @Environment(AppEnvironment.self) private var environment
     @State private var cancelTarget: PantryVisit?
+    @State private var ticket: PantryVisit?
     @State private var errorMessage: String?
 
     private var store: PantryStore { environment.pantry }
@@ -32,9 +33,14 @@ struct MyVisitsView: View {
             if !store.upcomingVisits.isEmpty {
                 Section("Upcoming") {
                     ForEach(store.upcomingVisits) { visit in
-                        NavigationLink(value: visit) {
-                            VisitRow(visit: visit)
+                        Button { ticket = visit } label: {
+                            HStack {
+                                VisitRow(visit: visit)
+                                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
+                            }
+                            .contentShape(Rectangle())
                         }
+                        .buttonStyle(.plain)
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             if visit.canCancel {
                                 Button(role: .destructive) {
@@ -50,9 +56,14 @@ struct MyVisitsView: View {
             if !store.pastVisits.isEmpty {
                 Section("Past and cancelled") {
                     ForEach(store.pastVisits) { visit in
-                        NavigationLink(value: visit) {
-                            VisitRow(visit: visit)
+                        Button { ticket = visit } label: {
+                            HStack {
+                                VisitRow(visit: visit)
+                                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
+                            }
+                            .contentShape(Rectangle())
                         }
+                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -62,6 +73,7 @@ struct MyVisitsView: View {
                 ProgressView()
             }
         }
+        .visitTicketSheet($ticket)
         .navigationTitle("Your visits")
         .navigationBarTitleDisplayMode(.large)
         .refreshable { await store.refreshVisits() }

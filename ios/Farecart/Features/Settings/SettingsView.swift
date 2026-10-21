@@ -6,6 +6,7 @@ import FarecartKit
 struct SettingsView: View {
     @Environment(AppEnvironment.self) private var environment
     @Environment(AccountModel.self) private var account
+    @State private var ticket: PantryVisit?
     @AppStorage(AppLanguage.storageKey) private var languageCode = AppLanguage.system.rawValue
     @AppStorage(AppTheme.storageKey) private var themeCode = AppTheme.system.rawValue
     @AppStorage(OnboardingKeys.done) private var onboardingDone = false
@@ -116,6 +117,7 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .visitTicketSheet($ticket)
             .navigationDestination(for: SettingsRoute.self) { route in
                 switch route {
                 case .visits: MyVisitsView()
@@ -143,9 +145,14 @@ struct SettingsView: View {
     private var visitsSection: some View {
         Section {
             if let next = environment.pantry.nextVisit {
-                NavigationLink(value: next) {
-                    UpcomingVisitCard(visit: next)
+                Button { ticket = next } label: {
+                    HStack {
+                        UpcomingVisitCard(visit: next)
+                        Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
+                    }
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
                 .padding(.vertical, 4)
             }
             NavigationLink(value: SettingsRoute.visits) {
