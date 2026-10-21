@@ -13,6 +13,7 @@
 		15389085527128D6D4EF775F /* FindFoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B3B1880A7B8C031E88A8E4 /* FindFoodModel.swift */; };
 		16BE21A65AD0F05E910B4DDA /* FindFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F832CA8D40606C23134E77 /* FindFoodView.swift */; };
 		17473C6EB5C8DB9E58B34683 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304287804855A287A8715BF /* SplashView.swift */; };
+		17F2831F5BAD9F5BFDF1F309 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83626C60A6A33FBBB588E9F /* QRCodeView.swift */; };
 		1E18E9B208A4F6E05A284D5D /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DC63DF0482329A51401D73 /* AccountModel.swift */; };
 		21D4F87D25033E6102825753 /* FarecartKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4940F40340E859D8C1817968 /* FarecartKit */; };
 		2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B745AE72B8089B823213ED3 /* RootTabView.swift */; };
@@ -97,6 +98,7 @@
 		D3F832CA8D40606C23134E77 /* FindFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFoodView.swift; sourceTree = "<group>"; };
 		D4271A900220AB28D7096489 /* PlaceIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceIcon.swift; sourceTree = "<group>"; };
 		D61B4E4FA502065D022E5C33 /* Farecart.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Farecart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D83626C60A6A33FBBB588E9F /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		EC500D482A8A5A67FE844CAF /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		F2DC63DF0482329A51401D73 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 				1C0EA410AFEC8A96769C3ECA /* LocationTypeStyle.swift */,
 				7529F663AB3B087416D55E9F /* PantryStyle.swift */,
 				D4271A900220AB28D7096489 /* PlaceIcon.swift */,
+				D83626C60A6A33FBBB588E9F /* QRCodeView.swift */,
 				8F65F37FC43DC05BEA6875D7 /* TypeBadge.swift */,
 			);
 			path = Shared;
@@ -423,6 +426,7 @@
 				63DC58937FE77B9BE443ED66 /* PlaceDetailView.swift in Sources */,
 				83508D884897264D6E6CB78C /* PlaceIcon.swift in Sources */,
 				4CEF9BF0EBB055CBB3DC2D95 /* PlaceInfoView.swift in Sources */,
+				17F2831F5BAD9F5BFDF1F309 /* QRCodeView.swift in Sources */,
 				87305FE952FB937F96B526C9 /* ResultsPanel.swift in Sources */,
 				2208F4873A237C63E64118F3 /* RootTabView.swift in Sources */,
 				C16F1F62560A6E0442C3065D /* RouteModel.swift in Sources */,

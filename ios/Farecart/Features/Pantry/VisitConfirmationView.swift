@@ -78,6 +78,9 @@ struct VisitConfirmationView: View {
     private var codeCard: some View {
         VStack(spacing: Spacing.xs) {
             SectionCaption("Confirmation code")
+            QRCodeView(payload: "farecart://visit/\(current.confirmationCode)", dimmed: status == .cancelled)
+                .frame(width: 200, height: 200)
+                .padding(.vertical, Spacing.xs)
             Text(current.confirmationCode)
                 .font(.system(size: 48, weight: .heavy, design: .rounded))
                 .monospaced()
@@ -86,7 +89,7 @@ struct VisitConfirmationView: View {
                 .lineLimit(1)
                 .foregroundStyle(status == .cancelled ? Color.secondary : Color.primary)
                 .accessibilityLabel(Text("Confirmation code \(current.confirmationCode.map(String.init).joined(separator: " "))"))
-            Text(status == .cancelled ? "This code is no longer valid." : "Show this code when you arrive.")
+            Text(status == .cancelled ? "This code is no longer valid." : "Show this QR code or the code when you arrive.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }
