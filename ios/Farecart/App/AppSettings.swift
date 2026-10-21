@@ -112,6 +112,9 @@ enum OnboardingKeys {
     /// Set when someone signs out, deletes their account or their session expires: the app then shows
     /// the account screen until they sign in or choose "Continue as guest". Off for everyone else.
     static let needsSignIn = "needsSignIn"
+    /// Set the first time anyone signs in on this phone. Signed out with this set: just the account
+    /// screen. Never signed in: the full welcome flow.
+    static let hasSignedIn = "hasSignedInBefore"
 }
 
 /// "How will you use Farecart?" from onboarding (`@AppStorage("userRole")`). Staff land on their

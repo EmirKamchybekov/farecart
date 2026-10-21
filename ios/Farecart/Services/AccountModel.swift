@@ -30,7 +30,11 @@ enum EmailAuthOutcome: Equatable {
 @MainActor
 @Observable
 final class AccountModel {
-    private(set) var session: AuthSession?
+    /// False until the stored session has been loaded at launch, so the first screen doesn't flash.
+    private(set) var didRestore = false
+    private(set) var session: AuthSession? {
+        didSet { if session != nil { UserDefaults.standard.set(true, forKey: OnboardingKeys.hasSignedIn) } }
+    }
     private(set) var isBusy = false
     /// Friendly, already localized message for the Account section; `nil` when all is well.
     private(set) var errorMessage: String?
@@ -71,6 +75,7 @@ final class AccountModel {
 
     /// Loads the stored session, refreshes it when needed and pulls the profile down.
     func restore(environment: AppEnvironment) async {
+        defer { didRestore = true }
         pantry = environment.pantry
         environment.pantry.accessTokenProvider = { [weak self] in await self?.validAccessToken() }
         guard let config = environment.config else { return }
@@ -91,6 +96,7 @@ final class AccountModel {
             }
         }
         session = restored
+        didRestore = true   // show the app now; profile and visits sync in the background
         await pullProfile()
         #if DEBUG
         if DebugLaunch.signOutAtLaunch { await signOut(); return }
