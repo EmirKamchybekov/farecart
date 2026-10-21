@@ -11,6 +11,8 @@ enum AppTab: Hashable {
 /// Onboarding on first launch, then the tabs.
 struct RootView: View {
     @AppStorage(OnboardingKeys.done) private var onboardingDone = false
+    @AppStorage(OnboardingKeys.guest) private var isGuest = false
+    @Environment(AccountModel.self) private var account
 
     var body: some View {
         #if DEBUG
@@ -27,7 +29,11 @@ struct RootView: View {
 
     @ViewBuilder
     private var gate: some View {
-        if onboardingDone {
+        if onboardingDone && !account.isSignedIn && !isGuest {
+            // Signed out after onboarding: back to the account screen (language, role and theme stay).
+            AccountGateView()
+                .transition(.opacity)
+        } else if onboardingDone {
             RootTabView()
                 .transition(.opacity)
         } else {
@@ -192,9 +198,11 @@ enum DebugLaunch {
         }
         if arguments.contains("-farecart-reset-onboarding") {
             UserDefaults.standard.set(false, forKey: OnboardingKeys.done)
+            UserDefaults.standard.set(false, forKey: OnboardingKeys.guest)
             UserDefaults.standard.removeObject(forKey: UserRole.storageKey)
         } else if arguments.contains(where: { $0.hasPrefix("-farecart-") }) {
             UserDefaults.standard.set(true, forKey: OnboardingKeys.done)
+            if !arguments.contains("-farecart-sign-out") { UserDefaults.standard.set(true, forKey: OnboardingKeys.guest) }
         }
         if let role = value(after: "-farecart-role"), UserRole(rawValue: role) != nil {
             UserDefaults.standard.set(role, forKey: UserRole.storageKey)

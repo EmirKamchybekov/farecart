@@ -109,6 +109,9 @@ enum AppTheme: String, CaseIterable, Identifiable {
 
 enum OnboardingKeys {
     static let done = "onboardingDone"
+    /// Set when the person chose "Continue as guest" (or skipped). Cleared on sign out / account deletion,
+    /// which sends them back to the account screen.
+    static let guest = "onboardingGuest"
 }
 
 /// "How will you use Farecart?" from onboarding (`@AppStorage("userRole")`). Staff land on their

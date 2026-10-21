@@ -41,6 +41,7 @@ struct OnboardingView: View {
             HStack {
                 Spacer()
                 Button {
+                    UserDefaults.standard.set(true, forKey: OnboardingKeys.guest)
                     finish()
                 } label: {
                     Text("Skip")
@@ -273,6 +274,7 @@ private struct DiscountsPage: View {
 /// Page 2: create an account (or sign in), or carry on as a guest.
 private struct AccountPage: View {
     @Environment(AccountModel.self) private var account
+    @AppStorage(OnboardingKeys.guest) private var isGuest = false
     let next: () -> Void
 
     var body: some View {
@@ -290,7 +292,10 @@ private struct AccountPage: View {
                 }
                 .buttonStyle(.glassProminent)
             } else {
-                Button(action: next) {
+                Button {
+                    isGuest = true
+                    next()
+                } label: {
                     Text("Continue as guest")
                         .font(.subheadline.weight(.semibold))
                         .padding(.vertical, Spacing.xs)
@@ -620,4 +625,12 @@ private struct MapThumbnail: View {
     OnboardingView()
         .environment(AppEnvironment.preview())
         .environment(AccountModel())
+}
+
+/// Shown instead of the tabs when someone signs out or deletes their account after onboarding:
+/// the same account page, without the rest of the welcome flow.
+struct AccountGateView: View {
+    var body: some View {
+        AccountPage(next: {})
+    }
 }
