@@ -193,7 +193,6 @@ final class FindFoodModel {
         origin = point
         originLabel = label
         originIsCurrentLocation = isCurrent
-        environment.searchOrigin = (point, label, isCurrent)
         searchText = label
         radius = .fiveMiles
     }
