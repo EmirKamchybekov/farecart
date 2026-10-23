@@ -208,7 +208,10 @@ struct VisitRouteView: View {
             guard request == nil, let place = visit.asPlace() else { return }
             var origin = GeoPoint.westSideChicago
             var label = String(localized: "West Side, Chicago", bundle: LanguageBundle.current)
-            if environment.location.isAuthorized, let here = try? await environment.location.currentLocation(timeout: .seconds(5)) {
+            if let searched = environment.searchOrigin, !searched.isCurrent {
+                origin = searched.point
+                label = searched.label
+            } else if environment.location.isAuthorized, let here = try? await environment.location.currentLocation(timeout: .seconds(5)) {
                 origin = here
                 label = String(localized: "My location", bundle: LanguageBundle.current)
             }

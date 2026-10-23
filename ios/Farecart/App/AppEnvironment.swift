@@ -19,6 +19,9 @@ final class AppEnvironment {
     let pantry: PantryStore
     /// Set when Info.plist is missing SUPABASE_* values; the UI shows a friendly message.
     let configurationError: String?
+    /// Where Find Food is searching from (a typed address or current location); directions from a
+    /// visit ticket start here so a typed address is never swapped for GPS.
+    var searchOrigin: (point: GeoPoint, label: String, isCurrent: Bool)?
 
     init(
         config: AppConfig?,
