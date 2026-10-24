@@ -41,7 +41,7 @@ struct PlaceInfoView: View {
             guard isPantry else { return }
             loadingAvailability = true
             defer { loadingAvailability = false }
-            _ = try? await environment.pantry.loadAvailability(for: place)
+            _ = try? await environment.pantry.loadAvailability(for: place, force: true)
             await environment.pantry.loadVisitsIfNeeded()
         }
         .mapItemDetailSheet(isPresented: $showsAppleCard, item: appleItem)
